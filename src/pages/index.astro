@@ -5,23 +5,31 @@ import Container from "@/components/container";
 import Experience from "@/components/Experience.astro";
 import Projects from "@/components/Projects.astro";
 import Studies from "@/components/Studies.astro";
+import Footer from "@/components/Footer.astro";
+import Navigation from "@/components/Navigation.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <div class="flex flex-col gap-y-10 mt-8">
+  <Navigation />
+  <div class="mt-8">
     <Container>
       <UserPresentation />
     </Container>
-    <Container className="relative flex flex-col gap-y-10">
-      <div
-        class="absolute top-0 -left-10 -translate-x-1/2 w-[2px] bg-gradient-to-b from-blue-800 to-blue-500 h-full rounded-full shadow-white shadow-xl"
-      >
+    <Container className="mt-8">
+      <div class="relative flex flex-col gap-y-8">
+        <div
+          class="absolute top-0 -left-10 -translate-x-1/2 w-[2px] bg-gradient-to-b from-blue-800 to-blue-500 h-full rounded-full shadow-white shadow-xl"
+        >
+        </div>
+        <Experience />
+        <Projects />
+        <Studies />
       </div>
-      <Experience />
-      <Projects />
-      <Studies />
+      <div class="mt-8">
+        <Footer />
+      </div>
     </Container>
   </div>
 </Layout>
