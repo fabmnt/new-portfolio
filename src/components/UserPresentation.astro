@@ -3,12 +3,18 @@ import { Image } from "astro:assets";
 import { Avatar } from "./ui/avatar";
 ---
 
-<article class="p-6 border border-slate-300/80 rounded-2xl">
+<article class="p-6 border border-slate-300/80 rounded-2xl shadow-sm">
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-2">
       <div>
         <Avatar className="size-10 bg-slate-500/80">
-          <Image width='40' height='40' src="/logo.webp" alt="Fabian Montoya" class="rounded-full" />
+          <Image
+            width="40"
+            height="40"
+            src="/logo.webp"
+            alt="Fabian Montoya"
+            class="rounded-full"
+          />
         </Avatar>
       </div>
       <div>
