@@ -7,13 +7,14 @@ import Projects from "@/components/Projects.astro";
 import Studies from "@/components/Studies.astro";
 import Footer from "@/components/Footer.astro";
 import Navigation from "@/components/Navigation.astro";
+import Skills from "@/components/Skills.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
   <Navigation />
-  <div class="mt-8">
+  <div>
     <Container>
       <UserPresentation />
     </Container>
@@ -25,6 +26,7 @@ import Navigation from "@/components/Navigation.astro";
         </div>
         <Experience />
         <Projects />
+        <Skills />
         <Studies />
       </div>
       <div class="mt-8">
