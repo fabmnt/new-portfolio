@@ -1,3 +1,7 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+---
+
 <section>
   <h2 class="text-3xl font-semibold mb-4">
     <span
@@ -7,6 +11,9 @@
     >
     destacados
   </h2>
-  <div class="h-[420px] shadow-sm p-6 border border-slate-300/80 rounded-2xl">
+  <div class="grid grid-cols-3 gap-4">
+    <ProjectCard />
+    <ProjectCard />
+    <ProjectCard />
   </div>
 </section>
