@@ -1,4 +1,4 @@
-import type { SKILLS } from "@/constants/skills";
+import type { Skill } from "./skills";
 
 export interface Project {
   id: string;
@@ -8,9 +8,7 @@ export interface Project {
   sourceUrl: string;
   websiteUrl?: string;
   privacy: ProjectPrivacy;
-  skills: Skills[];
+  skills: Skill[];
 }
-
-export type Skills = (typeof SKILLS)[number];
 
 export type ProjectPrivacy = "public" | "private";
