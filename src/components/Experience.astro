@@ -1,7 +1,96 @@
+---
+import { Badge } from "./ui/badge";
+---
+
 <section>
-  <h2 class="text-3xl font-semibold mb-4">
+  <h2 class="text-2xl font-semibold mb-4">
     Experiencia <span class="">laboral</span>
   </h2>
-  <div class="h-[420px] shadow-sm p-6 border border-slate-300/80 rounded-2xl">
+  <div
+    class="bg-white shadow-xl px-6 py-8 border border-slate-300/80 rounded-2xl"
+  >
+    <article class="flex gap-4">
+      <div class="flex flex-col items-center gap-4">
+        <div>
+          <img
+            src="/dentalrobot_logo.jpg"
+            alt="Dentalrobot logo"
+            class="aspect-square w-[100px] h-auto rounded-xl"
+          />
+        </div>
+        <div class="flex-1 w-[1px] rounded-full bg-slate-400"></div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div class="font-light inline-flex gap-4 items-center">
+          <h4 class="">
+            <a
+              class="hover:underline"
+              href="https://www.dentalrobot.ai"
+              target="_blank">Dentalrobot.ai</a
+            >
+          </h4><span class="text-muted-foreground"
+            >Octubre 2022 - Presente <span>(+2 años)</span></span
+          >
+        </div>
+        <div>
+          <p class="inline-flex gap-4 items-center">
+            <span class="font-medium">Desarrollador web full stack y RPA</span>
+          </p>
+        </div>
+        <div>
+          <ul class="flex flex-col gap-4 [&>li]:text-pretty">
+            <li>
+              - Implementación de un editor web de formularios basados en tablas
+              y bookmarks, exportables a MS Word y Google Docs, aumentando la
+              eficiencia de las auditorías y reduciendo el uso de archivos
+              .docx.
+              <div>
+                <Badge variant={"outline"} className="font-medium">
+                  Angular
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  TypeScript
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  Express
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  Docx.js
+                </Badge>
+              </div>
+            </li>
+            <li>
+              - Lider de desarrollo para la paralelización de ejecuciones de
+              robots RPA, esta característica redujo drásticamente el tiempo de
+              ejecución de los robots y el uso de recursos.
+              <div>
+                <Badge variant={"outline"} className="font-medium">
+                  Python
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  Selenium
+                </Badge>
+              </div>
+            </li>
+            <li>
+              - Desarrollador de robots RPA para la automatización de
+              verificaciones de pacientes, proponiendo y creando librerías que
+              mejoraron el experiencia de desarrollo del equipo RPA.
+              <div>
+                <Badge variant={"outline"} className="font-medium">
+                  JavaScript
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  Python
+                </Badge>
+                <Badge variant={"outline"} className="font-medium">
+                  Rocketbot
+                </Badge>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
