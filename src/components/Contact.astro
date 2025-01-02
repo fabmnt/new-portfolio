@@ -9,20 +9,20 @@ import { Textarea } from "./ui/textarea";
   <div
     class="bg-gradient-to-b from-white via-slate-50 to-slate-200 shadow-xl px-6 py-8 border border-slate-300/80 rounded-2xl"
   >
-    <form class="grid grid-cols-2 gap-8">
+    <form class="grid grid-cols-2 gap-10">
       <div class="flex flex-col gap-2">
-        <Label htmlFor="name" className="font-medium text-lg">Nombre:</Label>
+        <Label htmlFor="name" className="font-light text-lg">Nombre:</Label>
         <Input id="name" placeholder="John Doe" className="w-full" />
       </div>
       <div class="flex flex-col gap-2">
-        <Label htmlFor="email" className="font-medium text-lg">Correo:</Label>
+        <Label htmlFor="email" className="font-light text-lg">Correo:</Label>
         <Input id="email" placeholder="john@company.com" className="w-full" />
       </div>
       <div class="flex flex-col gap-2 col-span-2">
-        <Label htmlFor="message" className="font-medium text-lg">Mensaje:</Label
-        >
+        <Label htmlFor="message" className="font-light text-lg">Mensaje:</Label>
         <Textarea
           id="message"
+          rows={8}
           placeholder="Escribe tu mensaje aquí..."
           className="w-full p-2 border border-slate-300/80 rounded-md"
         />
