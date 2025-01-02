@@ -1,10 +1,7 @@
 ---
-import { Braces, Code } from "lucide-react";
-import ProjectCard from "./ProjectCard.astro";
-import { Button } from "./ui/button";
-import { SquareArrowOutUpRight } from "lucide-react";
-import { PrivateIcon, PublicIcon } from "../assets/icons/privacy";
-import { Badge } from "./ui/badge";
+import { ProjectViewer } from "./ProjectViewer";
+import { Project } from "./project";
+import { PROJECTS } from "../constants/projects";
 ---
 
 <section>
@@ -12,142 +9,10 @@ import { Badge } from "./ui/badge";
     <span>Proyectos</span>
     destacados
   </h2>
+  <div class="mb-10">
+    <ProjectViewer client:load />
+  </div>
   <div class="grid grid-cols-3 gap-4">
-    <ProjectCard>
-      <div class="flex flex-col gap-6 h-full">
-        <header class="flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <div
-              class="rounded-lg py-2 px-3 group-hover:bg-blue-500 group-hover:text-white border"
-            >
-              <Code className="size-4" />
-            </div>
-            <h4 class="text-lg">Ferretería Berrios</h4>
-          </div>
-          <div>
-            <div>
-              <PublicIcon className="size-4" />
-            </div>
-          </div>
-        </header>
-        <div>
-          <p class="text-sm text-slate-700">
-            Dashboard para la gestión de inventario y facturación de una
-            ferretería. Incluye gráficos y reportes de ventas.
-          </p>
-          <div class="flex flex-wrap gap-2 mt-2">
-            <Badge variant={"outline"} className="font-medium"> React </Badge>
-            <Badge variant={"outline"} className="font-medium">
-              Tanstack Query
-            </Badge>
-            <Badge variant={"outline"} className="font-medium"> Wouter </Badge>
-          </div>
-        </div>
-        <footer class="flex justify-between mt-auto">
-          <div>
-            <Button
-              variant={"outline"}
-              className="bg-transparent hover:bg-transparent"
-              >Código <Braces className="size-2" /></Button
-            >
-          </div>
-          <div>
-            <Button className="bg-blue-500 hover:bg-blue-600"
-              >Website <SquareArrowOutUpRight className="size-2" /></Button
-            >
-          </div>
-        </footer>
-      </div>
-    </ProjectCard>
-    <ProjectCard>
-      <div class="flex flex-col gap-6 h-full">
-        <header class="flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <div
-              class="rounded-lg py-2 px-3 group-hover:bg-blue-500 group-hover:text-white border"
-            >
-              <Code className="size-4" />
-            </div>
-            <h4 class="text-lg">Credit Ayuda</h4>
-          </div>
-          <div>
-            <div>
-              <PublicIcon className="size-4" />
-            </div>
-          </div>
-        </header>
-        <div>
-          <p class="text-sm text-slate-700">
-            Sistema de registro y seguimiento de créditos financieros.
-          </p>
-          <div class="flex flex-wrap gap-2 mt-2">
-            <Badge variant={"outline"} className="font-medium"> React </Badge>
-            <Badge variant={"outline"} className="font-medium">
-              Tanstack Query
-            </Badge>
-            <Badge variant={"outline"} className="font-medium">
-              react-router
-            </Badge>
-          </div>
-        </div>
-        <footer class="flex justify-between mt-auto">
-          <div>
-            <Button
-              variant={"outline"}
-              className="bg-transparent hover:bg-transparent"
-              >Código <Braces className="size-2" /></Button
-            >
-          </div>
-          <div>
-            <Button className="bg-blue-500 hover:bg-blue-600"
-              >Website <SquareArrowOutUpRight className="size-2" /></Button
-            >
-          </div>
-        </footer>
-      </div>
-    </ProjectCard>
-    <ProjectCard>
-      <div class="flex flex-col gap-6 h-full">
-        <header class="flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <div
-              class="rounded-lg py-2 px-3 group-hover:bg-blue-500 group-hover:text-white border"
-            >
-              <Code className="size-4" />
-            </div>
-            <h4 class="text-lg">Formless</h4>
-          </div>
-          <div>
-            <div>
-              <PrivateIcon className="size-4" />
-            </div>
-          </div>
-        </header>
-        <div>
-          <p class="text-sm text-slate-700">
-            Formulario editable y personalizable de tablas y bookmarks,
-            exportables a docx.
-          </p>
-          <div class="flex flex-wrap gap-2 mt-2">
-            <Badge variant={"outline"} className="font-medium"> Angular </Badge>
-            <Badge variant={"outline"} className="font-medium"> RxJs </Badge>
-          </div>
-        </div>
-        <footer class="flex justify-between mt-auto">
-          <div>
-            <Button
-              variant={"outline"}
-              className="bg-transparent hover:bg-transparent"
-              >Código <Braces className="size-2" /></Button
-            >
-          </div>
-          <div>
-            <Button className="bg-blue-500 hover:bg-blue-600"
-              >Website <SquareArrowOutUpRight className="size-2" /></Button
-            >
-          </div>
-        </footer>
-      </div>
-    </ProjectCard>
+    {PROJECTS.map((project) => <Project client:load project={project} />)}
   </div>
 </section>

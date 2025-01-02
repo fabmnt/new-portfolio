@@ -1,14 +1,11 @@
-import type { Skill } from "./skills";
-
 export interface Project {
-  id: string;
-  name: string;
+  title: string;
   description: string;
-  imageUrl: string;
+  images: string[];
   sourceUrl: string;
   websiteUrl?: string;
   privacy: ProjectPrivacy;
-  skills: Skill[];
+  techs: string[];
 }
 
 export type ProjectPrivacy = "public" | "private";
