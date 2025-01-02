@@ -1,5 +1,32 @@
+---
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+---
+
 <section>
   <h2 class="text-2xl font-semibold mb-4">Contáctame</h2>
-  <div class="h-[420px] shadow-sm p-6 border border-slate-300/80 rounded-2xl">
+  <div
+    class="bg-gradient-to-b from-white via-slate-50 to-slate-200 shadow-xl px-6 py-8 border border-slate-300/80 rounded-2xl"
+  >
+    <form class="grid grid-cols-2 gap-8">
+      <div class="flex flex-col gap-2">
+        <Label htmlFor="name" className="font-medium text-lg">Nombre:</Label>
+        <Input id="name" placeholder="John Doe" className="w-full" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <Label htmlFor="email" className="font-medium text-lg">Correo:</Label>
+        <Input id="email" placeholder="john@company.com" className="w-full" />
+      </div>
+      <div class="flex flex-col gap-2 col-span-2">
+        <Label htmlFor="message" className="font-medium text-lg">Mensaje:</Label
+        >
+        <Textarea
+          id="message"
+          placeholder="Escribe tu mensaje aquí..."
+          className="w-full p-2 border border-slate-300/80 rounded-md"
+        />
+      </div>
+    </form>
   </div>
 </section>
