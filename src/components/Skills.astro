@@ -2,6 +2,10 @@
 import Skill from "./Skill.astro";
 import AstroIcon from "../assets/icons/astro.tsx";
 import ReactIcon from "../assets/icons/react.tsx";
+import AngularIcon from "../assets/icons/angular.tsx";
+import NextJsIcon from "../assets/icons/nextjs.tsx";
+import TypeScriptIcon from "../assets/icons/typescript.tsx";
+import PythonIcon from "../assets/icons/python.tsx";
 ---
 
 <section>
@@ -18,6 +22,18 @@ import ReactIcon from "../assets/icons/react.tsx";
     </Skill>
     <Skill skill={{ color: "#00D8FF", name: "React" }}>
       <ReactIcon slot="icon" className="size-8" />
+    </Skill>
+    <Skill skill={{ color: "#c3002f", name: "Angular" }}>
+      <AngularIcon slot="icon" className="size-8" />
+    </Skill>
+    <Skill skill={{ color: "#000", name: "Next.js" }}>
+      <NextJsIcon slot="icon" className="size-8" />
+    </Skill>
+    <Skill skill={{ color: "#3178c6", name: "TypeScript" }}>
+      <TypeScriptIcon slot="icon" className="size-8" />
+    </Skill>
+    <Skill skill={{ color: "#ffde57", name: "Python" }}>
+      <PythonIcon slot="icon" className="size-8" />
     </Skill>
   </div>
 </section>
