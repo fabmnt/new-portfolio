@@ -2,12 +2,13 @@
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 ---
 
 <section>
   <h2 class="text-2xl font-semibold mb-4">Contáctame</h2>
   <div
-    class="bg-gradient-to-b from-white via-slate-50 to-slate-200 shadow-xl px-6 py-8 border border-slate-300/80 rounded-2xl"
+    class="bg-gradient-to-b from-white via-slate-50 to-slate-200 shadow px-6 py-8 border border-slate-300/80 rounded-2xl"
   >
     <form class="grid grid-cols-2 gap-10">
       <div class="flex flex-col gap-2">
@@ -26,6 +27,11 @@ import { Textarea } from "./ui/textarea";
           placeholder="Escribe tu mensaje aquí..."
           className="w-full p-2 border border-slate-300/80 rounded-md"
         />
+      </div>
+      <div class="flex justify-end col-span-2">
+        <Button type="submit" className="bg-blue-500 hover:bg-blue-600"
+          >Enviar mensaje</Button
+        >
       </div>
     </form>
   </div>
