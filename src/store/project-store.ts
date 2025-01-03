@@ -1,2 +1,2 @@
 import { atom } from "nanostores";
-export const projectNameStore = atom<string | undefined>();
+export const projectNameStore = atom<string>("Ferretería Berrios");
