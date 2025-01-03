@@ -4,8 +4,13 @@ import { Braces, Code, SquareArrowOutUpRight } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { projectNameStore } from "@/store/project-store";
+import { cn } from "@/lib/utils";
+import { useStore } from "@nanostores/react";
 
 export function Project({ project }: { project: Project }) {
+  const projectName = useStore(projectNameStore);
+  const isProjectSelected = projectName === project.title;
+
   return (
     <div
       onMouseEnter={() => {
@@ -13,11 +18,22 @@ export function Project({ project }: { project: Project }) {
       }}
       className="relative bg-white group rounded-2xl"
     >
-      <article className="rounded-2xl p-4 group-hover:border-blue-500 bg-white border-primary z-20 relative h-full border border-slate-300 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300">
+      <article
+        className={cn(
+          "rounded-2xl p-4 group-hover:border-blue-500 bg-white border-primary z-20 relative h-full border border-slate-300 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          isProjectSelected &&
+            "border-blue-500 shadow-blue-300 -translate-y-3 shadow-lg"
+        )}
+      >
         <div className="flex flex-col gap-6 h-full">
           <header className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <div className="rounded-lg py-2 px-3 group-hover:bg-blue-500 group-hover:text-white border">
+              <div
+                className={cn(
+                  "rounded-lg py-2 px-3 group-hover:bg-blue-500 group-hover:text-white border",
+                  isProjectSelected && "bg-blue-500 text-white"
+                )}
+              >
                 <Code className="size-4" />
               </div>
               <h4 className="text-lg">{project.title}</h4>

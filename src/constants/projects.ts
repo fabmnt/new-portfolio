@@ -9,7 +9,11 @@ export const PROJECTS: Project[] = [
     privacy: "public",
     sourceUrl: "#",
     websiteUrl: "#",
-    images: [],
+    images: [
+      "ferreteria-dashboard.png",
+      "ferreteria-bills.png",
+      "ferreteria-login.png",
+    ],
   },
   {
     title: "Credit Ayuda",
