@@ -11,15 +11,15 @@ import { Textarea } from "./ui/textarea";
   >
     <form class="grid grid-cols-2 gap-10">
       <div class="flex flex-col gap-2">
-        <Label htmlFor="name" className="font-light text-lg">Nombre:</Label>
+        <Label htmlFor="name">Nombre:</Label>
         <Input id="name" placeholder="John Doe" className="w-full" />
       </div>
       <div class="flex flex-col gap-2">
-        <Label htmlFor="email" className="font-light text-lg">Correo:</Label>
+        <Label htmlFor="email">Correo:</Label>
         <Input id="email" placeholder="john@company.com" className="w-full" />
       </div>
       <div class="flex flex-col gap-2 col-span-2">
-        <Label htmlFor="message" className="font-light text-lg">Mensaje:</Label>
+        <Label htmlFor="message">Mensaje:</Label>
         <Textarea
           id="message"
           rows={8}

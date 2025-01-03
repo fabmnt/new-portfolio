@@ -34,7 +34,7 @@ export function ProjectViewer() {
       <img
         src={`/${currentImage}`}
         alt={projectName}
-        className="rounded-xl shadow-xl object-contain shadow-slate-300 border w-full h-[420px] mx-auto"
+        className="rounded-xl object-contain border w-full h-[420px] mx-auto"
       />
     </div>
   );

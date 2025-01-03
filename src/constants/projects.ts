@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     privacy: "public",
     sourceUrl: "#",
     websiteUrl: "#",
-    images: [],
+    images: ["credit-table.png", "credit-prestamo.png"],
   },
   {
     title: "Formless",
@@ -32,6 +32,6 @@ export const PROJECTS: Project[] = [
     privacy: "private",
     sourceUrl: "#",
     websiteUrl: "#",
-    images: [],
+    images: ["formless.png", "formless-bookmarks.png", "formless-open.png"],
   },
 ];
