@@ -1,29 +1,34 @@
 ---
-import { Image } from "astro:assets";
+import GithubIcon from "../assets/icons/github";
+import TwitterIcon from "../assets/icons/twitter";
 import { Avatar } from "./ui/avatar";
+import { Button } from "./ui/button";
+import GmailIcon from "../assets/icons/gmail";
 ---
 
 <article class="py-6 border-b bg-transparent border-slate-300/80">
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-2">
       <div>
-        <Avatar className="size-10 bg-slate-500/80">
-          <Image
-            width="40"
-            height="40"
-            src="/logo.webp"
-            alt="Fabian Montoya"
-            class="rounded-full"
-          />
-        </Avatar>
+        <Avatar className="size-10 bg-slate-500/80" />
       </div>
       <div>
         <h1 class="font-medium text-lg">Fabian Montoya</h1>
-        <p class="text-slate-700">Ingeniero de software Full Stack.</p>
+        <p class="text-slate-700">Ingeniero de Sistemas Full Stack.</p>
       </div>
     </div>
     <div class="h-full">
-      <p class="text-sm">Social media</p>
+      <div class="flex gap-2">
+        <Button size={"sm"}>
+          <TwitterIcon className="size-4" />
+        </Button>
+        <Button size={"sm"}>
+          <GithubIcon className="size-4" />
+        </Button>
+        <Button size={"sm"}>
+          <GmailIcon className="size-4" />
+        </Button>
+      </div>
     </div>
   </div>
 </article>
