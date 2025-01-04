@@ -1,4 +1,5 @@
 ---
+import { ArrowUpRight } from "lucide-react";
 import { Badge } from "./ui/badge";
 ---
 
@@ -22,11 +23,15 @@ import { Badge } from "./ui/badge";
       </div>
       <div class="flex flex-col gap-2">
         <div class="font-light inline-flex gap-4 items-center">
-          <h4 class="">
+          <h4 class="group">
             <a
-              class="hover:underline"
+              class="inline-flex items-center gap-1 hover:underline"
               href="https://www.dentalrobot.ai"
-              target="_blank">Dentalrobot.ai</a
+              target="_blank"
+              >Dentalrobot.ai <ArrowUpRight
+                className="group-hover:-translate-y-0.5 transition-transform"
+                size={12}
+              /></a
             >
           </h4><span class="text-muted-foreground"
             >Octubre 2022 - Presente <span>(+2 años)</span></span
@@ -39,7 +44,7 @@ import { Badge } from "./ui/badge";
         </div>
         <div>
           <ul
-            class="flex flex-col gap-4 text-muted-foreground [&>li]:text-pretty"
+            class="flex flex-col gap-4 text-muted-foreground [&>li]:text-pretty font-light"
           >
             <li>
               - Implementación de un editor de formularios basados en tablas y

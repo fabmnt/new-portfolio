@@ -49,7 +49,7 @@ export function Project({ project }: { project: Project }) {
             </div>
           </header>
           <div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm font-light text-muted-foreground">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -76,7 +76,7 @@ export function Project({ project }: { project: Project }) {
               )}
             </div>
             <div>
-              <Button className="bg-blue-500 hover:bg-blue-600">
+              <Button className="bg-blue-500 hover:bg-blue-600 dark:text-white">
                 Website <SquareArrowOutUpRight className="size-2" />
               </Button>
             </div>
