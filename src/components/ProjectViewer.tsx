@@ -33,7 +33,7 @@ export function ProjectViewer() {
 
   return (
     <div className="bg-white my-4 relative">
-      <h4 className="absolute -top-5 right-0 z-50 rounded-full text-lg inline-flex p-2 px-4 border bg-slate-200">
+      <h4 className="absolute -top-5 right-0 z-50 rounded-full font-light text-lg inline-flex p-2 px-4 border bg-slate-200">
         {project?.title}
       </h4>
       <img
