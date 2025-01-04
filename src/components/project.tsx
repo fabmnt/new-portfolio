@@ -20,7 +20,7 @@ export function Project({ project }: { project: Project }) {
     >
       <article
         className={cn(
-          "rounded-2xl p-4 group-hover:border-blue-500 group-hover:bg-blue-50 bg-white border-primary z-20 relative h-full border border-slate-300 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          "rounded-2xl p-4 group-hover:border-blue-500 group-hover:bg-blue-50 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
           isProjectSelected &&
             "border-blue-500 shadow-blue-300 -translate-y-3 shadow-lg bg-blue-50"
         )}
