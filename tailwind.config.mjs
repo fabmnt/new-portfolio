@@ -53,6 +53,7 @@ export default {
       },
       animation: {
         shine: "shine 6s linear infinite",
+        spinner: "spinner 1.2s linear infinite",
       },
       keyframes: {
         shine: {
@@ -63,11 +64,6 @@ export default {
             backgroundPosition: "-400% 0",
           },
         },
-      },
-      animation: {
-        spinner: "spinner 1.2s linear infinite",
-      },
-      keyframes: {
         spinner: {
           "0%": {
             opacity: "1",
