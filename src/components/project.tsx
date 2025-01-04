@@ -20,9 +20,9 @@ export function Project({ project }: { project: Project }) {
     >
       <article
         className={cn(
-          "rounded-2xl p-4 group-hover:border-blue-500 dark:bg-black dark:border-slate-700 group-hover:bg-blue-50 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          "rounded-2xl p-4 group-hover:border-blue-500 dark:bg-black dark:border-slate-800 group-hover:bg-blue-50 dark:group-hover:bg-black dark:group-hover:shadow dark:group-hover:shadow-blue-600 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
           isProjectSelected &&
-            "border-blue-500 shadow-blue-300 -translate-y-3 shadow-lg bg-blue-50"
+            "border-blue-500 shadow-blue-300 dark:shadow-blue-600 dark:shadow -translate-y-3 shadow-lg bg-blue-50 dark:border-blue-500"
         )}
       >
         <div className="flex flex-col gap-6 h-full">
@@ -49,15 +49,17 @@ export function Project({ project }: { project: Project }) {
             </div>
           </header>
           <div>
-            <p className="text-sm text-slate-700">{project.description}</p>
+            <p className="text-sm text-muted-foreground">
+              {project.description}
+            </p>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.techs.map((tech) => (
                 <Badge
                   key={tech}
                   variant={"outline"}
                   className={cn(
-                    "font-medium group-hover:bg-blue-500 group-hover:text-white",
-                    isProjectSelected && "bg-blue-500 text-white"
+                    "font-medium transition-colors",
+                    isProjectSelected && "bg-white"
                   )}
                 >
                   {tech}
@@ -84,7 +86,12 @@ export function Project({ project }: { project: Project }) {
           </footer>
         </div>
       </article>
-      <div className="absolute inset-0 bg-blue-500 rounded-2xl"></div>
+      <div
+        className={cn(
+          "absolute inset-0 bg-blue-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity",
+          isProjectSelected && "opacity-100"
+        )}
+      ></div>
     </div>
   );
 }

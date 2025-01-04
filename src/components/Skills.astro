@@ -13,22 +13,40 @@ import PythonIcon from "../assets/icons/python.tsx";
     <span class="text-2xl font-semibold mb-4">Habilidades</span>
   </h2>
   <div class="flex gap-4 flex-wrap">
-    <Skill skill={{ color: "#000", name: "Astro" }}>
+    <Skill
+      className="text-black dark:text-white"
+      skill={{ color: "#000", name: "Astro" }}
+    >
       <AstroIcon slot="icon" className="size-8" />
     </Skill>
-    <Skill skill={{ color: "#00D8FF", name: "React" }}>
+    <Skill
+      className="text-[#00D8FF]"
+      skill={{ color: "#00D8FF", name: "React" }}
+    >
       <ReactIcon slot="icon" className="size-8" />
     </Skill>
-    <Skill skill={{ color: "#c3002f", name: "Angular" }}>
+    <Skill
+      className="text-[#c3002f]"
+      skill={{ color: "#c3002f", name: "Angular" }}
+    >
       <AngularIcon slot="icon" className="size-8" />
     </Skill>
-    <Skill skill={{ color: "#000", name: "Next.js" }}>
+    <Skill
+      className="text-[#000] dark:text-white"
+      skill={{ color: "#000", name: "Next.js" }}
+    >
       <NextJsIcon slot="icon" className="size-8" />
     </Skill>
-    <Skill skill={{ color: "#3178c6", name: "TypeScript" }}>
+    <Skill
+      className="text-[#3178c6]"
+      skill={{ color: "#3178c6", name: "TypeScript" }}
+    >
       <TypeScriptIcon slot="icon" className="size-8" />
     </Skill>
-    <Skill skill={{ color: "#4584b6", name: "Python" }}>
+    <Skill
+      className="text-[#4584b6]"
+      skill={{ color: "#4584b6", name: "Python" }}
+    >
       <PythonIcon slot="icon" className="size-8" />
     </Skill>
   </div>
