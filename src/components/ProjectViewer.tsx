@@ -38,7 +38,7 @@ export function ProjectViewer() {
         src={`/${currentImage}`}
         alt={projectName}
         className={cn(
-          "rounded-2xl object-contain border-2 p-6 opacity-85 w-full h-[420px] mx-auto",
+          "rounded-2xl object-contain border-2 p-6 opacity-85 w-full h-[240px] sm:h-[420px] mx-auto",
           isLoadingImage ? "hidden" : "block"
         )}
       />

@@ -9,10 +9,10 @@ import { PROJECTS } from "../constants/projects";
     <span>Proyectos</span>
     destacados
   </h2>
-  <div class="mb-10">
+  <div class="mb-10 sm:block hidden">
     <ProjectViewer client:load />
   </div>
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid sm:grid-cols-3 grid-cols-1 gap-4 sm:gap-y-8">
     {PROJECTS.map((project) => <Project client:load project={project} />)}
   </div>
 </section>
