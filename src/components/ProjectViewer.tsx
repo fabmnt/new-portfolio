@@ -1,4 +1,5 @@
 import { PROJECTS } from "@/constants/projects";
+import { cn } from "@/lib/utils";
 import { projectNameStore } from "@/store/project-store";
 import { useStore } from "@nanostores/react";
 import { useEffect, useState } from "react";
@@ -6,6 +7,7 @@ export function ProjectViewer() {
   const projectName = useStore(projectNameStore);
   const project = PROJECTS.find((p) => p.title === projectName);
   const [currentImage, setCurrentImage] = useState("");
+  const [isLoadingImage, setIsLoadingImage] = useState(true);
 
   useEffect(() => {
     const startImagePlay = (images: string[]) => {
@@ -32,10 +34,17 @@ export function ProjectViewer() {
   return (
     <div className="my-4 relative">
       <img
+        onLoad={() => setIsLoadingImage(false)}
         src={`/${currentImage}`}
         alt={projectName}
-        className="rounded-2xl object-contain border-4 p-6 opacity-85 w-full h-[420px] mx-auto"
+        className={cn(
+          "rounded-2xl object-contain border-4 p-6 opacity-85 w-full h-[420px] mx-auto",
+          isLoadingImage ? "hidden" : "block"
+        )}
       />
+      {isLoadingImage && (
+        <div className="w-full h-[420px] opacity-85 border-4 p-6 rounded-2xl mx-auto bg-slate-300 animate-pulse" />
+      )}
     </div>
   );
 }
