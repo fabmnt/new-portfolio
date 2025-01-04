@@ -5,25 +5,27 @@ import { NavLink } from "./nav-link";
 import { Avatar } from "./ui/avatar";
 import { EmailDropdown } from "./email-dropdown";
 import { BadgeSunshine } from "./ui/badge-sunshine";
-
-const emailURL = new URL("mailto:fabianmontoya2802@gmail.com");
+import { ThemeSwitch } from "./theme-switch";
 ---
 
 <article
   class="py-6 flex flex-col gap-y-4 border-b bg-transparent border-slate-300/80"
 >
   <div class="flex items-center justify-between">
-    <div class="flex items-center space-x-2">
-      <div>
-        <Avatar className="size-12 bg-slate-500/80" />
-      </div>
-      <div>
-        <div class="flex gap-2 items-center">
-          <h1 class="font-medium text-lg">Fabian Montoya</h1>
-          <BadgeSunshine> Disponible </BadgeSunshine>
+    <div class="flex gap-4 items-center">
+      <div class="flex items-center space-x-2">
+        <div>
+          <Avatar className="size-12 bg-slate-500/80" />
         </div>
-        <p class="text-slate-700">Ingeniero de Sistemas Full Stack.</p>
+        <div>
+          <div class="flex gap-2 items-center">
+            <h1 class="font-medium text-lg">Fabian Montoya</h1>
+            <BadgeSunshine> Disponible </BadgeSunshine>
+          </div>
+          <p class="text-slate-700">Ingeniero de Sistemas Full Stack.</p>
+        </div>
       </div>
+      <ThemeSwitch client:load />
     </div>
     <div class="h-full flex flex-col items-end">
       <div class="flex gap-2">
