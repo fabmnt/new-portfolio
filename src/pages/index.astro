@@ -1,14 +1,13 @@
 ---
-import UserPresentation from "@/components/UserPresentation.astro";
-import Layout from "../layouts/Layout.astro";
+import Contact from "@/components/Contact.astro";
 import Container from "@/components/Container";
 import Experience from "@/components/Experience.astro";
-import Projects from "@/components/Projects.astro";
-import Studies from "@/components/Studies.astro";
 import Footer from "@/components/Footer.astro";
-import Navigation from "@/components/Navigation.astro";
+import Projects from "@/components/Projects.astro";
 import Skills from "@/components/Skills.astro";
-import Contact from "@/components/Contact.astro";
+import Studies from "@/components/Studies.astro";
+import UserPresentation from "@/components/UserPresentation.astro";
+import Layout from "../layouts/Layout.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
@@ -33,7 +32,9 @@ import Contact from "@/components/Contact.astro";
         <Studies />
         <Contact />
       </div>
-      <div class="mt-8"></div>
+      <div class="mt-8">
+        <Footer />
+      </div>
     </Container>
   </div>
 </Layout>
