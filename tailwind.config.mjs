@@ -51,6 +51,19 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
+      animation: {
+        shine: "shine 6s linear infinite",
+      },
+      keyframes: {
+        shine: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-400% 0",
+          },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

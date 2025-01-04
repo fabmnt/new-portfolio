@@ -3,6 +3,10 @@ import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
 import { NavLink } from "./nav-link";
 import { Avatar } from "./ui/avatar";
+import { EmailDropdown } from "./email-dropdown";
+import { BadgeSunshine } from "./ui/badge-sunshine";
+
+const emailURL = new URL("mailto:fabianmontoya2802@gmail.com");
 ---
 
 <article
@@ -11,10 +15,13 @@ import { Avatar } from "./ui/avatar";
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-2">
       <div>
-        <Avatar className="size-10 bg-slate-500/80" />
+        <Avatar className="size-12 bg-slate-500/80" />
       </div>
       <div>
-        <h1 class="font-medium text-lg">Fabian Montoya</h1>
+        <div class="flex gap-2 items-center">
+          <h1 class="font-medium text-lg">Fabian Montoya</h1>
+          <BadgeSunshine> Disponible </BadgeSunshine>
+        </div>
         <p class="text-slate-700">Ingeniero de Sistemas Full Stack.</p>
       </div>
     </div>
@@ -26,6 +33,7 @@ import { Avatar } from "./ui/avatar";
         <NavLink href="https://github.com/fabmnt" target="_blank">
           <GithubIcon className="size-4" />
         </NavLink>
+        <EmailDropdown client:load />
       </div>
     </div>
   </div>
