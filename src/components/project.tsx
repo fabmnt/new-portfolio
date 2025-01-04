@@ -55,7 +55,10 @@ export function Project({ project }: { project: Project }) {
                 <Badge
                   key={tech}
                   variant={"outline"}
-                  className="font-medium bg-white"
+                  className={cn(
+                    "font-medium group-hover:bg-blue-500 group-hover:text-white",
+                    isProjectSelected && "bg-blue-500 text-white"
+                  )}
                 >
                   {tech}
                 </Badge>
