@@ -32,7 +32,7 @@ export function ProjectViewer() {
   }, [projectName]);
 
   return (
-    <div className="my-4 relative">
+    <div className="bg-white my-4 relative">
       <img
         onLoad={() => setIsLoadingImage(false)}
         src={`/${currentImage}`}
