@@ -6,6 +6,13 @@ export function ThemeSwitch() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme as "light" | "dark");
+    }
+  }, []);
+
+  useEffect(() => {
     if (theme === "light") {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
@@ -14,13 +21,6 @@ export function ThemeSwitch() {
       localStorage.setItem("theme", "dark");
     }
   }, [theme]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme as "light" | "dark");
-    }
-  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
