@@ -42,12 +42,12 @@ export function ProjectViewer() {
           src={`/${currentImage}`}
           alt={projectName}
           className={cn(
-            "object-cover rounded-md opacity-80 w-full h-[240px] sm:h-[520px] mx-auto",
+            "object-cover rounded-md opacity-80 w-full h-[240px] sm:h-[420px] mx-auto",
             isLoadingImage ? "hidden" : "block"
           )}
         />
         {isLoadingImage && (
-          <div className="w-full h-[240px] sm:h-[520px] opacity-85 rounded-2xl mx-auto dark:bg-slate-800 bg-slate-300 animate-pulse" />
+          <div className="w-full h-[240px] sm:h-[420px] opacity-85 rounded-2xl mx-auto dark:bg-slate-800 bg-slate-300 animate-pulse" />
         )}
       </div>
     </div>
