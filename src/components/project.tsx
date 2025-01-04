@@ -16,11 +16,11 @@ export function Project({ project }: { project: Project }) {
       onMouseEnter={() => {
         projectNameStore.set(project.title);
       }}
-      className="relative bg-white group rounded-2xl"
+      className="relative group rounded-2xl"
     >
       <article
         className={cn(
-          "rounded-2xl p-4 group-hover:border-blue-500 group-hover:bg-blue-50 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          "rounded-2xl p-4 group-hover:border-blue-500 dark:bg-black dark:border-slate-700 group-hover:bg-blue-50 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
           isProjectSelected &&
             "border-blue-500 shadow-blue-300 -translate-y-3 shadow-lg bg-blue-50"
         )}

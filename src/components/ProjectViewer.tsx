@@ -32,8 +32,8 @@ export function ProjectViewer() {
   }, [projectName]);
 
   return (
-    <div className="bg-white my-4 relative">
-      <h4 className="absolute -top-5 right-0 z-50 rounded-full font-light inline-flex p-1.5 px-4 border border-slate-300  bg-slate-200">
+    <div className="bg-white dark:bg-black my-4 relative">
+      <h4 className="absolute -top-5 right-0 z-50 rounded-full font-light inline-flex p-1.5 px-4 border border-slate-300  bg-slate-200 dark:border-slate-700 dark:bg-black">
         {project?.title}
       </h4>
       <img
@@ -41,7 +41,7 @@ export function ProjectViewer() {
         src={`/${currentImage}`}
         alt={projectName}
         className={cn(
-          "rounded-2xl object-contain border border-slate-300/80 p-6 opacity-85 w-full h-[240px] sm:h-[520px] mx-auto",
+          "rounded-2xl object-contain border border-slate-300/80 p-6 opacity-85 w-full h-[240px] sm:h-[520px] mx-auto dark:bg-black dark:border-slate-700",
           isLoadingImage ? "hidden" : "block"
         )}
       />
