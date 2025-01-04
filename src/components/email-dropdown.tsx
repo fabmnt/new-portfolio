@@ -1,4 +1,4 @@
-import { ChevronDown, Clipboard, Send } from "lucide-react";
+import { ChevronDown, Clipboard, ClipboardCheck, Send } from "lucide-react";
 import GmailIcon from "../assets/icons/gmail";
 import { Button } from "./ui/button";
 import {
@@ -7,9 +7,33 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useEffect, useState } from "react";
+import { Spinner } from "./ui/spinner";
+import React from "react";
 
 export function EmailDropdown() {
+  const [copying, setCopying] = useState(false);
   const mailtoURL = new URL("mailto:fabianmontoya2802@gmail.com");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (copied) {
+      setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    }
+  }, [copying]);
+
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (copying) return;
+    if (copied) return;
+    setCopying(true);
+    await navigator.clipboard.writeText("fabianmontoya2802@gmail.com");
+    setCopied(true);
+    setCopying(false);
+  };
 
   return (
     <DropdownMenu>
@@ -25,8 +49,9 @@ export function EmailDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width]">
-        <DropdownMenuItem>
-          fabianmontoya2802@gmail.com <Clipboard />
+        <DropdownMenuItem onClick={handleCopy}>
+          fabianmontoya2802@gmail.com{" "}
+          {copying ? <Spinner /> : copied ? <ClipboardCheck /> : <Clipboard />}
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <a href={mailtoURL.toString()} target="_blank">
