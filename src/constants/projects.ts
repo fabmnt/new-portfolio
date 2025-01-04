@@ -32,6 +32,6 @@ export const PROJECTS: Project[] = [
     privacy: "private",
     sourceUrl: "#",
     websiteUrl: "#",
-    images: ["formless.png", "formless-bookmarks.png", "formless-open.png"],
+    images: ["formless.png", "formless-open.png"],
   },
 ];
