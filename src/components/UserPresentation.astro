@@ -1,9 +1,8 @@
 ---
 import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
+import { NavLink } from "./nav-link";
 import { Avatar } from "./ui/avatar";
-import { Button } from "./ui/button";
-import GmailIcon from "../assets/icons/gmail";
 ---
 
 <article
@@ -19,17 +18,14 @@ import GmailIcon from "../assets/icons/gmail";
         <p class="text-slate-700">Ingeniero de Sistemas Full Stack.</p>
       </div>
     </div>
-    <div class="h-full">
+    <div class="h-full flex flex-col items-end">
       <div class="flex gap-2">
-        <Button size={"sm"} className="bg-blue-500 hover:bg-blue-600">
+        <NavLink href="https://x.com/fabmntp" target="_blank">
           <TwitterIcon className="size-4" />
-        </Button>
-        <Button size={"sm"} className="bg-blue-500 hover:bg-blue-600">
+        </NavLink>
+        <NavLink href="https://github.com/fabmnt" target="_blank">
           <GithubIcon className="size-4" />
-        </Button>
-        <Button size={"sm"} className="bg-blue-500 hover:bg-blue-600">
-          <GmailIcon className="size-4" />
-        </Button>
+        </NavLink>
       </div>
     </div>
   </div>
