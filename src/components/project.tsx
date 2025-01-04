@@ -1,4 +1,4 @@
-import { PublicIcon } from "@/assets/icons/privacy";
+import { PrivateIcon, PublicIcon } from "@/assets/icons/privacy";
 import type { Project } from "@/types/projects";
 import { Braces, Code, SquareArrowOutUpRight } from "lucide-react";
 import { Badge } from "./ui/badge";
@@ -40,7 +40,11 @@ export function Project({ project }: { project: Project }) {
             </div>
             <div>
               <div>
-                <PublicIcon className="size-4" />
+                {project.privacy === "public" ? (
+                  <PublicIcon className="size-4" />
+                ) : (
+                  <PrivateIcon className="size-4" />
+                )}
               </div>
             </div>
           </header>
@@ -48,7 +52,11 @@ export function Project({ project }: { project: Project }) {
             <p className="text-sm text-slate-700">{project.description}</p>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.techs.map((tech) => (
-                <Badge key={tech} variant={"outline"} className="font-medium">
+                <Badge
+                  key={tech}
+                  variant={"outline"}
+                  className="font-medium bg-white"
+                >
                   {tech}
                 </Badge>
               ))}
@@ -56,12 +64,14 @@ export function Project({ project }: { project: Project }) {
           </div>
           <footer className="flex justify-between mt-auto">
             <div>
-              <Button
-                variant={"ghost"}
-                className="text-blue-500 hover:text-blue-600 bg-transparent hover:bg-transparent"
-              >
-                Código <Braces className="size-2" />
-              </Button>
+              {project.privacy === "public" && (
+                <Button
+                  variant={"ghost"}
+                  className="text-blue-500 hover:text-blue-600 bg-transparent hover:bg-transparent"
+                >
+                  Código <Braces className="size-2" />
+                </Button>
+              )}
             </div>
             <div>
               <Button className="bg-blue-500 hover:bg-blue-600">
