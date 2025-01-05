@@ -9,7 +9,7 @@ export default function Container({
       {...props}
       className={cn(
         props.className,
-        "container mx-auto w-full px-4 sm:w-[420px] lg:w-[860px]"
+        "container mx-auto w-full px-4 sm:px-0 sm:w-[420px] lg:w-[860px]"
       )}
     >
       {children}
