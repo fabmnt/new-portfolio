@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
   <div
     class="bg-white px-6 py-8 border border-slate-300/80 dark:bg-black dark:border-slate-800 rounded-2xl"
   >
-    <form class="grid grid-cols-2 gap-10">
+    <form class="grid grid-cols-1 sm:grid-cols-2 sm:gap-10 gap-8">
       <div class="flex flex-col gap-2">
         <Label htmlFor="name">Nombre:</Label>
         <Input id="name" placeholder="John Doe" className="w-full" />
@@ -19,7 +19,7 @@ import { Button } from "./ui/button";
         <Label htmlFor="email">Correo:</Label>
         <Input id="email" placeholder="john@company.com" className="w-full" />
       </div>
-      <div class="flex flex-col gap-2 col-span-2">
+      <div class="flex flex-col gap-2 sm:col-span-2">
         <Label htmlFor="message">Mensaje:</Label>
         <Textarea
           id="message"
@@ -27,7 +27,7 @@ import { Button } from "./ui/button";
           placeholder="Escribe tu mensaje aquí..."
         />
       </div>
-      <div class="flex justify-end col-span-2">
+      <div class="flex justify-end sm:col-span-2">
         <Button type="submit">Enviar mensaje</Button>
       </div>
     </form>
