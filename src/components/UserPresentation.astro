@@ -11,9 +11,9 @@ import { ThemeSwitch } from "./theme-switch";
 <article
   class="py-6 flex flex-col gap-y-4 border-b bg-transparent border-slate-300/80 dark:border-slate-800"
 >
-  <div class="flex items-center justify-between">
-    <div class="flex gap-4 items-center">
-      <div class="flex items-center space-x-2">
+  <div class="flex sm:flex-row flex-col sm:items-center justify-between">
+    <div class="flex flex-row justify-between sm:items-center sm:space-x-4">
+      <div class="flex sm:flex-row flex-col sm:items-center sm:space-x-2">
         <div>
           <Avatar className="size-12 bg-slate-500/80" />
         </div>
@@ -27,15 +27,17 @@ import { ThemeSwitch } from "./theme-switch";
           </p>
         </div>
       </div>
-      <ThemeSwitch client:load />
+      <div>
+        <ThemeSwitch client:load />
+      </div>
     </div>
     <div class="h-full flex flex-col items-end">
-      <div class="flex gap-2">
+      <div class="flex gap-1">
         <NavLink href="https://x.com/fabmntp" target="_blank">
-          <TwitterIcon className="size-4" />
+          <TwitterIcon className="!size-5" />
         </NavLink>
         <NavLink href="https://github.com/fabmnt" target="_blank">
-          <GithubIcon className="size-4" />
+          <GithubIcon className="!size-6" />
         </NavLink>
         <EmailDropdown client:load />
       </div>

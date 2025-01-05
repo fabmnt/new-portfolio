@@ -38,11 +38,8 @@ export function EmailDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          size={"sm"}
-          className="dark:bg-black dark:text-white dark:border-slate-800 dark:border"
-        >
-          <GmailIcon className="size-4" />
+        <Button variant={"ghost"} className="dark:bg-black dark:text-white">
+          <GmailIcon className="!size-6" />
           <ChevronDown
             className="-me-1 opacity-60"
             size={16}

@@ -6,8 +6,8 @@ export function NavLink({ children, ...props }: NavLinkProps) {
   return (
     <Button
       asChild
-      size={"sm"}
-      className="dark:bg-black dark:text-white dark:border-slate-800 dark:border"
+      variant={"ghost"}
+      className="dark:bg-black dark:text-white "
     >
       <a {...props}>{children}</a>
     </Button>
