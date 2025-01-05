@@ -6,6 +6,7 @@ import { Avatar } from "./ui/avatar";
 import { EmailDropdown } from "./email-dropdown";
 import { BadgeSunshine } from "./ui/badge-sunshine";
 import { ThemeSwitch } from "./theme-switch";
+import LinkedIn from "@/assets/icons/linkedin";
 ---
 
 <article
@@ -33,6 +34,12 @@ import { ThemeSwitch } from "./theme-switch";
     </div>
     <div class="h-full flex flex-col items-end">
       <div class="flex gap-1">
+        <NavLink
+          href="https://www.linkedin.com/in/fabián-montoya-963247345"
+          target="_blank"
+        >
+          <LinkedIn className="!size-6" />
+        </NavLink>
         <NavLink href="https://x.com/fabmntp" target="_blank">
           <TwitterIcon className="!size-5" />
         </NavLink>
