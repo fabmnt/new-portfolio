@@ -10,9 +10,9 @@ import { Badge } from "./ui/badge";
   <div
     class="bg-white dark:bg-black px-6 py-8 border border-slate-300/80 dark:border-slate-800 rounded-2xl"
   >
-    <article class="flex gap-4 sm:flex-row flex-col items-start">
+    <article class="flex sm:gap-4 sm:flex-row flex-col items-start">
       <div class="flex flex-col items-center gap-4 h-full">
-        <div>
+        <div class="hidden sm:block">
           <img
             src="/dentalrobot_logo.jpg"
             alt="Dentalrobot logo"
@@ -25,17 +25,25 @@ import { Badge } from "./ui/badge";
         <div
           class="font-light inline-flex sm:flex-row flex-col gap-4 sm:items-center"
         >
-          <h4 class="group">
-            <a
-              class="inline-flex items-center gap-1 hover:underline"
-              href="https://www.dentalrobot.ai"
-              target="_blank"
-              >Dentalrobot.ai <ArrowUpRight
-                className="group-hover:-translate-y-0.5 transition-transform"
-                size={12}
-              /></a
-            >
-          </h4><span class="text-muted-foreground"
+          <div class="flex gap-2 items-center">
+            <img
+              src="/dentalrobot_logo.jpg"
+              alt="Dentalrobot logo"
+              class="block sm:hidden aspect-square max-w-[40px] h-auto rounded-xl"
+            />
+            <h4 class="group">
+              <a
+                class="inline-flex items-center gap-1 hover:underline"
+                href="https://www.dentalrobot.ai"
+                target="_blank"
+                >Dentalrobot.ai <ArrowUpRight
+                  className="group-hover:-translate-y-0.5 transition-transform"
+                  size={12}
+                /></a
+              >
+            </h4>
+          </div>
+          <span class="text-muted-foreground"
             >Octubre 2022 - Presente <span>(+2 años)</span></span
           >
         </div>

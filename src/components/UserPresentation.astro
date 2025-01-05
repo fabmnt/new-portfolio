@@ -10,11 +10,15 @@ import LinkedIn from "@/assets/icons/linkedin";
 ---
 
 <article
-  class="py-6 flex flex-col gap-y-4 border-b bg-transparent border-slate-300/80 dark:border-slate-800"
+  class="py-6 flex flex-col sm:gap-y-4 gap-y-8 border-b bg-transparent border-slate-300/80 dark:border-slate-800"
 >
-  <div class="flex sm:flex-row flex-col sm:items-center justify-between">
+  <div
+    class="flex sm:flex-row flex-col sm:items-center justify-between gap-y-4"
+  >
     <div class="flex flex-row justify-between sm:items-center sm:space-x-4">
-      <div class="flex sm:flex-row flex-col sm:items-center sm:space-x-2">
+      <div
+        class="flex sm:flex-row flex-col sm:items-center sm:space-x-2 space-y-2"
+      >
         <div>
           <Avatar className="size-12 bg-slate-500/80" />
         </div>
@@ -32,7 +36,7 @@ import LinkedIn from "@/assets/icons/linkedin";
         <ThemeSwitch client:load />
       </div>
     </div>
-    <div class="h-full flex flex-col items-end">
+    <div class="h-full flex flex-col">
       <div class="flex gap-1">
         <NavLink
           href="https://www.linkedin.com/in/fabián-montoya-963247345"
