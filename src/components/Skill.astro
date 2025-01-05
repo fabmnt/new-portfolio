@@ -11,9 +11,9 @@ const { skill, className } = Astro.props;
 const { color, name } = skill;
 ---
 
-<div class={cn("relative skill-pill group", className)}>
+<div class={cn("relative skill-pill group w-full", className)}>
   <div
-    class="group-hover:border-current relative z-20 group-hover:-translate-y-2 transition-all rounded-lg border text-sm font-medium bg-white border-slate-300/80 dark:border-slate-800 dark:bg-black py-2 px-6 inline-flex justify-between items-center gap-2"
+    class="group-hover:border-current w-full relative z-20 group-hover:-translate-y-2 transition-all rounded-lg border text-sm font-medium bg-white border-slate-300/80 dark:border-slate-800 dark:bg-black py-2 px-6 inline-flex justify-between items-center gap-2"
   >
     <div
       class="text-black dark:text-white w-full flex items-center justify-center gap-2"
