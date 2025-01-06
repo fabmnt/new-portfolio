@@ -3,7 +3,12 @@ import { Button } from "./ui/button";
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeSwitch() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("theme") as "light" | "dark") || "light";
+    }
+    return "light";
+  });
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
