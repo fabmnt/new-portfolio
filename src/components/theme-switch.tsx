@@ -5,7 +5,7 @@ import { Moon, Sun } from "lucide-react";
 export function ThemeSwitch() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "light" | "dark") || "light";
+      return (localStorage.getItem("theme") as "light" | "dark") ?? "light";
     }
     return "light";
   });
