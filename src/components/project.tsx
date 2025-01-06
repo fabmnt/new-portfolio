@@ -69,15 +69,23 @@ export function Project({ project }: { project: Project }) {
               {project.privacy === "public" && (
                 <Button
                   variant={"ghost"}
+                  asChild
                   className="text-blue-500 hover:text-blue-600 bg-transparent hover:bg-transparent"
                 >
-                  Código <Braces className="size-2" />
+                  <a href={project.sourceUrl} target="_blank">
+                    Código <Braces className="size-2" />
+                  </a>
                 </Button>
               )}
             </div>
             <div>
-              <Button className="bg-blue-500 hover:bg-blue-600 dark:text-white">
-                Website <SquareArrowOutUpRight className="size-2" />
+              <Button
+                asChild
+                className="bg-blue-500 hover:bg-blue-600 dark:text-white"
+              >
+                <a href={project.websiteUrl} target="_blank">
+                  Website <SquareArrowOutUpRight className="size-2" />
+                </a>
               </Button>
             </div>
           </footer>

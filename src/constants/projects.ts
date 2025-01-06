@@ -7,7 +7,7 @@ export const PROJECTS: Project[] = [
       "Dashboard para la gestión de inventario y facturación de una ferretería. Incluye gráficos y reportes de ventas.",
     techs: ["React", "Tanstack Query", "Wouter"],
     privacy: "public",
-    sourceUrl: "#",
+    sourceUrl: "https://github.com/fabmnt/ferreteria-react",
     websiteUrl: "https://ferreteria-react-five.vercel.app/",
     images: [
       "ferreteria-dashboard.png",
@@ -20,8 +20,8 @@ export const PROJECTS: Project[] = [
     description: "Sistema de registro y seguimiento de créditos financieros.",
     techs: ["React", "Tanstack Query", "react-router"],
     privacy: "public",
-    sourceUrl: "#",
-    websiteUrl: "#",
+    sourceUrl: "https://github.com/francisco-JGC/credit-ayuda-front",
+    websiteUrl: "https://credit-ayuda.vercel.app",
     images: ["credit-prestamo.png"],
   },
   {
@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
     techs: ["Angular", "RxJs"],
     privacy: "private",
     sourceUrl: "#",
-    websiteUrl: "#",
+    websiteUrl: "https://controlcentralcarrier.com/#/form-builder",
     images: ["formless.png", "formless-open.png"],
   },
 ];
