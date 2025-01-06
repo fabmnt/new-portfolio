@@ -12,14 +12,45 @@ import { Button } from "./ui/button";
   <div
     class="bg-white px-6 py-8 border border-slate-300/80 dark:bg-black dark:border-slate-800 rounded-2xl"
   >
-    <form class="grid grid-cols-1 sm:grid-cols-2 sm:gap-10 gap-8">
+    <div
+      id="success-alert"
+      class="w-full rounded hidden bg-green-600 mb-6 text-white py-4 px-6"
+    >
+      <p class="text-center text-sm">
+        Mensaje enviado correctamente. ¡Gracias por ponerte en contacto conmigo!
+      </p>
+    </div>
+    <div
+      id="error-alert"
+      class="w-full rounded hidden bg-red-600 mb-6 text-white py-4 px-6"
+    >
+      <p class="text-center text-sm">
+        Ha ocurrido un error al enviar el mensaje. Por favor, inténtalo de nuevo
+        más tarde.
+      </p>
+    </div>
+    <form
+      id="contact-form"
+      class="grid grid-cols-1 sm:grid-cols-2 sm:gap-10 gap-8"
+    >
       <div class="flex flex-col gap-2">
         <Label htmlFor="name">Nombre:</Label>
-        <Input id="name" placeholder="John Doe" className="w-full" />
+        <Input
+          id="name"
+          placeholder="John Doe"
+          className="w-full"
+          name="name"
+        />
       </div>
       <div class="flex flex-col gap-2">
         <Label htmlFor="email">Correo:</Label>
-        <Input id="email" placeholder="john@company.com" className="w-full" />
+        <Input
+          id="email"
+          placeholder="john@company.com"
+          className="w-full"
+          type="email"
+          name="email"
+        />
       </div>
       <div class="flex flex-col gap-2 sm:col-span-2">
         <Label htmlFor="message">Mensaje:</Label>
@@ -27,6 +58,7 @@ import { Button } from "./ui/button";
           id="message"
           rows={8}
           placeholder="Escribe tu mensaje aquí..."
+          name="message"
         />
       </div>
       <div class="flex justify-end sm:col-span-2">
@@ -35,3 +67,45 @@ import { Button } from "./ui/button";
     </form>
   </div>
 </section>
+
+<script>
+  const contactForm = document.getElementById(
+    "contact-form"
+  ) as HTMLFormElement;
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+    const data = {
+      name,
+      email,
+      message,
+    };
+
+    fetch("https://services-el28.onrender.com/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        contactForm.reset();
+        const successAlert = document.getElementById("success-alert");
+        successAlert?.classList.remove("hidden");
+        setTimeout(() => {
+          successAlert?.classList.add("hidden");
+        }, 5000);
+      })
+      .catch((error) => {
+        const errorAlert = document.getElementById("error-alert");
+        errorAlert?.classList.remove("hidden");
+        setTimeout(() => {
+          errorAlert?.classList.add("hidden");
+        }, 5000);
+      });
+  });
+</script>
