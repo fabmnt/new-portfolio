@@ -84,6 +84,11 @@ import { Button } from "./ui/button";
       email,
       message,
     };
+    const submitButton = contactForm.querySelector(
+      "button[type=submit]"
+    ) as HTMLButtonElement;
+    submitButton.setAttribute("disabled", "true");
+    submitButton.textContent = "Enviando mensaje...";
 
     fetch("https://services-el28.onrender.com/contact", {
       method: "POST",
@@ -106,6 +111,10 @@ import { Button } from "./ui/button";
         setTimeout(() => {
           errorAlert?.classList.add("hidden");
         }, 5000);
+      })
+      .finally(() => {
+        submitButton.removeAttribute("disabled");
+        submitButton.textContent = "Enviar mensaje";
       });
   });
 </script>
