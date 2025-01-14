@@ -49,7 +49,7 @@ export function Project({ project }: { project: Project }) {
             </div>
           </header>
           <div>
-            <p className="text-sm font-thin text-muted-foreground">
+            <p className="text-sm font-thin text-muted-foreground dark:text-slate-300">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
