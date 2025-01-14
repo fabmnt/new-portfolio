@@ -33,10 +33,10 @@ export function ProjectViewer() {
 
   return (
     <div className="bg-white dark:bg-black my-4 relative">
-      <h4 className="absolute -top-5 right-0 z-50 rounded-full font-light inline-flex p-1.5 px-4 border border-slate-300  bg-slate-200 dark:border-slate-800 dark:bg-black">
+      <h4 className="absolute -top-5 right-0 z-50 rounded-full font-light inline-flex p-1.5 px-4 border border-slate-300  bg-slate-200 dark:border-slate-900/60 dark:bg-black">
         {project?.title}
       </h4>
-      <div className="rounded-2xl bg-white border border-slate-300/80 dark:border-slate-800 w-full px-6 py-8 dark:bg-black">
+      <div className="rounded-2xl bg-white border border-slate-300/80 dark:border-slate-900/60 w-full px-6 py-8 dark:bg-black">
         <img
           onLoad={() => setIsLoadingImage(false)}
           src={`/${currentImage}`}

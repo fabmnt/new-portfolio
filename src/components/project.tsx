@@ -20,9 +20,9 @@ export function Project({ project }: { project: Project }) {
     >
       <article
         className={cn(
-          "rounded-2xl p-4 dark:group-hover:border-blue-600 group-hover:border-blue-500 dark:bg-black dark:border-slate-800 group-hover:bg-blue-50 dark:group-hover:bg-black dark:group-hover:shadow dark:group-hover:shadow-blue-600 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          "rounded-2xl p-4 dark:group-hover:border-blue-800/60 group-hover:border-blue-500 dark:bg-black dark:border-slate-900/60 group-hover:bg-blue-50 dark:group-hover:bg-black dark:group-hover:shadow dark:group-hover:shadow-blue-600 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
           isProjectSelected &&
-            "border-blue-500 shadow-blue-300 dark:shadow-blue-600 dark:shadow -translate-y-3 shadow-lg bg-blue-50 dark:border-blue-600"
+            "border-blue-500 shadow-blue-300 dark:shadow-blue-600 dark:shadow -translate-y-3 shadow-lg bg-blue-50 dark:border-blue-800/60"
         )}
       >
         <div className="flex flex-col gap-6 h-full">
@@ -49,7 +49,7 @@ export function Project({ project }: { project: Project }) {
             </div>
           </header>
           <div>
-            <p className="text-sm font-light text-muted-foreground">
+            <p className="text-sm font-thin text-muted-foreground">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -66,7 +66,7 @@ export function Project({ project }: { project: Project }) {
           </div>
           <footer className="flex justify-between mt-auto">
             <div>
-              {project.privacy === "public" && (
+              {project.sourceUrl.trim().length > 0 && (
                 <Button
                   variant={"ghost"}
                   asChild
@@ -79,21 +79,23 @@ export function Project({ project }: { project: Project }) {
               )}
             </div>
             <div>
-              <Button
-                asChild
-                className="bg-blue-500 hover:bg-blue-600 dark:text-white"
-              >
-                <a href={project.websiteUrl} target="_blank">
-                  Website <SquareArrowOutUpRight className="size-2" />
-                </a>
-              </Button>
+              {(project.websiteUrl?.trim().length ?? 0) > 0 && (
+                <Button
+                  asChild
+                  className="bg-blue-500 hover:bg-blue-600 dark:text-white"
+                >
+                  <a href={project.websiteUrl} target="_blank">
+                    Website <SquareArrowOutUpRight className="size-2" />
+                  </a>
+                </Button>
+              )}
             </div>
           </footer>
         </div>
       </article>
       <div
         className={cn(
-          "absolute inset-0 bg-blue-500 dark:bg-blue-600 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity",
+          "absolute inset-0 bg-blue-500 dark:bg-blue-800/60 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity",
           isProjectSelected && "opacity-100"
         )}
       ></div>
