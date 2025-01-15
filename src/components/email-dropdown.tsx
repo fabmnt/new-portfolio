@@ -51,7 +51,7 @@ export function EmailDropdown() {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width]">
+      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width] bg-neutral-900">
         <DropdownMenuItem onClick={handleCopy}>
           fabianmontoya2802@gmail.com{" "}
           {copying ? <Spinner /> : copied ? <ClipboardCheck /> : <Clipboard />}
