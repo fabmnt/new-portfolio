@@ -2,11 +2,11 @@
 import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
 import { NavLink } from "./nav-link";
-import { Avatar } from "./ui/avatar";
 import { EmailDropdown } from "./email-dropdown";
 import { BadgeSunshine } from "./ui/badge-sunshine";
 import { ThemeSwitch } from "./theme-switch";
 import LinkedIn from "@/assets/icons/linkedin";
+import { MyAvatar } from "@/components/my-avatar";
 ---
 
 <article
@@ -17,9 +17,9 @@ import LinkedIn from "@/assets/icons/linkedin";
   >
     <div class="flex flex-row justify-between items-center sm:gap-x-4">
       <div class="flex sm:flex-row items-center gap-2">
-        <!-- <div class="h-full">
-          <Avatar className="size-10 bg-slate-500/80" />
-        </div> -->
+        <div class="h-full">
+          <MyAvatar client:load />
+        </div>
         <div>
           <div class="flex gap-2 items-center">
             <h1 class="font-medium text-lg">Fabian Montoya</h1>
