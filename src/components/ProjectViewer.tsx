@@ -42,7 +42,7 @@ export function ProjectViewer() {
           src={`/${currentImage}`}
           alt={projectName}
           className={cn(
-            "object-cover rounded-md opacity-80 w-full h-[240px] sm:h-[420px] mx-auto",
+            "object-cover opacity-80 w-full h-[240px] sm:h-[420px] mx-auto",
             isLoadingImage ? "hidden" : "block"
           )}
         />

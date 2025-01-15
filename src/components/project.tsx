@@ -25,12 +25,12 @@ export function Project({ project }: { project: Project }) {
             "border-blue-500 shadow-blue-300 dark:shadow-blue-600 dark:shadow -translate-y-3 shadow-lg bg-blue-50 dark:border-blue-800/60"
         )}
       >
-        <div className="flex flex-col gap-6 h-full">
+        <div className="flex flex-col gap-y-4 h-full">
           <header className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <div
                 className={cn(
-                  "rounded-lg py-2 px-3 group-hover:bg-blue-500 dark:group-hover:bg-blue-600 group-hover:text-white border",
+                  "rounded-lg py-2 px-3 group-hover:bg-blue-500 dark:group-hover:bg-blue-600 group-hover:text-white border dark:border-neutral-700/60",
                   isProjectSelected && "bg-blue-500 text-white dark:bg-blue-600"
                 )}
               >
@@ -54,17 +54,21 @@ export function Project({ project }: { project: Project }) {
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.techs.map((tech) => (
-                <Badge
-                  key={tech}
-                  variant={"outline"}
-                  className={cn("font-medium dark:border-neutral-700")}
-                >
-                  {tech}
-                </Badge>
+                <div>
+                  <Badge
+                    key={tech}
+                    variant={"outline"}
+                    className={cn(
+                      "font-medium text-xs dark:border-neutral-700"
+                    )}
+                  >
+                    {tech}
+                  </Badge>
+                </div>
               ))}
             </div>
           </div>
-          <footer className="flex justify-between mt-auto">
+          {/* <footer className="flex justify-between mt-auto">
             <div>
               {project.sourceUrl.trim().length > 0 && (
                 <Button
@@ -90,7 +94,7 @@ export function Project({ project }: { project: Project }) {
                 </Button>
               )}
             </div>
-          </footer>
+          </footer> */}
         </div>
       </article>
       <div

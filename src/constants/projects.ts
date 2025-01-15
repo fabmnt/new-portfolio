@@ -9,11 +9,7 @@ export const PROJECTS: Project[] = [
     privacy: "public",
     sourceUrl: "https://github.com/fabmnt/ferreteria-react",
     websiteUrl: "https://ferreteria-react-five.vercel.app/",
-    images: [
-      "ferreteria-dashboard.png",
-      "ferreteria-bills.png",
-      "ferreteria-login.png",
-    ],
+    images: ["ferreteria-dashboard.png", "ferreteria-login.png"],
   },
   {
     title: "Credit Ayuda",
@@ -32,6 +28,6 @@ export const PROJECTS: Project[] = [
     privacy: "private",
     sourceUrl: "",
     websiteUrl: "https://controlcentralcarrier.com/#/form-builder",
-    images: ["formless.png", "formless-open.png"],
+    images: ["formless.png"],
   },
 ];
