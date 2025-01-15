@@ -20,7 +20,7 @@ export function Project({ project }: { project: Project }) {
     >
       <article
         className={cn(
-          "rounded-2xl p-4 dark:group-hover:border-blue-800/60 group-hover:border-blue-500 dark:bg-black dark:border-slate-900/60 group-hover:bg-blue-50 dark:group-hover:bg-black dark:group-hover:shadow dark:group-hover:shadow-blue-600 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
+          "rounded-2xl p-4 dark:group-hover:border-blue-800/60 group-hover:border-blue-500 dark:bg-neutral-900 dark:border-neutral-700/60 group-hover:bg-blue-50 dark:group-hover:bg-neutral-900 dark:group-hover:shadow dark:group-hover:shadow-blue-600 bg-white z-20 relative h-full border border-slate-300/80 transition-all group-hover:-translate-y-3 group-hover:shadow-lg group-hover:shadow-blue-300",
           isProjectSelected &&
             "border-blue-500 shadow-blue-300 dark:shadow-blue-600 dark:shadow -translate-y-3 shadow-lg bg-blue-50 dark:border-blue-800/60"
         )}
@@ -57,7 +57,7 @@ export function Project({ project }: { project: Project }) {
                 <Badge
                   key={tech}
                   variant={"outline"}
-                  className={cn("font-medium")}
+                  className={cn("font-medium border-neutral-700")}
                 >
                   {tech}
                 </Badge>

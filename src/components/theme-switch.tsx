@@ -32,7 +32,11 @@ export function ThemeSwitch() {
   };
 
   return (
-    <Button variant={"outline"} onClick={toggleTheme}>
+    <Button
+      className="dark:bg-neutral-900 dark:border-neutral-700"
+      variant={"outline"}
+      onClick={toggleTheme}
+    >
       {theme === "light" ? <Moon size={32} /> : <Sun size={32} />}
     </Button>
   );
