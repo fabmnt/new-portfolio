@@ -57,7 +57,7 @@ export function Project({ project }: { project: Project }) {
                 <Badge
                   key={tech}
                   variant={"outline"}
-                  className={cn("font-medium border-neutral-700")}
+                  className={cn("font-medium dark:border-neutral-700")}
                 >
                   {tech}
                 </Badge>
