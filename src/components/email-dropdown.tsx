@@ -51,12 +51,15 @@ export function EmailDropdown() {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width] bg-neutral-900">
-        <DropdownMenuItem onClick={handleCopy}>
+      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width] dark:border-neutral-700/60 dark:bg-neutral-900">
+        <DropdownMenuItem
+          className="dark:hover:bg-neutral-800"
+          onClick={handleCopy}
+        >
           fabianmontoya2802@gmail.com{" "}
           {copying ? <Spinner /> : copied ? <ClipboardCheck /> : <Clipboard />}
         </DropdownMenuItem>
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem className="dark:hover:bg-neutral-800" asChild>
           <a href={mailtoURL.toString()} target="_blank">
             Enviar correo <Send />
           </a>
