@@ -54,9 +54,8 @@ export function Project({ project }: { project: Project }) {
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.techs.map((tech) => (
-                <div>
+                <div key={tech}>
                   <Badge
-                    key={tech}
                     variant={"outline"}
                     className={cn(
                       "font-medium text-xs dark:border-neutral-700"
