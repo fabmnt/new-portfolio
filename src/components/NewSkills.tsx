@@ -48,7 +48,7 @@ function SkillItem({ name, color, icon: Icon, index }: SkillItemProps) {
           >
             <Icon className="!size-8" style={{ color }} />
           </div>
-          <span className="text-sm font-bold tracking-wider uppercase text-brutalist-white/70">
+          <span className="text-sm font-medium tracking-wider uppercase text-brutalist-white/70">
             {name}
           </span>
         </div>
@@ -103,7 +103,7 @@ export function NewSkills() {
         <div
           className={`mb-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-          <span className="inline-block text-brutalist-blue text-xs font-bold tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             Stack tecnológico
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
@@ -127,7 +127,7 @@ export function NewSkills() {
           {["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"].map((tool) => (
             <span
               key={tool}
-              className="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/60 text-xs font-bold tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300"
+              className="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/60 text-xs font-medium tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300"
             >
               {tool}
             </span>

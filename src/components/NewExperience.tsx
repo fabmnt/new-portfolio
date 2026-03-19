@@ -45,22 +45,18 @@ function ExperienceItem({
   return (
     <div
       ref={ref}
-      className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+      className={`relative z-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {!isLast && (
-        <div className={`absolute ${isReversed ? "left-8 lg:left-1/2" : "left-8 lg:left-1/2"} top-16 bottom-0 w-0.5 bg-brutalist-blue`} />
-      )}
-
       <div className={`flex flex-col ${isReversed ? "lg:items-end" : "lg:items-start"} gap-4`}>
         <div className={`flex ${isReversed ? "flex-row-reverse lg:flex-row" : "flex-row"} items-center gap-4`}>
-          <div className="w-16 h-16 bg-brutalist-accent flex items-center justify-center flex-shrink-0 relative z-10">
-            <span className="text-2xl font-black text-brutalist-white">
+          <div className="w-16 h-16 bg-brutalist-blue flex items-center justify-center flex-shrink-0 relative z-10">
+            <span className="text-2xl font-medium text-brutalist-white">
               {company.charAt(0)}
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-brutalist-white/50">
+            <span className="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/50">
               {period}
             </span>
             <a
@@ -69,20 +65,15 @@ function ExperienceItem({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
             >
-              <span className="text-xl font-bold">{company}</span>
+              <span className="text-xl font-medium">{company}</span>
               <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
         </div>
 
         <div
-          className={`bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10 p-5 sm:p-6 w-full lg:max-w-md ${
-            isReversed ? "lg:mr-8" : "lg:ml-8"
-          }`}
+          className="bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10 p-5 sm:p-6 w-full lg:max-w-md"
         >
-          <div className="inline-block bg-brutalist-accent text-brutalist-white px-3 py-1 text-xs font-bold tracking-wider uppercase mb-4">
-            {role}
-          </div>
           <ul className="space-y-4">
             {description.map((item, index) => (
               <li
@@ -167,7 +158,7 @@ export function NewExperience() {
         <div
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
-          <span className="inline-block text-brutalist-blue text-xs font-bold tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             Trayectoria profesional
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
@@ -176,7 +167,8 @@ export function NewExperience() {
           <div className="mt-6 w-24 h-1 bg-brutalist-blue" />
         </div>
 
-        <div className="space-y-16">
+        <div className="relative space-y-16">
+          <div className="pointer-events-none absolute left-8 top-0 bottom-0 w-0.5 bg-brutalist-blue lg:left-1/2" />
           {experiences.map((exp, index) => (
             <ExperienceItem
               key={exp.company}

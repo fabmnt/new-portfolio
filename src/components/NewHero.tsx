@@ -82,7 +82,7 @@ function Stat({ value, suffix = "", label, delay }: StatProps) {
       <div className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-extrabold text-brutalist-white mb-2">
         <AnimatedCounter end={value} suffix={suffix} />
       </div>
-      <div className="text-sm font-bold tracking-[0.2em] uppercase text-brutalist-white/60">
+      <div className="text-sm font-medium tracking-[0.2em] uppercase text-brutalist-white/60">
         {label}
       </div>
     </div>
@@ -115,7 +115,7 @@ export function NewHero() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
                 )}
               >
-                <span className="inline-block text-brutalist-accent text-xs font-bold tracking-[0.3em] uppercase mb-4">
+                <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
                   Sobre mí
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-brutalist-white leading-tight">
@@ -155,7 +155,7 @@ export function NewHero() {
             >
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 bg-brutalist-blue text-brutalist-white px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-brutalist-accent transition-colors duration-300 group"
+                className="inline-flex items-center gap-2 bg-brutalist-blue text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
               >
                 Ver experiencia
                 <svg className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@ export function NewHero() {
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 bg-brutalist-white/10 text-brutalist-white border border-brutalist-white/20 px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-brutalist-white hover:text-brutalist-black transition-colors duration-300"
+                className="inline-flex items-center gap-2 bg-brutalist-white/10 text-brutalist-white border border-brutalist-white/20 px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-white hover:text-brutalist-black transition-colors duration-300"
               >
                 Ver proyectos
               </a>

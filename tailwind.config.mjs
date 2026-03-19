@@ -52,7 +52,7 @@ export default {
         },
         brutalist: {
           blue: "#3366FF",
-          accent: "#6699FF",
+          accent: "#FFFFFF",
           black: "#0A0A0A",
           white: "#FAFAFA",
         },

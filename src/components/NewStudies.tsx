@@ -48,12 +48,12 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
         <div className="flex-1 pt-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <h3 className="text-xl font-black tracking-tight text-brutalist-white">
+              <h3 className="text-xl font-semibold tracking-tight text-brutalist-white">
                 {title}
               </h3>
             </div>
           </div>
-          <p className="text-base font-medium text-brutalist-white/70">
+          <p className="text-base font-normal text-brutalist-white/70">
             {institution}
           </p>
         </div>
@@ -127,7 +127,7 @@ export function NewStudies() {
         <div
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
-          <span className="inline-block text-brutalist-blue text-xs font-black tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             Formación académica
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white">

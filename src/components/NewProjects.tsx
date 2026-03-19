@@ -38,21 +38,21 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="p-5 sm:p-6 space-y-6">
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-3">
-              <div className="w-14 h-14 flex items-center justify-center border border-brutalist-accent bg-brutalist-accent text-brutalist-white">
+              <div className="w-14 h-14 flex items-center justify-center border border-brutalist-white bg-brutalist-white text-brutalist-black">
                 <svg className="size-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black tracking-tight text-brutalist-white">
+              <h3 className="text-2xl font-semibold tracking-tight text-brutalist-white">
                 {project.title}
               </h3>
             </div>
-            <span className="text-xs font-bold tracking-widest px-3 py-1 border border-brutalist-white/30 text-brutalist-white/60">
+            <span className="text-xs font-medium tracking-widest px-3 py-1 border border-brutalist-white/30 text-brutalist-white/60">
               {project.privacy === "public" ? "PÚBLICO" : "PRIVADO"}
             </span>
           </div>
 
-          <p className="text-base font-medium leading-relaxed text-brutalist-white/70">
+          <p className="text-base font-normal leading-relaxed text-brutalist-white/70">
             {project.description}
           </p>
 
@@ -60,7 +60,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             {project.techs.map((tech) => (
               <span
                 key={tech}
-                className="text-xs font-bold tracking-wider px-4 py-2 border border-brutalist-white/20 bg-brutalist-white/5 text-brutalist-white/60"
+                className="text-xs font-medium tracking-wider px-4 py-2 border border-brutalist-white/20 bg-brutalist-white/5 text-brutalist-white/60"
               >
                 {tech}
               </span>
@@ -73,7 +73,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 href={project.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-black tracking-wider uppercase text-brutalist-white/70 hover:text-brutalist-blue transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium tracking-wider uppercase text-brutalist-white/70 hover:text-brutalist-blue transition-colors"
               >
                 <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -86,7 +86,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 href={project.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-black tracking-wider uppercase text-brutalist-white/70 hover:text-brutalist-accent transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-medium tracking-wider uppercase text-brutalist-white/70 hover:text-brutalist-blue transition-colors"
               >
                 <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -138,7 +138,7 @@ export function NewProjects() {
         <div
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
-          <span className="inline-block text-brutalist-blue text-xs font-black tracking-[0.3em] uppercase mb-4">
+          <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             Portfolio showcase
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white">
