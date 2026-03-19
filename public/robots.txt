@@ -10,7 +10,6 @@ Crawl-delay: 1
 
 # Disallow unnecessary paths (if any future routes are added)
 Disallow: /api/
-Disallow: /_astro/
 Disallow: /*.json$
 Disallow: /dist/
 
