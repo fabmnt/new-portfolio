@@ -50,7 +50,7 @@ export function EmailDropdown() {
           onClick={handleCopy}
         >
           fabianmontoya2802@gmail.com{" "}
-          {copying ? <Spinner /> : copied ? <ClipboardCheck className="text-brutalist-cyan" /> : <Clipboard />}
+          {copying ? <Spinner /> : copied ? <ClipboardCheck className="text-brutalist-blue" /> : <Clipboard />}
         </DropdownMenuItem>
         <DropdownMenuItem className="text-brutalist-white hover:bg-brutalist-white/10 focus:bg-brutalist-white/10" asChild>
           <a href={mailtoURL.toString()} target="_blank">

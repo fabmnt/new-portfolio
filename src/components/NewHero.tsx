@@ -79,7 +79,7 @@ function Stat({ value, suffix = "", label, delay }: StatProps) {
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
     >
-      <div className="text-5xl lg:text-7xl font-extrabold text-brutalist-white mb-2">
+      <div className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-extrabold text-brutalist-white mb-2">
         <AnimatedCounter end={value} suffix={suffix} />
       </div>
       <div className="text-sm font-bold tracking-[0.2em] uppercase text-brutalist-white/60">
@@ -98,17 +98,16 @@ export function NewHero() {
   }, []);
 
   return (
-    <section className="relative py-32 lg:py-48 overflow-hidden">
+    <section className="relative py-20 sm:py-28 md:py-32 lg:py-48 overflow-hidden">
       <div className="absolute inset-0 bg-brutalist-black" />
-      
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(90deg,transparent_49%,#3366FF_50%,transparent_51%)] bg-[length:60px_100%]" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(0deg,transparent_49%,#3366FF_50%,transparent_51%)] bg-[length:100%_60px]" />
-      </div>
+      <div className="absolute inset-0 bg-section-pattern opacity-60" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-section-fade-top" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-section-fade-bottom" />
+      <div className="absolute top-1/4 right-0 w-1/2 h-1/2 bg-section-glow" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-16 items-center">
+          <div className="space-y-8 md:space-y-10">
             <div className="space-y-6">
               <div
                 className={cn(
@@ -116,12 +115,12 @@ export function NewHero() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
                 )}
               >
-                <span className="inline-block text-brutalist-cyan text-xs font-bold tracking-[0.3em] uppercase mb-4">
+                <span className="inline-block text-brutalist-accent text-xs font-bold tracking-[0.3em] uppercase mb-4">
                   Sobre mí
                 </span>
-                <h2 className="text-4xl lg:text-5xl font-bold text-brutalist-white leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-brutalist-white leading-tight">
                   Convirtiendo ideas en{" "}
-                  <span className="text-brutalist-yellow">experiencias</span>{" "}
+                  <span className="text-brutalist-blue">experiencias</span>{" "}
                   digitales extraordinarias
                 </h2>
               </div>
@@ -156,7 +155,7 @@ export function NewHero() {
             >
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 bg-brutalist-yellow text-brutalist-black px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-brutalist-white transition-colors duration-300 group"
+                className="inline-flex items-center gap-2 bg-brutalist-blue text-brutalist-white px-8 py-4 font-bold tracking-wider uppercase text-sm hover:bg-brutalist-accent transition-colors duration-300 group"
               >
                 Ver experiencia
                 <svg className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +171,7 @@ export function NewHero() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-6 sm:gap-8">
             <Stat value={4} suffix="+" label="Años de experiencia" delay={0} />
             <Stat value={50} suffix="+" label="Proyectos completados" delay={100} />
             <Stat value={3} suffix="" label="Tecnologías principales" delay={200} />

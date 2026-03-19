@@ -33,7 +33,7 @@ export function ThemeSwitch() {
 
   return (
     <Button
-      className="bg-brutalist-white/10 border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-yellow hover:text-brutalist-black hover:border-brutalist-yellow"
+      className="bg-brutalist-white/10 border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue"
       variant={"outline"}
       onClick={toggleTheme}
     >

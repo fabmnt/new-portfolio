@@ -51,12 +51,8 @@ export default {
           5: "hsl(var(--chart-5))",
         },
         brutalist: {
-          yellow: "#FFE600",
-          pink: "#FF3366",
-          cyan: "#00F5D4",
           blue: "#3366FF",
-          orange: "#FF6B35",
-          purple: "#9B5DE5",
+          accent: "#6699FF",
           black: "#0A0A0A",
           white: "#FAFAFA",
         },
