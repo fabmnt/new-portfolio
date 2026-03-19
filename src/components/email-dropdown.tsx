@@ -9,7 +9,6 @@ import {
 } from "./ui/dropdown-menu";
 import { useEffect, useState } from "react";
 import { Spinner } from "./ui/spinner";
-import React from "react";
 
 export function EmailDropdown() {
   const [copying, setCopying] = useState(false);
@@ -39,29 +38,23 @@ export function EmailDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant={"ghost"}
-          className="dark:bg-neutral-900 dark:text-white"
+          variant={"outline"}
+          className="bg-brutalist-black/10 text-brutalist-black border-brutalist-black/20 hover:bg-brutalist-black hover:text-brutalist-white h-11 w-11 p-0 flex items-center justify-center"
         >
-          <GmailIcon className="!size-6" />
-          <ChevronDown
-            className="-me-1 opacity-60"
-            size={16}
-            strokeWidth={2}
-            aria-hidden="true"
-          />
+          <GmailIcon className="!size-5" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width] dark:border-neutral-700/60 dark:bg-neutral-900">
+      <DropdownMenuContent className="min-w-[--radix-dropdown-menu-trigger-width] bg-brutalist-black border-brutalist-white/20">
         <DropdownMenuItem
-          className="dark:hover:bg-neutral-800"
+          className="text-brutalist-white hover:bg-brutalist-white/10 focus:bg-brutalist-white/10"
           onClick={handleCopy}
         >
           fabianmontoya2802@gmail.com{" "}
-          {copying ? <Spinner /> : copied ? <ClipboardCheck /> : <Clipboard />}
+          {copying ? <Spinner /> : copied ? <ClipboardCheck className="text-brutalist-cyan" /> : <Clipboard />}
         </DropdownMenuItem>
-        <DropdownMenuItem className="dark:hover:bg-neutral-800" asChild>
+        <DropdownMenuItem className="text-brutalist-white hover:bg-brutalist-white/10 focus:bg-brutalist-white/10" asChild>
           <a href={mailtoURL.toString()} target="_blank">
-            Enviar correo <Send />
+            Enviar correo <Send className="size-3 ml-2" />
           </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
