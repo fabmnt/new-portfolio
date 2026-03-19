@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import LinkedIn from "@/assets/icons/linkedin";
 import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
@@ -16,50 +16,13 @@ const socialLinks = [
 
 export function NewPresentation() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hoverSquareRotation, setHoverSquareRotation] = useState(0);
-  const hoverSquareRotationRef = useRef(0);
-  const hoverSquareRafRef = useRef<number | null>(null);
 
   useEffect(() => {
     setIsLoaded(true);
-
-    return () => {
-      if (hoverSquareRafRef.current !== null) {
-        cancelAnimationFrame(hoverSquareRafRef.current);
-      }
-    };
   }, []);
-
-  const startHoverSquareSpin = () => {
-    if (hoverSquareRafRef.current !== null) return;
-
-    let lastTime = performance.now();
-
-    const step = (time: number) => {
-      const delta = time - lastTime;
-      lastTime = time;
-
-      hoverSquareRotationRef.current =
-        (hoverSquareRotationRef.current + (delta * 18) / 1000) % 360;
-      setHoverSquareRotation(hoverSquareRotationRef.current);
-
-      hoverSquareRafRef.current = requestAnimationFrame(step);
-    };
-
-    hoverSquareRafRef.current = requestAnimationFrame(step);
-  };
-
-  const stopHoverSquareSpin = () => {
-    if (hoverSquareRafRef.current !== null) {
-      cancelAnimationFrame(hoverSquareRafRef.current);
-      hoverSquareRafRef.current = null;
-    }
-  };
 
   return (
     <header className="relative min-h-screen flex flex-col">
-      <div className="absolute inset-0 bg-gradient-to-br from-brutalist-blue via-brutalist-black to-brutalist-black opacity-90" />
-
       <div className="absolute inset-0 bg-section-pattern opacity-20" />
 
       <div className="flex-1 flex items-center justify-center relative z-10">
@@ -140,21 +103,9 @@ export function NewPresentation() {
             "flex justify-center lg:justify-end transition-all duration-1000 delay-500",
             isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-90"
           )}>
-            <div
-              className="group relative"
-              onMouseEnter={startHoverSquareSpin}
-              onMouseLeave={stopHoverSquareSpin}
-            >
-              <div className="absolute -inset-8 rotate-[-6deg]">
-                <div className="hero-square-spin-slow absolute inset-0 bg-brutalist-blue opacity-30" />
-              </div>
-              <div className="absolute -inset-4 rotate-6">
-                <div
-                  className="hero-square-spin-hover absolute inset-0 bg-brutalist-blue opacity-40"
-                  style={{ transform: `rotate(${hoverSquareRotation}deg)` }}
-                />
-              </div>
-              <Avatar className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 border-4 border-brutalist-white relative z-10">
+            <div className="group relative">
+              <div className="blob-shadow" />
+              <Avatar className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 relative z-10">
                 <AvatarImage src="/icon-face.png" alt="Fabian Montoya" />
                 <AvatarFallback className="bg-brutalist-blue text-brutalist-white text-4xl font-medium">FM</AvatarFallback>
               </Avatar>
@@ -164,30 +115,44 @@ export function NewPresentation() {
       </div>
 
       <style>{`
-        .hero-square-spin-slow,
-        .hero-square-spin-hover {
-          transform-origin: center;
-          will-change: transform;
+        .blob-shadow {
+          position: absolute;
+          inset: -20%;
+          z-index: 0;
+          border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%;
+          background: radial-gradient(
+            ellipse at 40% 40%,
+            rgba(59, 130, 246, 0.5) 0%,
+            rgba(37, 99, 235, 0.35) 30%,
+            rgba(29, 78, 216, 0.2) 60%,
+            transparent 80%
+          );
+          filter: blur(24px);
+          will-change: transform, border-radius;
+          animation:
+            blob-spin 18s linear infinite,
+            blob-morph 8s ease-in-out infinite;
+          transition: filter 0.6s ease, opacity 0.6s ease;
         }
 
-        .hero-square-spin-slow {
-          animation: hero-square-spin 52s linear infinite;
+
+        @keyframes blob-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
         }
 
-        @keyframes hero-square-spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+        @keyframes blob-morph {
+          0%   { border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%; }
+          25%  { border-radius: 75% 25% 30% 70% / 20% 75% 25% 80%; }
+          50%  { border-radius: 30% 70% 80% 20% / 70% 30% 65% 35%; }
+          75%  { border-radius: 80% 20% 25% 75% / 35% 65% 70% 30%; }
+          100% { border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .hero-square-spin-slow,
-          .hero-square-spin-hover,
-          .group:hover .hero-square-spin-hover {
+          .blob-shadow {
             animation: none !important;
+            border-radius: 50%;
           }
         }
       `}</style>
