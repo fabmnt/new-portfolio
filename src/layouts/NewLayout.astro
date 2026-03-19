@@ -8,16 +8,120 @@ import "@fontsource/geist-sans/500.css";
 import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import "@fontsource/geist-sans/800.css";
+
+const SITE_URL = "https://fabianmontoya.dev";
+const SITE_NAME = "Fabian Montoya | Portfolio";
+const SITE_TITLE = "Fabian Montoya | Full Stack Developer & RPA Engineer";
+const SITE_DESCRIPTION = "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.";
+const SITE_KEYWORDS = "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, Nicaragua, portafolio, programador";
+const AUTHOR_NAME = "Fabian Montoya";
+const AUTHOR_URL = "https://www.linkedin.com/in/fabián-montoya-963247345";
+const PROFILE_IMAGE = "/icon-face.png";
+const TWITTER_HANDLE = "@fabmntp";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Fabian Montoya",
+  "jobTitle": "Full Stack Developer & RPA Engineer",
+  "description": "Desarrollador Full Stack y RPA Engineer especializado en crear soluciones tecnológicas que transforman empresas.",
+  "url": SITE_URL,
+  "image": `${SITE_URL}${PROFILE_IMAGE}`,
+  "email": "fabianmontoya2802@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "NI",
+    "addressRegion": "Nicaragua"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/fabián-montoya-963247345",
+    "https://x.com/fabmntp",
+    "https://github.com/fabmnt"
+  ],
+  "knowsAbout": ["React", "Angular", "TypeScript", "Node.js", "RPA", "Full Stack Development", "JavaScript"],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidad Nacional de Ingeniería"
+    }
+  ],
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "Dentalrobot.ai"
+    },
+    {
+      "@type": "Organization", 
+      "name": "Roca Company Solutions"
+    }
+  ]
+};
 ---
 
 <!doctype html>
 <html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>Fabian Montoya | Portfolio</title>
-    <meta name="description" content="Fabian Montoya's personal website - Full Stack Developer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{SITE_TITLE}</title>
+    <meta name="title" content={SITE_TITLE} />
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta name="keywords" content={SITE_KEYWORDS} />
+    <meta name="author" content={AUTHOR_NAME} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={SITE_URL} />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icon-face.png" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:title" content={SITE_TITLE} />
+    <meta property="og:description" content={SITE_DESCRIPTION} />
+    <meta property="og:image" content={`${SITE_URL}${PROFILE_IMAGE}`} />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="Fabian Montoya - Full Stack Developer" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="es_NI" />
+    <meta property="og:see_also" content={AUTHOR_URL} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={TWITTER_HANDLE} />
+    <meta name="twitter:creator" content={TWITTER_HANDLE} />
+    <meta name="twitter:url" content={SITE_URL} />
+    <meta name="twitter:title" content={SITE_TITLE} />
+    <meta name="twitter:description" content={SITE_DESCRIPTION} />
+    <meta name="twitter:image" content={`${SITE_URL}${PROFILE_IMAGE}`} />
+    <meta name="twitter:image:alt" content="Fabian Montoya - Full Stack Developer" />
+    
+    <!-- Additional SEO Meta -->
+    <meta name="revisit-after" content="7 days" />
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="NI" />
+    <meta name="geo.placename" content="Nicaragua" />
+    <meta name="geo.position" content="12.115;-86.236" />
+    <meta name="ICBM" content="12.115, -86.236" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    
+    <!-- Alternate Versions -->
+    <link rel="alternate" type="application/rss+xml" title={SITE_NAME} href={`${SITE_URL}/rss.xml`} />
   </head>
   <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <slot />
