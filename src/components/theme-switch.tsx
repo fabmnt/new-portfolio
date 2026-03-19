@@ -5,9 +5,9 @@ import { Moon, Sun } from "lucide-react";
 export function ThemeSwitch() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "light" | "dark") ?? "light";
+      return (localStorage.getItem("theme") as "light" | "dark") ?? "dark";
     }
-    return "light";
+    return "dark";
   });
 
   useEffect(() => {
@@ -33,11 +33,11 @@ export function ThemeSwitch() {
 
   return (
     <Button
-      className="dark:bg-neutral-900 dark:border-neutral-700"
+      className="bg-brutalist-white/10 border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue"
       variant={"outline"}
       onClick={toggleTheme}
     >
-      {theme === "light" ? <Moon size={32} /> : <Sun size={32} />}
+      {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
     </Button>
   );
 }

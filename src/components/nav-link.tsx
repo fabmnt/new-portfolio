@@ -7,7 +7,7 @@ export function NavLink({ children, ...props }: NavLinkProps) {
     <Button
       asChild
       variant={"ghost"}
-      className="dark:bg-neutral-900 dark:text-white "
+      className="bg-transparent text-inherit hover:bg-inherit rounded-none p-0 h-auto"
     >
       <a {...props}>{children}</a>
     </Button>

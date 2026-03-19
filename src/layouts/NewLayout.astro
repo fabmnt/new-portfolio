@@ -1,4 +1,5 @@
 ---
+import "@/styles/brutalist.css";
 import "@/styles/globals.css";
 import "@fontsource/geist-sans/200.css";
 import "@fontsource/geist-sans/300.css";
@@ -10,21 +11,15 @@ import "@fontsource/geist-sans/800.css";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
-    <title>Fabian Montoya</title>
-    <meta name="description" content="Fabian Montoya's personal website" />
+    <title>Fabian Montoya | Portfolio</title>
+    <meta name="description" content="Fabian Montoya's personal website - Full Stack Developer" />
   </head>
-  <body class="scroll-smooth">
-    <div class="fixed left-0 top-0 -z-10 h-full w-full">
-      <div
-        class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] dark:bg-neutral-900 dark:bg-[radial-gradient(#0f172a,transparent_1px)]"
-      >
-      </div>
-    </div>
+  <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <slot />
   </body>
 </html>
