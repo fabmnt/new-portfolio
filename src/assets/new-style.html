@@ -1,0 +1,859 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Manrope:wght@500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              surface: "#f5f7f9",
+              "surface-container-low": "#eef1f3",
+              "surface-bright": "#f5f7f9",
+              "on-secondary-fixed-variant": "#006a2d",
+              "secondary-fixed": "#6bff8f",
+              "outline-variant": "#abadaf",
+              error: "#b31b25",
+              "secondary-container": "#6bff8f",
+              "surface-container-highest": "#d9dde0",
+              "surface-variant": "#d9dde0",
+              "on-secondary-fixed": "#004a1d",
+              "surface-tint": "#0050d4",
+              "on-primary-fixed": "#000000",
+              "error-container": "#fb5151",
+              background: "#f5f7f9",
+              tertiary: "#6f5900",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#7b9cff",
+              "on-error": "#ffefee",
+              "on-surface-variant": "#595c5e",
+              "tertiary-container": "#fed01b",
+              "on-primary-fixed-variant": "#00266e",
+              "on-background": "#2c2f31",
+              "on-primary-container": "#001e5a",
+              "on-primary": "#f1f2ff",
+              secondary: "#006a2d",
+              "inverse-on-surface": "#9a9d9f",
+              "surface-container": "#e5e9eb",
+              "primary-dim": "#0046bb",
+              primary: "#0050d4",
+              outline: "#747779",
+              "on-tertiary-fixed-variant": "#645000",
+              "surface-container-high": "#dfe3e6",
+              "surface-dim": "#d0d5d8",
+              "secondary-fixed-dim": "#5bf083",
+              "on-secondary-container": "#005f28",
+              "inverse-surface": "#0b0f10",
+              "error-dim": "#9f0519",
+              "inverse-primary": "#618bff",
+              "tertiary-fixed": "#fed01b",
+              "tertiary-dim": "#614d00",
+              "on-tertiary-container": "#594700",
+              "on-secondary": "#ceffd0",
+              "on-error-container": "#570008",
+              "on-tertiary": "#fff2d3",
+              "secondary-dim": "#005d26",
+              "on-surface": "#2c2f31",
+              "on-tertiary-fixed": "#433500",
+              "tertiary-fixed-dim": "#eec200",
+              "primary-fixed-dim": "#658eff",
+              "primary-container": "#7b9cff",
+              "ai-accent": "#a855f7",
+            },
+            fontFamily: {
+              headline: ["Space Grotesk"],
+              body: ["Manrope"],
+              label: ["Space Grotesk"],
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        background-color: #f5f7f9;
+      }
+      .neobrutal-shadow {
+        shadow-offset: 4px 4px;
+      }
+      .text-stroke {
+        -webkit-text-stroke: 2px #2c2f31;
+      }
+    </style>
+  </head>
+  <body class="text-on-background selection:bg-tertiary-container">
+    <!-- TopNavBar -->
+    <nav
+      class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-none border-b-4 border-black dark:border-white shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[0px_4px_0px_0px_rgba(255,255,255,1)] docked full-width top-0 sticky z-50 flex justify-between items-center w-full px-6 py-4 max-w-full"
+    >
+      <div
+        class="text-2xl font-black italic text-blue-600 dark:text-blue-400 border-2 border-black dark:border-white px-2 py-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-headline uppercase tracking-tighter"
+      >
+        PORTFOLIO.EXE
+      </div>
+      <div class="hidden md:flex gap-8 items-center">
+        <a
+          class="text-blue-600 dark:text-blue-400 underline decoration-4 underline-offset-4 font-headline font-bold uppercase tracking-tighter transition-all hover:-translate-y-1 active:translate-y-0"
+          href="#work"
+          >WORK</a
+        >
+        <a
+          class="text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-headline font-bold uppercase tracking-tighter transition-colors transition-all hover:-translate-y-1 active:translate-y-0"
+          href="#bio"
+          >BIO</a
+        >
+        <a
+          class="text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-headline font-bold uppercase tracking-tighter transition-colors transition-all hover:-translate-y-1 active:translate-y-0"
+          href="#ai"
+          >AI_LAB</a
+        >
+        <a
+          class="text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-headline font-bold uppercase tracking-tighter transition-colors transition-all hover:-translate-y-1 active:translate-y-0"
+          href="#stack"
+          >STACK</a
+        >
+        <a
+          class="text-black dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-headline font-bold uppercase tracking-tighter transition-colors transition-all hover:-translate-y-1 active:translate-y-0"
+          href="#talk"
+          >TALK</a
+        >
+      </div>
+      <button
+        class="bg-primary text-on-primary border-2 border-black px-6 py-2 font-headline font-bold uppercase tracking-tighter shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0 active:shadow-none transition-all"
+      >
+        RESUME
+      </button>
+    </nav>
+    <!-- Hero Section -->
+    <header
+      class="relative w-full min-h-screen flex items-center bg-primary overflow-hidden pt-20"
+    >
+      <div
+        class="absolute inset-0 opacity-10 pointer-events-none"
+        style="
+          background-image: radial-gradient(#000 2px, transparent 2px);
+          background-size: 32px 32px;
+        "
+      ></div>
+      <div
+        class="container mx-auto px-6 z-10 grid lg:grid-cols-12 gap-12 items-center"
+      >
+        <div class="lg:col-span-8">
+          <div
+            class="inline-block bg-tertiary-container border-4 border-black px-4 py-2 mb-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] font-headline font-black text-2xl uppercase italic"
+          >
+            HELLO_WORLD.PDF
+          </div>
+          <h1
+            class="text-6xl md:text-9xl font-headline font-black text-white leading-none tracking-tighter mb-8 drop-shadow-[8px_8px_0px_rgba(0,0,0,1)] uppercase"
+          >
+            I BUILD <br />
+            <span class="text-tertiary-container">DIGITAL</span> <br />
+            PHYSICS.
+          </h1>
+          <p
+            class="text-xl md:text-3xl font-body font-bold text-on-primary max-w-2xl mb-12 bg-black/10 p-4 border-l-8 border-black"
+          >
+            FULL-STACK ENGINEER SPECIALIZING IN HIGH-PRESSURE SYSTEMS, NEOMETRIC
+            INTERFACES, AND PURE LOGIC.
+          </p>
+          <div class="flex flex-wrap gap-6">
+            <button
+              class="bg-secondary text-white border-4 border-black px-8 py-4 text-2xl font-headline font-black uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0 active:shadow-none transition-all"
+            >
+              VIEW_PROJECTS
+            </button>
+            <button
+              class="bg-surface text-black border-4 border-black px-8 py-4 text-2xl font-headline font-black uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0 active:shadow-none transition-all"
+            >
+              CONTACT_ME
+            </button>
+          </div>
+        </div>
+        <div class="lg:col-span-4 hidden lg:block">
+          <div
+            class="relative bg-white border-4 border-black p-4 shadow-[16px_16px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <img
+              alt="Abstract Code Blueprint"
+              class="w-full h-auto grayscale hover:grayscale-0 transition-all border-4 border-black"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YnT2XlO0Kz8vUCsK5fEcPumehy8oUmLexdRsET6vEC1zl_7KP4Ljk7iEOftM-dbhJ_ABcSpRNXuLmY0YqvWuWoUWwUStCYwYObthIfYIN4LPfJwYZuulNZMGf2bhRqWD1H-kJq-v1-Xb6vHgahakIwF9PDhztTwii8BW9KflANcGG_PriOr5GRjwNTxNtagW-Vaq3VrXdD5kGfmM9S-_vcuCuWlVWVncPHhUkKeShhuyc7_vwrltvduFsFTAl3-PLFTTQnytHml0"
+            />
+            <div
+              class="absolute -bottom-8 -left-8 bg-tertiary-container border-4 border-black p-4 font-headline font-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+            >
+              ACTIVE_NODE_01
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Wave Transition -->
+      <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+        <svg
+          class="relative block w-full h-[100px]"
+          data-name="Layer 1"
+          preserveaspectratio="none"
+          viewbox="0 0 1200 120"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58,114.65,245.42,70.53,321.39,56.44Z"
+            fill="#006a2d"
+          ></path>
+        </svg>
+      </div>
+    </header>
+    <!-- Bio Section -->
+    <section class="w-full py-24 bg-secondary text-white relative" id="bio">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="relative inline-block mb-12">
+              <h2
+                class="text-5xl md:text-8xl font-headline font-black uppercase tracking-tight relative z-10 drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
+              >
+                ENGINEER_IDENTITY
+              </h2>
+              <div
+                class="absolute -bottom-2 left-0 w-full h-8 bg-tertiary-container -z-10 -rotate-2"
+              ></div>
+            </div>
+            <div class="space-y-8 text-xl md:text-2xl font-body font-semibold">
+              <p
+                class="border-l-8 border-tertiary-container pl-6 py-2 bg-black/20"
+              >
+                I don't just write code; I architect resilient ecosystems. My
+                philosophy is rooted in "Intentional Friction"—creating
+                interfaces that feel mechanical and substantial.
+              </p>
+              <p>
+                With a background in low-level systems and high-level UX design,
+                I bridge the gap between "it works" and "it's unforgettable."
+                Every pixel is a calculated risk.
+              </p>
+              <div class="grid grid-cols-2 gap-4 pt-8">
+                <div
+                  class="bg-surface text-black p-6 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                >
+                  <span class="block font-headline font-black text-4xl mb-2"
+                    >08+</span
+                  >
+                  <span class="font-bold uppercase">YEARS_EXP</span>
+                </div>
+                <div
+                  class="bg-tertiary-container text-black p-6 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
+                >
+                  <span class="block font-headline font-black text-4xl mb-2"
+                    >124</span
+                  >
+                  <span class="font-bold uppercase">NODES_SHIPPED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2 flex justify-center">
+            <div
+              class="w-full max-w-lg aspect-square bg-surface-container-highest border-4 border-black relative shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]"
+            >
+              <img
+                alt="Male Engineer Portrait"
+                class="w-full h-full object-cover grayscale mix-blend-multiply"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3_fE076_rYx9f-z7V7D9Y9U0u8z-E-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9-9"
+              />
+              <div
+                class="absolute top-4 right-4 bg-primary text-white p-3 border-2 border-black font-black font-headline"
+              >
+                CORE_BRAIN
+              </div>
+              <div class="absolute bottom-4 left-4 flex gap-2">
+                <div
+                  class="w-6 h-6 bg-tertiary-container border-2 border-black"
+                ></div>
+                <div class="w-6 h-6 bg-primary border-2 border-black"></div>
+                <div
+                  class="w-6 h-6 bg-secondary-fixed border-2 border-black"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- AI Integration Section -->
+    <section
+      class="w-full py-32 bg-ai-accent text-white relative overflow-hidden"
+      id="ai"
+    >
+      <div
+        class="absolute inset-0 opacity-10 pointer-events-none"
+        style="
+          background-image: repeating-linear-gradient(
+            0deg,
+            #000,
+            #000 1px,
+            transparent 1px,
+            transparent 40px
+          );
+          background-size: 100% 40px;
+        "
+      ></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="mb-20">
+          <h2
+            class="text-6xl md:text-9xl font-headline font-black uppercase leading-none mb-6 drop-shadow-[6px_6px_0px_rgba(0,0,0,1)]"
+          >
+            NEO_CHAT_<br /><span class="text-tertiary-container">LOGIC.</span>
+          </h2>
+          <p
+            class="text-2xl font-body font-bold max-w-3xl bg-black px-6 py-4 border-l-8 border-tertiary-container shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)]"
+          >
+            I INTEGRATE ADAPTIVE INTELLIGENCE INTO CORE ARCHITECTURES. BEYOND
+            SIMPLE PROMPTS: I BUILD SELF-AWARE SYSTEMS.
+          </p>
+        </div>
+        <div class="grid lg:grid-cols-12 gap-12 items-start">
+          <!-- AI Feature Cards -->
+          <div class="lg:col-span-7 space-y-8">
+            <div
+              class="bg-white text-black p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-12 h-12 bg-primary flex items-center justify-center border-2 border-black text-white"
+                >
+                  <span class="material-symbols-outlined font-black"
+                    >database</span
+                  >
+                </div>
+                <h3 class="text-3xl font-headline font-black uppercase">
+                  RAG_PIPELINE
+                </h3>
+              </div>
+              <p class="text-lg font-bold">
+                Injecting proprietary knowledge into LLMs via high-performance
+                vector stores and semantic retrieval loops.
+              </p>
+            </div>
+            <div
+              class="bg-tertiary-container text-black p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-12 h-12 bg-black flex items-center justify-center border-2 border-black text-white"
+                >
+                  <span class="material-symbols-outlined font-black"
+                    >forum</span
+                  >
+                </div>
+                <h3 class="text-3xl font-headline font-black uppercase">
+                  CONVERSATIONAL_UI
+                </h3>
+              </div>
+              <p class="text-lg font-bold">
+                Crafting neometic chat interfaces that prioritize intent,
+                reducing user friction through predictive input mapping.
+              </p>
+            </div>
+            <div
+              class="bg-secondary-fixed text-black p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-12 h-12 bg-secondary flex items-center justify-center border-2 border-black text-white"
+                >
+                  <span class="material-symbols-outlined font-black">hub</span>
+                </div>
+                <h3 class="text-3xl font-headline font-black uppercase">
+                  MODEL_ORCHESTRATION
+                </h3>
+              </div>
+              <p class="text-lg font-bold">
+                Multi-agent workflows where specialized models collaborate to
+                solve complex architectural logic constraints.
+              </p>
+            </div>
+          </div>
+          <!-- Chat Preview Component -->
+          <div class="lg:col-span-5 sticky top-32">
+            <div
+              class="bg-black border-4 border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden"
+            >
+              <div
+                class="bg-white/10 border-b-2 border-white/20 p-4 flex items-center justify-between"
+              >
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <span
+                  class="font-headline font-black text-xs uppercase tracking-widest opacity-70"
+                  >NEO_KERNEL_v1.0.4</span
+                >
+              </div>
+              <div class="p-6 font-mono text-sm space-y-6 min-h-[400px]">
+                <div class="flex flex-col items-start">
+                  <span class="text-tertiary-container font-black mb-1"
+                    >SYSTEM_USR:</span
+                  >
+                  <div
+                    class="bg-white/10 p-3 border border-white/20 max-w-[85%]"
+                  >
+                    INITIALIZE CHAT INTERFACE WITH RAG CAPABILITIES.
+                  </div>
+                </div>
+                <div class="flex flex-col items-end">
+                  <span class="text-ai-accent font-black mb-1">AI_CORE:</span>
+                  <div
+                    class="bg-ai-accent/30 p-3 border-2 border-ai-accent max-w-[85%] text-white"
+                  >
+                    CORE INITIALIZED. VECTOR DATASET LOADED. AWAITING
+                    INSTRUCTION.
+                  </div>
+                </div>
+                <div class="flex flex-col items-start">
+                  <span class="text-tertiary-container font-black mb-1"
+                    >SYSTEM_USR:</span
+                  >
+                  <div
+                    class="bg-white/10 p-3 border border-white/20 max-w-[85%]"
+                  >
+                    DEPLOY TO PRODUCTION CLUSTER.
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-white/20 animate-pulse">
+                  <span class="text-green-400 font-black italic"
+                    >_PROCESSING_LOGIC...</span
+                  >
+                </div>
+              </div>
+              <div class="p-4 bg-white/5 border-t-2 border-white/20">
+                <div
+                  class="bg-black border-2 border-white p-3 flex justify-between items-center"
+                >
+                  <span class="opacity-50 font-mono">TYPE_COMMAND_HERE_</span>
+                  <span class="material-symbols-outlined text-ai-accent"
+                    >send</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Work/Projects Section -->
+    <section class="w-full py-32 bg-surface overflow-hidden" id="work">
+      <div
+        class="px-6 mb-20 flex flex-col md:flex-row justify-between items-end gap-6"
+      >
+        <h2
+          class="text-7xl md:text-9xl font-headline font-black uppercase text-black leading-none"
+        >
+          SELECTED_ <br />
+          <span class="text-primary">OUTPUTS.</span>
+        </h2>
+        <div class="text-right">
+          <p
+            class="font-headline font-black text-2xl uppercase border-b-4 border-black inline-block mb-2"
+          >
+            PROD_ENV_ONLY
+          </p>
+          <p class="font-body font-bold text-lg max-w-xs">
+            A collection of high-performance architectural deployments.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col gap-16 px-6">
+        <!-- Project Card 01 -->
+        <div class="w-full group">
+          <div
+            class="grid lg:grid-cols-12 items-stretch bg-white border-4 border-black shadow-[12px_12px_0px_0px_#7b9cff] transition-all hover:shadow-[20px_20px_0px_0px_#7b9cff] hover:-translate-x-2 hover:-translate-y-2"
+          >
+            <div
+              class="lg:col-span-7 border-b-4 lg:border-b-0 lg:border-r-4 border-black overflow-hidden relative"
+            >
+              <img
+                alt="Fintech Interface"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDVyuBTA46Pf6Yz05ozbNG5Dw8Wanp6Sk6m3NePd1yb6HWYUpstPbpNIjBEj-X47C0opyreBREFNWaVTmo-qHunqsRpr2ZeA_voefTT5f_kyi9UsiUSAZAbAk0dQxD6tQOfudmox6Uz4pIiMWsjSNw96jfztGMWYwONDy54b3QvufukZ_JWKXAQnNF2yBT713EjXJyGYtNE138aq11zFovixnyKEA1lM2uFUgduhTRqH58SUfTH0YX5RNi_-m4qOGzdYINt2Ix4lYk"
+              />
+              <div
+                class="absolute top-0 left-0 bg-primary text-white p-4 font-headline font-black text-xl border-b-4 border-r-4 border-black"
+              >
+                PROJECT_001
+              </div>
+            </div>
+            <div class="lg:col-span-5 p-10 flex flex-col justify-between">
+              <div>
+                <h3 class="text-4xl font-headline font-black uppercase mb-4">
+                  NEO_EXCHANGE_V4
+                </h3>
+                <p
+                  class="text-xl font-body font-bold mb-8 text-on-surface-variant"
+                >
+                  High-frequency crypto asset exchange with sub-50ms latency.
+                  Architected using Rust and React-Internal logic.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                  <span
+                    class="px-3 py-1 bg-primary-fixed border border-black font-headline font-bold text-sm"
+                    >RUST</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-secondary-fixed border border-black font-headline font-bold text-sm"
+                    >WASM</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-tertiary-container border border-black font-headline font-bold text-sm"
+                    >KAFKA</span
+                  >
+                </div>
+              </div>
+              <button
+                class="w-full bg-black text-white py-4 font-headline font-black text-xl uppercase flex items-center justify-center gap-4 hover:bg-primary transition-colors"
+              >
+                DEPLOY_LIVE
+                <span class="material-symbols-outlined">arrow_outward</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 02 -->
+        <div class="w-full group">
+          <div
+            class="grid lg:grid-cols-12 items-stretch bg-white border-4 border-black shadow-[12px_12px_0px_0px_#fed01b] transition-all hover:shadow-[20px_20px_0px_0px_#fed01b] hover:-translate-x-2 hover:-translate-y-2"
+          >
+            <div
+              class="lg:col-span-5 p-10 flex flex-col justify-between order-2 lg:order-1"
+            >
+              <div>
+                <h3 class="text-4xl font-headline font-black uppercase mb-4">
+                  QUANTUM_GRID_OS
+                </h3>
+                <p
+                  class="text-xl font-body font-bold mb-8 text-on-surface-variant"
+                >
+                  A headless CMS built for procedural game assets. Handles 1M+
+                  concurrent asset requests via edge workers.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                  <span
+                    class="px-3 py-1 bg-primary-fixed border border-black font-headline font-bold text-sm"
+                    >TYPESCRIPT</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-secondary-fixed border border-black font-headline font-bold text-sm"
+                    >GO_LANG</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-tertiary-container border border-black font-headline font-bold text-sm"
+                    >POSTGRES</span
+                  >
+                </div>
+              </div>
+              <button
+                class="w-full bg-black text-white py-4 font-headline font-black text-xl uppercase flex items-center justify-center gap-4 hover:bg-secondary transition-colors"
+              >
+                DEPLOY_LIVE
+                <span class="material-symbols-outlined">arrow_outward</span>
+              </button>
+            </div>
+            <div
+              class="lg:col-span-7 border-b-4 lg:border-b-0 lg:border-l-4 border-black overflow-hidden relative order-1 lg:order-2"
+            >
+              <img
+                alt="Abstract Grid"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbLfjLyxcy0mG7dT_Rl66U-DyNbA6g5mhdc6ME-o-2Zmbk5pti1EwrkuOXuvOtkCOSDufvM5pFohvb2DCZ7Hw5b-fBvI9Gj1zZXHqJOZOiAX6yFSCztvO-pm2x0-up913C5xvnkjbtPyxTv35iKnRbDz-ZBFMDvCiDnHyIEmvqYSraBNvWgNyYnOsvXi1NwsIT-QzNHr7kImy8NaJ90UKnlEfxEsBwj592cniGY_Ey75YjDVEOpMWfUKWKJch_PUjoh4TkoDErPfs6"
+              />
+              <div
+                class="absolute top-0 right-0 bg-tertiary-container text-black p-4 font-headline font-black text-xl border-b-4 border-l-4 border-black"
+              >
+                PROJECT_002
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Skills Section -->
+    <section
+      class="w-full py-32 bg-tertiary-container text-black border-y-8 border-black relative overflow-hidden"
+      id="stack"
+    >
+      <div
+        class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none"
+        style="
+          background-image: repeating-linear-gradient(
+            45deg,
+            #000 0,
+            #000 1px,
+            transparent 0,
+            transparent 50%
+          );
+          background-size: 10px 10px;
+        "
+      ></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <h2
+          class="text-6xl md:text-9xl font-headline font-black uppercase mb-20 text-center leading-none"
+        >
+          TECHNICAL_ <br />
+          <span class="bg-black text-white px-4">ARMORY.</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <!-- Skill Category: Backend -->
+          <div
+            class="col-span-2 bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all"
+          >
+            <div class="flex items-center gap-4 mb-8">
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >terminal</span
+              >
+              <h3 class="text-3xl font-headline font-black uppercase">
+                CORE_LOGIC
+              </h3>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                NODE.JS
+              </div>
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                GO_LANG
+              </div>
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                PYTHON
+              </div>
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                RUST
+              </div>
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                REDIS
+              </div>
+              <div
+                class="px-4 py-2 bg-primary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                DOCKER
+              </div>
+            </div>
+          </div>
+          <!-- Skill Category: Frontend -->
+          <div
+            class="col-span-2 bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 transition-all"
+          >
+            <div class="flex items-center gap-4 mb-8">
+              <span
+                class="material-symbols-outlined text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >layers</span
+              >
+              <h3 class="text-3xl font-headline font-black uppercase">
+                VISUAL_ENGINE
+              </h3>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                REACT_NEXT
+              </div>
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                TYPESCRIPT
+              </div>
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                TAILWIND
+              </div>
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                THREE.JS
+              </div>
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                WEBGL
+              </div>
+              <div
+                class="px-4 py-2 bg-secondary-fixed border-2 border-black font-headline font-black uppercase"
+              >
+                FRAMER
+              </div>
+            </div>
+          </div>
+          <!-- Signature Component: Code-Brick -->
+          <div class="col-span-2 md:col-span-4 mt-12">
+            <div
+              class="bg-surface-dim border-4 border-on-surface shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden"
+            >
+              <div
+                class="bg-primary border-b-4 border-black px-4 py-2 flex items-center justify-between"
+              >
+                <div class="flex gap-2">
+                  <div
+                    class="w-3 h-3 rounded-full bg-error border border-black"
+                  ></div>
+                  <div
+                    class="w-3 h-3 rounded-full bg-tertiary-fixed border border-black"
+                  ></div>
+                  <div
+                    class="w-3 h-3 rounded-full bg-secondary-fixed border border-black"
+                  ></div>
+                </div>
+                <span
+                  class="text-white font-headline font-black text-sm uppercase"
+                  >STRENGTHS.YAML</span
+                >
+              </div>
+              <div
+                class="p-8 font-mono text-lg text-on-surface leading-relaxed"
+              >
+                <p>
+                  <span class="text-primary-dim font-bold">architecture:</span>
+                  "distributive"
+                </p>
+                <p>
+                  <span class="text-primary-dim font-bold">scalability:</span>
+                  "horizontal"
+                </p>
+                <p>
+                  <span class="text-primary-dim font-bold">optimization:</span>
+                  "obsessive"
+                </p>
+                <p>
+                  <span class="text-primary-dim font-bold">philosophy:</span>
+                  "brutalism"
+                </p>
+                <p class="mt-4 text-secondary font-black">
+                  # System initialized with 100% confidence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact CTA Section -->
+    <section
+      class="w-full py-40 bg-surface flex flex-col items-center justify-center text-center px-6"
+      id="talk"
+    >
+      <h2
+        class="text-5xl md:text-8xl font-headline font-black uppercase mb-12 max-w-4xl drop-shadow-[4px_4px_0px_rgba(0,0,0,0.1)]"
+      >
+        READY TO
+        <span class="bg-primary text-white px-4">DEPLOY</span> SOMETHING
+        MASSIVE?
+      </h2>
+      <div class="flex flex-col md:flex-row gap-8 w-full max-w-3xl">
+        <input
+          class="flex-grow bg-white border-4 border-black p-6 text-2xl font-headline font-bold focus:bg-tertiary-container focus:ring-0 outline-none shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+          placeholder="YOUR_EMAIL_HERE"
+          type="email"
+        />
+        <button
+          class="bg-black text-white px-12 py-6 text-2xl font-headline font-black uppercase shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[14px_14px_0px_0px_#0050d4] transition-all"
+        >
+          INITIATE_CONTACT
+        </button>
+      </div>
+      <div class="mt-20 flex flex-wrap justify-center gap-12">
+        <a
+          class="text-2xl font-headline font-black uppercase border-b-4 border-primary hover:text-primary transition-colors"
+          href="#"
+          >GITHUB</a
+        >
+        <a
+          class="text-2xl font-headline font-black uppercase border-b-4 border-primary hover:text-primary transition-colors"
+          href="#"
+          >LINKEDIN</a
+        >
+        <a
+          class="text-2xl font-headline font-black uppercase border-b-4 border-primary hover:text-primary transition-colors"
+          href="#"
+          >X_TWITTER</a
+        >
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      class="bg-green-500 dark:bg-green-700 w-full border-t-4 border-black dark:border-white flex flex-col md:flex-row justify-between items-center gap-8 px-10 py-16"
+    >
+      <div
+        class="text-lg font-black text-black dark:text-white font-headline uppercase"
+      >
+        PORTFOLIO.EXE v2.4.0
+      </div>
+      <div
+        class="text-black dark:text-white font-headline font-bold uppercase text-center md:text-left"
+      >
+        ©2024 ENGINEER_IDENTITY. ALL RIGHTS RESERVED. BUILT WITH INTENTIONAL
+        FRICTION.
+      </div>
+      <div class="flex gap-6 items-center">
+        <a
+          class="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-headline font-bold uppercase hover:italic transition-all scale-105 transition-transform"
+          href="#"
+          >GITHUB</a
+        >
+        <a
+          class="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-headline font-bold uppercase hover:italic transition-all scale-105 transition-transform"
+          href="#"
+          >LINKEDIN</a
+        >
+        <a
+          class="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-headline font-bold uppercase hover:italic transition-all scale-105 transition-transform"
+          href="#"
+          >TWITTER</a
+        >
+        <a
+          class="text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white font-headline font-bold uppercase hover:italic transition-all scale-105 transition-transform"
+          href="#"
+          >EMAIL</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

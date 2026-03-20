@@ -1,0 +1,24 @@
+---
+import NeoLayout from "@/layouts/NeoLayout.astro";
+import { NeoNavbar } from "@/components/neo/NeoNavbar";
+import { NeoHero } from "@/components/neo/NeoHero";
+import { NeoBio } from "@/components/neo/NeoBio";
+import { NeoAI } from "@/components/neo/NeoAI";
+import { NeoWork } from "@/components/neo/NeoWork";
+import { NeoStack } from "@/components/neo/NeoStack";
+import { NeoContact } from "@/components/neo/NeoContact";
+import { NeoFooter } from "@/components/neo/NeoFooter";
+---
+
+<NeoLayout>
+  <NeoNavbar client:load />
+  <main>
+    <NeoHero client:load />
+    <NeoBio client:load />
+    <NeoAI client:load />
+    <NeoWork client:load />
+    <NeoStack client:load />
+    <NeoContact client:load />
+  </main>
+  <NeoFooter client:load />
+</NeoLayout>
