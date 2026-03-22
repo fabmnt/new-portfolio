@@ -1,12 +1,11 @@
 ---
-import { Image } from "astro:assets";
 import LinkedInIcon from "@/assets/icons/LinkedInIcon.astro";
 import GithubIcon from "@/assets/icons/GithubIcon.astro";
 import TwitterIcon from "@/assets/icons/TwitterIcon.astro";
 import GmailIcon from "@/assets/icons/GmailIcon.astro";
+import MetallicBlueBlobField from "@/components/MetallicBlueBlobField.astro";
 import type { TranslationKeys } from "@/i18n";
 import { getTranslations } from "@/i18n";
-import iconFace from "@/assets/images/icon-face.png";
 
 interface Props {
   locale: "en" | "es";
@@ -149,42 +148,12 @@ const socialLinks = [
       </div>
 
       <div class="animate-on-scroll delay-200 order-1 flex justify-center md:order-2 md:justify-end">
-        <div class="group relative">
-          <div class="blob-shadow"></div>
-          <div class="relative z-10 h-44 w-44 overflow-hidden rounded-full bg-muted sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-80 lg:w-80">
-            <Image 
-              src={iconFace} 
-              alt="Fabian Montoya"
-              width={320}
-              height={320}
-              class="object-cover"
-              decoding="async"
-              loading="eager"
-            />
-          </div>
+        <div class="group relative h-[18rem] w-[18rem] overflow-visible sm:h-[22rem] sm:w-[22rem] md:h-[25rem] md:w-[25rem] lg:h-[32rem] lg:w-[32rem]" data-blob-host>
+          <MetallicBlueBlobField blobCount={26} hoverBurst={6} />
         </div>
       </div>
     </div>
   </div>
-
-  <style>
-    .blob-shadow {
-      position: absolute;
-      inset: -20%;
-      z-index: 0;
-      border-radius: 50%;
-      background: radial-gradient(
-        ellipse at 40% 40%,
-        rgba(59, 130, 246, 0.5) 0%,
-        rgba(37, 99, 235, 0.35) 30%,
-        rgba(29, 78, 216, 0.2) 60%,
-        transparent 80%
-      );
-      filter: blur(24px);
-      transition: filter 0.6s ease, opacity 0.6s ease;
-    }
-
-  </style>
 
   <script>
     // Email dropdown interactions with accessibility support
