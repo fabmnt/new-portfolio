@@ -1,0 +1,271 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e7]:
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - generic [ref=e10]: Full Stack Developer
+            - heading "FABIAN MONTOYA" [level=1] [ref=e11]:
+              - text: FABIAN
+              - text: MONTOYA
+          - paragraph [ref=e12]: I design, develop and implement IT solutions that enable companies to evolve.
+          - generic [ref=e13]:
+            - link "Download CV (PDF document)" [ref=e14] [cursor=pointer]:
+              - /url: /fabian-montoya-cv.pdf
+              - img [ref=e15]
+              - text: DOWNLOAD CV
+              - generic [ref=e17]: (PDF)
+            - navigation "Social and contact links" [ref=e18]:
+              - generic [ref=e19]:
+                - link "LinkedIn (opens in new tab)" [ref=e21] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/in/fabián-montoya-963247345
+                  - img [ref=e22]
+                - link "X (opens in new tab)" [ref=e25] [cursor=pointer]:
+                  - /url: https://x.com/fabmntp
+                  - img [ref=e26]
+                - link "GitHub (opens in new tab)" [ref=e29] [cursor=pointer]:
+                  - /url: https://github.com/fabmnt
+                  - img [ref=e30]
+                - button "Email options" [ref=e33] [cursor=pointer]:
+                  - img [ref=e34]
+              - generic [ref=e36]:
+                - link "Switch language to Spanish" [ref=e37] [cursor=pointer]:
+                  - /url: /?locale=es
+                  - text: ES
+                - link "English" [ref=e38] [cursor=pointer]:
+                  - /url: /en
+                  - text: EN
+        - img "Fabian Montoya" [ref=e43]
+      - link "Scroll" [ref=e45] [cursor=pointer]:
+        - /url: "#experience"
+        - generic [ref=e46]:
+          - generic [ref=e47]: Scroll
+          - img [ref=e48]
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]: About me
+            - heading "Turning ideas into extraordinary digital experiences" [level=2] [ref=e62]
+          - paragraph [ref=e63]: As a systems engineer with a passion for full stack development, I specialize in creating technological solutions that transform the way companies connect with their users.
+          - paragraph [ref=e64]: From elegant commercial platforms to complex inventory and billing systems, each project is an opportunity to innovate.
+        - generic [ref=e65]:
+          - link "View experience" [ref=e66] [cursor=pointer]:
+            - /url: "#experience"
+            - text: View experience
+            - img [ref=e67]
+          - link "View projects" [ref=e69] [cursor=pointer]:
+            - /url: "#projects"
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - generic [ref=e72]: 4+
+          - generic [ref=e73]: Years of experience
+        - generic [ref=e74]:
+          - generic [ref=e75]: 50+
+          - generic [ref=e76]: Projects completed
+        - generic [ref=e77]:
+          - generic [ref=e78]: "3"
+          - generic [ref=e79]: Main technologies
+        - generic [ref=e80]:
+          - generic [ref=e81]: 100%
+          - generic [ref=e82]: Commitment
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - generic [ref=e91]: Professional career
+        - heading "WORK EXPERIENCE" [level=2] [ref=e92]
+      - generic [ref=e94]:
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e99]: R
+            - generic [ref=e100]:
+              - generic [ref=e101]: April 2025 - July 2025
+              - link "Visit Roca Company Solutions (opens in new tab)" [ref=e102] [cursor=pointer]:
+                - /url: https://rocacompanysolution.wordpress.com/
+                - generic [ref=e103]: Roca Company Solutions
+                - img [ref=e104]
+          - list [ref=e107]:
+            - listitem [ref=e108]:
+              - img [ref=e110]
+              - text: Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.
+            - listitem [ref=e112]:
+              - img [ref=e114]
+              - text: Scalable system to render large amounts of information in tables efficiently.
+            - listitem [ref=e116]:
+              - img [ref=e118]
+              - text: Migration from Google Spreadsheets to a unified system.
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - generic [ref=e124]: D
+            - generic [ref=e125]:
+              - generic [ref=e126]: October 2022 - Present
+              - link "Visit Dentalrobot.ai (opens in new tab)" [ref=e127] [cursor=pointer]:
+                - /url: https://www.dentalrobot.ai
+                - generic [ref=e128]: Dentalrobot.ai
+                - img [ref=e129]
+          - list [ref=e132]:
+            - listitem [ref=e133]:
+              - img [ref=e135]
+              - text: Form editor exportable to MS Word and Google Docs for audits.
+            - listitem [ref=e137]:
+              - img [ref=e139]
+              - text: Leadership in parallelizing RPA executions, drastically reducing execution times.
+            - listitem [ref=e141]:
+              - img [ref=e143]
+              - text: Developer of RPA robots for patient verification automation.
+            - listitem [ref=e145]:
+              - img [ref=e147]
+              - text: Maintenance of the company's main Angular system.
+    - generic [ref=e155]:
+      - generic [ref=e156]:
+        - generic [ref=e157]: Portfolio showcase
+        - heading "FEATURED PROJECTS" [level=2] [ref=e158]
+      - generic [ref=e160]:
+        - generic [ref=e163]:
+          - generic [ref=e164]:
+            - generic [ref=e165]:
+              - img [ref=e167]
+              - heading "Ferretería Berrios" [level=3] [ref=e169]
+            - generic [ref=e170]: PUBLIC
+          - paragraph [ref=e171]: Dashboard for managing inventory and billing of a hardware store. Includes charts and sales reports.
+          - list "Technologies used" [ref=e172]:
+            - listitem [ref=e173]: React
+            - listitem [ref=e174]: Tanstack Query
+            - listitem [ref=e175]: Wouter
+          - generic [ref=e176]:
+            - link "Code" [ref=e177] [cursor=pointer]:
+              - /url: https://github.com/fabmnt/ferreteria-react
+              - img [ref=e178]
+              - text: Code
+            - link "Visit" [ref=e180] [cursor=pointer]:
+              - /url: https://ferreteria-react-five.vercel.app/
+              - img [ref=e181]
+              - text: Visit
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - img [ref=e189]
+              - heading "Credit Ayuda" [level=3] [ref=e191]
+            - generic [ref=e192]: PRIVATE
+          - paragraph [ref=e193]: System for registering and tracking financial credits.
+          - list "Technologies used" [ref=e194]:
+            - listitem [ref=e195]: React
+            - listitem [ref=e196]: Tanstack Query
+            - listitem [ref=e197]: react-router
+          - link "Code" [ref=e199] [cursor=pointer]:
+            - /url: https://github.com/francisco-JGC/credit-ayuda-front
+            - img [ref=e200]
+            - text: Code
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - img [ref=e208]
+              - heading "Formless" [level=3] [ref=e210]
+            - generic [ref=e211]: PRIVATE
+          - paragraph [ref=e212]: Editable and customizable form with tables and bookmarks, exportable to docx.
+          - list "Technologies used" [ref=e213]:
+            - listitem [ref=e214]: Angular
+            - listitem [ref=e215]: RxJs
+          - link "Visit" [ref=e217] [cursor=pointer]:
+            - /url: https://controlcentralcarrier.com/#/form-builder
+            - img [ref=e218]
+            - text: Visit
+    - generic [ref=e226]:
+      - generic [ref=e227]:
+        - generic [ref=e228]: Tech stack
+        - heading "SKILLS" [level=2] [ref=e229]
+        - paragraph [ref=e231]: Technologies I master and with which I build modern and scalable solutions
+      - generic [ref=e232]:
+        - generic [ref=e235]:
+          - img [ref=e237]
+          - generic [ref=e240]: Astro
+        - generic [ref=e243]:
+          - img [ref=e245]
+          - generic [ref=e247]: React
+        - generic [ref=e250]:
+          - img [ref=e252]
+          - generic [ref=e256]: Angular
+        - generic [ref=e259]:
+          - img [ref=e261]
+          - generic [ref=e266]: Next.js
+        - generic [ref=e269]:
+          - img [ref=e271]
+          - generic [ref=e274]: TypeScript
+        - generic [ref=e277]:
+          - img [ref=e279]
+          - generic [ref=e282]: Python
+      - generic [ref=e283]:
+        - generic [ref=e284]: Node.js
+        - generic [ref=e285]: TanStack Query
+        - generic [ref=e286]: RxJS
+        - generic [ref=e287]: Tailwind CSS
+        - generic [ref=e288]: Git
+        - generic [ref=e289]: REST APIs
+        - generic [ref=e290]: SQL
+        - generic [ref=e291]: MongoDB
+    - generic [ref=e298]:
+      - generic [ref=e299]:
+        - generic [ref=e300]: Academic background
+        - heading "STUDIES & CERTIFICATIONS" [level=2] [ref=e301]
+      - generic [ref=e303]:
+        - generic [ref=e305]:
+          - img "UNAN León Logo" [ref=e307]
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - heading "Information Systems Engineering" [level=3] [ref=e310]
+              - generic [ref=e311]: 2019 - 2024
+            - paragraph [ref=e312]: Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)
+        - generic [ref=e314]:
+          - img "UNI Logo" [ref=e316]
+          - generic [ref=e317]:
+            - generic [ref=e318]:
+              - heading "International Ethical Hacking and Cybersecurity Course" [level=3] [ref=e319]
+              - generic [ref=e320]: "2024"
+            - paragraph [ref=e321]: Graduate School - Universidad Nacional de Ingeniería
+        - generic [ref=e323]:
+          - img "INATEC Logo" [ref=e325]
+          - generic [ref=e326]:
+            - generic [ref=e327]:
+              - heading "General Accounting Technician" [level=3] [ref=e328]
+              - generic [ref=e329]: "2024"
+            - paragraph [ref=e330]: Instituto Nacional Tecnológico
+    - generic [ref=e336]:
+      - generic [ref=e337]:
+        - heading "Let's work together?" [level=2] [ref=e338]
+        - paragraph [ref=e339]: I'm always open to new challenges and collaboration opportunities.
+      - generic [ref=e340]:
+        - link "Send email" [ref=e341] [cursor=pointer]:
+          - /url: mailto:fabianmontoya2802@gmail.com
+          - img [ref=e342]
+          - text: Send email
+          - img [ref=e344]
+        - generic [ref=e346]:
+          - link "LinkedIn (opens in new tab)" [ref=e347] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/fabián-montoya-963247345
+            - img [ref=e348]
+          - link "X (opens in new tab)" [ref=e350] [cursor=pointer]:
+            - /url: https://x.com/fabmntp
+            - img [ref=e351]
+          - link "GitHub (opens in new tab)" [ref=e353] [cursor=pointer]:
+            - /url: https://github.com/fabmnt
+            - img [ref=e354]
+      - generic [ref=e356]:
+        - link "fabianmontoya2802@gmail.com" [ref=e357] [cursor=pointer]:
+          - /url: mailto:fabianmontoya2802@gmail.com
+        - paragraph [ref=e358]: © 2026 Fabian Montoya. All rights reserved.
+  - generic [ref=e361]:
+    - button "Menu" [ref=e362]:
+      - img [ref=e364]
+      - generic: Menu
+    - button "Inspect" [ref=e368]:
+      - img [ref=e370]
+      - generic: Inspect
+    - button "Audit" [ref=e372]:
+      - generic [ref=e373]:
+        - img [ref=e374]
+        - img [ref=e377]
+      - generic: Audit
+    - button "Settings" [ref=e380]:
+      - img [ref=e382]
+      - generic: Settings

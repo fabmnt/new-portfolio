@@ -86,13 +86,13 @@ const experiences: Experience[] = locale === "en" ? [
       <div class="mt-6 w-24 h-1 bg-brutalist-blue"></div>
     </div>
 
-    <div class="relative space-y-16">
-      <div class="pointer-events-none absolute left-8 top-0 bottom-0 w-0.5 bg-brutalist-blue lg:left-1/2" aria-hidden="true"></div>
+    <div class="relative space-y-8 sm:space-y-12 lg:space-y-16">
+      <div class="pointer-events-none absolute bottom-0 left-8 top-0 hidden w-0.5 bg-brutalist-blue lg:left-1/2 lg:block" aria-hidden="true"></div>
       {experiences.map((exp, index) => (
         <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
-          <div class={`relative z-10 flex flex-col ${index % 2 === 1 ? 'lg:items-end' : 'lg:items-start'} gap-4`}>
-            <div class={`flex ${index % 2 === 1 ? 'flex-row-reverse lg:flex-row' : 'flex-row'} items-center gap-4`}>
-              <div class="w-16 h-16 bg-brutalist-blue flex items-center justify-center flex-shrink-0 relative z-10">
+          <div class={`relative z-10 flex flex-col gap-4 ${index % 2 === 1 ? 'lg:items-end' : 'lg:items-start'}`}>
+            <div class={`flex items-center gap-4 ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'flex-row'}`}>
+              <div class="relative z-10 flex h-14 w-14 flex-shrink-0 items-center justify-center bg-brutalist-blue sm:h-16 sm:w-16">
                 <span class="text-2xl font-medium text-brutalist-white">
                   {exp.company.charAt(0)}
                 </span>
@@ -108,7 +108,7 @@ const experiences: Experience[] = locale === "en" ? [
                   aria-label={`${locale === 'es' ? 'Visitar' : 'Visit'} ${exp.company} (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
                   class="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
                 >
-                  <span class="text-xl font-medium">{exp.company}</span>
+                  <span class="text-lg font-medium sm:text-xl">{exp.company}</span>
                   <svg class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M7 17L17 7M17 7H7M17 7V17" />
                   </svg>
@@ -116,10 +116,10 @@ const experiences: Experience[] = locale === "en" ? [
               </div>
             </div>
 
-            <div class="bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10 p-5 sm:p-6 w-full lg:max-w-md">
+            <div class="w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6 lg:max-w-md">
               <ul class="space-y-4">
                 {exp.description.map((item, itemIndex) => (
-                  <li class="text-brutalist-white/70 text-sm font-light leading-relaxed flex gap-3">
+                  <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/70">
                     <span class="text-brutalist-blue mt-1.5 flex-shrink-0">
                       <svg class="size-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
