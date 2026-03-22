@@ -9,11 +9,23 @@ import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import "@fontsource/geist-sans/800.css";
 
+interface Props {
+  locale?: "en" | "es";
+}
+
+const { locale = "es" } = Astro.props;
+
 const SITE_URL = "https://fabianmontoya.dev/";
-const SITE_NAME = "Fabian Montoya | Portfolio";
-const SITE_TITLE = "Fabian Montoya | Full Stack Developer & RPA Engineer";
-const SITE_DESCRIPTION = "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.";
-const SITE_KEYWORDS = "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, Nicaragua, portafolio, programador";
+const SITE_NAME = locale === "en" ? "Fabian Montoya | Portfolio" : "Fabian Montoya | Portafolio";
+const SITE_TITLE = locale === "en" 
+  ? "Fabian Montoya | Full Stack Developer & RPA Engineer" 
+  : "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA";
+const SITE_DESCRIPTION = locale === "en"
+  ? "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in React, Angular, TypeScript, Node.js and automation solutions."
+  : "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.";
+const SITE_KEYWORDS = locale === "en"
+  ? "Fabian Montoya, Full Stack Developer, RPA Engineer, Web Developer, React, Angular, TypeScript, Node.js, Nicaragua, portfolio, programmer"
+  : "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, Nicaragua, portafolio, programador";
 const AUTHOR_NAME = "Fabian Montoya";
 const AUTHOR_URL = "https://www.linkedin.com/in/fabián-montoya-963247345";
 const PROFILE_IMAGE = "/icon-face.png";
@@ -59,7 +71,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang={locale} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,7 +108,7 @@ const jsonLd = {
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="Fabian Montoya - Full Stack Developer" />
     <meta property="og:site_name" content={SITE_NAME} />
-    <meta property="og:locale" content="es_NI" />
+    <meta property="og:locale" content={locale === "en" ? "en_US" : "es_NI"} />
     <meta property="og:see_also" content={AUTHOR_URL} />
     
     <!-- Twitter -->
@@ -111,7 +123,7 @@ const jsonLd = {
     
     <!-- Additional SEO Meta -->
     <meta name="revisit-after" content="7 days" />
-    <meta name="language" content="Spanish" />
+    <meta name="language" content={locale === "en" ? "English" : "Spanish"} />
     <meta name="geo.region" content="NI" />
     <meta name="geo.placename" content="Nicaragua" />
     <meta name="geo.position" content="12.115;-86.236" />
@@ -122,6 +134,11 @@ const jsonLd = {
     
     <!-- Alternate Versions -->
     <link rel="alternate" type="application/rss+xml" title={SITE_NAME} href={`${SITE_URL}/rss.xml`} />
+    
+    <!-- Hreflang for i18n -->
+    <link rel="alternate" hreflang="es" href={SITE_URL} />
+    <link rel="alternate" hreflang="en" href={`${SITE_URL}en/`} />
+    <link rel="alternate" hreflang="x-default" href={SITE_URL} />
   </head>
   <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <slot />

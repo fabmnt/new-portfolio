@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import AstroIcon from "../assets/icons/astro.tsx";
+import { useTranslations } from "./TranslationProvider";
 import ReactIcon from "../assets/icons/react.tsx";
 import AngularIcon from "../assets/icons/angular.tsx";
 import NextJsIcon from "../assets/icons/nextjs.tsx";
@@ -67,6 +68,7 @@ const skills = [
 ];
 
 export function NewSkills() {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -104,14 +106,14 @@ export function NewSkills() {
           className={`mb-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
-            Stack tecnológico
+            {t.skills.subtitle}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
-            HABILIDADES
+            {t.skills.title}
           </h2>
           <div className="mt-6 mx-auto w-24 h-1 bg-brutalist-blue" />
           <p className="mt-8 text-brutalist-white/60 font-light max-w-2xl mx-auto">
-            Tecnologías que domino y con las que construyo soluciones modernas y escalables
+            {t.skills.description}
           </p>
         </div>
 
@@ -124,7 +126,7 @@ export function NewSkills() {
         <div
           className={`mt-16 flex flex-wrap justify-center gap-4 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-          {["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"].map((tool) => (
+          {t.skills.tools.map((tool) => (
             <span
               key={tool}
               className="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/60 text-xs font-medium tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300"

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { PROJECTS } from "@/constants/projects";
 import type { Project } from "@/types/projects";
+import { useTranslations } from "./TranslationProvider";
 
 interface ProjectCardProps {
   project: Project;
@@ -8,6 +9,7 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, index }: ProjectCardProps) {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -48,7 +50,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               </h3>
             </div>
             <span className="text-xs font-medium tracking-widest px-3 py-1 border border-brutalist-white/30 text-brutalist-white/60">
-              {project.privacy === "public" ? "PÚBLICO" : "PRIVADO"}
+              {project.privacy === "public" ? t.projects.public : t.projects.private}
             </span>
           </div>
 
@@ -78,7 +80,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                 </svg>
-                Código
+                {t.projects.code}
               </a>
             )}
             {project.websiteUrl && (
@@ -91,7 +93,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-                Visitar
+                {t.projects.visit}
               </a>
             )}
           </div>
@@ -102,6 +104,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
 }
 
 export function NewProjects() {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -139,10 +142,10 @@ export function NewProjects() {
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
-            Portfolio showcase
+            {t.projects.subtitle}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white">
-            PROYECTOS <span className="text-brutalist-blue">DESTACADOS</span>
+            {t.projects.title} <span className="text-brutalist-blue">{t.projects.highlight}</span>
           </h2>
           <div className="mt-6 w-24 h-1 bg-brutalist-blue" />
         </div>

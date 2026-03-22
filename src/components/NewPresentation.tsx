@@ -7,6 +7,8 @@ import { ThemeSwitch } from "./theme-switch";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "./TranslationProvider";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const socialLinks = [
   { href: "https://www.linkedin.com/in/fabián-montoya-963247345", icon: LinkedIn, label: "LinkedIn" },
@@ -15,6 +17,7 @@ const socialLinks = [
 ];
 
 export function NewPresentation() {
+  const { t } = useTranslations();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export function NewPresentation() {
                 "inline-block bg-brutalist-black text-brutalist-blue px-4 py-2 text-xs font-medium tracking-[0.3em] uppercase transition-all duration-700 delay-500",
                 isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
               )}>
-                Full Stack Developer
+                {t.presentation.role}
               </span>
               
               <h1 className={cn(
@@ -53,7 +56,7 @@ export function NewPresentation() {
               "text-base sm:text-lg md:text-xl lg:text-2xl text-brutalist-white/70 font-light max-w-md leading-relaxed transition-all duration-700 delay-700",
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}>
-              Diseño, desarrollo e implemento soluciones informáticas que permiten a empresas evolucionar.
+              {t.presentation.tagline}
             </p>
 
             <div className={cn(
@@ -68,7 +71,7 @@ export function NewPresentation() {
                 <svg className="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/>
                 </svg>
-                DESCARGAR CV
+                {t.presentation.downloadCV}
               </a>
 
               <div className="flex items-center gap-3">
@@ -94,6 +97,12 @@ export function NewPresentation() {
                   isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 )} style={{ transitionDelay: "1200ms" }}>
                   <EmailDropdown client:load />
+                </div>
+                <div className={cn(
+                  "transition-all duration-500",
+                  isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
+                )} style={{ transitionDelay: "1300ms" }}>
+                  <LanguageSwitcher />
                 </div>
               </div>
             </div>
@@ -162,7 +171,7 @@ export function NewPresentation() {
         isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       )}>
         <div className="flex flex-col items-center gap-2 text-brutalist-white animate-bounce">
-          <span className="text-xs font-medium tracking-[0.3em] uppercase">Scroll</span>
+          <span className="text-xs font-medium tracking-[0.3em] uppercase">{t.nav.scroll}</span>
           <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "./TranslationProvider";
 
 interface AnimatedCounterProps {
   end: number;
@@ -90,6 +91,7 @@ function Stat({ value, suffix = "", label, delay }: StatProps) {
 }
 
 export function NewHero() {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -116,11 +118,11 @@ export function NewHero() {
                 )}
               >
                 <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
-                  Sobre mí
+                  {t.hero.aboutMe}
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-brutalist-white leading-tight">
-                  Convirtiendo ideas en{" "}
-                  <span className="text-brutalist-blue">experiencias</span>{" "}
+                  {t.hero.headline}{" "}
+                  <span className="text-brutalist-blue">{t.hero.highlight}</span>{" "}
                   digitales extraordinarias
                 </h2>
               </div>
@@ -131,9 +133,7 @@ export function NewHero() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
                 )}
               >
-                Como ingeniero en sistemas con pasión por el desarrollo full stack, 
-                me especializo en crear soluciones tecnológicas que transforman la manera 
-                en que las empresas se conectan con sus usuarios.
+                {t.hero.description1}
               </p>
 
               <p
@@ -142,8 +142,7 @@ export function NewHero() {
                   isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
                 )}
               >
-                Desde elegantes plataformas comerciales hasta complejos sistemas de inventario 
-                y facturación, cada proyecto es una oportunidad para innovar.
+                {t.hero.description2}
               </p>
             </div>
 
@@ -157,7 +156,7 @@ export function NewHero() {
                 href="#experience"
                 className="inline-flex items-center gap-2 bg-brutalist-blue text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
               >
-                Ver experiencia
+                {t.hero.viewExperience}
                 <svg className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -166,16 +165,16 @@ export function NewHero() {
                 href="#projects"
                 className="inline-flex items-center gap-2 bg-brutalist-white/10 text-brutalist-white border border-brutalist-white/20 px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-white hover:text-brutalist-black transition-colors duration-300"
               >
-                Ver proyectos
+                {t.hero.viewProjects}
               </a>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-6 sm:gap-8">
-            <Stat value={4} suffix="+" label="Años de experiencia" delay={0} />
-            <Stat value={50} suffix="+" label="Proyectos completados" delay={100} />
-            <Stat value={3} suffix="" label="Tecnologías principales" delay={200} />
-            <Stat value={100} suffix="%" label="Compromiso" delay={300} />
+            <Stat value={4} suffix="+" label={t.hero.yearsExperience} delay={0} />
+            <Stat value={50} suffix="+" label={t.hero.projectsCompleted} delay={100} />
+            <Stat value={3} suffix="" label={t.hero.mainTechnologies} delay={200} />
+            <Stat value={100} suffix="%" label={t.hero.commitment} delay={300} />
           </div>
         </div>
       </div>
