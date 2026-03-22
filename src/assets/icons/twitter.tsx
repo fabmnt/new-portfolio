@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
 const XformerlyTwitter = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"

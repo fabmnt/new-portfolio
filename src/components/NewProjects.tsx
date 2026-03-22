@@ -58,16 +58,16 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-2">
+          <ul className="flex flex-wrap gap-3 pt-2" aria-label="Technologies used">
             {project.techs.map((tech) => (
-              <span
+              <li
                 key={tech}
                 className="text-xs font-medium tracking-wider px-4 py-2 border border-brutalist-white/20 bg-brutalist-white/5 text-brutalist-white/60"
               >
                 {tech}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <div className="flex items-center gap-6 pt-4 border-t border-brutalist-white/10">
             {project.sourceUrl && (

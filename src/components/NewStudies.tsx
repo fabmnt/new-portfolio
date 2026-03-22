@@ -48,11 +48,12 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
 
         <div className="flex-1 pt-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <h3 className="text-xl font-semibold tracking-tight text-brutalist-white">
-                {title}
-              </h3>
-            </div>
+            <h3 className="text-xl font-semibold tracking-tight text-brutalist-white">
+              {title}
+            </h3>
+            <time className="text-sm text-brutalist-white/50 font-medium" dateTime={year.replace(' - ', '/')}>
+              {year}
+            </time>
           </div>
           <p className="text-base font-normal text-brutalist-white/70">
             {institution}
@@ -60,7 +61,7 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
         </div>
 
         {index < 2 && (
-          <div className="absolute left-20 top-full w-0.5 h-8 bg-brutalist-white/20" />
+          <div className="absolute left-20 top-full w-0.5 h-8 bg-brutalist-white/20" aria-hidden="true" />
         )}
       </div>
     </div>

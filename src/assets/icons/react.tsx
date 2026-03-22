@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
 const React = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     viewBox="0 0 256 228"
     width="1em"
     height="1em"

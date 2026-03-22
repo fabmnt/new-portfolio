@@ -65,42 +65,45 @@ export function NewFooter() {
           </a>
 
           <div className="flex items-center gap-3">
-            <a
-              href="https://www.linkedin.com/in/fabián-montoya-963247345"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
-              aria-label="LinkedIn"
-            >
-              <LinkedIn className="!size-5" />
-            </a>
-            <a
-              href="https://x.com/fabmntp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
-              aria-label="X"
-            >
-              <TwitterIcon className="!size-5" />
-            </a>
-            <a
-              href="https://github.com/fabmnt"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
-              aria-label="GitHub"
-            >
-              <GithubIcon className="!size-5" />
-            </a>
+          <a
+            href="https://www.linkedin.com/in/fabián-montoya-963247345"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+            aria-label="LinkedIn (opens in new tab)"
+          >
+            <LinkedIn className="!size-5" aria-hidden="true" />
+          </a>
+          <a
+            href="https://x.com/fabmntp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+            aria-label="X (opens in new tab)"
+          >
+            <TwitterIcon className="!size-5" aria-hidden="true" />
+          </a>
+          <a
+            href="https://github.com/fabmnt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+            aria-label="GitHub (opens in new tab)"
+          >
+            <GithubIcon className="!size-5" aria-hidden="true" />
+          </a>
           </div>
         </div>
 
         <div
           className={`pt-8 border-t border-brutalist-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
-          <p className="text-brutalist-white/40 text-sm font-light">
+          <a 
+            href="mailto:fabianmontoya2802@gmail.com"
+            className="text-brutalist-white/40 text-sm font-light hover:text-brutalist-blue transition-colors"
+          >
             fabianmontoya2802@gmail.com
-          </p>
+          </a>
           <p className="text-brutalist-white/40 text-sm font-light">
             © {new Date().getFullYear()} Fabian Montoya. {t.footer.copyright}
           </p>

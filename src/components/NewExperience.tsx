@@ -64,10 +64,11 @@ function ExperienceItem({
               href={companyUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Visit ${company} website (opens in new tab)`}
               className="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
             >
               <span className="text-xl font-medium">{company}</span>
-              <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -197,7 +198,7 @@ export function NewExperience() {
         </div>
 
         <div className="relative space-y-16">
-          <div className="pointer-events-none absolute left-8 top-0 bottom-0 w-0.5 bg-brutalist-blue lg:left-1/2" />
+          <div className="pointer-events-none absolute left-8 top-0 bottom-0 w-0.5 bg-brutalist-blue lg:left-1/2" aria-hidden="true" />
           {expData.map((exp, index) => (
             <ExperienceItem
               key={exp.company}

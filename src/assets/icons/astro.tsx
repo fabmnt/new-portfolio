@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
 const Astro = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     viewBox="0 0 256 366"
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
