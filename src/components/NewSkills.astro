@@ -57,7 +57,7 @@ const skills = [
             data-hover-light
             style={`--skill-color: ${skill.color}; --skill-color-soft: ${skill.color}22; --skill-color-glow: ${skill.color}55;`}
           >
-            <div class="flex flex-col items-center gap-4">
+            <div class="skill-card-content relative z-10 flex flex-col items-center gap-4">
               <div
                 class="skill-icon-shell w-16 h-16 flex items-center justify-center"
                 style={`background-color: ${skill.color}20`}
@@ -76,7 +76,7 @@ const skills = [
     <div class="animate-on-scroll delay-300 mt-16 flex flex-wrap justify-center gap-4">
       {t.skills.tools.map((tool) => (
         <span class="secondary-skill-badge px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/85 text-xs font-medium tracking-wider uppercase" data-hover-light>
-          {tool}
+          <span class="secondary-skill-badge__label">{tool}</span>
         </span>
       ))}
     </div>
@@ -86,6 +86,7 @@ const skills = [
     .skill-card {
       --hover-x: 50%;
       --hover-y: 0%;
+      overflow: hidden;
       transition:
         transform 0.35s ease,
         border-color 0.35s ease,
@@ -99,7 +100,7 @@ const skills = [
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        circle at var(--hover-x) var(--hover-y),
+        circle 140px at var(--hover-x) var(--hover-y),
         var(--skill-color-glow) 0%,
         var(--skill-color-soft) 26%,
         transparent 68%
@@ -107,7 +108,8 @@ const skills = [
       opacity: 0;
       transform: scale(0.92);
       transition: opacity 0.35s ease, transform 0.35s ease;
-      z-index: -1;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .skill-card::after {
@@ -116,13 +118,14 @@ const skills = [
       inset: 1px;
       border: 1px solid transparent;
       background: radial-gradient(
-        circle at var(--hover-x) var(--hover-y),
+        circle 120px at var(--hover-x) var(--hover-y),
         var(--skill-color-glow) 0%,
         transparent 58%
       );
       opacity: 0;
       mix-blend-mode: screen;
       transition: opacity 0.35s ease;
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -133,7 +136,8 @@ const skills = [
         background-color 0.35s ease;
     }
 
-    .skill-card:hover {
+    .skill-card:hover,
+    .skill-card[data-touch-active="true"] {
       transform: translateY(-8px);
       border-color: var(--skill-color-glow);
       background-color: var(--skill-color-soft);
@@ -141,15 +145,19 @@ const skills = [
     }
 
     .skill-card:hover::before,
-    .skill-card:hover::after {
+    .skill-card:hover::after,
+    .skill-card[data-touch-active="true"]::before,
+    .skill-card[data-touch-active="true"]::after {
       opacity: 1;
     }
 
-    .skill-card:hover::before {
+    .skill-card:hover::before,
+    .skill-card[data-touch-active="true"]::before {
       transform: scale(1);
     }
 
-    .skill-card:hover .skill-icon-shell {
+    .skill-card:hover .skill-icon-shell,
+    .skill-card[data-touch-active="true"] .skill-icon-shell {
       transform: translateY(-3px) scale(1.06);
       box-shadow: 0 0 24px -8px var(--skill-color-glow);
       background-color: var(--skill-color-soft) !important;
@@ -169,12 +177,17 @@ const skills = [
         box-shadow 0.3s ease;
     }
 
+    .secondary-skill-badge__label {
+      position: relative;
+      z-index: 1;
+    }
+
     .secondary-skill-badge::before {
       content: "";
       position: absolute;
       inset: 0;
       background: radial-gradient(
-        circle at var(--hover-x) var(--hover-y),
+        circle 90px at var(--hover-x) var(--hover-y),
         rgb(29 161 242 / 0.18) 0%,
         rgb(29 161 242 / 0.1) 24%,
         transparent 72%
@@ -182,7 +195,7 @@ const skills = [
       opacity: 0;
       transform: scale(0.96);
       transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: -1;
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -192,17 +205,19 @@ const skills = [
       inset: 1px;
       border: 1px solid transparent;
       background: radial-gradient(
-        circle at var(--hover-x) var(--hover-y),
+        circle 70px at var(--hover-x) var(--hover-y),
         rgb(29 161 242 / 0.28) 0%,
         transparent 62%
       );
       opacity: 0;
       transition: opacity 0.3s ease;
       mix-blend-mode: screen;
+      z-index: 0;
       pointer-events: none;
     }
 
-    .secondary-skill-badge:hover {
+    .secondary-skill-badge:hover,
+    .secondary-skill-badge[data-touch-active="true"] {
       transform: translateY(-3px);
       border-color: rgb(29 161 242 / 0.45);
       color: rgb(168 232 255 / 1);
@@ -211,47 +226,71 @@ const skills = [
     }
 
     .secondary-skill-badge:hover::before,
-    .secondary-skill-badge:hover::after {
+    .secondary-skill-badge:hover::after,
+    .secondary-skill-badge[data-touch-active="true"]::before,
+    .secondary-skill-badge[data-touch-active="true"]::after {
       opacity: 1;
     }
 
-    .secondary-skill-badge:hover::before {
+    .secondary-skill-badge:hover::before,
+    .secondary-skill-badge[data-touch-active="true"]::before {
       transform: scale(1);
     }
   </style>
 
   <script is:inline>
-    const clampHoverValue = (value) => Math.min(100, Math.max(0, value));
+    (() => {
+      const clampHoverValue = (value) => Math.min(100, Math.max(0, value));
 
-    const updateHoverLight = (element, event) => {
-      const bounds = element.getBoundingClientRect();
-      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+      const updateHoverLight = (element, event) => {
+        const bounds = element.getBoundingClientRect();
+        const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+        const y = ((event.clientY - bounds.top) / bounds.height) * 100;
 
-      element.style.setProperty("--hover-x", `${clampHoverValue(x).toFixed(2)}%`);
-      element.style.setProperty("--hover-y", `${clampHoverValue(y).toFixed(2)}%`);
-    };
+        element.style.setProperty("--hover-x", `${clampHoverValue(x).toFixed(2)}%`);
+        element.style.setProperty("--hover-y", `${clampHoverValue(y).toFixed(2)}%`);
+      };
 
-    const setupHoverLights = () => {
-      document.querySelectorAll("[data-hover-light]").forEach((element) => {
-        if (element.dataset.hoverLightReady === "true") {
+      const setTouchActive = (element, isActive) => {
+        if (isActive) {
+          element.dataset.touchActive = "true";
           return;
         }
 
-        const handlePointer = (event) => updateHoverLight(element, event);
-        const resetHover = () => {
-          element.style.removeProperty("--hover-x");
-          element.style.removeProperty("--hover-y");
-        };
+        delete element.dataset.touchActive;
+      };
 
-        element.addEventListener("pointerenter", handlePointer);
-        element.addEventListener("pointermove", handlePointer);
-        element.addEventListener("pointerleave", resetHover);
-        element.dataset.hoverLightReady = "true";
-      });
-    };
+      const setupHoverLights = () => {
+        document.querySelectorAll("[data-hover-light]").forEach((element) => {
+          if (element.dataset.hoverLightReady === "true") {
+            return;
+          }
 
-    setupHoverLights();
-    document.addEventListener("astro:page-load", setupHoverLights);
+          const handlePointer = (event) => {
+            window.requestAnimationFrame(() => updateHoverLight(element, event));
+
+            if (event.pointerType === "touch") {
+              setTouchActive(element, true);
+            }
+          };
+
+          const clearTouchActive = (event) => {
+            if (event.pointerType === "touch") {
+              setTouchActive(element, false);
+            }
+          };
+
+          element.addEventListener("pointerdown", handlePointer);
+          element.addEventListener("pointerenter", handlePointer);
+          element.addEventListener("pointermove", handlePointer);
+          element.addEventListener("pointerup", clearTouchActive);
+          element.addEventListener("pointercancel", clearTouchActive);
+          element.dataset.hoverLightReady = "true";
+        });
+      };
+
+      setupHoverLights();
+      document.addEventListener("astro:page-load", setupHoverLights);
+    })();
   </script>
 </section>
