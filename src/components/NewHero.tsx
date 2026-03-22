@@ -2,70 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "./TranslationProvider";
 
-interface AnimatedCounterProps {
-  end: number;
-  suffix?: string;
-  duration?: number;
-}
-
-function AnimatedCounter({ end, suffix = "", duration = 2000 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    
-    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          if (prefersReducedMotion) {
-            setCount(end);
-          } else {
-            let start = 0;
-            const increment = end / (duration / 16);
-            const timer = setInterval(() => {
-              start += increment;
-              if (start >= end) {
-                setCount(end);
-                clearInterval(timer);
-              } else {
-                setCount(Math.floor(start));
-              }
-            }, 16);
-          }
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [end, duration, hasAnimated, prefersReducedMotion]);
-
-  return <span ref={ref} aria-live="polite" aria-atomic="true">{count}{suffix}</span>;
-}
-
 interface StatProps {
-  value: number;
-  suffix?: string;
+  value: string;
   label: string;
-  delay: number;
 }
 
-function Stat({ value, suffix = "", label, delay }: StatProps) {
+function Stat({ value, label }: StatProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -73,10 +15,10 @@ function Stat({ value, suffix = "", label, delay }: StatProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
+          setIsVisible(true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.2 }
     );
 
     if (ref.current) {
@@ -84,18 +26,18 @@ function Stat({ value, suffix = "", label, delay }: StatProps) {
     }
 
     return () => observer.disconnect();
-  }, [delay]);
+  }, []);
 
   return (
     <div
       ref={ref}
       className={cn(
-        "transition-all duration-700",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        "transition-all duration-500",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       )}
     >
       <div className="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-extrabold text-brutalist-white mb-2">
-        <AnimatedCounter end={value} suffix={suffix} />
+        {value}
       </div>
       <div className="text-sm font-medium tracking-[0.2em] uppercase text-brutalist-white/60">
         {label}
@@ -109,8 +51,7 @@ export function NewHero() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
+    setIsVisible(true);
   }, []);
 
   return (
@@ -127,8 +68,8 @@ export function NewHero() {
             <div className="space-y-6">
               <div
                 className={cn(
-                  "transition-all duration-1000",
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+                  "transition-all duration-700",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 )}
               >
                 <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
@@ -143,8 +84,8 @@ export function NewHero() {
 
               <p
                 className={cn(
-                  "text-lg text-brutalist-white/70 font-light leading-relaxed transition-all duration-1000 delay-200",
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+                  "text-lg text-brutalist-white/70 font-light leading-relaxed transition-all duration-700",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 )}
               >
                 {t.hero.description1}
@@ -152,8 +93,8 @@ export function NewHero() {
 
               <p
                 className={cn(
-                  "text-lg text-brutalist-white/70 font-light leading-relaxed transition-all duration-1000 delay-300",
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+                  "text-lg text-brutalist-white/70 font-light leading-relaxed transition-all duration-700",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                 )}
               >
                 {t.hero.description2}
@@ -162,8 +103,8 @@ export function NewHero() {
 
             <div
               className={cn(
-                "flex flex-wrap gap-4 transition-all duration-1000 delay-500",
-                isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+                "flex flex-wrap gap-4 transition-all duration-700",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}
             >
               <a
@@ -185,10 +126,10 @@ export function NewHero() {
           </div>
 
           <div className="grid grid-cols-2 gap-6 sm:gap-8">
-            <Stat value={4} suffix="+" label={t.hero.yearsExperience} delay={0} />
-            <Stat value={50} suffix="+" label={t.hero.projectsCompleted} delay={100} />
-            <Stat value={3} suffix="" label={t.hero.mainTechnologies} delay={200} />
-            <Stat value={100} suffix="%" label={t.hero.commitment} delay={300} />
+            <Stat value="4+" label={t.hero.yearsExperience} />
+            <Stat value="50+" label={t.hero.projectsCompleted} />
+            <Stat value="3" label={t.hero.mainTechnologies} />
+            <Stat value="100%" label={t.hero.commitment} />
           </div>
         </div>
       </div>

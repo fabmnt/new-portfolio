@@ -3,9 +3,7 @@ import LinkedIn from "@/assets/icons/linkedin";
 import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
 import { EmailDropdown } from "./email-dropdown";
-import { ThemeSwitch } from "./theme-switch";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "./TranslationProvider";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -31,20 +29,20 @@ export function NewPresentation() {
       <div className="flex-1 flex items-center justify-center relative z-10">
         <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-8 grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-12 items-center">
           <div className={cn(
-            "space-y-8 transition-all duration-1000 delay-300",
-            isLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+            "space-y-8 transition-all duration-700",
+            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}>
             <div className="space-y-4">
               <span className={cn(
-                "inline-block bg-brutalist-black text-brutalist-blue px-4 py-2 text-xs font-medium tracking-[0.3em] uppercase transition-all duration-700 delay-500",
-                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+                "inline-block bg-brutalist-black text-brutalist-blue px-4 py-2 text-xs font-medium tracking-[0.3em] uppercase transition-all duration-500",
+                isLoaded ? "opacity-100" : "opacity-0"
               )}>
                 {t.presentation.role}
               </span>
               
               <h1 className={cn(
-                "text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-brutalist-white leading-none tracking-tight transition-all duration-700 delay-600",
-                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                "text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-brutalist-white leading-none tracking-tight transition-all duration-700",
+                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               )}>
                 FABIAN
                 <br />
@@ -53,15 +51,15 @@ export function NewPresentation() {
             </div>
 
             <p className={cn(
-              "text-base sm:text-lg md:text-xl lg:text-2xl text-brutalist-white/70 font-light max-w-md leading-relaxed transition-all duration-700 delay-700",
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              "text-base sm:text-lg md:text-xl lg:text-2xl text-brutalist-white/70 font-light max-w-md leading-relaxed transition-all duration-700",
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}>
               {t.presentation.tagline}
             </p>
 
             <div className={cn(
-              "flex flex-wrap items-center gap-4 transition-all duration-700 delay-800",
-              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              "flex flex-wrap items-center gap-4 transition-all duration-700",
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}>
               <a
                 href="/fabian-montoya-cv.pdf"
@@ -77,11 +75,11 @@ export function NewPresentation() {
               </a>
 
               <nav aria-label="Social and contact links" className="flex items-center gap-3">
-                {socialLinks.map((link, index) => (
+                {socialLinks.map((link) => (
                   <div key={link.label} className={cn(
                     "transition-all duration-500",
-                    isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
-                  )} style={{ transitionDelay: `${900 + index * 100}ms` }}>
+                    isLoaded ? "opacity-100" : "opacity-0"
+                  )}>
                     <a
                       href={link.href}
                       target="_blank"
@@ -96,14 +94,14 @@ export function NewPresentation() {
                 ))}
                 <div className={cn(
                   "transition-all duration-500",
-                  isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
-                )} style={{ transitionDelay: "1200ms" }}>
+                  isLoaded ? "opacity-100" : "opacity-0"
+                )}>
                   <EmailDropdown />
                 </div>
                 <div className={cn(
                   "transition-all duration-500",
-                  isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
-                )} style={{ transitionDelay: "1300ms" }}>
+                  isLoaded ? "opacity-100" : "opacity-0"
+                )}>
                   <LanguageSwitcher />
                 </div>
               </nav>
@@ -111,8 +109,8 @@ export function NewPresentation() {
           </div>
 
           <div className={cn(
-            "flex justify-center lg:justify-end transition-all duration-1000 delay-500",
-            isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-90"
+            "flex justify-center lg:justify-end transition-all duration-700",
+            isLoaded ? "opacity-100" : "opacity-0"
           )}>
             <div className="group relative">
               <div className="blob-shadow" />
@@ -130,7 +128,7 @@ export function NewPresentation() {
           position: absolute;
           inset: -20%;
           z-index: 0;
-          border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%;
+          border-radius: 50%;
           background: radial-gradient(
             ellipse at 40% 40%,
             rgba(59, 130, 246, 0.5) 0%,
@@ -139,44 +137,19 @@ export function NewPresentation() {
             transparent 80%
           );
           filter: blur(24px);
-          will-change: transform, border-radius;
-          animation:
-            blob-spin 18s linear infinite,
-            blob-morph 8s ease-in-out infinite;
           transition: filter 0.6s ease, opacity 0.6s ease;
-        }
-
-
-        @keyframes blob-spin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-
-        @keyframes blob-morph {
-          0%   { border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%; }
-          25%  { border-radius: 75% 25% 30% 70% / 20% 75% 25% 80%; }
-          50%  { border-radius: 30% 70% 80% 20% / 70% 30% 65% 35%; }
-          75%  { border-radius: 80% 20% 25% 75% / 35% 65% 70% 30%; }
-          100% { border-radius: 20% 80% 70% 30% / 40% 20% 80% 60%; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .blob-shadow {
-            animation: none !important;
-            border-radius: 50%;
-          }
         }
       `}</style>
 
       <a
         href="#experience"
         className={cn(
-          "absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 delay-1500 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black rounded",
-          isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          "absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black rounded",
+          isLoaded ? "opacity-100" : "opacity-0"
         )}
         aria-label="Scroll to experience section"
       >
-        <div className="flex flex-col items-center gap-2 text-brutalist-white animate-bounce">
+        <div className="flex flex-col items-center gap-2 text-brutalist-white">
           <span className="text-xs font-medium tracking-[0.3em] uppercase">{t.nav.scroll}</span>
           <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
