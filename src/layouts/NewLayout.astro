@@ -9,6 +9,11 @@ import "@fontsource/geist-sans/500.css";
 import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import "@fontsource/geist-sans/800.css";
+import geistSans300 from "@fontsource/geist-sans/files/geist-sans-latin-300-normal.woff2?url";
+import geistSans400 from "@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff2?url";
+import geistSans500 from "@fontsource/geist-sans/files/geist-sans-latin-500-normal.woff2?url";
+import geistSans700 from "@fontsource/geist-sans/files/geist-sans-latin-700-normal.woff2?url";
+import geistSans800 from "@fontsource/geist-sans/files/geist-sans-latin-800-normal.woff2?url";
 
 interface Props {
   locale?: "en" | "es";
@@ -102,6 +107,13 @@ const jsonLd = {
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon-face.png" />
+
+    <!-- Critical font preloads to reduce hero text reflow -->
+    <link rel="preload" href={geistSans400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistSans700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistSans800} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistSans300} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={geistSans500} as="font" type="font/woff2" crossorigin />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
