@@ -1,6 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import type { TranslationKeys } from "@/i18n";
 import { getTranslations } from "@/i18n";
+import unanLeonLogo from "@/assets/images/unan-leon-logo.png";
+import uniLogo from "@/assets/images/uni-logo.png";
+import inatecLogo from "@/assets/images/inatec-logo.jpg";
 
 interface Props {
   locale: "en" | "es";
@@ -10,7 +14,7 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 
 interface Study {
-  logo: string;
+  logo: ImageMetadata;
   logoAlt: string;
   title: string;
   institution: string;
@@ -19,21 +23,21 @@ interface Study {
 
 const studies: Study[] = locale === "en" ? [
   {
-    logo: "/unan-leon-logo.png",
+    logo: unanLeonLogo,
     logoAlt: "UNAN León Logo",
     title: "Information Systems Engineering",
     institution: "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
     year: "2019 - 2024",
   },
   {
-    logo: "/uni-logo.png",
+    logo: uniLogo,
     logoAlt: "UNI Logo",
     title: "International Ethical Hacking and Cybersecurity Course",
     institution: "Graduate School - Universidad Nacional de Ingeniería",
     year: "2024",
   },
   {
-    logo: "/inatec-logo.jpg",
+    logo: inatecLogo,
     logoAlt: "INATEC Logo",
     title: "General Accounting Technician",
     institution: "Instituto Nacional Tecnológico",
@@ -41,21 +45,21 @@ const studies: Study[] = locale === "en" ? [
   },
 ] : [
   {
-    logo: "/unan-leon-logo.png",
+    logo: unanLeonLogo,
     logoAlt: "Logo de la UNAN León",
     title: "Ingeniería en Sistemas de Información",
     institution: "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
     year: "2019 - 2024",
   },
   {
-    logo: "/uni-logo.png",
+    logo: uniLogo,
     logoAlt: "Logo de la UNI",
     title: "Curso Internacional de Hacking Ético y Ciberseguridad",
     institution: "Posgrado Universidad Nacional de Ingeniería",
     year: "2024",
   },
   {
-    logo: "/inatec-logo.jpg",
+    logo: inatecLogo,
     logoAlt: "Logo del INATEC",
     title: "Técnico en Contabilidad General",
     institution: "Instituto Nacional Tecnológico",
@@ -88,9 +92,11 @@ const studies: Study[] = locale === "en" ? [
         <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
           <div class="flex items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
             <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
-              <img
+              <Image
                 src={study.logo}
                 alt={study.logoAlt}
+                width={80}
+                height={80}
                 class="w-full h-full object-contain p-2 brightness-90"
               />
             </div>
