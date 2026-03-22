@@ -11,10 +11,9 @@ interface SkillItemProps {
   name: string;
   color: string;
   icon: React.ComponentType<{ className?: string }>;
-  index: number;
 }
 
-function SkillItem({ name, color, icon: Icon, index }: SkillItemProps) {
+function SkillItem({ name, color, icon: Icon }: SkillItemProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -38,8 +37,7 @@ function SkillItem({ name, color, icon: Icon, index }: SkillItemProps) {
   return (
     <div
       ref={ref}
-      className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${200 + index * 100}ms` }}
+      className={`relative transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className="relative p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
         <div className="flex flex-col items-center gap-4">
@@ -103,7 +101,7 @@ export function NewSkills() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
         <div
-          className={`mb-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`mb-16 text-center transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             {t.skills.subtitle}
@@ -118,13 +116,13 @@ export function NewSkills() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {skills.map((skill, index) => (
-            <SkillItem key={skill.name} {...skill} index={index} />
+          {skills.map((skill) => (
+            <SkillItem key={skill.name} {...skill} />
           ))}
         </div>
 
         <div
-          className={`mt-16 flex flex-wrap justify-center gap-4 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`mt-16 flex flex-wrap justify-center gap-4 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           {t.skills.tools.map((tool) => (
             <span

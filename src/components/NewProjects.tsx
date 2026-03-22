@@ -5,10 +5,9 @@ import { useTranslations } from "./TranslationProvider";
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
 }
 
-function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project }: ProjectCardProps) {
   const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,8 +32,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={ref}
-      className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${300 + index * 150}ms` }}
+      className={`relative transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className="relative bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10 overflow-hidden h-full">
         <div className="p-5 sm:p-6 space-y-6">
@@ -139,7 +137,7 @@ export function NewProjects() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
         <div
-          className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
+          className={`mb-16 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             {t.projects.subtitle}
@@ -151,8 +149,8 @@ export function NewProjects() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>

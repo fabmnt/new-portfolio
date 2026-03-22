@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
 import LinkedIn from "@/assets/icons/linkedin";
 import GithubIcon from "../assets/icons/github";
@@ -40,7 +39,7 @@ export function NewFooter() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
         <div
-          className={`mb-12 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`mb-12 text-center transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-brutalist-white mb-4">
             {t.footer.title}
@@ -51,7 +50,7 @@ export function NewFooter() {
         </div>
 
         <div
-          className={`flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <a
             href="mailto:fabianmontoya2802@gmail.com"
@@ -96,7 +95,7 @@ export function NewFooter() {
         </div>
 
         <div
-          className={`pt-8 border-t border-brutalist-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-700 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`pt-8 border-t border-brutalist-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <a 
             href="mailto:fabianmontoya2802@gmail.com"

@@ -9,7 +9,6 @@ interface ExperienceItemProps {
   role: string;
   description: string[];
   isLast?: boolean;
-  delay: number;
   isReversed?: boolean;
 }
 
@@ -20,7 +19,6 @@ function ExperienceItem({
   role,
   description,
   isLast = false,
-  delay,
   isReversed = false,
 }: ExperienceItemProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -46,8 +44,7 @@ function ExperienceItem({
   return (
     <div
       ref={ref}
-      className={`relative z-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`relative z-10 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className={`flex flex-col ${isReversed ? "lg:items-end" : "lg:items-start"} gap-4`}>
         <div className={`flex ${isReversed ? "flex-row-reverse lg:flex-row" : "flex-row"} items-center gap-4`}>
@@ -186,7 +183,7 @@ export function NewExperience() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
         <div
-          className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
+          className={`mb-16 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             {t.experience.subtitle}
@@ -204,7 +201,6 @@ export function NewExperience() {
               key={exp.company}
               {...exp}
               isLast={index === expData.length - 1}
-              delay={200 + index * 200}
               isReversed={index % 2 === 1}
             />
           ))}

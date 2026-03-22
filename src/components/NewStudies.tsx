@@ -7,10 +7,9 @@ interface StudyItemProps {
   title: string;
   institution: string;
   year: string;
-  index: number;
 }
 
-function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItemProps) {
+function StudyItem({ logo, logoAlt, title, institution, year }: StudyItemProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,8 +33,7 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
   return (
     <div
       ref={ref}
-      className={`relative transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${200 + index * 150}ms` }}
+      className={`relative transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
         <div className="flex items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
         <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
@@ -59,10 +57,6 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
             {institution}
           </p>
         </div>
-
-        {index < 2 && (
-          <div className="absolute left-20 top-full w-0.5 h-8 bg-brutalist-white/20" aria-hidden="true" />
-        )}
       </div>
     </div>
   );
@@ -153,7 +147,7 @@ export function NewStudies() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
         <div
-          className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
+          className={`mb-16 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
             {t.studies.subtitle}
@@ -166,8 +160,8 @@ export function NewStudies() {
         </div>
 
         <div className="space-y-4">
-          {studiesData.map((study, index) => (
-            <StudyItem key={study.title} {...study} index={index} />
+          {studiesData.map((study) => (
+            <StudyItem key={study.title} {...study} />
           ))}
         </div>
       </div>
