@@ -22,7 +22,7 @@ const stats: StatProps[] = [
 ];
 ---
 
-<section class="relative py-20 sm:py-28 md:py-32 lg:py-48 overflow-hidden">
+<section class="relative py-20 sm:py-28 md:py-32 lg:py-48 overflow-hidden animate-fade-in-up">
   <div class="absolute inset-0 bg-brutalist-black"></div>
   <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
   <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
@@ -33,7 +33,7 @@ const stats: StatProps[] = [
     <div class="grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-16 items-center">
       <div class="space-y-8 md:space-y-10">
         <div class="space-y-6">
-          <div class="animate-on-scroll">
+          <div>
             <span class="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
               {t.hero.aboutMe}
             </span>
@@ -44,16 +44,16 @@ const stats: StatProps[] = [
             </h2>
           </div>
 
-          <p class="animate-on-scroll delay-100 text-lg text-brutalist-white/70 font-light leading-relaxed">
+          <p class="text-lg text-brutalist-white/70 font-light leading-relaxed">
             {t.hero.description1}
           </p>
 
-          <p class="animate-on-scroll delay-200 text-lg text-brutalist-white/70 font-light leading-relaxed">
+          <p class="text-lg text-brutalist-white/70 font-light leading-relaxed">
             {t.hero.description2}
           </p>
         </div>
 
-        <div class="animate-on-scroll delay-300 flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4">
           <a
             href="#experience"
             class="inline-flex items-center gap-2 bg-brutalist-blue text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
@@ -73,8 +73,8 @@ const stats: StatProps[] = [
       </div>
 
       <div class="grid grid-cols-2 gap-6 sm:gap-8">
-        {stats.map((stat, index) => (
-          <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : ''}`}>
+        {stats.map((stat) => (
+          <div>
             <div class="text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-extrabold text-brutalist-white mb-2">
               {stat.value}
             </div>
