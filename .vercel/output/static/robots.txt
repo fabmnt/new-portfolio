@@ -1,0 +1,52 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://fabianmontoya.dev/sitemap.xml
+
+# Crawl-delay (optional, be respectful to servers)
+Crawl-delay: 1
+
+# Disallow unnecessary paths (if any future routes are added)
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /dist/
+
+# Allow important resources for SEO
+Allow: /favicon.ico
+Allow: /icon-face.png
+Allow: /fabian-montoya-cv.pdf
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots (common scrapers)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Dotbot
+Disallow: /
+
+User-agent: Mozilla/5.0 (compatible; Yeti/1.1)
+Disallow: /
