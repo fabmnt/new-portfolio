@@ -51,7 +51,7 @@ function StudyItem({ logo, logoAlt, title, institution, year, index }: StudyItem
             <h3 className="text-xl font-semibold tracking-tight text-brutalist-white">
               {title}
             </h3>
-            <time className="text-sm text-brutalist-white/50 font-medium" dateTime={year}>
+            <time className="text-sm text-brutalist-white/50 font-medium" dateTime={year.replace(' - ', '/')}>
               {year}
             </time>
           </div>
