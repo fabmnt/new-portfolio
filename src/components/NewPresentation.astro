@@ -188,31 +188,78 @@ const socialLinks = [
   </style>
 
   <script>
-    // Simple email dropdown interactions
+    // Email dropdown interactions with accessibility support
     document.querySelectorAll('.email-dropdown-trigger').forEach(trigger => {
-      const menu = trigger.nextElementSibling as HTMLElement;
-      let timeout: number;
+      const menu = trigger.nextElementSibling;
+      let timeout = null;
 
+      function openMenu() {
+        if (menu) {
+          menu.classList.remove('hidden');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function closeMenu() {
+        if (menu) {
+          menu.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      // Mouse interactions
       trigger.addEventListener('mouseenter', () => {
-        clearTimeout(timeout);
-        menu?.classList.remove('hidden');
+        if (timeout) clearTimeout(timeout);
+        openMenu();
       });
 
       trigger.addEventListener('mouseleave', () => {
-        timeout = window.setTimeout(() => {
-          menu?.classList.add('hidden');
+        timeout = setTimeout(() => {
+          closeMenu();
         }, 150);
       });
 
-      menu?.addEventListener('mouseenter', () => clearTimeout(timeout));
-      menu?.addEventListener('mouseleave', () => {
-        menu.classList.add('hidden');
-      });
+      if (menu) {
+        menu.addEventListener('mouseenter', () => {
+          if (timeout) clearTimeout(timeout);
+        });
+        menu.addEventListener('mouseleave', () => {
+          closeMenu();
+        });
+      }
 
-      // Toggle on click for mobile
+      // Click toggle
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        menu?.classList.toggle('hidden');
+        const isHidden = menu?.classList.contains('hidden');
+        if (isHidden) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+
+      // Keyboard support
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isHidden = menu?.classList.contains('hidden');
+          if (isHidden) {
+            openMenu();
+          } else {
+            closeMenu();
+          }
+        } else if (e.key === 'Escape') {
+          closeMenu();
+          trigger.focus();
+        }
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!trigger.contains(e.target) && !menu?.contains(e.target)) {
+          closeMenu();
+        }
       });
     });
 

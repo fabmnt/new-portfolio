@@ -51,13 +51,7 @@ const t = getTranslations(locale);
               </div>
 
               <p class="text-base font-normal leading-relaxed text-brutalist-white/70">
-                {locale === "en" && project.title === "Ferretería Berrios" 
-                  ? "Dashboard for managing inventory and billing of a hardware store. Includes charts and sales reports."
-                  : locale === "en" && project.title === "Credit Ayuda"
-                  ? "System for registering and tracking financial credits."
-                  : locale === "en" && project.title === "Formless"
-                  ? "Editable and customizable form with tables and bookmarks, exportable to docx."
-                  : project.description}
+                {t.projects.items[project.id as keyof typeof t.projects.items] || project.description}
               </p>
 
               <ul class="flex flex-wrap gap-3 pt-2" aria-label={locale === "es" ? "Tecnologías utilizadas" : "Technologies used"}>

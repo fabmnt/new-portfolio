@@ -173,6 +173,7 @@ html {
   .animate-on-scroll.delay-200 { transition-delay: 200ms; }
   .animate-on-scroll.delay-300 { transition-delay: 300ms; }
   .animate-on-scroll.delay-400 { transition-delay: 400ms; }
+  .animate-on-scroll.delay-500 { transition-delay: 500ms; }
 }
 
 @media (prefers-reduced-motion: reduce) {

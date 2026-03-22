@@ -39,7 +39,12 @@
     "public": "PUBLIC",
     "private": "PRIVATE",
     "code": "Code",
-    "visit": "Visit"
+    "visit": "Visit",
+    "items": {
+      "ferreteria-berrios": "Dashboard for managing inventory and billing of a hardware store. Includes charts and sales reports.",
+      "credit-ayuda": "System for registering and tracking financial credits.",
+      "formless": "Editable and customizable form with tables and bookmarks, exportable to docx."
+    }
   },
   "skills": {
     "title": "SKILLS",
