@@ -96,7 +96,7 @@ export function NewPresentation() {
                   "transition-all duration-500",
                   isLoaded ? "opacity-100 scale-100" : "opacity-0 scale-0"
                 )} style={{ transitionDelay: "1200ms" }}>
-                  <EmailDropdown client:load />
+                  <EmailDropdown />
                 </div>
                 <div className={cn(
                   "transition-all duration-500",

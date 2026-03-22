@@ -6,5 +6,5 @@ export type Locale = keyof typeof translations;
 export type TranslationKeys = typeof en;
 
 export function getTranslations(locale: Locale): TranslationKeys {
-  return translations[locale] || translations.es;
+  return translations[locale];
 }

@@ -122,8 +122,8 @@ export function NewHero() {
                 </span>
                 <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-brutalist-white leading-tight">
                   {t.hero.headline}{" "}
-                  <span className="text-brutalist-blue">{t.hero.highlight}</span>{" "}
-                  digitales extraordinarias
+                  <span className="text-brutalist-blue">{t.hero.highlight}</span>
+                  {t.hero.headlineSuffix && ` ${t.hero.headlineSuffix}`}
                 </h2>
               </div>
 

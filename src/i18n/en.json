@@ -17,6 +17,7 @@
     "aboutMe": "About me",
     "headline": "Turning ideas into extraordinary digital",
     "highlight": "experiences",
+    "headlineSuffix": "",
     "description1": "As a systems engineer with a passion for full stack development, I specialize in creating technological solutions that transform the way companies connect with their users.",
     "description2": "From elegant commercial platforms to complex inventory and billing systems, each project is an opportunity to innovate.",
     "viewExperience": "View experience",
@@ -29,22 +30,7 @@
   "experience": {
     "title": "WORK",
     "highlight": "EXPERIENCE",
-    "subtitle": "Professional career",
-    "period": "April 2025 - July 2025",
-    "role1": "Frontend Web Developer",
-    "desc1": [
-      "Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.",
-      "Scalable system to render large amounts of information in tables efficiently.",
-      "Migration from Google Spreadsheets to a unified system."
-    ],
-    "period2": "October 2022 - Present",
-    "role2": "Full Stack Developer & RPA",
-    "desc2": [
-      "Form editor exportable to MS Word and Google Docs for audits.",
-      "Leadership in parallelizing RPA executions, drastically reducing execution times.",
-      "Developer of RPA robots for patient verification automation.",
-      "Maintenance of the company's main Angular system."
-    ]
+    "subtitle": "Professional career"
   },
   "projects": {
     "title": "FEATURED",
@@ -64,16 +50,7 @@
   "studies": {
     "title": "STUDIES &",
     "highlight": "CERTIFICATIONS",
-    "subtitle": "Academic background",
-    "logoAltUnan": "UNAN León Logo",
-    "title1": "Information Systems Engineering",
-    "inst1": "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
-    "logoAltUni": "UNI Logo",
-    "title2": "International Ethical Hacking and Cybersecurity Course",
-    "inst2": "Graduate School - Universidad Nacional de Ingeniería",
-    "logoAltInatec": "INATEC Logo",
-    "title3": "General Accounting Technician",
-    "inst3": "Instituto Nacional Tecnológico"
+    "subtitle": "Academic background"
   },
   "footer": {
     "title": "Let's work together?",

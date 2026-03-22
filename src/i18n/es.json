@@ -17,6 +17,7 @@
     "aboutMe": "Sobre mí",
     "headline": "Convirtiendo ideas en",
     "highlight": "experiencias",
+    "headlineSuffix": "digitales extraordinarias",
     "description1": "Como ingeniero en sistemas con pasión por el desarrollo full stack, me especializo en crear soluciones tecnológicas que transforman la manera en que las empresas se conectan con sus usuarios.",
     "description2": "Desde elegantes plataformas comerciales hasta complejos sistemas de inventario y facturación, cada proyecto es una oportunidad para innovar.",
     "viewExperience": "Ver experiencia",
@@ -29,22 +30,7 @@
   "experience": {
     "title": "EXPERIENCIA",
     "highlight": "LABORAL",
-    "subtitle": "Trayectoria profesional",
-    "period": "Abril 2025 - Julio 2025",
-    "role1": "Desarrollador web frontend",
-    "desc1": [
-      "Diseño, arquitectura y desarrollo del primer sistema informático de la empresa con React + Vite, Shadcn UI y TanStack.",
-      "Sistema escalable para renderizar gran cantidad de información en tablas de manera eficiente.",
-      "Migración de hojas de cálculo Google Spreadsheets a un sistema unificado."
-    ],
-    "period2": "Octubre 2022 - Presente",
-    "role2": "Full Stack Developer & RPA",
-    "desc2": [
-      "Editor de formularios exportables a MS Word y Google Docs para auditorías.",
-      "Liderazgo en paralelización de ejecuciones RPA, reduciendo drásticamente tiempos de ejecución.",
-      "Desarrollador de robots RPA para automatización de verificaciones de pacientes.",
-      "Mantenimiento del sistema principal Angular de la empresa."
-    ]
+    "subtitle": "Trayectoria profesional"
   },
   "projects": {
     "title": "PROYECTOS",
@@ -64,16 +50,7 @@
   "studies": {
     "title": "ESTUDIOS Y",
     "highlight": "CERTIFICADOS",
-    "subtitle": "Formación académica",
-    "logoAltUnan": "Logo de la UNAN León",
-    "title1": "Ingeniería en Sistemas de Información",
-    "inst1": "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
-    "logoAltUni": "Logo de la UNI",
-    "title2": "Curso Internacional de Hacking Ético y Ciberseguridad",
-    "inst2": "Posgrado Universidad Nacional de Ingeniería",
-    "logoAltInatec": "Logo del INATEC",
-    "title3": "Técnico en Contabilidad General",
-    "inst3": "Instituto Nacional Tecnológico"
+    "subtitle": "Formación académica"
   },
   "footer": {
     "title": "¿Trabajamos juntos?",

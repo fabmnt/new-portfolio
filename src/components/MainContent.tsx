@@ -19,13 +19,13 @@ export function MainContent({ locale }: Props) {
   return (
     <TranslationProvider locale={locale} t={t}>
       <main className="relative">
-        <NewPresentation client:load />
-        <NewHero client:load />
-        <NewExperience client:load />
-        <NewProjects client:load />
-        <NewSkills client:load />
-        <NewStudies client:load />
-        <NewFooter client:load />
+        <NewPresentation />
+        <NewHero />
+        <NewExperience />
+        <NewProjects />
+        <NewSkills />
+        <NewStudies />
+        <NewFooter />
       </main>
     </TranslationProvider>
   );
