@@ -2,6 +2,7 @@ import type { Project } from "@/types/projects";
 
 export const PROJECTS: Project[] = [
   {
+    id: "ferreteria-berrios",
     title: "Ferretería Berrios",
     description:
       "Dashboard para la gestión de inventario y facturación de una ferretería. Incluye gráficos y reportes de ventas.",
@@ -12,6 +13,7 @@ export const PROJECTS: Project[] = [
     images: ["ferreteria-dashboard.png", "ferreteria-login.png"],
   },
   {
+    id: "credit-ayuda",
     title: "Credit Ayuda",
     description: "Sistema de registro y seguimiento de créditos financieros.",
     techs: ["React", "Tanstack Query", "react-router"],
@@ -21,6 +23,7 @@ export const PROJECTS: Project[] = [
     images: ["credit-prestamo.png"],
   },
   {
+    id: "formless",
     title: "Formless",
     description:
       "Formulario editable y personalizable de tablas y bookmarks, exportables a docx.",

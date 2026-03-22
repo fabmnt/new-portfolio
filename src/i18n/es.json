@@ -39,7 +39,12 @@
     "public": "PÚBLICO",
     "private": "PRIVADO",
     "code": "Código",
-    "visit": "Visitar"
+    "visit": "Visitar",
+    "items": {
+      "ferreteria-berrios": "Dashboard para la gestión de inventario y facturación de una ferretería. Incluye gráficos y reportes de ventas.",
+      "credit-ayuda": "Sistema de registro y seguimiento de créditos financieros.",
+      "formless": "Formulario editable y personalizable de tablas y bookmarks, exportables a docx."
+    }
   },
   "skills": {
     "title": "HABILIDADES",

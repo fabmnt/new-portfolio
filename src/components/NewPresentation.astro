@@ -1,0 +1,299 @@
+---
+import LinkedInIcon from "@/assets/icons/LinkedInIcon.astro";
+import GithubIcon from "@/assets/icons/GithubIcon.astro";
+import TwitterIcon from "@/assets/icons/TwitterIcon.astro";
+import GmailIcon from "@/assets/icons/GmailIcon.astro";
+import type { TranslationKeys } from "@/i18n";
+import { getTranslations } from "@/i18n";
+
+interface Props {
+  locale: "en" | "es";
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+
+const socialLinks = [
+  { href: "https://www.linkedin.com/in/fabián-montoya-963247345", Icon: LinkedInIcon, label: "LinkedIn" },
+  { href: "https://x.com/fabmntp", Icon: TwitterIcon, label: "X" },
+  { href: "https://github.com/fabmnt", Icon: GithubIcon, label: "GitHub" },
+];
+---
+
+<header class="relative min-h-screen flex flex-col">
+  <div class="absolute inset-0 bg-section-pattern opacity-20"></div>
+
+  <div class="flex-1 flex items-center justify-center relative z-10">
+    <div class="max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-8 grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-12 items-center">
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <span class="animate-on-scroll inline-block bg-brutalist-black text-brutalist-blue px-4 py-2 text-xs font-medium tracking-[0.3em] uppercase">
+            {t.presentation.role}
+          </span>
+          
+          <h1 class="animate-on-scroll delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-brutalist-white leading-none tracking-tight">
+            FABIAN
+            <br />
+            <span class="text-brutalist-blue">MONTOYA</span>
+          </h1>
+        </div>
+
+        <p class="animate-on-scroll delay-200 text-base sm:text-lg md:text-xl lg:text-2xl text-brutalist-white/70 font-light max-w-md leading-relaxed">
+          {t.presentation.tagline}
+        </p>
+
+        <div class="animate-on-scroll delay-300 flex flex-wrap items-center gap-4">
+          <a
+            href="/fabian-montoya-cv.pdf"
+            download
+            aria-label={locale === "es" ? "Descargar CV (documento PDF)" : "Download CV (PDF document)"}
+            class="inline-flex items-center gap-2 sm:gap-3 bg-brutalist-blue text-brutalist-white px-5 sm:px-6 md:px-8 py-3 sm:py-4 font-medium tracking-wider uppercase text-xs sm:text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
+          >
+            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
+              <path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/>
+            </svg>
+            {t.presentation.downloadCV}
+            <span class="sr-only">(PDF)</span>
+          </a>
+
+          <nav aria-label={locale === "es" ? "Enlaces sociales y de contacto" : "Social and contact links"} class="flex items-center gap-3">
+            {socialLinks.map((link) => (
+              <div class="animate-on-scroll">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={link.label}
+                  class="flex items-center justify-center h-11 w-11 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+                  aria-label={`${link.label} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+                >
+                  <link.Icon class="!size-5" aria-hidden="true" />
+                </a>
+              </div>
+            ))}
+            
+            <!-- Email Dropdown (hydrated only) -->
+            <div class="animate-on-scroll relative group">
+              <button 
+                type="button"
+                aria-label={locale === "es" ? "Opciones de email" : "Email options"}
+                aria-haspopup="menu"
+                aria-expanded="false"
+                class="email-dropdown-trigger flex items-center justify-center h-11 w-11 bg-brutalist-black/10 text-brutalist-black border-brutalist-black/20 hover:bg-brutalist-black hover:text-brutalist-white border transition-colors"
+              >
+                <GmailIcon class="!size-5" aria-hidden="true" />
+              </button>
+              
+              <div class="email-dropdown-menu hidden absolute top-full left-0 mt-2 min-w-[240px] bg-brutalist-black border border-brutalist-white/20 shadow-lg z-50">
+                <button 
+                  type="button"
+                  class="email-copy-btn w-full text-left px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10 flex items-center justify-between"
+                >
+                  <span>fabianmontoya2802@gmail.com</span>
+                  <svg class="copy-icon size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                  </svg>
+                  <svg class="check-icon hidden size-4 text-brutalist-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </button>
+                <a
+                  href="mailto:fabianmontoya2802@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10 flex items-center gap-2"
+                >
+                  {locale === "es" ? "Enviar correo" : "Send email"}
+                  <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="animate-on-scroll flex items-center gap-1 bg-brutalist-white/10 border border-brutalist-white/20">
+              <a
+                href={locale === "es" ? "/" : "/?locale=es"}
+                class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
+                  locale === "es"
+                    ? "bg-brutalist-blue text-brutalist-white"
+                    : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
+                }`}
+                title={locale === "es" ? "Español" : "Switch to Spanish"}
+                aria-label={locale === "es" ? "Español" : "Switch language to Spanish"}
+                aria-current={locale === "es" ? "page" : undefined}
+              >
+                ES
+              </a>
+              <a
+                href={locale === "en" ? "/en" : "/en?locale=en"}
+                class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
+                  locale === "en"
+                    ? "bg-brutalist-blue text-brutalist-white"
+                    : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
+                }`}
+                title={locale === "en" ? "English" : "Switch to English"}
+                aria-label={locale === "en" ? "English" : "Switch language to English"}
+                aria-current={locale === "en" ? "page" : undefined}
+              >
+                EN
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <div class="animate-on-scroll delay-200 flex justify-center lg:justify-end">
+        <div class="group relative">
+          <div class="blob-shadow"></div>
+          <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 relative z-10 rounded-full overflow-hidden bg-muted">
+            <img 
+              src="/icon-face.png" 
+              alt="Fabian Montoya"
+              class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            />
+            <div class="hidden w-full h-full flex items-center justify-center bg-brutalist-blue text-brutalist-white text-4xl font-medium">
+              FM
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .blob-shadow {
+      position: absolute;
+      inset: -20%;
+      z-index: 0;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at 40% 40%,
+        rgba(59, 130, 246, 0.5) 0%,
+        rgba(37, 99, 235, 0.35) 30%,
+        rgba(29, 78, 216, 0.2) 60%,
+        transparent 80%
+      );
+      filter: blur(24px);
+      transition: filter 0.6s ease, opacity 0.6s ease;
+    }
+
+  </style>
+
+  <script>
+    // Email dropdown interactions with accessibility support
+    const triggers = document.querySelectorAll('.email-dropdown-trigger');
+    const dropdowns = new Map();
+
+    triggers.forEach(trigger => {
+      const menu = trigger.nextElementSibling;
+      let timeout = null;
+
+      function openMenu() {
+        if (menu) {
+          menu.classList.remove('hidden');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      function closeMenu() {
+        if (menu) {
+          menu.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      // Store reference for global click handler
+      dropdowns.set(trigger, { menu, closeMenu });
+
+      // Mouse interactions
+      trigger.addEventListener('mouseenter', () => {
+        if (timeout) clearTimeout(timeout);
+        openMenu();
+      });
+
+      trigger.addEventListener('mouseleave', () => {
+        timeout = setTimeout(() => {
+          closeMenu();
+        }, 150);
+      });
+
+      if (menu) {
+        menu.addEventListener('mouseenter', () => {
+          if (timeout) clearTimeout(timeout);
+        });
+        menu.addEventListener('mouseleave', () => {
+          closeMenu();
+        });
+      }
+
+      // Click toggle
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isHidden = menu?.classList.contains('hidden');
+        if (isHidden) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
+
+      // Keyboard support
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const isHidden = menu?.classList.contains('hidden');
+          if (isHidden) {
+            openMenu();
+          } else {
+            closeMenu();
+          }
+        } else if (e.key === 'Escape') {
+          closeMenu();
+          trigger.focus();
+        }
+      });
+    });
+
+    // Single global click handler for all dropdowns
+    document.addEventListener('click', (e) => {
+      dropdowns.forEach(({ menu, closeMenu }, trigger) => {
+        if (!trigger.contains(e.target) && !menu?.contains(e.target)) {
+          closeMenu();
+        }
+      });
+    });
+
+    // Copy to clipboard with error handling
+    document.querySelectorAll('.email-copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('fabianmontoya2802@gmail.com');
+          btn.querySelector('.copy-icon')?.classList.add('hidden');
+          btn.querySelector('.check-icon')?.classList.remove('hidden');
+          setTimeout(() => {
+            btn.querySelector('.copy-icon')?.classList.remove('hidden');
+            btn.querySelector('.check-icon')?.classList.add('hidden');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy email:', err);
+        }
+      });
+    });
+  </script>
+
+  <a
+    href="#experience"
+    class="animate-on-scroll delay-400 absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black rounded"
+    aria-label={t.nav.scroll}
+  >
+    <div class="flex flex-col items-center gap-2 text-brutalist-white">
+      <span class="text-xs font-medium tracking-[0.3em] uppercase">{t.nav.scroll}</span>
+      <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </a>
+</header>
