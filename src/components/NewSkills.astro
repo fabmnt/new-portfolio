@@ -34,14 +34,17 @@ const skills = [
 
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
     <div class="animate-on-scroll mb-16 text-center">
-      <span class="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
+      <span class="inline-block text-center text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
         {t.skills.subtitle}
       </span>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
+      <h2
+        class="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white title-fade"
+        data-title={t.skills.title}
+      >
         {t.skills.title}
       </h2>
-      <div class="mt-6 mx-auto w-24 h-1 bg-brutalist-blue"></div>
-      <p class="mt-8 text-brutalist-white/60 font-light max-w-2xl mx-auto">
+      <div class="mt-6 w-full h-1 bg-brutalist-white"></div>
+      <p class="mt-8 text-brutalist-white/80 font-light max-w-2xl mx-auto">
         {t.skills.description}
       </p>
     </div>
@@ -49,15 +52,18 @@ const skills = [
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       {skills.map((skill, index) => (
         <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : index === 4 ? 'delay-400' : index === 5 ? 'delay-500' : ''}`}>
-          <div class="relative p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
+          <div
+            class="skill-card relative p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10"
+            style={`--skill-color: ${skill.color}; --skill-color-soft: ${skill.color}22; --skill-color-glow: ${skill.color}55;`}
+          >
             <div class="flex flex-col items-center gap-4">
               <div
-                class="w-16 h-16 flex items-center justify-center"
+                class="skill-icon-shell w-16 h-16 flex items-center justify-center"
                 style={`background-color: ${skill.color}20`}
               >
                 <skill.Icon class="!size-8" style={`color: ${skill.color}`} />
               </div>
-              <span class="text-sm font-medium tracking-wider uppercase text-brutalist-white/70">
+              <span class="text-sm font-medium tracking-wider uppercase text-brutalist-white/90">
                 {skill.name}
               </span>
             </div>
@@ -68,10 +74,75 @@ const skills = [
 
     <div class="animate-on-scroll delay-300 mt-16 flex flex-wrap justify-center gap-4">
       {t.skills.tools.map((tool) => (
-        <span class="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/60 text-xs font-medium tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300">
+        <span class="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/85 text-xs font-medium tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300">
           {tool}
         </span>
       ))}
     </div>
   </div>
+
+  <style>
+    .skill-card {
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+      isolation: isolate;
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, var(--skill-color-glow) 0%, transparent 62%),
+        linear-gradient(180deg, var(--skill-color-soft) 0%, transparent 70%);
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      z-index: -1;
+    }
+
+    .skill-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--skill-color-glow), transparent 55%);
+      opacity: 0;
+      mix-blend-mode: screen;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .skill-icon-shell {
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background-color 0.35s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--skill-color-glow);
+      background-color: var(--skill-color-soft);
+      box-shadow: 0 18px 40px -20px var(--skill-color-glow);
+    }
+
+    .skill-card:hover::before,
+    .skill-card:hover::after {
+      opacity: 1;
+    }
+
+    .skill-card:hover::before {
+      transform: scale(1);
+    }
+
+    .skill-card:hover .skill-icon-shell {
+      transform: translateY(-3px) scale(1.06);
+      box-shadow: 0 0 24px -8px var(--skill-color-glow);
+      background-color: var(--skill-color-soft) !important;
+    }
+  </style>
 </section>

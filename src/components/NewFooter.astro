@@ -23,10 +23,13 @@ const currentYear = new Date().getFullYear();
 
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
     <div class="animate-on-scroll mb-12 text-center">
-      <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-brutalist-white mb-4">
+      <h2
+        class="text-center text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-brutalist-white mb-4 title-fade"
+        data-title={t.footer.title}
+      >
         {t.footer.title}
       </h2>
-      <p class="text-brutalist-white/60 font-light max-w-md mx-auto">
+      <p class="text-brutalist-white/80 font-light max-w-md mx-auto">
         {t.footer.description}
       </p>
     </div>
@@ -34,7 +37,7 @@ const currentYear = new Date().getFullYear();
     <div class="animate-on-scroll delay-100 flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
       <a
         href="mailto:fabianmontoya2802@gmail.com"
-        class="inline-flex items-center gap-3 bg-brutalist-blue text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
+        class="primary-metal-button inline-flex items-center gap-3 text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm group"
       >
         <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -50,7 +53,7 @@ const currentYear = new Date().getFullYear();
           href="https://www.linkedin.com/in/fabián-montoya-963247345"
           target="_blank"
           rel="noopener noreferrer"
-          class="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
           aria-label={`LinkedIn (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
         >
           <LinkedInIcon class="!size-5" aria-hidden="true" />
@@ -59,7 +62,7 @@ const currentYear = new Date().getFullYear();
           href="https://x.com/fabmntp"
           target="_blank"
           rel="noopener noreferrer"
-          class="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
           aria-label={`X (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
         >
           <TwitterIcon class="!size-5" aria-hidden="true" />
@@ -68,7 +71,7 @@ const currentYear = new Date().getFullYear();
           href="https://github.com/fabmnt"
           target="_blank"
           rel="noopener noreferrer"
-          class="p-3 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
           aria-label={`GitHub (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
         >
           <GithubIcon class="!size-5" aria-hidden="true" />

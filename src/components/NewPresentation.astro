@@ -27,29 +27,31 @@ const socialLinks = [
 
   <div class="relative z-10 flex flex-1 items-center justify-center py-12 sm:py-16 md:py-20">
     <div class="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 lg:gap-12 lg:px-8">
-      <div class="order-2 space-y-8 text-left md:order-1">
-        <div class="space-y-2 text-left">
-          <span class="animate-on-scroll inline-block bg-brutalist-black px-0 py-0 text-left text-xs font-medium tracking-[0.3em] uppercase text-brutalist-blue">
+<div class="order-2 space-y-8 text-center sm:text-left md:order-1">
+        <div class="space-y-2 text-center sm:text-left">
+          <span
+            class="animate-on-scroll inline-block bg-brutalist-black px-0 py-0 text-center sm:text-left text-xs font-medium tracking-[0.3em] uppercase text-brutalist-white title-fade"
+            data-title={t.presentation.role}
+          >
             {t.presentation.role}
           </span>
           
-          <h1 class="animate-on-scroll delay-100 text-4xl font-extrabold leading-none tracking-tight text-brutalist-white sm:text-5xl md:text-6xl lg:text-8xl">
-            FABIAN
-            <br />
+<h1 class="animate-on-scroll delay-100 text-center sm:text-left text-4xl font-extrabold leading-none tracking-tight text-brutalist-white sm:text-5xl md:text-6xl lg:text-8xl whitespace-nowrap lg:whitespace-normal">
+            <span class="title-fade" data-title="FABIAN">FABIAN</span><span class="lg:hidden" aria-hidden="true">&nbsp;</span><br class="hidden lg:block" />
             <span class="text-brutalist-blue">MONTOYA</span>
           </h1>
         </div>
 
-        <p class="animate-on-scroll delay-200 max-w-md text-base font-light leading-relaxed text-brutalist-white/70 sm:text-lg md:text-xl lg:text-2xl">
+        <p class="animate-on-scroll delay-200 max-w-md text-base font-light leading-relaxed text-brutalist-white/85 sm:text-lg md:text-xl lg:text-2xl">
           {t.presentation.tagline}
         </p>
 
-        <div class="animate-on-scroll delay-300 flex flex-col items-stretch gap-4 sm:items-start">
+        <div class="animate-on-scroll delay-300 flex flex-col items-center gap-4 sm:items-start">
           <a
             href="/fabian-montoya-cv.pdf"
             download
             aria-label={locale === "es" ? "Descargar CV (documento PDF)" : "Download CV (PDF document)"}
-            class="group inline-flex w-full items-center justify-center gap-2 bg-brutalist-blue px-5 py-3 text-xs font-medium tracking-wider text-brutalist-white uppercase transition-colors duration-300 hover:bg-brutalist-blue/80 sm:w-auto sm:justify-start sm:gap-3 sm:px-6 sm:py-4 sm:text-sm md:px-8"
+            class="primary-metal-button group inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-xs font-medium tracking-wider text-brutalist-white uppercase sm:w-auto sm:justify-start sm:gap-3 sm:px-6 sm:py-4 sm:text-sm md:px-8"
           >
             <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
               <path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/>
@@ -58,7 +60,7 @@ const socialLinks = [
             <span class="sr-only">(PDF)</span>
           </a>
 
-          <nav aria-label={locale === "es" ? "Enlaces sociales y de contacto" : "Social and contact links"} class="flex flex-col gap-3 sm:gap-4">
+          <nav aria-label={locale === "es" ? "Enlaces sociales y de contacto" : "Social and contact links"} class="flex flex-col items-center sm:items-start gap-3 sm:gap-4">
             <div class="flex flex-wrap items-center gap-3">
               {socialLinks.map((link) => (
                 <div class="animate-on-scroll">
@@ -67,7 +69,7 @@ const socialLinks = [
                     target="_blank"
                     rel="noopener noreferrer"
                     title={link.label}
-                    class="flex h-11 w-11 items-center justify-center border border-brutalist-white/20 bg-brutalist-white/10 text-brutalist-white transition-colors duration-300 hover:border-brutalist-blue hover:bg-brutalist-blue hover:text-brutalist-white"
+                    class="secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
                     aria-label={`${link.label} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
                   >
                     <link.Icon class="!size-5" aria-hidden="true" />
@@ -81,7 +83,7 @@ const socialLinks = [
                   aria-label={locale === "es" ? "Opciones de email" : "Email options"}
                   aria-haspopup="menu"
                   aria-expanded="false"
-                  class="email-dropdown-trigger flex h-11 w-11 items-center justify-center border border-brutalist-white/20 bg-brutalist-white/10 text-brutalist-white transition-colors hover:border-brutalist-blue hover:bg-brutalist-blue hover:text-brutalist-white"
+                  class="email-dropdown-trigger secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
                 >
                   <GmailIcon class="!size-5" aria-hidden="true" />
                 </button>
@@ -119,7 +121,7 @@ const socialLinks = [
                 href={locale === "es" ? "/" : "/?locale=es"}
                 class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
                   locale === "es"
-                    ? "bg-brutalist-blue text-brutalist-white"
+                    ? "bg-brutalist-white text-brutalist-black"
                     : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
                 }`}
                 title={locale === "es" ? "Español" : "Switch to Spanish"}
@@ -132,7 +134,7 @@ const socialLinks = [
                 href={locale === "en" ? "/en" : "/en?locale=en"}
                 class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
                   locale === "en"
-                    ? "bg-brutalist-blue text-brutalist-white"
+                    ? "bg-brutalist-white text-brutalist-black"
                     : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
                 }`}
                 title={locale === "en" ? "English" : "Switch to English"}

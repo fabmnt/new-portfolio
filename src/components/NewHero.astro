@@ -32,40 +32,39 @@ const stats: StatProps[] = [
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
     <div class="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-16">
       <div class="space-y-8 md:space-y-10">
-        <div class="space-y-6">
+        <div class="space-y-6 text-center sm:text-left">
           <div>
-            <span class="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
+            <span class="inline-block text-center sm:text-left text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
               {t.hero.aboutMe}
             </span>
-            <h2 class="max-w-xl text-3xl font-bold leading-tight text-brutalist-white sm:text-4xl md:text-4xl lg:text-5xl">
-              {t.hero.headline}{" "}
-              <span class="text-brutalist-blue">{t.hero.highlight}</span>
+<h2 class="max-w-xl text-center sm:text-left text-3xl font-bold leading-tight text-brutalist-white sm:text-4xl md:text-4xl lg:text-5xl">
+              {t.hero.headline} {t.hero.highlight}
               {t.hero.headlineSuffix && ` ${t.hero.headlineSuffix}`}
             </h2>
           </div>
 
-          <p class="text-lg text-brutalist-white/70 font-light leading-relaxed">
+          <p class="text-lg text-brutalist-white/85 font-light leading-relaxed">
             {t.hero.description1}
           </p>
 
-          <p class="text-lg text-brutalist-white/70 font-light leading-relaxed">
+          <p class="text-lg text-brutalist-white/85 font-light leading-relaxed">
             {t.hero.description2}
           </p>
         </div>
 
-        <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-          <a
+        <div class="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4 sm:items-start sm:justify-start">
+<a
             href="#experience"
-            class="group inline-flex items-center justify-center gap-2 bg-brutalist-blue px-6 py-4 text-center text-sm font-medium tracking-wider text-brutalist-white uppercase transition-colors duration-300 hover:bg-brutalist-blue/80 sm:px-8"
+            class="primary-metal-button group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 text-center text-sm font-medium tracking-wider text-brutalist-white uppercase sm:px-8"
           >
             {t.hero.viewExperience}
             <svg class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-          <a
+<a
             href="#projects"
-            class="inline-flex items-center justify-center gap-2 border border-brutalist-white/20 bg-brutalist-white/10 px-6 py-4 text-center text-sm font-medium tracking-wider text-brutalist-white uppercase transition-colors duration-300 hover:bg-brutalist-white hover:text-brutalist-black sm:px-8"
+            class="secondary-metal-button w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-brutalist-white/20 px-6 py-4 text-center text-sm font-medium tracking-wider text-brutalist-white uppercase sm:px-8"
           >
             {t.hero.viewProjects}
           </a>
@@ -75,7 +74,7 @@ const stats: StatProps[] = [
       <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
         {stats.map((stat) => (
           <div class="border border-brutalist-white/10 bg-brutalist-white/5 p-4 sm:p-5">
-            <div class="mb-2 text-4xl font-extrabold text-brutalist-white sm:text-5xl md:text-5xl lg:text-7xl">
+<div class="mb-2 text-4xl font-extrabold text-brutalist-white sm:text-5xl md:text-5xl lg:text-6xl">
               {stat.value}
             </div>
             <div class="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/60 sm:text-sm">
