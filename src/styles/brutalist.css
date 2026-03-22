@@ -182,3 +182,10 @@ html {
     transform: none;
   }
 }
+
+/* Fallback for browsers with JavaScript disabled */
+.no-js .animate-on-scroll,
+.animate-on-scroll.no-animation {
+  opacity: 1;
+  transform: none;
+}

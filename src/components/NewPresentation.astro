@@ -97,11 +97,11 @@ const socialLinks = [
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                   </svg>
                 </button>
-                <a 
-                  href="mailto:fabianmontoya2802@gmail.com" 
-                  target="_blank" 
+                <a
+                  href="mailto:fabianmontoya2802@gmail.com"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  class="block px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10 flex items-center gap-2"
+                  class="px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10 flex items-center gap-2"
                 >
                   {locale === "es" ? "Enviar correo" : "Send email"}
                   <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,16 +180,14 @@ const socialLinks = [
       transition: filter 0.6s ease, opacity 0.6s ease;
     }
 
-    /* Email dropdown interactions */
-    .email-dropdown-trigger:hover + .email-dropdown-menu,
-    .email-dropdown-menu:hover {
-      display: block;
-    }
   </style>
 
   <script>
     // Email dropdown interactions with accessibility support
-    document.querySelectorAll('.email-dropdown-trigger').forEach(trigger => {
+    const triggers = document.querySelectorAll('.email-dropdown-trigger');
+    const dropdowns = new Map();
+
+    triggers.forEach(trigger => {
       const menu = trigger.nextElementSibling;
       let timeout = null;
 
@@ -206,6 +204,9 @@ const socialLinks = [
           trigger.setAttribute('aria-expanded', 'false');
         }
       }
+
+      // Store reference for global click handler
+      dropdowns.set(trigger, { menu, closeMenu });
 
       // Mouse interactions
       trigger.addEventListener('mouseenter', () => {
@@ -254,25 +255,31 @@ const socialLinks = [
           trigger.focus();
         }
       });
+    });
 
-      // Close on outside click
-      document.addEventListener('click', (e) => {
+    // Single global click handler for all dropdowns
+    document.addEventListener('click', (e) => {
+      dropdowns.forEach(({ menu, closeMenu }, trigger) => {
         if (!trigger.contains(e.target) && !menu?.contains(e.target)) {
           closeMenu();
         }
       });
     });
 
-    // Copy to clipboard
+    // Copy to clipboard with error handling
     document.querySelectorAll('.email-copy-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        await navigator.clipboard.writeText('fabianmontoya2802@gmail.com');
-        btn.querySelector('.copy-icon')?.classList.add('hidden');
-        btn.querySelector('.check-icon')?.classList.remove('hidden');
-        setTimeout(() => {
-          btn.querySelector('.copy-icon')?.classList.remove('hidden');
-          btn.querySelector('.check-icon')?.classList.add('hidden');
-        }, 2000);
+        try {
+          await navigator.clipboard.writeText('fabianmontoya2802@gmail.com');
+          btn.querySelector('.copy-icon')?.classList.add('hidden');
+          btn.querySelector('.check-icon')?.classList.remove('hidden');
+          setTimeout(() => {
+            btn.querySelector('.copy-icon')?.classList.remove('hidden');
+            btn.querySelector('.check-icon')?.classList.add('hidden');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy email:', err);
+        }
       });
     });
   </script>
