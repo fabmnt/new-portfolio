@@ -1,4 +1,5 @@
 ---
+import Analytics from "@vercel/analytics/astro";
 import "@/styles/brutalist.css";
 import "@/styles/globals.css";
 import "@fontsource/geist-sans/200.css";
@@ -142,6 +143,7 @@ const jsonLd = {
   </head>
   <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <slot />
+    <Analytics />
   </body>
 </html>
 
