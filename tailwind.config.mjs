@@ -62,11 +62,16 @@ export default {
       },
       animation: {
         shine: "shine 6s linear infinite",
+        spinner: "spinner 1.2s linear infinite",
       },
       keyframes: {
         shine: {
           from: { backgroundPosition: "0 0" },
           to: { backgroundPosition: "-400% 0" },
+        },
+        spinner: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0.15" },
         },
       },
     },
