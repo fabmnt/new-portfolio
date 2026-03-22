@@ -18,7 +18,7 @@ export function MainContent({ locale }: Props) {
 
   return (
     <TranslationProvider locale={locale} t={t}>
-      <main className="relative">
+      <main id="main-content" className="relative" tabIndex={-1}>
         <NewPresentation />
         <NewHero />
         <NewExperience />

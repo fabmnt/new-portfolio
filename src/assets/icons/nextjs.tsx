@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
 const Nextjs = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     width="1em"
     height="1em"
     viewBox="0 0 180 180"

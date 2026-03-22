@@ -33,11 +33,13 @@ export function ThemeSwitch() {
 
   return (
     <Button
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      aria-pressed={theme === 'dark'}
       className="bg-brutalist-white/10 border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue"
       variant={"outline"}
       onClick={toggleTheme}
     >
-      {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
+      {theme === "light" ? <Moon size={24} aria-hidden="true" /> : <Sun size={24} aria-hidden="true" />}
     </Button>
   );
 }

@@ -66,15 +66,17 @@ export function NewPresentation() {
               <a
                 href="/fabian-montoya-cv.pdf"
                 download
+                aria-label="Download CV (PDF document)"
                 className="inline-flex items-center gap-2 sm:gap-3 bg-brutalist-blue text-brutalist-white px-5 sm:px-6 md:px-8 py-3 sm:py-4 font-medium tracking-wider uppercase text-xs sm:text-sm hover:bg-brutalist-blue/80 transition-colors duration-300 group"
               >
-                <svg className="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <svg className="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
                   <path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/>
                 </svg>
                 {t.presentation.downloadCV}
+                <span className="sr-only">(PDF)</span>
               </a>
 
-              <div className="flex items-center gap-3">
+              <nav aria-label="Social and contact links" className="flex items-center gap-3">
                 {socialLinks.map((link, index) => (
                   <div key={link.label} className={cn(
                     "transition-all duration-500",
@@ -86,9 +88,9 @@ export function NewPresentation() {
                       rel="noopener noreferrer"
                       title={link.label}
                       className="flex items-center justify-center h-11 w-11 bg-brutalist-white/10 border border-brutalist-white/20 text-brutalist-white hover:bg-brutalist-blue hover:text-brutalist-white hover:border-brutalist-blue transition-colors duration-300"
-                      aria-label={link.label}
+                      aria-label={`${link.label} (opens in new tab)`}
                     >
-                      <link.icon className="!size-5" />
+                      <link.icon className="!size-5" aria-hidden="true" />
                     </a>
                   </div>
                 ))}
@@ -104,7 +106,7 @@ export function NewPresentation() {
                 )} style={{ transitionDelay: "1300ms" }}>
                   <LanguageSwitcher />
                 </div>
-              </div>
+              </nav>
             </div>
           </div>
 
@@ -116,7 +118,7 @@ export function NewPresentation() {
               <div className="blob-shadow" />
               <Avatar className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 relative z-10">
                 <AvatarImage src="/icon-face.png" alt="Fabian Montoya" />
-                <AvatarFallback className="bg-brutalist-blue text-brutalist-white text-4xl font-medium">FM</AvatarFallback>
+                <AvatarFallback className="bg-brutalist-blue text-brutalist-white text-4xl font-medium" aria-label="Profile image loading">FM</AvatarFallback>
               </Avatar>
             </div>
           </div>
@@ -166,17 +168,21 @@ export function NewPresentation() {
         }
       `}</style>
 
-      <div className={cn(
-        "absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 delay-1500",
-        isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      )}>
+      <a
+        href="#experience"
+        className={cn(
+          "absolute bottom-8 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 delay-1500 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black rounded",
+          isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}
+        aria-label="Scroll to experience section"
+      >
         <div className="flex flex-col items-center gap-2 text-brutalist-white animate-bounce">
           <span className="text-xs font-medium tracking-[0.3em] uppercase">{t.nav.scroll}</span>
-          <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
-      </div>
+      </a>
     </header>
   );
 }

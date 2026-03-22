@@ -3,6 +3,8 @@ import type { SVGProps } from "react";
 export function PublicIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
+      aria-hidden="true"
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"
@@ -26,6 +28,8 @@ export function PublicIcon(props: SVGProps<SVGSVGElement>) {
 export function PrivateIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
+      aria-hidden="true"
+      focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       width="1em"
       height="1em"

@@ -1,6 +1,8 @@
 import type { SVGProps } from "react";
 const LinkedIn = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     width="1em"
     height="1em"
     xmlns="http://www.w3.org/2000/svg"
