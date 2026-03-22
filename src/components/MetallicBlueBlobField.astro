@@ -65,7 +65,7 @@ const {
     filter: blur(32px);
     opacity: 0.95;
     transform: translate3d(var(--blob-soft-x), var(--blob-soft-y), 0);
-    transition: transform 180ms ease-out;
+    transition: none;
   }
 
   .metallic-blob-field__aura {
@@ -82,7 +82,7 @@ const {
     filter: blur(34px);
     opacity: 0.82;
     transform: translate3d(var(--blob-aura-x), var(--blob-aura-y), 0) scale(1.16);
-    transition: transform 200ms ease-out;
+    transition: none;
   }
 
   .metallic-blob-field__aura--inner {
@@ -93,7 +93,7 @@ const {
     filter: blur(22px);
     opacity: 0.72;
     transform: translate3d(var(--blob-soft-x), var(--blob-soft-y), 0) scale(0.98);
-    transition: transform 180ms ease-out;
+    transition: none;
   }
 
   .metallic-blob-field__core-wrap {
@@ -103,7 +103,7 @@ const {
     place-items: center;
     pointer-events: none;
     transform: translate3d(var(--blob-soft-x), var(--blob-soft-y), 0);
-    transition: transform 160ms ease-out;
+    transition: none;
   }
 
   .metallic-blob-field__core-shell {
@@ -130,7 +130,7 @@ const {
       inset -24px -20px 34px rgba(15, 23, 42, 0.34);
     filter: saturate(1.18) brightness(1.06);
     transform: translate3d(var(--blob-shift-x), var(--blob-shift-y), 0) rotateX(var(--blob-tilt-x)) rotateY(var(--blob-tilt-y)) scale(var(--blob-scale));
-    transition: transform 120ms ease-out, border-radius 160ms ease-out, box-shadow 160ms ease-out, filter 160ms ease-out;
+    transition: none;
     will-change: transform, border-radius;
   }
 
@@ -243,6 +243,15 @@ const {
 
       const host = field.closest("[data-blob-host]") ?? field.parentElement ?? field;
       const intensity = prefersReducedMotion ? 0.4 : 1;
+      const stiffness = prefersReducedMotion ? 0.08 : 0.12;
+      const damping = prefersReducedMotion ? 0.8 : 0.84;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let velocityX = 0;
+      let velocityY = 0;
+      let frameId = 0;
 
       const setVariables = (variables) => {
         Object.entries(variables).forEach(([name, value]) => {
@@ -250,42 +259,11 @@ const {
         });
       };
 
-      const resetVariables = () => {
-        setVariables({
-          "--blob-shift-x": "0px",
-          "--blob-shift-y": "0px",
-          "--blob-soft-x": "0px",
-          "--blob-soft-y": "0px",
-          "--blob-aura-x": "0px",
-          "--blob-aura-y": "0px",
-          "--blob-tilt-x": "0deg",
-          "--blob-tilt-y": "0deg",
-          "--blob-scale": "1",
-          "--blob-gloss-x": "30%",
-          "--blob-gloss-y": "24%",
-          "--blob-r1": "44%",
-          "--blob-r2": "56%",
-          "--blob-r3": "61%",
-          "--blob-r4": "39%",
-          "--blob-r5": "40%",
-          "--blob-r6": "36%",
-          "--blob-r7": "64%",
-          "--blob-r8": "60%",
-        });
+      const setActive = (value) => {
+        field.dataset.blobActive = value ? "true" : "false";
       };
 
-      const updateFromPointer = (event) => {
-        const bounds = host.getBoundingClientRect();
-
-        if (!bounds.width || !bounds.height) {
-          return;
-        }
-
-        const x = clamp((event.clientX - bounds.left) / bounds.width, 0, 1);
-        const y = clamp((event.clientY - bounds.top) / bounds.height, 0, 1);
-        const offsetX = (x - 0.5) * 2;
-        const offsetY = (y - 0.5) * 2;
-
+      const applyDeformation = (offsetX, offsetY) => {
         setVariables({
           "--blob-shift-x": `${(offsetX * 16 * intensity).toFixed(2)}px`,
           "--blob-shift-y": `${(offsetY * 16 * intensity).toFixed(2)}px`,
@@ -296,8 +274,8 @@ const {
           "--blob-tilt-x": `${(-offsetY * 9 * intensity).toFixed(2)}deg`,
           "--blob-tilt-y": `${(offsetX * 9 * intensity).toFixed(2)}deg`,
           "--blob-scale": `${(1 + Math.min(0.05, Math.hypot(offsetX, offsetY) * 0.035 * intensity)).toFixed(3)}`,
-          "--blob-gloss-x": `${(22 + x * 26).toFixed(2)}%`,
-          "--blob-gloss-y": `${(16 + y * 24).toFixed(2)}%`,
+          "--blob-gloss-x": `${(35 + offsetX * 13).toFixed(2)}%`,
+          "--blob-gloss-y": `${(28 + offsetY * 12).toFixed(2)}%`,
           "--blob-r1": `${clamp(44 + (-offsetX * 8 - offsetY * 5) * intensity, 34, 62).toFixed(2)}%`,
           "--blob-r2": `${clamp(56 + (offsetX * 7 - offsetY * 4) * intensity, 38, 66).toFixed(2)}%`,
           "--blob-r3": `${clamp(61 + (offsetX * 5 + offsetY * 7) * intensity, 40, 70).toFixed(2)}%`,
@@ -307,6 +285,63 @@ const {
           "--blob-r7": `${clamp(64 + (offsetX * 5 + offsetY * 6) * intensity, 42, 72).toFixed(2)}%`,
           "--blob-r8": `${clamp(60 + (-offsetX * 7 + offsetY * 5) * intensity, 40, 72).toFixed(2)}%`,
         });
+      };
+
+      const animateToTarget = () => {
+        frameId = 0;
+
+        velocityX = (velocityX + (targetX - currentX) * stiffness) * damping;
+        velocityY = (velocityY + (targetY - currentY) * stiffness) * damping;
+        currentX += velocityX;
+        currentY += velocityY;
+
+        applyDeformation(currentX, currentY);
+
+        const isSettled =
+          Math.abs(targetX - currentX) < 0.001 &&
+          Math.abs(targetY - currentY) < 0.001 &&
+          Math.abs(velocityX) < 0.001 &&
+          Math.abs(velocityY) < 0.001;
+
+        if (isSettled) {
+          currentX = targetX;
+          currentY = targetY;
+          velocityX = 0;
+          velocityY = 0;
+          applyDeformation(currentX, currentY);
+          return;
+        }
+
+        frameId = window.requestAnimationFrame(animateToTarget);
+      };
+
+      const startAnimation = () => {
+        if (!frameId) {
+          frameId = window.requestAnimationFrame(animateToTarget);
+        }
+      };
+
+      const resetVariables = () => {
+        setActive(false);
+        targetX = 0;
+        targetY = 0;
+        startAnimation();
+      };
+
+      const updateFromPointer = (event) => {
+        const bounds = host.getBoundingClientRect();
+
+        if (!bounds.width || !bounds.height) {
+          return;
+        }
+
+        setActive(true);
+
+        const x = clamp((event.clientX - bounds.left) / bounds.width, 0, 1);
+        const y = clamp((event.clientY - bounds.top) / bounds.height, 0, 1);
+        targetX = (x - 0.5) * 2;
+        targetY = (y - 0.5) * 2;
+        startAnimation();
       };
 
       const updateFromTouch = (event) => {
