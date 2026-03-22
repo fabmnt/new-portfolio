@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
       // Add locale param to bypass middleware redirect
       return "/?locale=es";
     }
-    return "/en/?locale=en";
+    return "/en?locale=en";
   };
 
   return (
@@ -28,6 +28,8 @@ export function LanguageSwitcher() {
               : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
           }`}
           title={lang.code === "es" ? "Cambiar a Español" : "Switch to English"}
+          aria-label={lang.code === "es" ? "Cambiar idioma a Español" : "Switch language to English"}
+          aria-current={locale === lang.code ? "page" : undefined}
         >
           {lang.label}
         </a>

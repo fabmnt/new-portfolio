@@ -5,8 +5,8 @@ const LOCALE_COOKIE = "preferred-locale";
 export const onRequest = defineMiddleware((context, next) => {
   const { pathname } = context.url;
 
-  // Skip if it's a file/asset
-  if (pathname.includes(".")) {
+  // Skip if it's a file/asset or internal Astro route
+  if (pathname.includes(".") || pathname.startsWith("/_")) {
     return next();
   }
 
