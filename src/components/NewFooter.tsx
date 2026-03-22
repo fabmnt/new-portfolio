@@ -4,8 +4,10 @@ import { ArrowUpRight } from "lucide-react";
 import LinkedIn from "@/assets/icons/linkedin";
 import GithubIcon from "../assets/icons/github";
 import TwitterIcon from "../assets/icons/twitter";
+import { useTranslations } from "./TranslationProvider";
 
 export function NewFooter() {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -41,10 +43,10 @@ export function NewFooter() {
           className={`mb-12 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
         >
           <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-extrabold text-brutalist-white mb-4">
-            ¿Trabajamos juntos?
+            {t.footer.title}
           </h2>
           <p className="text-brutalist-white/60 font-light max-w-md mx-auto">
-            Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.
+            {t.footer.description}
           </p>
         </div>
 
@@ -58,7 +60,7 @@ export function NewFooter() {
             <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Enviar correo
+            {t.footer.sendEmail}
             <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
 
@@ -100,7 +102,7 @@ export function NewFooter() {
             fabianmontoya2802@gmail.com
           </p>
           <p className="text-brutalist-white/40 text-sm font-light">
-            © {new Date().getFullYear()} Fabian Montoya. Todos los derechos reservados.
+            © {new Date().getFullYear()} Fabian Montoya. {t.footer.copyright}
           </p>
         </div>
       </div>

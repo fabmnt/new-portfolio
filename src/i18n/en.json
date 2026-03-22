@@ -1,0 +1,61 @@
+{
+  "layout": {
+    "siteName": "Fabian Montoya | Portfolio",
+    "siteTitle": "Fabian Montoya | Full Stack Developer & RPA Engineer",
+    "siteDescription": "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in React, Angular, TypeScript, Node.js and automation solutions.",
+    "language": "English"
+  },
+  "nav": {
+    "scroll": "Scroll"
+  },
+  "presentation": {
+    "role": "Full Stack Developer",
+    "tagline": "I design, develop and implement IT solutions that enable companies to evolve.",
+    "downloadCV": "DOWNLOAD CV"
+  },
+  "hero": {
+    "aboutMe": "About me",
+    "headline": "Turning ideas into extraordinary digital",
+    "highlight": "experiences",
+    "headlineSuffix": "",
+    "description1": "As a systems engineer with a passion for full stack development, I specialize in creating technological solutions that transform the way companies connect with their users.",
+    "description2": "From elegant commercial platforms to complex inventory and billing systems, each project is an opportunity to innovate.",
+    "viewExperience": "View experience",
+    "viewProjects": "View projects",
+    "yearsExperience": "Years of experience",
+    "projectsCompleted": "Projects completed",
+    "mainTechnologies": "Main technologies",
+    "commitment": "Commitment"
+  },
+  "experience": {
+    "title": "WORK",
+    "highlight": "EXPERIENCE",
+    "subtitle": "Professional career"
+  },
+  "projects": {
+    "title": "FEATURED",
+    "highlight": "PROJECTS",
+    "subtitle": "Portfolio showcase",
+    "public": "PUBLIC",
+    "private": "PRIVATE",
+    "code": "Code",
+    "visit": "Visit"
+  },
+  "skills": {
+    "title": "SKILLS",
+    "subtitle": "Tech stack",
+    "description": "Technologies I master and with which I build modern and scalable solutions",
+    "tools": ["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"]
+  },
+  "studies": {
+    "title": "STUDIES &",
+    "highlight": "CERTIFICATIONS",
+    "subtitle": "Academic background"
+  },
+  "footer": {
+    "title": "Let's work together?",
+    "description": "I'm always open to new challenges and collaboration opportunities.",
+    "sendEmail": "Send email",
+    "copyright": "All rights reserved."
+  }
+}

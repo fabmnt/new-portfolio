@@ -1,0 +1,61 @@
+{
+  "layout": {
+    "siteName": "Fabian Montoya | Portafolio",
+    "siteTitle": "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA",
+    "siteDescription": "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.",
+    "language": "Spanish"
+  },
+  "nav": {
+    "scroll": "Scroll"
+  },
+  "presentation": {
+    "role": "Desarrollador Full Stack",
+    "tagline": "Diseño, desarrollo e implemento soluciones informáticas que permiten a empresas evolucionar.",
+    "downloadCV": "DESCARGAR CV"
+  },
+  "hero": {
+    "aboutMe": "Sobre mí",
+    "headline": "Convirtiendo ideas en",
+    "highlight": "experiencias",
+    "headlineSuffix": "digitales extraordinarias",
+    "description1": "Como ingeniero en sistemas con pasión por el desarrollo full stack, me especializo en crear soluciones tecnológicas que transforman la manera en que las empresas se conectan con sus usuarios.",
+    "description2": "Desde elegantes plataformas comerciales hasta complejos sistemas de inventario y facturación, cada proyecto es una oportunidad para innovar.",
+    "viewExperience": "Ver experiencia",
+    "viewProjects": "Ver proyectos",
+    "yearsExperience": "Años de experiencia",
+    "projectsCompleted": "Proyectos completados",
+    "mainTechnologies": "Tecnologías principales",
+    "commitment": "Compromiso"
+  },
+  "experience": {
+    "title": "EXPERIENCIA",
+    "highlight": "LABORAL",
+    "subtitle": "Trayectoria profesional"
+  },
+  "projects": {
+    "title": "PROYECTOS",
+    "highlight": "DESTACADOS",
+    "subtitle": "Portfolio showcase",
+    "public": "PÚBLICO",
+    "private": "PRIVADO",
+    "code": "Código",
+    "visit": "Visitar"
+  },
+  "skills": {
+    "title": "HABILIDADES",
+    "subtitle": "Stack tecnológico",
+    "description": "Tecnologías que domino y con las que construyo soluciones modernas y escalables",
+    "tools": ["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"]
+  },
+  "studies": {
+    "title": "ESTUDIOS Y",
+    "highlight": "CERTIFICADOS",
+    "subtitle": "Formación académica"
+  },
+  "footer": {
+    "title": "¿Trabajamos juntos?",
+    "description": "Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.",
+    "sendEmail": "Enviar correo",
+    "copyright": "Todos los derechos reservados."
+  }
+}

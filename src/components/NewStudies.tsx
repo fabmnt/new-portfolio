@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "./TranslationProvider";
 
 interface StudyItemProps {
   logo: string;
@@ -90,8 +91,34 @@ const studies = [
   },
 ];
 
+const studiesEn = [
+  {
+    logo: "/unan-leon-logo.png",
+    logoAlt: "UNAN León Logo",
+    title: "Information Systems Engineering",
+    institution: "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
+    year: "2019 - 2024",
+  },
+  {
+    logo: "/uni-logo.png",
+    logoAlt: "UNI Logo",
+    title: "International Ethical Hacking and Cybersecurity Course",
+    institution: "Graduate School - Universidad Nacional de Ingeniería",
+    year: "2024",
+  },
+  {
+    logo: "/inatec-logo.jpg",
+    logoAlt: "INATEC Logo",
+    title: "General Accounting Technician",
+    institution: "Instituto Nacional Tecnológico",
+    year: "2024",
+  },
+];
+
 export function NewStudies() {
+  const { t, locale } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
+  const studiesData = locale === "en" ? studiesEn : studies;
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -128,17 +155,17 @@ export function NewStudies() {
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
-            Formación académica
+            {t.studies.subtitle}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white">
-            ESTUDIOS Y{" "}
-            <span className="text-brutalist-blue">CERTIFICADOS</span>
+            {t.studies.title}{" "}
+            <span className="text-brutalist-blue">{t.studies.highlight}</span>
           </h2>
           <div className="mt-6 w-24 h-1 bg-brutalist-blue" />
         </div>
 
         <div className="space-y-4">
-          {studies.map((study, index) => (
+          {studiesData.map((study, index) => (
             <StudyItem key={study.title} {...study} index={index} />
           ))}
         </div>

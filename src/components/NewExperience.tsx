@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "./TranslationProvider";
 
 interface ExperienceItemProps {
   company: string;
@@ -121,8 +122,36 @@ const experiences = [
   },
 ];
 
+const experiencesEn = [
+  {
+    company: "Roca Company Solutions",
+    companyUrl: "https://rocacompanysolution.wordpress.com/",
+    period: "April 2025 - July 2025",
+    role: "Frontend Web Developer",
+    description: [
+      "Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.",
+      "Scalable system to render large amounts of information in tables efficiently.",
+      "Migration from Google Spreadsheets to a unified system.",
+    ],
+  },
+  {
+    company: "Dentalrobot.ai",
+    companyUrl: "https://www.dentalrobot.ai",
+    period: "October 2022 - Present",
+    role: "Full Stack Developer & RPA",
+    description: [
+      "Form editor exportable to MS Word and Google Docs for audits.",
+      "Leadership in parallelizing RPA executions, drastically reducing execution times.",
+      "Developer of RPA robots for patient verification automation.",
+      "Maintenance of the company's main Angular system.",
+    ],
+  },
+];
+
 export function NewExperience() {
+  const { t, locale } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
+  const expData = locale === "en" ? experiencesEn : experiences;
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -159,21 +188,21 @@ export function NewExperience() {
           className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"}`}
         >
           <span className="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
-            Trayectoria profesional
+            {t.experience.subtitle}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
-            EXPERIENCIA <span className="text-brutalist-blue">LABORAL</span>
+            {t.experience.title} <span className="text-brutalist-blue">{t.experience.highlight}</span>
           </h2>
           <div className="mt-6 w-24 h-1 bg-brutalist-blue" />
         </div>
 
         <div className="relative space-y-16">
           <div className="pointer-events-none absolute left-8 top-0 bottom-0 w-0.5 bg-brutalist-blue lg:left-1/2" />
-          {experiences.map((exp, index) => (
+          {expData.map((exp, index) => (
             <ExperienceItem
               key={exp.company}
               {...exp}
-              isLast={index === experiences.length - 1}
+              isLast={index === expData.length - 1}
               delay={200 + index * 200}
               isReversed={index % 2 === 1}
             />
