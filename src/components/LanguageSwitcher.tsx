@@ -10,9 +10,10 @@ export function LanguageSwitcher() {
 
   const getLocaleUrl = (targetLocale: "en" | "es") => {
     if (targetLocale === "es") {
-      return "/";
+      // Add locale param to bypass middleware redirect
+      return "/?locale=es";
     }
-    return "/en";
+    return "/en/?locale=en";
   };
 
   return (
