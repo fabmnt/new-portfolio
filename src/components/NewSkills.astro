@@ -1,0 +1,77 @@
+---
+import AstroIcon from "@/assets/icons/AstroIcon.astro";
+import ReactIcon from "@/assets/icons/ReactIcon.astro";
+import AngularIcon from "@/assets/icons/AngularIcon.astro";
+import NextJsIcon from "@/assets/icons/NextJsIcon.astro";
+import TypeScriptIcon from "@/assets/icons/TypeScriptIcon.astro";
+import PythonIcon from "@/assets/icons/PythonIcon.astro";
+import type { TranslationKeys } from "@/i18n";
+import { getTranslations } from "@/i18n";
+
+interface Props {
+  locale: "en" | "es";
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+
+const skills = [
+  { name: "Astro", color: "#FF5D01", Icon: AstroIcon },
+  { name: "React", color: "#00D8FF", Icon: ReactIcon },
+  { name: "Angular", color: "#c3002f", Icon: AngularIcon },
+  { name: "Next.js", color: "#FFFFFF", Icon: NextJsIcon },
+  { name: "TypeScript", color: "#3178c6", Icon: TypeScriptIcon },
+  { name: "Python", color: "#4584b6", Icon: PythonIcon },
+];
+---
+
+<section id="skills" class="relative py-20 sm:py-28 md:py-32 overflow-hidden">
+  <div class="absolute inset-0 bg-brutalist-black"></div>
+  <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
+  <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
+  <div class="absolute inset-x-0 bottom-0 h-40 bg-section-fade-bottom"></div>
+  <div class="absolute top-1/3 left-1/3 w-1/3 h-1/3 bg-section-glow"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+    <div class="animate-on-scroll mb-16 text-center">
+      <span class="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
+        {t.skills.subtitle}
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white">
+        {t.skills.title}
+      </h2>
+      <div class="mt-6 mx-auto w-24 h-1 bg-brutalist-blue"></div>
+      <p class="mt-8 text-brutalist-white/60 font-light max-w-2xl mx-auto">
+        {t.skills.description}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {skills.map((skill, index) => (
+        <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : index === 3 ? 'delay-300' : index === 4 ? 'delay-400' : index === 5 ? 'delay-500' : ''}`}>
+          <div class="relative p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
+            <div class="flex flex-col items-center gap-4">
+              <div
+                class="w-16 h-16 flex items-center justify-center"
+                style={`background-color: ${skill.color}20`}
+              >
+                <skill.Icon class="!size-8" style={`color: ${skill.color}`} />
+              </div>
+              <span class="text-sm font-medium tracking-wider uppercase text-brutalist-white/70">
+                {skill.name}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="animate-on-scroll delay-300 mt-16 flex flex-wrap justify-center gap-4">
+      {t.skills.tools.map((tool) => (
+        <span class="px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/60 text-xs font-medium tracking-wider uppercase hover:border-brutalist-blue hover:text-brutalist-blue transition-colors duration-300">
+          {tool}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

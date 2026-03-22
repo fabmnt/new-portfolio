@@ -1,0 +1,116 @@
+---
+import type { TranslationKeys } from "@/i18n";
+import { getTranslations } from "@/i18n";
+
+interface Props {
+  locale: "en" | "es";
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+
+interface Study {
+  logo: string;
+  logoAlt: string;
+  title: string;
+  institution: string;
+  year: string;
+}
+
+const studies: Study[] = locale === "en" ? [
+  {
+    logo: "/unan-leon-logo.png",
+    logoAlt: "UNAN León Logo",
+    title: "Information Systems Engineering",
+    institution: "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
+    year: "2019 - 2024",
+  },
+  {
+    logo: "/uni-logo.png",
+    logoAlt: "UNI Logo",
+    title: "International Ethical Hacking and Cybersecurity Course",
+    institution: "Graduate School - Universidad Nacional de Ingeniería",
+    year: "2024",
+  },
+  {
+    logo: "/inatec-logo.jpg",
+    logoAlt: "INATEC Logo",
+    title: "General Accounting Technician",
+    institution: "Instituto Nacional Tecnológico",
+    year: "2024",
+  },
+] : [
+  {
+    logo: "/unan-leon-logo.png",
+    logoAlt: "Logo de la UNAN León",
+    title: "Ingeniería en Sistemas de Información",
+    institution: "Universidad Nacional Autónoma de Nicaragua - León (UNAN - LEÓN)",
+    year: "2019 - 2024",
+  },
+  {
+    logo: "/uni-logo.png",
+    logoAlt: "Logo de la UNI",
+    title: "Curso Internacional de Hacking Ético y Ciberseguridad",
+    institution: "Posgrado Universidad Nacional de Ingeniería",
+    year: "2024",
+  },
+  {
+    logo: "/inatec-logo.jpg",
+    logoAlt: "Logo del INATEC",
+    title: "Técnico en Contabilidad General",
+    institution: "Instituto Nacional Tecnológico",
+    year: "2024",
+  },
+];
+---
+
+<section id="studies" class="relative py-20 sm:py-28 md:py-32 overflow-hidden">
+  <div class="absolute inset-0 bg-brutalist-black"></div>
+  <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
+  <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
+  <div class="absolute inset-x-0 bottom-0 h-40 bg-section-fade-bottom"></div>
+  <div class="absolute bottom-1/4 left-1/4 w-1/2 h-1/2 bg-section-glow"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
+    <div class="animate-on-scroll mb-16">
+      <span class="inline-block text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-4">
+        {t.studies.subtitle}
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white">
+        {t.studies.title}{" "}
+        <span class="text-brutalist-blue">{t.studies.highlight}</span>
+      </h2>
+      <div class="mt-6 w-24 h-1 bg-brutalist-blue"></div>
+    </div>
+
+    <div class="space-y-4">
+      {studies.map((study, index) => (
+        <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
+          <div class="flex items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
+              <img
+                src={study.logo}
+                alt={study.logoAlt}
+                class="w-full h-full object-contain p-2 brightness-90"
+              />
+            </div>
+
+            <div class="flex-1 pt-2">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                <h3 class="text-xl font-semibold tracking-tight text-brutalist-white">
+                  {study.title}
+                </h3>
+                <time class="text-sm text-brutalist-white/50 font-medium" datetime={study.year.replace(' - ', '/')}>
+                  {study.year}
+                </time>
+              </div>
+              <p class="text-base font-normal text-brutalist-white/70">
+                {study.institution}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
