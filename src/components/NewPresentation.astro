@@ -24,7 +24,7 @@ const socialLinks = [
 <header class="relative flex min-h-[100svh] flex-col overflow-hidden">
   <div class="absolute inset-0 bg-section-pattern opacity-20"></div>
 
-  <div class="relative z-10 flex flex-1 items-center justify-center py-12 sm:py-16 md:py-20">
+  <div class="relative z-10 flex flex-1 items-center justify-center py-8 sm:py-12 md:py-16">
     <div class="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 lg:gap-12 lg:px-8">
 <div class="order-2 space-y-8 text-center sm:text-left md:order-1">
         <div class="space-y-2 text-center sm:text-left">
@@ -76,7 +76,7 @@ const socialLinks = [
                 </div>
               ))}
 
-              <div class="animate-on-scroll relative group">
+              <div class="animate-on-scroll relative z-20 group">
                 <button 
                   type="button"
                   aria-label={locale === "es" ? "Opciones de email" : "Email options"}
@@ -87,10 +87,10 @@ const socialLinks = [
                   <GmailIcon class="!size-5" aria-hidden="true" />
                 </button>
 
-                <div class="email-dropdown-menu hidden absolute left-0 top-full z-50 mt-2 min-w-[240px] border border-brutalist-white/20 bg-brutalist-black shadow-lg max-sm:left-auto max-sm:right-0 max-sm:min-w-[220px]">
+                <div class="email-dropdown-menu hidden absolute bottom-full left-0 z-50 mb-2 min-w-[240px] border border-brutalist-white/20 bg-brutalist-black opacity-100 shadow-lg max-sm:left-auto max-sm:right-0 max-sm:min-w-[220px]">
                   <button 
                     type="button"
-                    class="email-copy-btn flex w-full items-center justify-between px-4 py-3 text-left text-brutalist-white hover:bg-brutalist-white/10"
+                    class="email-copy-btn flex w-full items-center justify-between bg-brutalist-black px-4 py-3 text-left text-brutalist-white hover:bg-brutalist-white/10"
                   >
                     <span>fabianmontoya2802@gmail.com</span>
                     <svg class="copy-icon size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ const socialLinks = [
                     href="mailto:fabianmontoya2802@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="flex items-center gap-2 px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10"
+                    class="flex items-center gap-2 bg-brutalist-black px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10"
                   >
                     {locale === "es" ? "Enviar correo" : "Send email"}
                     <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@ const socialLinks = [
               </div>
             </div>
 
-            <div class="animate-on-scroll inline-flex w-fit items-center gap-1 border border-brutalist-white/20 bg-brutalist-white/10">
+            <div class="animate-on-scroll relative z-10 inline-flex w-fit items-center gap-1 border border-brutalist-white/20 bg-brutalist-white/10">
               <a
                 href={locale === "es" ? "/" : "/?locale=es"}
                 class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
@@ -159,15 +159,18 @@ const socialLinks = [
     // Email dropdown interactions with accessibility support
     const triggers = document.querySelectorAll('.email-dropdown-trigger');
     const dropdowns = new Map();
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
     triggers.forEach(trigger => {
       const menu = trigger.nextElementSibling;
       let timeout = null;
+      let isOpen = false;
 
       function openMenu() {
         if (menu) {
           menu.classList.remove('hidden');
           trigger.setAttribute('aria-expanded', 'true');
+          isOpen = true;
         }
       }
 
@@ -175,54 +178,62 @@ const socialLinks = [
         if (menu) {
           menu.classList.add('hidden');
           trigger.setAttribute('aria-expanded', 'false');
+          isOpen = false;
+        }
+      }
+
+      function toggleMenu() {
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
         }
       }
 
       // Store reference for global click handler
       dropdowns.set(trigger, { menu, closeMenu });
 
-      // Mouse interactions
-      trigger.addEventListener('mouseenter', () => {
-        if (timeout) clearTimeout(timeout);
-        openMenu();
-      });
-
-      trigger.addEventListener('mouseleave', () => {
-        timeout = setTimeout(() => {
-          closeMenu();
-        }, 150);
-      });
-
-      if (menu) {
-        menu.addEventListener('mouseenter', () => {
+      // Only use mouse interactions on non-touch devices
+      if (!isTouchDevice) {
+        trigger.addEventListener('mouseenter', () => {
           if (timeout) clearTimeout(timeout);
+          openMenu();
         });
-        menu.addEventListener('mouseleave', () => {
-          closeMenu();
+
+        trigger.addEventListener('mouseleave', () => {
+          timeout = setTimeout(() => {
+            closeMenu();
+          }, 150);
         });
+
+        if (menu) {
+          menu.addEventListener('mouseenter', () => {
+            if (timeout) clearTimeout(timeout);
+          });
+          menu.addEventListener('mouseleave', () => {
+            closeMenu();
+          });
+        }
       }
 
-      // Click toggle
+      // Touch and click handling
+      trigger.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+      }, { passive: false });
+
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const isHidden = menu?.classList.contains('hidden');
-        if (isHidden) {
-          openMenu();
-        } else {
-          closeMenu();
-        }
+        e.stopPropagation();
+        toggleMenu();
       });
 
       // Keyboard support
       trigger.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          const isHidden = menu?.classList.contains('hidden');
-          if (isHidden) {
-            openMenu();
-          } else {
-            closeMenu();
-          }
+          toggleMenu();
         } else if (e.key === 'Escape') {
           closeMenu();
           trigger.focus();
@@ -230,14 +241,17 @@ const socialLinks = [
       });
     });
 
-    // Single global click handler for all dropdowns
-    document.addEventListener('click', (e) => {
+    // Global handler for clicks/touches outside dropdown
+    function handleOutsideInteraction(e) {
       dropdowns.forEach(({ menu, closeMenu }, trigger) => {
         if (!trigger.contains(e.target) && !menu?.contains(e.target)) {
           closeMenu();
         }
       });
-    });
+    }
+
+    document.addEventListener('click', handleOutsideInteraction);
+    document.addEventListener('touchstart', handleOutsideInteraction, { passive: true });
 
     // Copy to clipboard with error handling
     document.querySelectorAll('.email-copy-btn').forEach(btn => {

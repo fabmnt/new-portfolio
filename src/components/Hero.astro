@@ -1,0 +1,36 @@
+---
+import type { TranslationKeys } from "@/i18n";
+import { getTranslations } from "@/i18n";
+
+interface Props {
+  locale: "en" | "es";
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+
+interface StatProps {
+  value: string;
+  label: string;
+}
+
+const stats: StatProps[] = [
+  { value: "4+", label: t.hero.yearsExperience },
+  { value: "50+", label: t.hero.projectsCompleted },
+  { value: "3", label: t.hero.mainTechnologies },
+  { value: "100%", label: t.hero.commitment },
+];
+---
+
+<div class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+  {stats.map((stat) => (
+    <div class="border border-brutalist-white/10 bg-brutalist-white/5 p-4 sm:p-5">
+      <div class="mb-2 text-4xl font-extrabold text-brutalist-white sm:text-5xl md:text-5xl lg:text-6xl">
+        {stat.value}
+      </div>
+      <div class="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/60 sm:text-sm">
+        {stat.label}
+      </div>
+    </div>
+  ))}
+</div>
