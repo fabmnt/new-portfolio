@@ -15,7 +15,11 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 
 const socialLinks = [
-  { href: "https://www.linkedin.com/in/fabián-montoya-963247345", Icon: LinkedInIcon, label: "LinkedIn" },
+  {
+    href: "https://www.linkedin.com/in/fabián-montoya-963247345",
+    Icon: LinkedInIcon,
+    label: "LinkedIn",
+  },
   { href: "https://x.com/fabmntp", Icon: TwitterIcon, label: "X" },
   { href: "https://github.com/fabmnt", Icon: GithubIcon, label: "GitHub" },
 ];
@@ -24,62 +28,94 @@ const socialLinks = [
 <header class="relative flex min-h-[100svh] flex-col overflow-hidden">
   <div class="absolute inset-0 bg-section-pattern opacity-20"></div>
 
-  <div class="relative z-10 flex flex-1 items-center justify-center py-8 sm:py-12 md:py-16">
-    <div class="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 lg:gap-12 lg:px-8">
-<div class="order-2 space-y-8 text-center sm:text-left md:order-1">
-        <div class="space-y-2 text-center sm:text-left">
+  <div
+    class="relative z-10 flex flex-1 items-center justify-center py-8 sm:py-12 md:py-16"
+  >
+    <div
+      class="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 lg:gap-12 lg:px-8"
+    >
+      <div class="order-2 space-y-8 text-center sm:text-left md:order-1">
+        <div class="space-y-2 text-center lg:text-left">
           <span
             class="animate-on-scroll inline-block bg-brutalist-black px-0 py-0 text-center sm:text-left text-xs font-medium tracking-[0.3em] uppercase text-brutalist-white title-fade"
             data-title={t.presentation.role}
           >
             {t.presentation.role}
           </span>
-          
-<h1 class="animate-on-scroll delay-100 text-center sm:text-left text-4xl font-extrabold leading-none tracking-tight text-brutalist-white sm:text-5xl md:text-6xl lg:text-8xl whitespace-nowrap lg:whitespace-normal">
-            <span class="title-fade" data-title="FABIAN">FABIAN</span><span class="lg:hidden" aria-hidden="true">&nbsp;</span><br class="hidden lg:block" />
+
+          <h1
+            class="animate-on-scroll delay-100 text-center sm:text-left text-4xl font-extrabold leading-none tracking-tight text-brutalist-white sm:text-5xl md:text-6xl lg:text-8xl whitespace-nowrap lg:whitespace-normal"
+          >
+            <span class="title-fade" data-title="FABIAN">FABIAN</span><span
+              class="lg:hidden"
+              aria-hidden="true">&nbsp;</span
+            ><br class="hidden lg:block" />
             <span class="text-brutalist-blue">MONTOYA</span>
           </h1>
         </div>
 
-        <p class="animate-on-scroll delay-200 max-w-md text-base font-light leading-relaxed text-brutalist-white/85 sm:text-lg md:text-xl lg:text-2xl">
+        <p
+          class="animate-on-scroll delay-200 max-w-md text-base font-light leading-relaxed sm:text-lg md:text-xl lg:text-2xl"
+        >
           {t.presentation.tagline}
         </p>
 
-        <div class="animate-on-scroll delay-300 flex flex-col items-center gap-4 sm:items-start">
+        <div
+          class="animate-on-scroll delay-300 flex flex-col items-center gap-4 sm:items-start"
+        >
           <a
             href="/fabian-montoya-cv.pdf"
             download
-            aria-label={locale === "es" ? "Descargar CV (documento PDF)" : "Download CV (PDF document)"}
+            aria-label={locale === "es"
+              ? "Descargar CV (documento PDF)"
+              : "Download CV (PDF document)"}
             class="primary-metal-button group inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-xs font-medium tracking-wider text-brutalist-white uppercase sm:w-auto sm:justify-start sm:gap-3 sm:px-6 sm:py-4 sm:text-sm md:px-8"
           >
-            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
-              <path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/>
+            <svg
+              class="size-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"
+              ></path>
             </svg>
             {t.presentation.downloadCV}
             <span class="sr-only">(PDF)</span>
           </a>
 
-          <nav aria-label={locale === "es" ? "Enlaces sociales y de contacto" : "Social and contact links"} class="flex flex-col items-center sm:items-start gap-3 sm:gap-4">
+          <nav
+            aria-label={locale === "es"
+              ? "Enlaces sociales y de contacto"
+              : "Social and contact links"}
+            class="flex flex-col items-center sm:items-start gap-3 sm:gap-4"
+          >
             <div class="flex flex-wrap items-center gap-3">
-              {socialLinks.map((link) => (
-                <div class="animate-on-scroll">
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={link.label}
-                    class="secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
-                    aria-label={`${link.label} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
-                  >
-                    <link.Icon class="!size-5" aria-hidden="true" />
-                  </a>
-                </div>
-              ))}
+              {
+                socialLinks.map((link) => (
+                  <div class="animate-on-scroll">
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={link.label}
+                      class="secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
+                      aria-label={`${link.label} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+                    >
+                      <link.Icon class="!size-5" aria-hidden="true" />
+                    </a>
+                  </div>
+                ))
+              }
 
               <div class="animate-on-scroll relative z-20 group">
-                <button 
+                <button
                   type="button"
-                  aria-label={locale === "es" ? "Opciones de email" : "Email options"}
+                  aria-label={locale === "es"
+                    ? "Opciones de email"
+                    : "Email options"}
                   aria-haspopup="menu"
                   aria-expanded="false"
                   class="email-dropdown-trigger secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
@@ -87,17 +123,38 @@ const socialLinks = [
                   <GmailIcon class="!size-5" aria-hidden="true" />
                 </button>
 
-                <div class="email-dropdown-menu hidden absolute bottom-full left-0 z-50 mb-2 min-w-[240px] border border-brutalist-white/20 bg-brutalist-black opacity-100 shadow-lg max-sm:left-auto max-sm:right-0 max-sm:min-w-[220px]">
-                  <button 
+                <div
+                  class="email-dropdown-menu hidden absolute bottom-full left-0 z-50 mb-2 min-w-[240px] border border-brutalist-white/20 bg-brutalist-black opacity-100 shadow-lg max-sm:left-auto max-sm:right-0 max-sm:min-w-[220px]"
+                >
+                  <button
                     type="button"
                     class="email-copy-btn flex w-full items-center justify-between bg-brutalist-black px-4 py-3 text-left text-brutalist-white hover:bg-brutalist-white/10"
                   >
                     <span>fabianmontoya2802@gmail.com</span>
-                    <svg class="copy-icon size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                    <svg
+                      class="copy-icon size-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                      ></path>
                     </svg>
-                    <svg class="check-icon hidden size-4 text-brutalist-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    <svg
+                      class="check-icon hidden size-4 text-brutalist-blue"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"></path>
                     </svg>
                   </button>
                   <a
@@ -107,15 +164,26 @@ const socialLinks = [
                     class="flex items-center gap-2 bg-brutalist-black px-4 py-3 text-brutalist-white hover:bg-brutalist-white/10"
                   >
                     {locale === "es" ? "Enviar correo" : "Send email"}
-                    <svg class="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    <svg
+                      class="size-3"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                     </svg>
                   </a>
                 </div>
               </div>
             </div>
 
-            <div class="animate-on-scroll relative z-10 inline-flex w-fit items-center gap-1 border border-brutalist-white/20 bg-brutalist-white/10">
+            <div
+              class="animate-on-scroll relative z-10 inline-flex w-fit items-center gap-1 border border-brutalist-white/20 bg-brutalist-white/10"
+            >
               <a
                 href={locale === "es" ? "/" : "/?locale=es"}
                 class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
@@ -124,7 +192,9 @@ const socialLinks = [
                     : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
                 }`}
                 title={locale === "es" ? "Español" : "Switch to Spanish"}
-                aria-label={locale === "es" ? "Español" : "Switch language to Spanish"}
+                aria-label={locale === "es"
+                  ? "Español"
+                  : "Switch language to Spanish"}
                 aria-current={locale === "es" ? "page" : undefined}
               >
                 ES
@@ -137,7 +207,9 @@ const socialLinks = [
                     : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
                 }`}
                 title={locale === "en" ? "English" : "Switch to English"}
-                aria-label={locale === "en" ? "English" : "Switch language to English"}
+                aria-label={locale === "en"
+                  ? "English"
+                  : "Switch language to English"}
                 aria-current={locale === "en" ? "page" : undefined}
               >
                 EN
@@ -147,8 +219,13 @@ const socialLinks = [
         </div>
       </div>
 
-      <div class="animate-on-scroll delay-200 order-1 flex justify-center md:order-2 md:justify-end">
-        <div class="group relative h-[14rem] w-[14rem] overflow-visible touch-none sm:h-[22rem] sm:w-[22rem] md:h-[25rem] md:w-[25rem] lg:h-[32rem] lg:w-[32rem]" data-blob-host>
+      <div
+        class="animate-on-scroll delay-200 order-1 flex justify-center md:order-2 md:justify-end"
+      >
+        <div
+          class="group relative h-[14rem] w-[14rem] overflow-visible touch-none sm:h-[22rem] sm:w-[22rem] md:h-[25rem] md:w-[25rem] lg:h-[32rem] lg:w-[32rem]"
+          data-blob-host
+        >
           <MetallicBlueBlobField />
         </div>
       </div>
@@ -157,27 +234,27 @@ const socialLinks = [
 
   <script>
     // Email dropdown interactions with accessibility support
-    const triggers = document.querySelectorAll('.email-dropdown-trigger');
+    const triggers = document.querySelectorAll(".email-dropdown-trigger");
     const dropdowns = new Map();
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
-    triggers.forEach(trigger => {
+    triggers.forEach((trigger) => {
       const menu = trigger.nextElementSibling;
       let timeout = null;
       let isOpen = false;
 
       function openMenu() {
         if (menu) {
-          menu.classList.remove('hidden');
-          trigger.setAttribute('aria-expanded', 'true');
+          menu.classList.remove("hidden");
+          trigger.setAttribute("aria-expanded", "true");
           isOpen = true;
         }
       }
 
       function closeMenu() {
         if (menu) {
-          menu.classList.add('hidden');
-          trigger.setAttribute('aria-expanded', 'false');
+          menu.classList.add("hidden");
+          trigger.setAttribute("aria-expanded", "false");
           isOpen = false;
         }
       }
@@ -195,46 +272,50 @@ const socialLinks = [
 
       // Only use mouse interactions on non-touch devices
       if (!isTouchDevice) {
-        trigger.addEventListener('mouseenter', () => {
+        trigger.addEventListener("mouseenter", () => {
           if (timeout) clearTimeout(timeout);
           openMenu();
         });
 
-        trigger.addEventListener('mouseleave', () => {
+        trigger.addEventListener("mouseleave", () => {
           timeout = setTimeout(() => {
             closeMenu();
           }, 150);
         });
 
         if (menu) {
-          menu.addEventListener('mouseenter', () => {
+          menu.addEventListener("mouseenter", () => {
             if (timeout) clearTimeout(timeout);
           });
-          menu.addEventListener('mouseleave', () => {
+          menu.addEventListener("mouseleave", () => {
             closeMenu();
           });
         }
       }
 
       // Touch and click handling
-      trigger.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleMenu();
-      }, { passive: false });
+      trigger.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleMenu();
+        },
+        { passive: false },
+      );
 
-      trigger.addEventListener('click', (e) => {
+      trigger.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
         toggleMenu();
       });
 
       // Keyboard support
-      trigger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+      trigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           toggleMenu();
-        } else if (e.key === 'Escape') {
+        } else if (e.key === "Escape") {
           closeMenu();
           trigger.focus();
         }
@@ -250,37 +331,53 @@ const socialLinks = [
       });
     }
 
-    document.addEventListener('click', handleOutsideInteraction);
-    document.addEventListener('touchstart', handleOutsideInteraction, { passive: true });
+    document.addEventListener("click", handleOutsideInteraction);
+    document.addEventListener("touchstart", handleOutsideInteraction, {
+      passive: true,
+    });
 
     // Copy to clipboard with error handling
-    document.querySelectorAll('.email-copy-btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
+    document.querySelectorAll(".email-copy-btn").forEach((btn) => {
+      btn.addEventListener("click", async () => {
         try {
-          await navigator.clipboard.writeText('fabianmontoya2802@gmail.com');
-          btn.querySelector('.copy-icon')?.classList.add('hidden');
-          btn.querySelector('.check-icon')?.classList.remove('hidden');
+          await navigator.clipboard.writeText("fabianmontoya2802@gmail.com");
+          btn.querySelector(".copy-icon")?.classList.add("hidden");
+          btn.querySelector(".check-icon")?.classList.remove("hidden");
           setTimeout(() => {
-            btn.querySelector('.copy-icon')?.classList.remove('hidden');
-            btn.querySelector('.check-icon')?.classList.add('hidden');
+            btn.querySelector(".copy-icon")?.classList.remove("hidden");
+            btn.querySelector(".check-icon")?.classList.add("hidden");
           }, 2000);
         } catch (err) {
-          console.error('Failed to copy email:', err);
+          console.error("Failed to copy email:", err);
         }
       });
     });
   </script>
 
-  <div class="relative z-10 flex justify-center pb-8 sm:pb-10 md:pb-0 hidden md:flex">
+  <div
+    class="relative z-10 flex justify-center pb-8 sm:pb-10 md:pb-0 hidden md:flex"
+  >
     <a
       href="#experience"
       class="animate-on-scroll delay-400 rounded transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2"
       aria-label={t.nav.scroll}
     >
       <div class="flex flex-col items-center gap-2 text-brutalist-white">
-        <span class="text-xs font-medium tracking-[0.3em] uppercase">{t.nav.scroll}</span>
-        <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        <span class="text-xs font-medium tracking-[0.3em] uppercase"
+          >{t.nav.scroll}</span
+        >
+        <svg
+          class="size-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
       </div>
     </a>

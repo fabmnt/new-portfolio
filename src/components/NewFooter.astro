@@ -34,17 +34,38 @@ const currentYear = new Date().getFullYear();
       </p>
     </div>
 
-    <div class="animate-on-scroll delay-100 flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+    <div
+      class="animate-on-scroll delay-100 flex flex-col sm:flex-row items-center justify-center gap-6 mb-12"
+    >
       <a
         href="mailto:fabianmontoya2802@gmail.com"
         class="primary-metal-button inline-flex items-center gap-3 text-brutalist-white px-8 py-4 font-medium tracking-wider uppercase text-sm group"
       >
-        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <svg
+          class="size-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
         </svg>
         {t.footer.sendEmail}
-        <svg class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M7 17L17 7M17 7H7M17 7V17" />
+        <svg
+          class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d="M7 17L17 7M17 7H7M17 7V17"></path>
         </svg>
       </a>
 
@@ -54,7 +75,7 @@ const currentYear = new Date().getFullYear();
           target="_blank"
           rel="noopener noreferrer"
           class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
-          aria-label={`LinkedIn (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
+          aria-label={`LinkedIn (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
         >
           <LinkedInIcon class="!size-5" aria-hidden="true" />
         </a>
@@ -63,7 +84,7 @@ const currentYear = new Date().getFullYear();
           target="_blank"
           rel="noopener noreferrer"
           class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
-          aria-label={`X (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
+          aria-label={`X (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
         >
           <TwitterIcon class="!size-5" aria-hidden="true" />
         </a>
@@ -72,23 +93,30 @@ const currentYear = new Date().getFullYear();
           target="_blank"
           rel="noopener noreferrer"
           class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
-          aria-label={`GitHub (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
+          aria-label={`GitHub (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
         >
           <GithubIcon class="!size-5" aria-hidden="true" />
         </a>
       </div>
     </div>
 
-    <div class="animate-on-scroll delay-200 pt-8 border-t border-brutalist-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a 
+    <div
+      class="animate-on-scroll delay-200 pt-8 border-t border-brutalist-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
+    >
+      <a
         href="mailto:fabianmontoya2802@gmail.com"
         class="text-brutalist-white/40 text-sm font-light hover:text-brutalist-blue transition-colors"
       >
         fabianmontoya2802@gmail.com
       </a>
-      <p class="text-brutalist-white/40 text-sm font-light">
-        © {currentYear} Fabian Montoya. {t.footer.copyright}
-      </p>
+      <div class="flex flex-col items-center">
+        <p class="text-brutalist-white/40 text-sm font-light">
+          © {currentYear} Fabian Montoya. <br />
+        </p>
+        <span class="text-brutalist-white/40 text-sm font-light">
+          {t.footer.copyright}
+        </span>
+      </div>
     </div>
   </div>
 </footer>
