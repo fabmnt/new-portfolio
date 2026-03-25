@@ -1,8 +1,8 @@
 {
   "layout": {
     "siteName": "Fabian Montoya | Portafolio",
-    "siteTitle": "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA",
-    "siteDescription": "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.",
+    "siteTitle": "Fabian Montoya | Desarrollador Full Stack y RPA",
+    "siteDescription": "Portafolio de Fabian Montoya - Desarrollador Full Stack y RPA de Nicaragua. Especializado en tecnologías web y automatización.",
     "language": "Spanish"
   },
   "nav": {
@@ -10,22 +10,22 @@
   },
   "presentation": {
     "role": "Desarrollador Full Stack",
-    "tagline": "Diseño, desarrollo e implemento soluciones informáticas que permiten a empresas evolucionar.",
+    "tagline": "Desde elegantes sitios web para negocios hasta sistemas de información con integraciones de IA.",
     "downloadCV": "DESCARGAR CV"
   },
   "hero": {
-    "aboutMe": "Sobre mí",
-    "headline": "Convirtiendo ideas en",
-    "highlight": "experiencias",
-    "headlineSuffix": "digitales extraordinarias",
-    "description1": "Como ingeniero en sistemas con pasión por el desarrollo full stack, me especializo en crear soluciones tecnológicas que transforman la manera en que las empresas se conectan con sus usuarios.",
-    "description2": "Desde elegantes plataformas comerciales hasta complejos sistemas de inventario y facturación, cada proyecto es una oportunidad para innovar.",
-    "viewExperience": "Ver experiencia",
-    "viewProjects": "Ver proyectos",
+    "aboutMe": "Mis servicios",
+    "headline": "Realicemos tu proyecto digital",
+    "description1": "Llevemos a cabo el sitio web que impulsará tu negocio y te acompañará en tu crecimiento digital. Tus nuevos usuarios esperan conocerte y estás a un paso de conseguirlo.",
+    "viewExperience": "Mi experiencia",
+    "viewProjects": "Mis proyectos",
     "yearsExperience": "Años de experiencia",
-    "projectsCompleted": "Proyectos completados",
-    "mainTechnologies": "Tecnologías principales",
-    "commitment": "Compromiso"
+    "projectsCompleted": "Proyectos desplegados",
+    "promises": [
+      "Páginas de presentación de negocios, portafolios personales, blogs, noticieros y más.",
+      "Sistemas de venta de productos o prestación de servicios, inventarios, facturación y gestión de clientes.",
+      "Integración de chatbots con IA a tu sitio web para mejorar la experiencia de tus usuarios."
+    ]
   },
   "experience": {
     "title": "EXPERIENCIA",
@@ -50,7 +50,16 @@
     "title": "HABILIDADES",
     "subtitle": "Stack tecnológico",
     "description": "Tecnologías que domino y con las que construyo soluciones modernas y escalables",
-    "tools": ["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"]
+    "tools": [
+      "Node.js",
+      "TanStack Query",
+      "RxJS",
+      "Tailwind CSS",
+      "Git",
+      "REST APIs",
+      "SQL",
+      "MongoDB"
+    ]
   },
   "studies": {
     "title": "ESTUDIOS Y",

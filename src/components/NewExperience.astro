@@ -17,58 +17,64 @@ interface Experience {
   description: string[];
 }
 
-const experiences: Experience[] = locale === "en" ? [
-  {
-    company: "Roca Company Solutions",
-    companyUrl: "https://rocacompanysolution.wordpress.com/",
-    period: "April 2025 - July 2025",
-    role: "Frontend Web Developer",
-    description: [
-      "Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.",
-      "Scalable system to render large amounts of information in tables efficiently.",
-      "Migration from Google Spreadsheets to a unified system.",
-    ],
-  },
-  {
-    company: "Dentalrobot.ai",
-    companyUrl: "https://www.dentalrobot.ai",
-    period: "October 2022 - Present",
-    role: "Full Stack Developer & RPA",
-    description: [
-      "Form editor exportable to MS Word and Google Docs for audits.",
-      "Leadership in parallelizing RPA executions, drastically reducing execution times.",
-      "Developer of RPA robots for patient verification automation.",
-      "Maintenance of the company's main Angular system.",
-    ],
-  },
-] : [
-  {
-    company: "Roca Company Solutions",
-    companyUrl: "https://rocacompanysolution.wordpress.com/",
-    period: "Abril 2025 - Julio 2025",
-    role: "Desarrollador web frontend",
-    description: [
-      "Diseño, arquitectura y desarrollo del primer sistema informático de la empresa con React + Vite, Shadcn UI y TanStack.",
-      "Sistema escalable para renderizar gran cantidad de información en tablas de manera eficiente.",
-      "Migración de hojas de cálculo Google Spreadsheets a un sistema unificado.",
-    ],
-  },
-  {
-    company: "Dentalrobot.ai",
-    companyUrl: "https://www.dentalrobot.ai",
-    period: "Octubre 2022 - Presente",
-    role: "Full Stack Developer & RPA",
-    description: [
-      "Editor de formularios exportables a MS Word y Google Docs para auditorías.",
-      "Liderazgo en paralelización de ejecuciones RPA, reduciendo drásticamente tiempos de ejecución.",
-      "Desarrollador de robots RPA para automatización de verificaciones de pacientes.",
-      "Mantenimiento del sistema principal Angular de la empresa.",
-    ],
-  },
-];
+const experiences: Experience[] =
+  locale === "en"
+    ? [
+        {
+          company: "Roca Company Solutions",
+          companyUrl: "https://rocacompanysolution.wordpress.com/",
+          period: "April 2025 - July 2025",
+          role: "Frontend Web Developer",
+          description: [
+            "Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.",
+            "Scalable system to render large amounts of information in tables efficiently.",
+            "Migration from Google Spreadsheets to a unified system.",
+          ],
+        },
+        {
+          company: "Dentalrobot.ai",
+          companyUrl: "https://www.dentalrobot.ai",
+          period: "October 2022 - Present",
+          role: "Full Stack Developer & RPA",
+          description: [
+            "Form editor exportable to MS Word and Google Docs for audits.",
+            "Leadership in parallelizing RPA executions, drastically reducing execution times.",
+            "Developer of RPA robots for patient verification automation.",
+            "Maintenance of the company's main Angular system.",
+          ],
+        },
+      ]
+    : [
+        {
+          company: "Roca Company Solutions",
+          companyUrl: "https://rocacompanysolution.wordpress.com/",
+          period: "Abril 2025 - Julio 2025",
+          role: "Desarrollador web frontend",
+          description: [
+            "Diseño, arquitectura y desarrollo del primer sistema informático de la empresa con React + Vite, Shadcn UI y TanStack.",
+            "Sistema escalable para renderizar gran cantidad de información en tablas de manera eficiente.",
+            "Migración de hojas de cálculo Google Spreadsheets a un sistema unificado.",
+          ],
+        },
+        {
+          company: "Dentalrobot.ai",
+          companyUrl: "https://www.dentalrobot.ai",
+          period: "Octubre 2022 - Presente",
+          role: "Full Stack Developer & RPA",
+          description: [
+            "Editor de formularios exportables a MS Word y Google Docs para auditorías.",
+            "Liderazgo en paralelización de ejecuciones RPA, reduciendo drásticamente tiempos de ejecución.",
+            "Desarrollador de robots RPA para automatización de verificaciones de pacientes.",
+            "Mantenimiento del sistema principal Angular de la empresa.",
+          ],
+        },
+      ];
 ---
 
-<section id="experience" class="relative py-14 sm:py-20 md:py-24 overflow-hidden">
+<section
+  id="experience"
+  class="relative py-14 sm:py-20 md:py-24 overflow-hidden"
+>
   <div class="absolute inset-0 bg-brutalist-black"></div>
   <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
   <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
@@ -77,59 +83,89 @@ const experiences: Experience[] = locale === "en" ? [
 
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
     <div class="animate-on-scroll mb-16 text-center sm:text-left">
-      <span class="inline-block text-center sm:text-left text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-2">
+      <span
+        class="inline-block text-center sm:text-left text-brutalist-white text-xs font-medium tracking-[0.3em] uppercase mb-2"
+      >
         {t.experience.subtitle}
       </span>
       <h2
         class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-brutalist-white title-fade"
         data-title={`${t.experience.title} ${t.experience.highlight}`}
       >
-        {t.experience.title} {t.experience.highlight}
+        {t.experience.title}
+        {t.experience.highlight}
       </h2>
       <div class="title-rule mt-3 w-full h-1"></div>
     </div>
 
     <div class="relative space-y-8 sm:space-y-12 lg:space-y-16">
-      {experiences.map((exp, index) => (
-        <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : ''}`}>
-          <div class="relative z-10 flex flex-col gap-4 lg:items-start">
-            <div class="flex items-center gap-2 flex-row">
-              <div class="flex flex-col">
-                <span class="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/50">
-                  {exp.period}
-                </span>
-                <a
-                  href={exp.companyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${locale === 'es' ? 'Visitar' : 'Visit'} ${exp.company} (${locale === 'es' ? 'abre en nueva pestaña' : 'opens in new tab'})`}
-                  class="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
-                >
-                  <span class="text-lg font-medium sm:text-xl">{exp.company}</span>
-                  <svg class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </a>
+      {
+        experiences.map((exp, index) => (
+          <div class={`animate-on-scroll ${index === 1 ? "delay-100" : ""}`}>
+            <div class="relative z-10 flex flex-col gap-4 lg:items-start">
+              <div class="flex items-center gap-2 flex-row">
+                <div class="flex flex-col">
+                  <span class="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/50">
+                    {exp.period}
+                  </span>
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${locale === "es" ? "Visitar" : "Visit"} ${exp.company} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+                    class="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
+                  >
+                    <span class="text-lg font-medium sm:text-xl">
+                      {exp.company}
+                    </span>
+                    <svg
+                      class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width={2}
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                class="subtle-hover-card w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6"
+                data-hover-light
+              >
+                <ul class="relative z-10 space-y-4">
+                  {exp.description.map((item, itemIndex) => (
+                    <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/85">
+                      <span class="text-brutalist-white mt-1.5 flex-shrink-0">
+                        <svg
+                          class="size-3"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-
-            <div class="w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6">
-              <ul class="space-y-4">
-                {exp.description.map((item, itemIndex) => (
-                  <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/85">
-                    <span class="text-brutalist-white mt-1.5 flex-shrink-0">
-                      <svg class="size-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
+
 </section>

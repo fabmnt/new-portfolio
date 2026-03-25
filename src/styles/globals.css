@@ -290,4 +290,73 @@
   .secondary-metal-button:hover::after {
     opacity: 1;
   }
+
+  .subtle-hover-card {
+    --hover-x: 50%;
+    --hover-y: 0%;
+    --hover-card-glow: rgb(29 161 242 / 0.14);
+    --hover-card-soft: rgb(29 161 242 / 0.06);
+    --hover-card-highlight: rgb(255 255 255 / 0.14);
+    --hover-card-border: rgb(29 161 242 / 0.22);
+    --hover-card-shadow: rgb(29 161 242 / 0.28);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      border-color 0.32s ease,
+      background-color 0.32s ease,
+      box-shadow 0.32s ease;
+  }
+
+  .subtle-hover-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle 180px at var(--hover-x) var(--hover-y),
+      var(--hover-card-glow) 0%,
+      var(--hover-card-soft) 24%,
+      transparent 72%
+    );
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .subtle-hover-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: radial-gradient(
+      circle 130px at var(--hover-x) var(--hover-y),
+      var(--hover-card-highlight) 0%,
+      transparent 62%
+    );
+    opacity: 0;
+    transition: opacity 0.32s ease;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .subtle-hover-card:hover,
+  .subtle-hover-card[data-touch-active="true"] {
+    border-color: var(--hover-card-border);
+    background-color: rgb(255 255 255 / 0.07);
+    box-shadow: 0 18px 36px -26px var(--hover-card-shadow);
+  }
+
+  .subtle-hover-card:hover::before,
+  .subtle-hover-card:hover::after,
+  .subtle-hover-card[data-touch-active="true"]::before,
+  .subtle-hover-card[data-touch-active="true"]::after {
+    opacity: 1;
+  }
+
+  .subtle-hover-card:hover::before,
+  .subtle-hover-card[data-touch-active="true"]::before {
+    transform: scale(1);
+  }
 }

@@ -1,8 +1,8 @@
 {
   "layout": {
     "siteName": "Fabian Montoya | Portfolio",
-    "siteTitle": "Fabian Montoya | Full Stack Developer & RPA Engineer",
-    "siteDescription": "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in React, Angular, TypeScript, Node.js and automation solutions.",
+    "siteTitle": "Fabian Montoya | Full Stack Developer & RPA",
+    "siteDescription": "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in web technologies and automation.",
     "language": "English"
   },
   "nav": {
@@ -10,22 +10,22 @@
   },
   "presentation": {
     "role": "Full Stack Developer",
-    "tagline": "I design, develop and implement IT solutions that enable companies to evolve.",
+    "tagline": "From elegant business websites to information systems with AI integrations.",
     "downloadCV": "DOWNLOAD CV"
   },
   "hero": {
-    "aboutMe": "About me",
-    "headline": "Turning ideas into extraordinary digital",
-    "highlight": "experiences",
-    "headlineSuffix": "",
-    "description1": "As a systems engineer with a passion for full stack development, I specialize in creating technological solutions that transform the way companies connect with their users.",
-    "description2": "From elegant commercial platforms to complex inventory and billing systems, each project is an opportunity to innovate.",
-    "viewExperience": "View experience",
-    "viewProjects": "View projects",
+    "aboutMe": "My services",
+    "headline": "Let's make your digital project happen",
+    "description1": "Let's build the website that will boost your business and accompany you in your digital growth. Your new users expect to meet you and you're one step away from achieving it.",
+    "viewExperience": "My experience",
+    "viewProjects": "My projects",
     "yearsExperience": "Years of experience",
-    "projectsCompleted": "Projects completed",
-    "mainTechnologies": "Main technologies",
-    "commitment": "Commitment"
+    "projectsCompleted": "Deployed projects",
+    "promises": [
+      "Business landing pages, personal portfolios, blogs, news sites and more.",
+      "Product sales or service provision systems, inventory, billing and customer management.",
+      "AI chatbot integration on your website to improve your users' experience."
+    ]
   },
   "experience": {
     "title": "WORK",
