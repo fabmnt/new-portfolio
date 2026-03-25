@@ -38,11 +38,11 @@
         "role": "Frontend Web Developer",
         "description": "I developed the frontend for the company's first internal system, enabling an easy migration from spreadsheet-based workflows while maintaining compatibility with XLSX and PDF exports.",
         "achievements": [
-          "Designed pages, tables, and modules that were visually appealing, accessible, and tailored to the type of user the system was built for.",
-          "Implemented fully customizable and flexible tables, allowing users to choose what information to display and how to display it.",
-          "Developed step-by-step forms that made data entry easier for users.",
-          "Integrated robust validations and rules to ensure the quality and integrity of the data entered by users.",
-          "Built report and invoice export processes for PDF and XLSX formats."
+          "Designed pages, tables, and modules that were visually appealing, accessible, and tailored to the type of user the system was built for. Technologies used: React, Tailwind CSS, shadcn-ui, react-aria.",
+          "Implemented fully customizable and flexible tables, allowing users to choose what information to display and how to display it. Technologies used: Tanstack Table",
+          "Developed step-by-step forms that made data entry easier for users. Technologies used: Tanstack Form, zustand.",
+          "Integrated robust validations and rules to ensure the quality and integrity of the data entered by users. Technologies used: Zod, Tanstack Form.",
+          "Built report and invoice export processes for PDF and XLSX formats. Technologies used: jsPDF, XLSXjs."
         ]
       },
       {

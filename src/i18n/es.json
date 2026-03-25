@@ -38,11 +38,11 @@
         "role": "Desarrollador Web Frontend",
         "description": "Desarrollé el frontend del primer sistema interno de la empresa, integrando una fácil migración de sus procesos en hojas de cálculo manteniendo compatibilidad con exportaciones a formatos XSLX y PDF.",
         "achievements": [
-          "Diseño de páginas, tablas y módulos visualmente atractivos y accesibles, los cuales se acomodaron al tipo de usuario al cual iba dirigido el sistema.",
-          "Implementación de tablas totalmente personalizables y flexibles, el usuario elige qué información mostrar y cómo mostrarla.",
-          "Desarrollo de formularios de tipo paso a paso, facilitando la introducción de información a los usuarios",
-          "Integración de validaciones y reglas robustas para garantizar la calidad e integridad de los datos introducidos por los usuarios.",
-          "Procesos de exportación de reportes y facturas a formatos PDF y XLSX."
+          "Diseño de páginas, tablas y módulos visualmente atractivos y accesibles, los cuales se acomodaron al tipo de usuario al cual iba dirigido el sistema. Tecnologías usadas: React, Tailwind CSS, shadcn-ui, react-aria.",
+          "Implementación de tablas totalmente personalizables y flexibles, el usuario elige qué información mostrar y cómo mostrarla. Tecnologías usadas: Tanstack Table",
+          "Desarrollo de formularios de tipo paso a paso, facilitando la introducción de información a los usuarios. Tecnologías usadas: Tanstack Form, zustand.",
+          "Integración de validaciones y reglas robustas para garantizar la calidad e integridad de los datos introducidos por los usuarios. Tecnologías usadas: Zod, Tanstack Form.",
+          "Procesos de exportación de reportes y facturas a formatos PDF y XLSX. Tecnologías usadas: jsPDF, XLSXjs."
         ]
       },
       {
@@ -54,7 +54,7 @@
         "achievements": [
           "Desarrollé un editor de documentos en línea basado en tablas y marcadores (bookmarks), con funciones exportables a MS Word y Google Docs. Tecnologías usadas: TypeScript, Angular, RxJs.",
           "Contribuí al desarrollo de un sistema de gestión de datos estilo hoja de cálculo, el cual permite el fácil acceso y modificación a las verificaciones de pacientes. Tecnologías usadas: TypeScript, Angular, RxJs.",
-          "Implementación de un sistema de paralelización de procesos RPA, reduciendo drásticamente tiempos de ejecución manteniendo el uso de recursos de cómputo al mínimo. Tecncologías usadas: Python.",
+          "Implementación de un sistema de paralelización de procesos RPA, reduciendo drásticamente tiempos de ejecución manteniendo el uso de recursos de cómputo al mínimo. Tecnologías usadas: Python.",
           "Desarrollador de robots RPA para automatización de verificaciones de pacientes y módulos externos para la plataforma Rocketbot.",
           "Realicé una extensa investigación sobre nlp y machine learning en pequeña escala para extracción de información de verificaciones de documentos PDF, con el fin de automatizar la extracción de datos del paciente de documentos. Tecnologías usadas: Python, spaCy, pydantic, pdfplumber."
         ]
