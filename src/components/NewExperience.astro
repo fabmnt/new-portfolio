@@ -1,4 +1,5 @@
 ---
+import HoverLightScript from "./HoverLightScript.astro";
 import type { TranslationKeys } from "@/i18n";
 import { getTranslations } from "@/i18n";
 
@@ -136,8 +137,11 @@ const experiences: Experience[] =
                 </div>
               </div>
 
-              <div class="w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6">
-                <ul class="space-y-4">
+              <div
+                class="subtle-hover-card w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6"
+                data-hover-light
+              >
+                <ul class="relative z-10 space-y-4">
                   {exp.description.map((item, itemIndex) => (
                     <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/85">
                       <span class="text-brutalist-white mt-1.5 flex-shrink-0">
@@ -164,4 +168,6 @@ const experiences: Experience[] =
       }
     </div>
   </div>
+
+  <HoverLightScript />
 </section>
