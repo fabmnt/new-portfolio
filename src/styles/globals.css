@@ -169,9 +169,9 @@
       rgb(250 250 250 / 0.58) 78%,
       rgb(250 250 250 / 0) 100%
     );
-    opacity: 0.6;
-    filter: blur(4px);
-    transform: translateY(3px) scaleX(1);
+    opacity: 0.45;
+    filter: blur(2px);
+    transform: translateY(1px) scaleX(1);
     transform-origin: left center;
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     -webkit-mask-image: linear-gradient(
@@ -194,7 +194,7 @@
   }
 
   .animate-on-scroll .title-rule::after {
-    transform: translateY(3px) scaleX(0);
+    transform: translateY(1px) scaleX(0);
   }
 
   .animate-on-scroll.is-visible .title-rule::before {
@@ -202,7 +202,7 @@
   }
 
   .animate-on-scroll.is-visible .title-rule::after {
-    transform: translateY(3px) scaleX(1);
+    transform: translateY(1px) scaleX(1);
   }
 
   .no-js .title-rule::before,
@@ -212,7 +212,7 @@
 
   .no-js .title-rule::after,
   .animate-on-scroll.no-animation .title-rule::after {
-    transform: translateY(3px) scaleX(1);
+    transform: translateY(1px) scaleX(1);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -221,7 +221,7 @@
     }
 
     .title-rule::after {
-      transform: translateY(3px) scaleX(1);
+      transform: translateY(1px) scaleX(1);
     }
   }
 
@@ -354,11 +354,11 @@
   .subtle-hover-card {
     --hover-x: 50%;
     --hover-y: 0%;
-    --hover-card-glow: rgb(255 255 255 / 0.14);
-    --hover-card-soft: rgb(255 255 255 / 0.06);
-    --hover-card-highlight: rgb(255 255 255 / 0.14);
-    --hover-card-border: rgb(255 255 255 / 0.22);
-    --hover-card-shadow: rgb(255 255 255 / 0.28);
+    --hover-card-glow: rgb(255 255 255 / 0.08);
+    --hover-card-soft: rgb(255 255 255 / 0.035);
+    --hover-card-highlight: rgb(255 255 255 / 0.08);
+    --hover-card-border: rgb(255 255 255 / 0.16);
+    --hover-card-shadow: rgb(255 255 255 / 0.18);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -375,8 +375,8 @@
     background: radial-gradient(
       circle 180px at var(--hover-x) var(--hover-y),
       var(--hover-card-glow) 0%,
-      var(--hover-card-soft) 24%,
-      transparent 72%
+      var(--hover-card-soft) 20%,
+      transparent 64%
     );
     opacity: 0;
     transform: scale(0.96);
@@ -392,7 +392,7 @@
     background: radial-gradient(
       circle 130px at var(--hover-x) var(--hover-y),
       var(--hover-card-highlight) 0%,
-      transparent 62%
+      transparent 54%
     );
     opacity: 0;
     transition: opacity 0.32s ease;
@@ -404,8 +404,8 @@
   .subtle-hover-card:hover,
   .subtle-hover-card[data-touch-active="true"] {
     border-color: var(--hover-card-border);
-    background-color: rgb(255 255 255 / 0.07);
-    box-shadow: 0 18px 36px -26px var(--hover-card-shadow);
+    background-color: rgb(255 255 255 / 0.055);
+    box-shadow: 0 16px 30px -26px var(--hover-card-shadow);
   }
 
   .subtle-hover-card:hover::before,

@@ -7,67 +7,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getTranslations(locale);
-
-interface Experience {
-  company: string;
-  companyUrl: string;
-  period: string;
-  role: string;
-  description: string[];
-}
-
-const experiences: Experience[] =
-  locale === "en"
-    ? [
-        {
-          company: "Roca Company Solutions",
-          companyUrl: "https://rocacompanysolution.wordpress.com/",
-          period: "April 2025 - July 2025",
-          role: "Frontend Web Developer",
-          description: [
-            "Design, architecture and development of the company's first computer system with React + Vite, Shadcn UI and TanStack.",
-            "Scalable system to render large amounts of information in tables efficiently.",
-            "Migration from Google Spreadsheets to a unified system.",
-          ],
-        },
-        {
-          company: "Dentalrobot.ai",
-          companyUrl: "https://www.dentalrobot.ai",
-          period: "October 2022 - Present",
-          role: "Full Stack Developer & RPA",
-          description: [
-            "Form editor exportable to MS Word and Google Docs for audits.",
-            "Leadership in parallelizing RPA executions, drastically reducing execution times.",
-            "Developer of RPA robots for patient verification automation.",
-            "Maintenance of the company's main Angular system.",
-          ],
-        },
-      ]
-    : [
-        {
-          company: "Roca Company Solutions",
-          companyUrl: "https://rocacompanysolution.wordpress.com/",
-          period: "Abril 2025 - Julio 2025",
-          role: "Desarrollador web frontend",
-          description: [
-            "Diseño, arquitectura y desarrollo del primer sistema informático de la empresa con React + Vite, Shadcn UI y TanStack.",
-            "Sistema escalable para renderizar gran cantidad de información en tablas de manera eficiente.",
-            "Migración de hojas de cálculo Google Spreadsheets a un sistema unificado.",
-          ],
-        },
-        {
-          company: "Dentalrobot.ai",
-          companyUrl: "https://www.dentalrobot.ai",
-          period: "Octubre 2022 - Presente",
-          role: "Full Stack Developer & RPA",
-          description: [
-            "Editor de formularios exportables a MS Word y Google Docs para auditorías.",
-            "Liderazgo en paralelización de ejecuciones RPA, reduciendo drásticamente tiempos de ejecución.",
-            "Desarrollador de robots RPA para automatización de verificaciones de pacientes.",
-            "Mantenimiento del sistema principal Angular de la empresa.",
-          ],
-        },
-      ];
+const experiences = t.experience.items;
 ---
 
 <section
@@ -88,7 +28,10 @@ const experiences: Experience[] =
       >
         {t.experience.title}
       </h2>
-      <div class="title-rule mt-3 w-full h-1"></div>
+      <div class="title-rule mt-3 w-full h-[2px] text-brutalist-white/85"></div>
+      <p class="mt-4">
+        {t.experience.description}
+      </p>
     </div>
 
     <div class="relative space-y-8 sm:space-y-12 lg:space-y-16">
@@ -96,11 +39,17 @@ const experiences: Experience[] =
         experiences.map((exp, index) => (
           <div class={`animate-on-scroll ${index === 1 ? "delay-100" : ""}`}>
             <div class="relative z-10 flex flex-col gap-4 lg:items-start">
-              <div class="flex items-center gap-2 flex-row">
-                <div class="flex flex-col">
-                  <span class="text-xs font-medium tracking-[0.2em] uppercase text-brutalist-white/50">
+              <div class="flex items-center gap-2 flex-col lg:flex-row justify-between w-full">
+                <div class="flex flex-col items-center lg:items-start">
+                  <span class="text-xs font-medium uppercase text-brutalist-white/85">
                     {exp.period}
                   </span>
+
+                  <span class="text-sm font-normal text-brutalist-white/85">
+                    {exp.role}
+                  </span>
+                </div>
+                <div>
                   <a
                     href={exp.companyUrl}
                     target="_blank"
@@ -108,9 +57,7 @@ const experiences: Experience[] =
                     aria-label={`${locale === "es" ? "Visitar" : "Visit"} ${exp.company} (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
                     class="inline-flex items-center gap-1 text-brutalist-white hover:text-brutalist-blue transition-colors group"
                   >
-                    <span class="text-lg font-medium sm:text-xl">
-                      {exp.company}
-                    </span>
+                    <span class="text-lg">{exp.company}</span>
                     <svg
                       class="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
                       fill="none"
@@ -133,26 +80,31 @@ const experiences: Experience[] =
                 class="subtle-hover-card w-full border border-brutalist-white/10 bg-brutalist-white/5 p-5 backdrop-blur-sm sm:p-6"
                 data-hover-light
               >
-                <ul class="relative z-10 space-y-4">
-                  {exp.description.map((item, itemIndex) => (
-                    <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/85">
-                      <span class="text-brutalist-white mt-1.5 flex-shrink-0">
-                        <svg
-                          class="size-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <div class="relative z-10 space-y-4">
+                  <p class="text-sm font-light leading-relaxed text-brutalist-white/85">
+                    {exp.description}
+                  </p>
+                  <ul class="space-y-4">
+                    {exp.achievements.map((item) => (
+                      <li class="flex gap-3 text-sm font-light leading-relaxed text-brutalist-white/85">
+                        <span class="text-brutalist-white mt-1.5 flex-shrink-0">
+                          <svg
+                            class="size-3"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

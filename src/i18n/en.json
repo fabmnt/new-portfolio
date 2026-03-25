@@ -18,7 +18,7 @@
     "headline": "Let's make your digital project happen",
     "description1": "Let's build the website that will boost your business and accompany you in your digital growth. Your new users expect to meet you and you're one step away from achieving it.",
     "viewExperience": "My experience",
-    "viewProjects": "My projects",
+    "viewSkills": "My skills",
     "yearsExperience": "Years of experience",
     "projectsCompleted": "Deployed projects",
     "promises": [
@@ -28,14 +28,43 @@
     ]
   },
   "experience": {
-    "title": "PROFESSIONAL CAREER"
+    "title": "PROFESSIONAL CAREER",
+    "description": "Explore my professional experience and see how I have applied my skills in professional environments by optimizing processes, streamlining information management, and improving user experiences.",
+    "items": [
+      {
+        "company": "Roca Company Solutions",
+        "companyUrl": "https://rocacompanysolution.wordpress.com/",
+        "period": "April 2025 - March 2025",
+        "role": "Frontend Web Developer",
+        "description": "I developed the frontend for the company's first internal system, enabling an easy migration from spreadsheet-based workflows while maintaining compatibility with XLSX and PDF exports.",
+        "achievements": [
+          "Designed pages, tables, and modules that were visually appealing, accessible, and tailored to the type of user the system was built for.",
+          "Implemented fully customizable and flexible tables, allowing users to choose what information to display and how to display it.",
+          "Developed step-by-step forms that made data entry easier for users.",
+          "Integrated robust validations and rules to ensure the quality and integrity of the data entered by users.",
+          "Built report and invoice export processes for PDF and XLSX formats."
+        ]
+      },
+      {
+        "company": "Dentalrobot.ai",
+        "companyUrl": "https://www.dentalrobot.ai",
+        "period": "October 2022 - Present",
+        "role": "Full Stack Developer & RPA",
+        "description": "I contributed to frontend projects that improved and streamlined workflows across different areas of the company, maintained the main management and organization system, and developed RPA robots and external modules for the Rocketbot platform.",
+        "achievements": [
+          "Developed an online document editor based on tables and bookmarks, with export features for MS Word and Google Docs. Technologies used: TypeScript, Angular, RxJS.",
+          "Contributed to the development of a spreadsheet-style data management system that allows easy access to and editing of patient verifications. Technologies used: TypeScript, Angular, RxJS.",
+          "Implemented an RPA process parallelization system, drastically reducing execution times while keeping compute resource usage to a minimum. Technologies used: Python.",
+          "Developed RPA robots for automating patient verifications and external modules for the Rocketbot platform.",
+          "Conducted extensive research on NLP and small-scale machine learning for extracting information from PDF verification documents, with the goal of automating the extraction of patient data from documents. Technologies used: Python, spaCy, Pydantic, pdfplumber."
+        ]
+      }
+    ]
   },
   "projects": {
-    "title": "FEATURED",
-    "highlight": "PROJECTS",
-    "subtitle": "Portfolio showcase",
-    "public": "PUBLIC",
-    "private": "PRIVATE",
+    "title": "PROJECTS",
+    "highlight": "FEATURED",
+    "description": "My projects, tools and information systems that I have developed for clients and for myself, with modern and scalable technologies. Some are being used by thousands of users, others are tools that have helped me improve my productivity and learn new technologies.",
     "code": "Code",
     "visit": "Visit",
     "items": {
@@ -48,11 +77,25 @@
     "title": "SKILLS",
     "subtitle": "Tech stack",
     "description": "Technologies I master and with which I build modern and scalable solutions",
+    "showMore": "Show more skills",
+    "agents": {
+      "title": "My agents",
+      "description": "Specialized AI agents I use to accelerate research, implementation, and developer workflows.",
+      "label": "AI Agent",
+      "badge": "Active stack"
+    },
     "tools": [
       "Node.js",
       "TanStack Query",
+      "TanStack Table",
+      "TanStack Router",
+      "React Router",
       "RxJS",
+      "GitHub",
+      "GitHub Actions",
+      "shadcn-ui",
       "Tailwind CSS",
+      "Vite",
       "Git",
       "REST APIs",
       "SQL",

@@ -18,7 +18,7 @@
     "headline": "Realicemos tu proyecto digital",
     "description1": "Llevemos a cabo el sitio web que impulsará tu negocio y te acompañará en tu crecimiento digital. Tus nuevos usuarios esperan conocerte y estás a un paso de conseguirlo.",
     "viewExperience": "Mi experiencia",
-    "viewProjects": "Mis proyectos",
+    "viewSkills": "Mis habilidades",
     "yearsExperience": "Años de experiencia",
     "projectsCompleted": "Proyectos desplegados",
     "promises": [
@@ -28,14 +28,43 @@
     ]
   },
   "experience": {
-    "title": "TRAYECTORIA PROFESIONAL"
+    "title": "TRAYECTORIA PROFESIONAL",
+    "description": "Recorre mi experiencia laboral y ve cómo he aplicado mis habilidades en ambientes profesionales optimizando procesos, facilitando la gestión de información y mejorando la experiencia de los usuarios.",
+    "items": [
+      {
+        "company": "Roca Company Solutions",
+        "companyUrl": "https://rocacompanysolution.wordpress.com/",
+        "period": "Abril 2025 - Marzo 2025",
+        "role": "Desarrollador Web Frontend",
+        "description": "Desarrollé el frontend del primer sistema interno de la empresa, integrando una fácil migración de sus procesos en hojas de cálculo manteniendo compatibilidad con exportaciones a formatos XSLX y PDF.",
+        "achievements": [
+          "Diseño de páginas, tablas y módulos visualmente atractivos y accesibles, los cuales se acomodaron al tipo de usuario al cual iba dirigido el sistema.",
+          "Implementación de tablas totalmente personalizables y flexibles, el usuario elige qué información mostrar y cómo mostrarla.",
+          "Desarrollo de formularios de tipo paso a paso, facilitando la introducción de información a los usuarios",
+          "Integración de validaciones y reglas robustas para garantizar la calidad e integridad de los datos introducidos por los usuarios.",
+          "Procesos de exportación de reportes y facturas a formatos PDF y XLSX."
+        ]
+      },
+      {
+        "company": "Dentalrobot.ai",
+        "companyUrl": "https://www.dentalrobot.ai",
+        "period": "Octubre 2022 - Presente",
+        "role": "Desarrollador Full Stack y RPA",
+        "description": "Contribuí con el desarrollo de proyectos frontend que mejoraron y facilitaron los flujos de trabajo de distintas áreas de la empresa, doy mantenimiento al sistema principal de gestión y organización de la empresa y desarrollé robots RPA y módulos externos para la plataforma Rocketbot.",
+        "achievements": [
+          "Desarrollé un editor de documentos en línea basado en tablas y marcadores (bookmarks), con funciones exportables a MS Word y Google Docs. Tecnologías usadas: TypeScript, Angular, RxJs.",
+          "Contribuí al desarrollo de un sistema de gestión de datos estilo hoja de cálculo, el cual permite el fácil acceso y modificación a las verificaciones de pacientes. Tecnologías usadas: TypeScript, Angular, RxJs.",
+          "Implementación de un sistema de paralelización de procesos RPA, reduciendo drásticamente tiempos de ejecución manteniendo el uso de recursos de cómputo al mínimo. Tecncologías usadas: Python.",
+          "Desarrollador de robots RPA para automatización de verificaciones de pacientes y módulos externos para la plataforma Rocketbot.",
+          "Realicé una extensa investigación sobre nlp y machine learning en pequeña escala para extracción de información de verificaciones de documentos PDF, con el fin de automatizar la extracción de datos del paciente de documentos. Tecnologías usadas: Python, spaCy, pydantic, pdfplumber."
+        ]
+      }
+    ]
   },
   "projects": {
     "title": "PROYECTOS",
     "highlight": "DESTACADOS",
-    "subtitle": "Portfolio showcase",
-    "public": "PÚBLICO",
-    "private": "PRIVADO",
+    "description": "Mis proyectos, herramientas y sistemas informáticos que he desarrollado para clientes y para mí, con tecnologías modernas y escalables. Algunos están siendo usados por miles de usuarios, otros son herramientas que me han ayudado a mejorar mi productividad y a aprender nuevas tecnologías.",
     "code": "Código",
     "visit": "Visitar",
     "items": {
@@ -48,11 +77,25 @@
     "title": "HABILIDADES TÉCNICAS",
     "subtitle": "Stack tecnológico",
     "description": "Tecnologías que domino y con las que construyo soluciones modernas y escalables",
+    "showMore": "Mostrar más habilidades",
+    "agents": {
+      "title": "Mis agentes",
+      "description": "Agentes de IA especializados que utilizo para acelerar investigación, implementación y flujos de trabajo de desarrollo.",
+      "label": "Agente IA",
+      "badge": "Stack activo"
+    },
     "tools": [
       "Node.js",
       "TanStack Query",
+      "TanStack Table",
+      "TanStack Router",
+      "React Router",
       "RxJS",
+      "GitHub",
+      "GitHub Actions",
+      "shadcn-ui",
       "Tailwind CSS",
+      "Vite",
       "Git",
       "REST APIs",
       "SQL",
@@ -65,7 +108,7 @@
     "subtitle": "Formación académica"
   },
   "footer": {
-    "title": "¿Trabajamos juntos?",
+    "title": "Trabajemos juntos",
     "description": "Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.",
     "sendEmail": "Enviar correo",
     "copyright": "Todos los derechos reservados."

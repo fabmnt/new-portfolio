@@ -2,7 +2,10 @@
 import AstroIcon from "@/assets/icons/AstroIcon.astro";
 import ReactIcon from "@/assets/icons/ReactIcon.astro";
 import AngularIcon from "@/assets/icons/AngularIcon.astro";
+import ClaudeIcon from "@/assets/icons/ClaudeIcon.astro";
+import CodexIcon from "@/assets/icons/CodexIcon.astro";
 import NextJsIcon from "@/assets/icons/NextJsIcon.astro";
+import OpencodeIcon from "@/assets/icons/OpencodeIcon.astro";
 import TypeScriptIcon from "@/assets/icons/TypeScriptIcon.astro";
 import PythonIcon from "@/assets/icons/PythonIcon.astro";
 import type { TranslationKeys } from "@/i18n";
@@ -23,9 +26,18 @@ const skills = [
   { name: "TypeScript", color: "#3178c6", Icon: TypeScriptIcon },
   { name: "Python", color: "#4584b6", Icon: PythonIcon },
 ];
+
+const agents = [
+  { name: "Codex", color: "#6E7BFF", Icon: CodexIcon },
+  { name: "Claude", color: "#D97757", Icon: ClaudeIcon },
+  { name: "OpenCode", color: "#F3F4F6", Icon: OpencodeIcon },
+];
 ---
 
-<section id="skills" class="relative py-14 sm:py-20 md:py-24 lg:py-20 overflow-hidden">
+<section
+  id="skills"
+  class="relative py-14 sm:py-20 md:py-24 lg:py-20 overflow-hidden"
+>
   <div class="absolute inset-0 bg-brutalist-black"></div>
   <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
   <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
@@ -41,7 +53,7 @@ const skills = [
         {t.skills.title}
       </h2>
       <div class="title-rule mt-3 w-full h-1"></div>
-      <p class="mt-4 text-brutalist-white/80 font-light max-w-2xl mx-auto">
+      <p class="mt-4 text-brutalist-white/80">
         {t.skills.description}
       </p>
     </div>
@@ -74,19 +86,85 @@ const skills = [
       }
     </div>
 
-    <div
-      class="animate-on-scroll delay-300 mt-16 flex flex-wrap justify-center gap-4"
+    <details
+      class="animate-on-scroll delay-300 mt-10 skill-tools-disclosure group"
     >
-      {
-        t.skills.tools.map((tool) => (
-          <span
-            class="secondary-skill-badge px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/85 text-xs font-medium tracking-wider uppercase"
-            data-hover-light
-          >
-            <span class="secondary-skill-badge__label">{tool}</span>
-          </span>
-        ))
-      }
+      <summary class="skill-tools-summary">
+        <span>{t.skills.showMore}</span>
+        <svg
+          class="skill-tools-summary__icon size-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width={2}
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </summary>
+
+      <div class="skill-tools-panel">
+        {
+          t.skills.tools.map((tool) => (
+            <span
+              class="secondary-skill-badge px-4 py-2 bg-brutalist-white/5 border border-brutalist-white/10 text-brutalist-white/85 text-xs font-medium tracking-wider uppercase"
+              data-hover-light
+            >
+              <span class="secondary-skill-badge__label">{tool}</span>
+            </span>
+          ))
+        }
+      </div>
+    </details>
+
+    <div class="mt-16 sm:mt-20">
+      <div class="animate-on-scroll mb-8 space-y-2">
+        <h3
+          class="text-lg font-medium capitalize text-brutalist-white sm:text-xl"
+        >
+          {t.skills.agents.title}
+        </h3>
+        <p class="text-sm leading-relaxed text-brutalist-white/70 sm:text-base">
+          {t.skills.agents.description}
+        </p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          agents.map((agent, index) => (
+            <div
+              class={`animate-on-scroll ${index === 1 ? "delay-100" : index === 2 ? "delay-200" : ""}`}
+            >
+              <div
+                class="agent-card relative overflow-hidden border border-brutalist-white/10 bg-brutalist-white/5 p-6 backdrop-blur-sm"
+                data-hover-light
+                style={`--agent-color: ${agent.color}; --agent-color-soft: ${agent.color}22; --agent-color-glow: ${agent.color}55;`}
+              >
+                <div class="relative z-10 flex h-full flex-col justify-between gap-8">
+                  <div class="flex items-start justify-between gap-4">
+                    <div class="space-y-3">
+                      <h4 class="text-2xl font-semibold tracking-tight text-brutalist-white">
+                        {agent.name}
+                      </h4>
+                    </div>
+                    <div
+                      class="agent-icon-shell flex h-16 w-16 items-center justify-center rounded-full border border-brutalist-white/10"
+                      style={`background-color: ${agent.color}16;`}
+                    >
+                      <agent.Icon
+                        class="!size-9"
+                        style={`color: ${agent.color}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 
@@ -169,6 +247,144 @@ const skills = [
       transform: translateY(-3px) scale(1.06);
       box-shadow: 0 0 24px -8px var(--skill-color-glow);
       background-color: var(--skill-color-soft) !important;
+    }
+
+    .agent-card {
+      --hover-x: 50%;
+      --hover-y: 0%;
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+      isolation: isolate;
+    }
+
+    .agent-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle 180px at var(--hover-x) var(--hover-y),
+          var(--agent-color-glow) 0%,
+          transparent 62%
+        ),
+        linear-gradient(
+          135deg,
+          rgb(255 255 255 / 0.06) 0%,
+          transparent 48%,
+          rgb(255 255 255 / 0.03) 100%
+        );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .agent-card::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border: 1px solid transparent;
+      background: linear-gradient(
+        135deg,
+        var(--agent-color-glow) 0%,
+        transparent 34%,
+        transparent 66%,
+        var(--agent-color-glow) 100%
+      );
+      opacity: 0;
+      mix-blend-mode: screen;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .agent-icon-shell {
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background-color 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .agent-card:hover,
+    .agent-card[data-touch-active="true"] {
+      transform: translateY(-4px);
+      border-color: var(--agent-color-glow);
+      background-color: var(--agent-color-soft);
+      box-shadow: 0 20px 40px -24px var(--agent-color-glow);
+    }
+
+    .agent-card:hover::before,
+    .agent-card:hover::after,
+    .agent-card[data-touch-active="true"]::before,
+    .agent-card[data-touch-active="true"]::after {
+      opacity: 1;
+    }
+
+    .agent-card:hover .agent-icon-shell,
+    .agent-card[data-touch-active="true"] .agent-icon-shell {
+      transform: scale(1.05);
+      border-color: var(--agent-color-glow);
+      background-color: var(--agent-color-soft) !important;
+      box-shadow: 0 0 28px -10px var(--agent-color-glow);
+    }
+
+    .skill-tools-disclosure {
+      border: 1px solid rgb(255 255 255 / 0.1);
+      background: rgb(255 255 255 / 0.04);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+
+    .skill-tools-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      cursor: pointer;
+      list-style: none;
+      padding: 1.2rem 1.5rem;
+      color: rgb(255 255 255 / 0.88);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.35;
+      transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+    }
+
+    .skill-tools-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .skill-tools-disclosure[open] .skill-tools-summary {
+      color: rgb(255 255 255 / 0.92);
+      background-color: rgb(255 255 255 / 0.025);
+    }
+
+    .skill-tools-summary__icon {
+      flex-shrink: 0;
+      opacity: 0.8;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .skill-tools-disclosure[open] .skill-tools-summary__icon {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    .skill-tools-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.85rem;
+      padding: 1.35rem 1.5rem 1.5rem;
+      border-top: 1px solid rgb(255 255 255 / 0.06);
     }
 
     .secondary-skill-badge {

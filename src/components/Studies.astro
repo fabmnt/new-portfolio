@@ -83,14 +83,14 @@ const studies: Study[] = locale === "en" ? [
       >
         {t.studies.title} {t.studies.highlight}
       </h2>
-      <div class="title-rule mt-3 w-full h-1"></div>
+      <div class="title-rule mt-3 w-full h-[2px]"></div>
     </div>
 
     <div class="space-y-4">
       {studies.map((study, index) => (
         <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
           <div
-            class="subtle-hover-card flex items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10"
+            class="subtle-hover-card flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10"
             data-hover-light
           >
             <div class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
@@ -103,7 +103,7 @@ const studies: Study[] = locale === "en" ? [
               />
             </div>
 
-            <div class="relative z-10 flex-1 pt-2">
+            <div class="relative z-10 flex-1 pt-0 sm:pt-2 w-full">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                 <h3 class="text-xl font-semibold tracking-tight text-brutalist-white">
                   {study.title}
