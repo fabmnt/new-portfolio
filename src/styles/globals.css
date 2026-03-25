@@ -132,24 +132,48 @@
 
   .title-rule {
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     background-image: linear-gradient(
+      to bottom,
+      rgb(250 250 250 / 0.22) 0%,
+      rgb(250 250 250 / 0.22) 45%,
+      rgb(250 250 250 / 0.12) 78%,
+      rgb(250 250 250 / 0) 100%
+    );
+  }
+
+  .title-rule::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
       to bottom,
       rgb(250 250 250 / 1) 0%,
       rgb(250 250 250 / 1) 45%,
       rgb(250 250 250 / 0.58) 78%,
       rgb(250 250 250 / 0) 100%
     );
+    transform: scaleX(1);
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .title-rule::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: inherit;
+    background: linear-gradient(
+      to bottom,
+      rgb(250 250 250 / 1) 0%,
+      rgb(250 250 250 / 1) 45%,
+      rgb(250 250 250 / 0.58) 78%,
+      rgb(250 250 250 / 0) 100%
+    );
     opacity: 0.6;
     filter: blur(4px);
-    transform: translateY(3px);
+    transform: translateY(3px) scaleX(1);
+    transform-origin: left center;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     -webkit-mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 0%,
@@ -163,6 +187,42 @@
       rgba(0, 0, 0, 0) 100%
     );
     pointer-events: none;
+  }
+
+  .animate-on-scroll .title-rule::before {
+    transform: scaleX(0);
+  }
+
+  .animate-on-scroll .title-rule::after {
+    transform: translateY(3px) scaleX(0);
+  }
+
+  .animate-on-scroll.is-visible .title-rule::before {
+    transform: scaleX(1);
+  }
+
+  .animate-on-scroll.is-visible .title-rule::after {
+    transform: translateY(3px) scaleX(1);
+  }
+
+  .no-js .title-rule::before,
+  .animate-on-scroll.no-animation .title-rule::before {
+    transform: scaleX(1);
+  }
+
+  .no-js .title-rule::after,
+  .animate-on-scroll.no-animation .title-rule::after {
+    transform: translateY(3px) scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .title-rule::before {
+      transform: scaleX(1);
+    }
+
+    .title-rule::after {
+      transform: translateY(3px) scaleX(1);
+    }
   }
 
   .primary-metal-button {

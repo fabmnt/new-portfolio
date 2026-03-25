@@ -169,6 +169,8 @@ const jsonLd = {
       // IntersectionObserver for scroll animations with feature check
       (function() {
         const elements = document.querySelectorAll('.animate-on-scroll');
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        let activeSectionId = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
 
         // Check if IntersectionObserver is supported
         if ('IntersectionObserver' in window) {
@@ -182,6 +184,29 @@ const jsonLd = {
           }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
           elements.forEach(el => observer.observe(el));
+
+          if (sections.length > 0) {
+            const sectionObserver = new IntersectionObserver((entries) => {
+              const visibleSections = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+              if (visibleSections.length === 0) return;
+
+              const nextId = visibleSections[0].target.id;
+
+              if (!nextId || nextId === activeSectionId) return;
+
+              activeSectionId = nextId;
+              const { pathname, search } = window.location;
+              window.history.replaceState(null, '', `${pathname}${search}#${nextId}`);
+            }, {
+              threshold: [0.2, 0.35, 0.5, 0.65],
+              rootMargin: '-15% 0px -45% 0px',
+            });
+
+            sections.forEach(section => sectionObserver.observe(section));
+          }
         } else {
           // Fallback: make all elements visible immediately
           elements.forEach(el => el.classList.add('is-visible'));
