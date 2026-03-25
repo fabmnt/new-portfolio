@@ -294,11 +294,11 @@
   .subtle-hover-card {
     --hover-x: 50%;
     --hover-y: 0%;
-    --hover-card-glow: rgb(29 161 242 / 0.14);
-    --hover-card-soft: rgb(29 161 242 / 0.06);
+    --hover-card-glow: rgb(255 255 255 / 0.14);
+    --hover-card-soft: rgb(255 255 255 / 0.06);
     --hover-card-highlight: rgb(255 255 255 / 0.14);
-    --hover-card-border: rgb(29 161 242 / 0.22);
-    --hover-card-shadow: rgb(29 161 242 / 0.28);
+    --hover-card-border: rgb(255 255 255 / 0.22);
+    --hover-card-shadow: rgb(255 255 255 / 0.28);
     position: relative;
     overflow: hidden;
     isolation: isolate;

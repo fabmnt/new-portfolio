@@ -1,12 +1,12 @@
 ---
+import Experience from "./Experience.astro";
 import HoverLightScript from "./HoverLightScript.astro";
-import NewPresentation from "./NewPresentation.astro";
-import NewHero from "./NewHero.astro";
-import NewExperience from "./NewExperience.astro";
-import NewProjects from "./NewProjects.astro";
-import NewSkills from "./NewSkills.astro";
-import NewStudies from "./NewStudies.astro";
 import NewFooter from "./NewFooter.astro";
+import Overview from "./Overview.astro";
+import PresentationIntro from "./PresentationIntro.astro";
+import Projects from "./Projects.astro";
+import Skills from "./Skills.astro";
+import Studies from "./Studies.astro";
 
 interface Props {
   locale: "en" | "es";
@@ -16,12 +16,12 @@ const { locale } = Astro.props;
 ---
 
 <main id="main-content" class="relative" tabindex="-1">
-  <NewPresentation locale={locale} />
-  <NewHero locale={locale} />
-  <NewExperience locale={locale} />
-  <NewProjects locale={locale} />
-  <NewSkills locale={locale} />
-  <NewStudies locale={locale} />
+  <PresentationIntro locale={locale} />
+  <Overview locale={locale} />
+  <Experience locale={locale} />
+  <Projects locale={locale} />
+  <Skills locale={locale} />
+  <Studies locale={locale} />
   <NewFooter locale={locale} />
 </main>
 

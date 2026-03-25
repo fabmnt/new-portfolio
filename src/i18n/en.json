@@ -28,9 +28,7 @@
     ]
   },
   "experience": {
-    "title": "WORK",
-    "highlight": "EXPERIENCE",
-    "subtitle": "Professional career"
+    "title": "PROFESSIONAL CAREER"
   },
   "projects": {
     "title": "FEATURED",
@@ -50,7 +48,16 @@
     "title": "SKILLS",
     "subtitle": "Tech stack",
     "description": "Technologies I master and with which I build modern and scalable solutions",
-    "tools": ["Node.js", "TanStack Query", "RxJS", "Tailwind CSS", "Git", "REST APIs", "SQL", "MongoDB"]
+    "tools": [
+      "Node.js",
+      "TanStack Query",
+      "RxJS",
+      "Tailwind CSS",
+      "Git",
+      "REST APIs",
+      "SQL",
+      "MongoDB"
+    ]
   },
   "studies": {
     "title": "STUDIES &",

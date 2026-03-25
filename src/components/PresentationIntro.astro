@@ -4,7 +4,6 @@ import GithubIcon from "@/assets/icons/GithubIcon.astro";
 import TwitterIcon from "@/assets/icons/TwitterIcon.astro";
 import GmailIcon from "@/assets/icons/GmailIcon.astro";
 import MetallicBlueBlobField from "@/components/MetallicBlueBlobField.astro";
-import type { TranslationKeys } from "@/i18n";
 import { getTranslations } from "@/i18n";
 
 interface Props {
@@ -233,7 +232,6 @@ const socialLinks = [
   </div>
 
   <script>
-    // Email dropdown interactions with accessibility support
     const triggers = document.querySelectorAll(".email-dropdown-trigger");
     const dropdowns = new Map();
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
@@ -267,10 +265,8 @@ const socialLinks = [
         }
       }
 
-      // Store reference for global click handler
       dropdowns.set(trigger, { menu, closeMenu });
 
-      // Only use mouse interactions on non-touch devices
       if (!isTouchDevice) {
         trigger.addEventListener("mouseenter", () => {
           if (timeout) clearTimeout(timeout);
@@ -293,7 +289,6 @@ const socialLinks = [
         }
       }
 
-      // Touch and click handling
       trigger.addEventListener(
         "touchstart",
         (e) => {
@@ -310,7 +305,6 @@ const socialLinks = [
         toggleMenu();
       });
 
-      // Keyboard support
       trigger.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -322,7 +316,6 @@ const socialLinks = [
       });
     });
 
-    // Global handler for clicks/touches outside dropdown
     function handleOutsideInteraction(e) {
       dropdowns.forEach(({ menu, closeMenu }, trigger) => {
         if (!trigger.contains(e.target) && !menu?.contains(e.target)) {
@@ -336,7 +329,6 @@ const socialLinks = [
       passive: true,
     });
 
-    // Copy to clipboard with error handling
     document.querySelectorAll(".email-copy-btn").forEach((btn) => {
       btn.addEventListener("click", async () => {
         try {
@@ -353,33 +345,4 @@ const socialLinks = [
       });
     });
   </script>
-
-  <div
-    class="relative z-10 flex justify-center pb-8 sm:pb-10 md:pb-0 hidden md:flex"
-  >
-    <a
-      href="#experience"
-      class="animate-on-scroll delay-400 rounded transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-brutalist-blue focus:ring-offset-2 focus:ring-offset-brutalist-black md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2"
-      aria-label={t.nav.scroll}
-    >
-      <div class="flex flex-col items-center gap-2 text-brutalist-white">
-        <span class="text-xs font-medium tracking-[0.3em] uppercase"
-          >{t.nav.scroll}</span
-        >
-        <svg
-          class="size-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width={2}
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </div>
-    </a>
-  </div>
 </header>

@@ -28,9 +28,7 @@
     ]
   },
   "experience": {
-    "title": "EXPERIENCIA",
-    "highlight": "LABORAL",
-    "subtitle": "Trayectoria profesional"
+    "title": "TRAYECTORIA PROFESIONAL"
   },
   "projects": {
     "title": "PROYECTOS",
@@ -47,7 +45,7 @@
     }
   },
   "skills": {
-    "title": "HABILIDADES",
+    "title": "HABILIDADES TÉCNICAS",
     "subtitle": "Stack tecnológico",
     "description": "Tecnologías que domino y con las que construyo soluciones modernas y escalables",
     "tools": [
