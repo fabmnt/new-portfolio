@@ -30,6 +30,10 @@
   "experience": {
     "title": "PROFESSIONAL CAREER",
     "description": "Explore my professional experience and see how I have applied my skills in professional environments by optimizing processes, streamlining information management, and improving user experiences.",
+    "otherExperience": {
+      "title": "Other experiences",
+      "description": "Freelance work building and maintaining websites and online stores with WordPress, Shopify, and other CMS platforms, focused on clean content management, responsive layouts, and practical business goals."
+    },
     "items": [
       {
         "company": "Roca Company Solutions",

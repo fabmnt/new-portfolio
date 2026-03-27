@@ -10,7 +10,7 @@ const { locale } = Astro.props;
 const t = getTranslations(locale);
 ---
 
-<div class="space-y-6 md:space-y-8">
+<section id="about" class="space-y-6 scroll-mt-8 md:space-y-8 sm:scroll-mt-12 lg:scroll-mt-16">
   <div class="space-y-5 md:space-y-6">
     <div class="w-full text-center sm:text-left">
       <h2
@@ -43,4 +43,4 @@ const t = getTranslations(locale);
       {t.hero.viewSkills}
     </a>
   </div>
-</div>
+</section>

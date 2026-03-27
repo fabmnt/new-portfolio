@@ -30,6 +30,10 @@
   "experience": {
     "title": "TRAYECTORIA PROFESIONAL",
     "description": "Recorre mi experiencia laboral y ve cómo he aplicado mis habilidades en ambientes profesionales optimizando procesos, facilitando la gestión de información y mejorando la experiencia de los usuarios.",
+    "otherExperience": {
+      "title": "Otras experiencias",
+      "description": "Trabajo freelance creando y manteniendo sitios web y tiendas en línea con WordPress, Shopify y otros CMS, enfocado en una gestión de contenido clara, diseños responsivos y objetivos de negocio concretos."
+    },
     "items": [
       {
         "company": "Roca Company Solutions",
