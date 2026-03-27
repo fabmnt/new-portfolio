@@ -1,0 +1,92 @@
+---
+// BlurredBlobBackground - Decorative blurred blobs for section backgrounds
+// Positioned behind content with low z-index to ensure text visibility
+---
+
+<div class="blob-bg-container" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<style>
+  .blob-bg-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    isolation: isolate;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.1;
+    mix-blend-mode: screen;
+    will-change: transform;
+    animation: blob-float 20s ease-in-out infinite;
+  }
+
+  /* Primary blob - blue toned */
+  .blob-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(59, 130, 246, 0.8) 0%, 
+      rgba(37, 99, 235, 0.4) 50%, 
+      transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation-delay: 0s;
+  }
+
+  /* Secondary blob - deep blue toned */
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle at 50% 50%, 
+      rgba(29, 78, 216, 0.55) 0%, 
+      rgba(30, 64, 175, 0.28) 50%, 
+      transparent 70%);
+    bottom: -80px;
+    left: -80px;
+    animation-delay: -7s;
+  }
+
+  /* Tertiary blob - cyan toned, smaller */
+  .blob-3 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle at 70% 30%, 
+      rgba(6, 182, 212, 0.5) 0%, 
+      rgba(8, 145, 178, 0.25) 50%, 
+      transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation-delay: -14s;
+  }
+
+  @keyframes blob-float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(20px, -20px) scale(1.05);
+    }
+    50% {
+      transform: translate(-10px, 15px) scale(0.95);
+    }
+    75% {
+      transform: translate(-20px, -10px) scale(1.02);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .blob {
+      animation: none;
+    }
+  }
+</style>
