@@ -5,7 +5,7 @@ const BOT_UA_PATTERN =
   /bot|crawler|spider|crawling|google|bing|duckduck|yandex|baidu|slurp/i;
 
 export const onRequest = defineMiddleware((context, next) => {
-  const { pathname } = context.url;
+  const { pathname, searchParams } = context.url;
 
   // Skip if it's a file/asset or internal Astro route
   if (pathname.includes(".") || pathname.startsWith("/_")) {
@@ -19,9 +19,21 @@ export const onRequest = defineMiddleware((context, next) => {
   }
 
   // Check for explicit locale preference via query parameter
-  const localeParam = context.url.searchParams.get("locale");
+  const localeParam = searchParams.get("locale");
   if (localeParam === "es" || localeParam === "en") {
     context.cookies.set(LOCALE_COOKIE, localeParam, { path: "/", maxAge: 60 * 60 * 24 * 365 });
+
+    const targetPath = localeParam === "en" ? "/en" : "/";
+    const cleanSearchParams = new URLSearchParams(searchParams);
+    cleanSearchParams.delete("locale");
+    const cleanSearch = cleanSearchParams.toString();
+
+    if (pathname !== targetPath || context.url.search.includes("locale=")) {
+      return context.redirect(
+        `${targetPath}${cleanSearch ? `?${cleanSearch}` : ""}`,
+        302,
+      );
+    }
   }
 
   const userAgent = context.request.headers.get("user-agent") || "";
@@ -30,7 +42,7 @@ export const onRequest = defineMiddleware((context, next) => {
   }
 
   // Use the newly set locale or fall back to cookie
-  const preferredLocale = localeParam || context.cookies.get(LOCALE_COOKIE)?.value;
+  const preferredLocale = context.cookies.get(LOCALE_COOKIE)?.value;
 
   if (pathname !== "/" && pathname !== "/en") {
     return next();
