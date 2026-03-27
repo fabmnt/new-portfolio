@@ -34,15 +34,13 @@
       {
         "company": "Roca Company Solutions",
         "companyUrl": "https://rocacompanysolution.wordpress.com/",
-        "period": "Abril 2025 - Marzo 2025",
+        "period": "Abril 2025 - Marzo 2026",
         "role": "Desarrollador Web Frontend",
         "description": "Desarrollé el frontend del primer sistema interno de la empresa, integrando una fácil migración de sus procesos en hojas de cálculo manteniendo compatibilidad con exportaciones a formatos XSLX y PDF.",
         "achievements": [
-          "Diseño de páginas, tablas y módulos visualmente atractivos y accesibles, los cuales se acomodaron al tipo de usuario al cual iba dirigido el sistema. Tecnologías usadas: React, Tailwind CSS, shadcn-ui, react-aria.",
-          "Implementación de tablas totalmente personalizables y flexibles, el usuario elige qué información mostrar y cómo mostrarla. Tecnologías usadas: Tanstack Table",
-          "Desarrollo de formularios de tipo paso a paso, facilitando la introducción de información a los usuarios. Tecnologías usadas: Tanstack Form, zustand.",
-          "Integración de validaciones y reglas robustas para garantizar la calidad e integridad de los datos introducidos por los usuarios. Tecnologías usadas: Zod, Tanstack Form.",
-          "Procesos de exportación de reportes y facturas a formatos PDF y XLSX. Tecnologías usadas: jsPDF, XLSXjs."
+          "Desarrollé el frontend del primer sistema interno de la empresa, reemplazando flujos basados en hojas de cálculo por una interfaz más clara y accesible. Stack: React, Tailwind CSS, shadcn-ui, react-aria.",
+          "Implementé tablas personalizables y formularios guiados para facilitar el ingreso de datos y la operación diaria. Stack: TanStack Table, TanStack Form, zustand, Zod.",
+          "Entregué exportaciones a PDF y XLSX para reportes y facturas, manteniendo compatibilidad con los procesos existentes. Stack: jsPDF, XLSX."
         ]
       },
       {
@@ -52,11 +50,9 @@
         "role": "Desarrollador Full Stack y RPA",
         "description": "Contribuí con el desarrollo de proyectos frontend que mejoraron y facilitaron los flujos de trabajo de distintas áreas de la empresa, doy mantenimiento al sistema principal de gestión y organización de la empresa y desarrollé robots RPA y módulos externos para la plataforma Rocketbot.",
         "achievements": [
-          "Desarrollé un editor de documentos en línea basado en tablas y marcadores (bookmarks), con funciones exportables a MS Word y Google Docs. Tecnologías usadas: TypeScript, Angular, RxJs.",
-          "Contribuí al desarrollo de un sistema de gestión de datos estilo hoja de cálculo, el cual permite el fácil acceso y modificación a las verificaciones de pacientes. Tecnologías usadas: TypeScript, Angular, RxJs.",
-          "Implementación de un sistema de paralelización de procesos RPA, reduciendo drásticamente tiempos de ejecución manteniendo el uso de recursos de cómputo al mínimo. Tecnologías usadas: Python.",
-          "Desarrollador de robots RPA para automatización de verificaciones de pacientes y módulos externos para la plataforma Rocketbot.",
-          "Realicé una extensa investigación sobre nlp y machine learning en pequeña escala para extracción de información de verificaciones de documentos PDF, con el fin de automatizar la extracción de datos del paciente de documentos. Tecnologías usadas: Python, spaCy, pydantic, pdfplumber."
+          "Desarrollé herramientas frontend que mejoraron los flujos de documentos y verificaciones de pacientes, incluyendo un editor en línea y vistas tipo hoja de cálculo. Stack: TypeScript, Angular, RxJS.",
+          "Construí robots RPA y un sistema de ejecución paralela que redujo tiempos de procesamiento manteniendo bajo el uso de recursos. Stack: Python, Rocketbot.",
+          "Investigué extracción de datos desde PDFs con NLP para automatizar la captura de información de pacientes. Stack: Python, spaCy, Pydantic, pdfplumber."
         ]
       }
     ]
