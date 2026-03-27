@@ -1,8 +1,26 @@
 import { defineMiddleware } from "astro:middleware";
 
 const LOCALE_COOKIE = "preferred-locale";
-const BOT_UA_PATTERN =
-  /bot|crawler|spider|crawling|google|bing|duckduck|yandex|baidu|slurp/i;
+const KNOWN_BOT_TOKENS = [
+  "googlebot",
+  "adsbot-google",
+  "apis-google",
+  "mediapartners-google",
+  "google-inspectiontool",
+  "bingbot",
+  "bingpreview",
+  "duckduckbot",
+  "yandexbot",
+  "baiduspider",
+  "slurp",
+  "applebot",
+  "petalbot",
+  "facebookexternalhit",
+  "twitterbot",
+  "linkedinbot",
+  "slackbot",
+  "discordbot",
+] as const;
 
 export const onRequest = defineMiddleware((context, next) => {
   const { pathname, searchParams } = context.url;
@@ -37,7 +55,8 @@ export const onRequest = defineMiddleware((context, next) => {
   }
 
   const userAgent = context.request.headers.get("user-agent") || "";
-  if (BOT_UA_PATTERN.test(userAgent)) {
+  const normalizedUserAgent = userAgent.toLowerCase();
+  if (KNOWN_BOT_TOKENS.some((token) => normalizedUserAgent.includes(token))) {
     return next();
   }
 
