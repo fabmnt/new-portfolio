@@ -2,6 +2,8 @@
 import Analytics from "@vercel/analytics/astro";
 import "@/styles/brutalist.css";
 import "@/styles/globals.css";
+import { getTranslations } from "@/i18n";
+import profileImage from "@/assets/images/icon-face.png";
 import "@fontsource/geist-sans/200.css";
 import "@fontsource/geist-sans/300.css";
 import "@fontsource/geist-sans/400.css";
@@ -20,59 +22,92 @@ interface Props {
 }
 
 const { locale = "es" } = Astro.props;
+const t = getTranslations(locale);
 
-const SITE_URL = "https://fabianmontoya.dev/";
-const SITE_NAME = locale === "en" ? "Fabian Montoya | Portfolio" : "Fabian Montoya | Portafolio";
-const SITE_TITLE = locale === "en" 
-  ? "Fabian Montoya | Full Stack Developer & RPA Engineer" 
+const site = Astro.site ?? new URL("https://www.fabmnt.dev");
+const canonicalPath =
+  Astro.url.pathname !== "/" && Astro.url.pathname.endsWith("/")
+    ? Astro.url.pathname.slice(0, -1)
+    : Astro.url.pathname;
+const canonicalUrl = new URL(canonicalPath || "/", site).toString();
+const spanishUrl = new URL("/", site).toString();
+const englishUrl = new URL("/en", site).toString();
+const profileImageUrl = new URL(profileImage.src, site).toString();
+
+const SITE_NAME = t.layout.siteName;
+const SITE_TITLE = locale === "en"
+  ? "Fabian Montoya | Full Stack Developer & RPA Engineer"
   : "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA";
 const SITE_DESCRIPTION = locale === "en"
-  ? "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in React, Angular, TypeScript, Node.js and automation solutions."
-  : "Portfolio de Fabian Montoya - Desarrollador Full Stack y RPA Engineer en Nicaragua. Especializado en React, Angular, TypeScript, Node.js y soluciones de automatización.";
+  ? "Fabian Montoya's portfolio as a full stack developer and RPA engineer in Nicaragua. React, Angular, TypeScript, Node.js, AI integrations, and automation solutions."
+  : "Portafolio de Fabian Montoya como desarrollador full stack e ingeniero RPA en Nicaragua. React, Angular, TypeScript, Node.js, integraciones de IA y soluciones de automatización.";
 const SITE_KEYWORDS = locale === "en"
   ? "Fabian Montoya, Full Stack Developer, RPA Engineer, Web Developer, React, Angular, TypeScript, Node.js, Nicaragua, portfolio, programmer"
   : "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, Nicaragua, portafolio, programador";
 const AUTHOR_NAME = "Fabian Montoya";
 const AUTHOR_URL = "https://www.linkedin.com/in/fabián-montoya-963247345";
-const PROFILE_IMAGE = "/icon-face.png";
 const TWITTER_HANDLE = "@fabmntp";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Fabian Montoya",
-  "jobTitle": "Full Stack Developer & RPA Engineer",
-  "description": "Desarrollador Full Stack y RPA Engineer especializado en crear soluciones tecnológicas que transforman empresas.",
-  "url": SITE_URL,
-  "image": `${SITE_URL}${PROFILE_IMAGE}`,
-  "email": "fabianmontoya2802@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "NI",
-    "addressRegion": "Nicaragua"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/in/fabián-montoya-963247345",
-    "https://x.com/fabmntp",
-    "https://github.com/fabmnt"
-  ],
-  "knowsAbout": ["React", "Angular", "TypeScript", "Node.js", "RPA", "Full Stack Development", "JavaScript"],
-  "alumniOf": [
+  "@graph": [
     {
-      "@type": "CollegeOrUniversity",
-      "name": "Universidad Nacional de Ingeniería"
-    }
-  ],
-  "worksFor": [
-    {
-      "@type": "Organization",
-      "name": "Dentalrobot.ai"
+      "@type": "WebSite",
+      "@id": `${site.toString()}#website`,
+      "url": site.toString(),
+      "name": SITE_NAME,
+      "description": SITE_DESCRIPTION,
+      "inLanguage": locale,
     },
     {
-      "@type": "Organization", 
-      "name": "Roca Company Solutions"
-    }
-  ]
+      "@type": "Person",
+      "@id": `${site.toString()}#person`,
+      "name": "Fabian Montoya",
+      "jobTitle":
+        locale === "en"
+          ? "Full Stack Developer & RPA Engineer"
+          : "Desarrollador Full Stack e Ingeniero RPA",
+      "description": SITE_DESCRIPTION,
+      "url": canonicalUrl,
+      "image": profileImageUrl,
+      "email": "fabianmontoya2802@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "NI",
+        "addressRegion": "Nicaragua",
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/fabián-montoya-963247345",
+        "https://x.com/fabmntp",
+        "https://github.com/fabmnt",
+      ],
+      "knowsAbout": [
+        "React",
+        "Angular",
+        "TypeScript",
+        "Node.js",
+        "RPA",
+        "Full Stack Development",
+        "JavaScript",
+      ],
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Universidad Nacional de Ingeniería",
+        },
+      ],
+      "worksFor": [
+        {
+          "@type": "Organization",
+          "name": "Dentalrobot.ai",
+        },
+        {
+          "@type": "Organization",
+          "name": "Roca Company Solutions",
+        },
+      ],
+    },
+  ],
 };
 ---
 
@@ -101,12 +136,11 @@ const jsonLd = {
     <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href={SITE_URL} />
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/icon-face.png" />
+    <link rel="apple-touch-icon" href={profileImage.src} />
 
     <!-- Critical font preloads to reduce hero text reflow -->
     <link rel="preload" href={geistSans400} as="font" type="font/woff2" crossorigin />
@@ -117,10 +151,10 @@ const jsonLd = {
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={SITE_URL} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={SITE_TITLE} />
     <meta property="og:description" content={SITE_DESCRIPTION} />
-    <meta property="og:image" content={`${SITE_URL}${PROFILE_IMAGE}`} />
+    <meta property="og:image" content={profileImageUrl} />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="Fabian Montoya - Full Stack Developer" />
@@ -132,10 +166,10 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={TWITTER_HANDLE} />
     <meta name="twitter:creator" content={TWITTER_HANDLE} />
-    <meta name="twitter:url" content={SITE_URL} />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={SITE_TITLE} />
     <meta name="twitter:description" content={SITE_DESCRIPTION} />
-    <meta name="twitter:image" content={`${SITE_URL}${PROFILE_IMAGE}`} />
+    <meta name="twitter:image" content={profileImageUrl} />
     <meta name="twitter:image:alt" content="Fabian Montoya - Full Stack Developer" />
     
     <!-- Additional SEO Meta -->
@@ -149,13 +183,10 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     
-    <!-- Alternate Versions -->
-    <link rel="alternate" type="application/rss+xml" title={SITE_NAME} href={`${SITE_URL}rss.xml`} />
-    
     <!-- Hreflang for i18n -->
-    <link rel="alternate" hreflang="es" href={SITE_URL} />
-    <link rel="alternate" hreflang="en" href={`${SITE_URL}en/`} />
-    <link rel="alternate" hreflang="x-default" href={SITE_URL} />
+    <link rel="alternate" hreflang="es" href={spanishUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={spanishUrl} />
   </head>
   <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brutalist-blue focus:text-brutalist-white focus:px-4 focus:py-2 focus:font-medium focus:tracking-wider focus:uppercase focus:text-sm">
