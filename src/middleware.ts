@@ -66,8 +66,8 @@ export const onRequest = defineMiddleware((context, next) => {
     ?.trim()
     ?.toLowerCase() || "es";
 
-  // Redirect to /en if English is preferred (only on first visit)
-  if (browserLang.startsWith("en") && pathname === "/") {
+  // Redirect to /en only on first visit, before the user has chosen a locale.
+  if (!preferredLocale && browserLang.startsWith("en") && pathname === "/") {
     // Set cookie so we don't redirect again
     context.cookies.set(LOCALE_COOKIE, "en", { path: "/", maxAge: 60 * 60 * 24 * 365 });
     return context.redirect("/en", 302);

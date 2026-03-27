@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { getBaseUrl } from "@/lib/seo";
 
 const LOCALIZED_ROUTES = [
   {
@@ -16,11 +17,6 @@ const LOCALIZED_ROUTES = [
     },
   },
 ] as const;
-
-function getBaseUrl(site: URL | undefined, url: URL) {
-  const base = site?.toString() ?? url.origin;
-  return base.endsWith("/") ? base.slice(0, -1) : base;
-}
 
 export const GET: APIRoute = ({ site, url }) => {
   const baseUrl = getBaseUrl(site, url);
@@ -42,6 +38,8 @@ ${LOCALIZED_ROUTES
   return new Response(body, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control":
+        "public, max-age=0, s-maxage=31536000, stale-while-revalidate",
     },
   });
 };

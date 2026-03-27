@@ -12,6 +12,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getTranslations(locale);
+const localeChipClass =
+  "px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300";
+const inactiveLocaleChipClass = `${localeChipClass} text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white`;
+const activeLocaleChipClass = `${localeChipClass} bg-brutalist-white text-brutalist-black`;
 
 const socialLinks = [
   {
@@ -187,36 +191,46 @@ const socialLinks = [
             <div
               class="animate-on-scroll relative z-10 inline-flex w-fit items-center gap-1 border border-brutalist-white/20 bg-brutalist-white/10"
             >
-              <a
-                href="/?locale=es"
-                class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
-                  locale === "es"
-                    ? "bg-brutalist-white text-brutalist-black"
-                    : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
-                }`}
-                title={locale === "es" ? "Español" : "Switch to Spanish"}
-                aria-label={locale === "es"
-                  ? "Español"
-                  : "Switch language to Spanish"}
-                aria-current={locale === "es" ? "page" : undefined}
-              >
-                ES
-              </a>
-              <a
-                href="/en?locale=en"
-                class={`px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300 ${
-                  locale === "en"
-                    ? "bg-brutalist-white text-brutalist-black"
-                    : "text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white"
-                }`}
-                title={locale === "en" ? "English" : "Switch to English"}
-                aria-label={locale === "en"
-                  ? "English"
-                  : "Switch language to English"}
-                aria-current={locale === "en" ? "page" : undefined}
-              >
-                EN
-              </a>
+              {
+                locale === "es" ? (
+                  <span
+                    class={activeLocaleChipClass}
+                    title="Español"
+                    aria-current="page"
+                  >
+                    ES
+                  </span>
+                ) : (
+                  <a
+                    href="/?locale=es"
+                    class={inactiveLocaleChipClass}
+                    title="Switch to Spanish"
+                    aria-label="Switch language to Spanish"
+                  >
+                    ES
+                  </a>
+                )
+              }
+              {
+                locale === "en" ? (
+                  <span
+                    class={activeLocaleChipClass}
+                    title="English"
+                    aria-current="page"
+                  >
+                    EN
+                  </span>
+                ) : (
+                  <a
+                    href="/en?locale=en"
+                    class={inactiveLocaleChipClass}
+                    title="Switch to English"
+                    aria-label="Switch language to English"
+                  >
+                    EN
+                  </a>
+                )
+              }
             </div>
           </nav>
         </div>

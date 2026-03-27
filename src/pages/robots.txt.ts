@@ -1,9 +1,5 @@
 import type { APIRoute } from "astro";
-
-function getBaseUrl(site: URL | undefined, url: URL) {
-  const base = site?.toString() ?? url.origin;
-  return base.endsWith("/") ? base.slice(0, -1) : base;
-}
+import { getBaseUrl } from "@/lib/seo";
 
 export const GET: APIRoute = ({ site, url }) => {
   const baseUrl = getBaseUrl(site, url);
@@ -17,6 +13,7 @@ Sitemap: ${baseUrl}/sitemap.xml
   return new Response(body, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, s-maxage=86400, max-age=0, must-revalidate",
     },
   });
 };
