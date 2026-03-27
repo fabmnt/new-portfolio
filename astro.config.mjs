@@ -5,6 +5,8 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://www.fabmnt.dev",
+  trailingSlash: "never",
   integrations: [
     tailwind({
       applyBaseStyles: false,
