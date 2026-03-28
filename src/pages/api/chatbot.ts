@@ -45,16 +45,17 @@ function getRateLimitStore(): Map<string, RateLimitState> {
   return globalStore[RATE_LIMIT_STORAGE_KEY];
 }
 
-function getClientIp(request: Request): string {
+function getClientIp(request: Request): string | null {
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
-    return forwardedFor.split(",")[0]?.trim() || "unknown";
+    return forwardedFor.split(",")[0]?.trim() || null;
   }
 
   return (
     request.headers.get("x-real-ip") ??
     request.headers.get("cf-connecting-ip") ??
-    "unknown"
+    request.headers.get("x-vercel-forwarded-for") ??
+    null
   );
 }
 
@@ -195,7 +196,7 @@ function isAllowedRequestOrigin(request: Request, site: URL | undefined, url: UR
 
   const referer = request.headers.get("referer");
   if (!referer) {
-    return true;
+    return false;
   }
 
   try {
@@ -227,21 +228,23 @@ export const POST: APIRoute = async ({ request, site, url }) => {
   }
 
   const clientIp = getClientIp(request);
-  const rateLimitResult = consumeRateLimit(clientIp);
+  if (clientIp) {
+    const rateLimitResult = consumeRateLimit(clientIp);
 
-  if (!rateLimitResult.allowed) {
-    return new Response(
-      JSON.stringify({
-        error: "Rate limit exceeded. Please try again later.",
-      }),
-      {
-        status: 429,
-        headers: {
-          "Content-Type": "application/json",
-          "Retry-After": String(rateLimitResult.retryAfterSeconds),
+    if (!rateLimitResult.allowed) {
+      return new Response(
+        JSON.stringify({
+          error: "Rate limit exceeded. Please try again later.",
+        }),
+        {
+          status: 429,
+          headers: {
+            "Content-Type": "application/json",
+            "Retry-After": String(rateLimitResult.retryAfterSeconds),
+          },
         },
-      },
-    );
+      );
+    }
   }
 
   let body: ChatRequest;

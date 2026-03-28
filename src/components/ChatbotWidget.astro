@@ -8,6 +8,9 @@ interface Props {
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 const c = t.chatbot;
+const widgetId = `chatbot-${crypto.randomUUID()}`;
+const panelId = `${widgetId}-panel`;
+const inputId = `${widgetId}-input`;
 ---
 
 <div
@@ -19,28 +22,27 @@ const c = t.chatbot;
   <button
     type="button"
     class="chatbot-toggle"
-    id="chatbot-toggle"
     aria-expanded="false"
-    aria-controls="chatbot-panel"
+    aria-controls={panelId}
   >
     <span aria-hidden="true">💬</span>
     <span>{c.buttonLabel}</span>
   </button>
 
-  <section class="chatbot-panel hidden" id="chatbot-panel" aria-label={c.panelLabel}>
+  <section class="chatbot-panel hidden" id={panelId} aria-label={c.panelLabel}>
     <header class="chatbot-header">
       <p class="chatbot-title">{c.title}</p>
-      <button type="button" class="chatbot-close" id="chatbot-close" aria-label={c.closeAria}>✕</button>
+      <button type="button" class="chatbot-close" aria-label={c.closeAria}>✕</button>
     </header>
 
-    <div class="chatbot-messages" id="chatbot-messages" aria-live="polite">
+    <div class="chatbot-messages" aria-live="polite" aria-relevant="additions">
       <article class="chatbot-message chatbot-message--assistant">{c.welcome}</article>
     </div>
 
-    <form class="chatbot-form" id="chatbot-form">
-      <label class="sr-only" for="chatbot-input">{c.inputLabel}</label>
+    <form class="chatbot-form">
+      <label class="sr-only" for={inputId}>{c.inputLabel}</label>
       <input
-        id="chatbot-input"
+        id={inputId}
         name="message"
         type="text"
         class="chatbot-input"
@@ -54,20 +56,21 @@ const c = t.chatbot;
 
 <script is:inline>
   (() => {
-    const root = document.querySelector('.chatbot-widget');
-    if (!root) return;
+    const script = document.currentScript;
+    const root = script?.previousElementSibling;
+    if (!(root instanceof HTMLElement) || !root.classList.contains('chatbot-widget')) return;
 
     const locale = root.getAttribute('data-locale') || 'es';
     const uiMessages = {
       requestFailed: root.getAttribute('data-request-failed') || 'Sorry, I could not process that request.',
       unavailable: root.getAttribute('data-unavailable') || 'The assistant is temporarily unavailable. Please try again later.',
     };
-    const toggle = document.getElementById('chatbot-toggle');
-    const panel = document.getElementById('chatbot-panel');
-    const close = document.getElementById('chatbot-close');
-    const form = document.getElementById('chatbot-form');
-    const input = document.getElementById('chatbot-input');
-    const messagesContainer = document.getElementById('chatbot-messages');
+    const toggle = root.querySelector('.chatbot-toggle');
+    const panel = root.querySelector('.chatbot-panel');
+    const close = root.querySelector('.chatbot-close');
+    const form = root.querySelector('.chatbot-form');
+    const input = root.querySelector('.chatbot-input');
+    const messagesContainer = root.querySelector('.chatbot-messages');
 
     if (!toggle || !panel || !close || !form || !input || !messagesContainer) return;
 
