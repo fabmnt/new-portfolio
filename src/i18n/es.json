@@ -119,5 +119,15 @@
     "description": "Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.",
     "sendEmail": "Enviar correo",
     "copyright": "Todos los derechos reservados."
+  },
+  "chatbot": {
+    "title": "Asistente del portafolio",
+    "buttonLabel": "Preguntar",
+    "panelLabel": "Panel del chatbot del portafolio",
+    "closeAria": "Cerrar chatbot",
+    "welcome": "¡Hola! Puedo ayudarte con preguntas sobre el portafolio, experiencia, proyectos y servicios de Fabian.",
+    "inputLabel": "Escribe tu pregunta",
+    "inputPlaceholder": "Pregunta sobre habilidades, proyectos o colaboración...",
+    "send": "Enviar"
   }
 }
