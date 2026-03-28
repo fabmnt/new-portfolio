@@ -130,6 +130,7 @@
     "inputPlaceholder": "Pregunta sobre habilidades, proyectos o colaboración...",
     "send": "Enviar",
     "requestFailed": "Lo siento, no pude procesar esa solicitud.",
-    "unavailable": "El asistente no está disponible temporalmente. Intenta más tarde."
+    "unavailable": "El asistente no está disponible temporalmente. Intenta más tarde.",
+    "outOfScope": "Puedo ayudarte solo con información sobre este portafolio, experiencia, proyectos y servicios de Fabian."
   }
 }

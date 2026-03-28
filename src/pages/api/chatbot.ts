@@ -29,6 +29,9 @@ const OUT_OF_SCOPE_TOKEN = "OUT_OF_SCOPE";
 const RATE_LIMIT_MAX_REQUESTS = 12;
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_STORAGE_KEY = "__chatbotRateLimitStore";
+const MAX_CLIENT_MESSAGES = 8;
+const MAX_MESSAGE_LENGTH = 1_000;
+const UPSTREAM_TIMEOUT_MS = 30_000;
 
 function getRateLimitStore(): Map<string, RateLimitState> {
   const globalStore = globalThis as typeof globalThis & {
@@ -97,26 +100,25 @@ function consumeRateLimit(ip: string): { allowed: boolean; retryAfterSeconds: nu
 function getKnowledgeBase(locale: Locale): string {
   const t = translations[locale];
 
-  return JSON.stringify(
-    {
-      language: locale,
-      presentation: t.presentation,
-      hero: t.hero,
-      experience: t.experience,
-      projects: t.projects,
-      skills: t.skills,
-      studies: t.studies,
-      footer: t.footer,
-    },
-    null,
-    2,
-  );
+  return JSON.stringify({
+    language: locale,
+    presentation: t.presentation,
+    hero: t.hero,
+    experience: t.experience,
+    projects: t.projects,
+    skills: t.skills,
+    studies: t.studies,
+    footer: t.footer,
+  });
 }
 
 function outOfScopeMessage(locale: Locale): string {
-  return locale === "en"
-    ? "I can only answer questions related to Fabian Montoya's portfolio."
-    : "Solo puedo responder preguntas relacionadas con el portafolio de Fabian Montoya.";
+  return (
+    translations[locale].chatbot.outOfScope ??
+    (locale === "en"
+      ? "I can only answer questions related to Fabian Montoya's portfolio."
+      : "Solo puedo responder preguntas relacionadas con el portafolio de Fabian Montoya.")
+  );
 }
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -138,7 +140,69 @@ function extractDelta(payload: unknown): string {
 }
 
 function isOutOfScopePrefix(value: string): boolean {
-  return OUT_OF_SCOPE_TOKEN.startsWith(value);
+  const normalizedValue = value.trim();
+  return !normalizedValue || OUT_OF_SCOPE_TOKEN.startsWith(normalizedValue);
+}
+
+function isOutOfScopeResponse(value: string): boolean {
+  return value.trim().replace(/[.!?]+$/u, "") === OUT_OF_SCOPE_TOKEN;
+}
+
+function isAbortError(error: unknown): boolean {
+  return (
+    error instanceof DOMException
+      ? error.name === "AbortError"
+      : typeof error === "object" &&
+        error !== null &&
+        "name" in error &&
+        error.name === "AbortError"
+  );
+}
+
+function createUpstreamTimeout(abortController: AbortController) {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  return {
+    reset() {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => abortController.abort(), UPSTREAM_TIMEOUT_MS);
+    },
+    clear() {
+      if (!timeoutId) {
+        return;
+      }
+
+      clearTimeout(timeoutId);
+      timeoutId = undefined;
+    },
+  };
+}
+
+function isAllowedRequestOrigin(request: Request, site: URL | undefined, url: URL): boolean {
+  const allowedOrigins = new Set([url.origin]);
+
+  if (site) {
+    allowedOrigins.add(site.origin);
+  }
+
+  const requestOrigin = request.headers.get("origin");
+  if (requestOrigin) {
+    return allowedOrigins.has(requestOrigin);
+  }
+
+  const referer = request.headers.get("referer");
+  if (!referer) {
+    return true;
+  }
+
+  try {
+    return allowedOrigins.has(new URL(referer).origin);
+  } catch {
+    return false;
+  }
 }
 
 export const POST: APIRoute = async ({ request, site, url }) => {
@@ -150,6 +214,15 @@ export const POST: APIRoute = async ({ request, site, url }) => {
         error: "Missing OPENROUTER_API_KEY environment variable.",
       },
       500,
+    );
+  }
+
+  if (!isAllowedRequestOrigin(request, site, url)) {
+    return jsonResponse(
+      {
+        error: "Cross-site requests are not allowed for this endpoint.",
+      },
+      403,
     );
   }
 
@@ -179,14 +252,29 @@ export const POST: APIRoute = async ({ request, site, url }) => {
   }
 
   const locale = body.locale === "en" ? "en" : "es";
-  const messages = (body.messages ?? []).filter(
-    (message): message is ChatMessage =>
-      Boolean(message?.content?.trim()) &&
-      (message?.role === "user" || message?.role === "assistant"),
-  );
+  const messages = (Array.isArray(body.messages) ? body.messages : [])
+    .filter(
+      (message): message is ChatMessage =>
+        Boolean(message?.content?.trim()) &&
+        (message?.role === "user" || message?.role === "assistant"),
+    )
+    .map((message) => ({
+      role: message.role,
+      content: message.content.trim(),
+    }))
+    .slice(-MAX_CLIENT_MESSAGES);
 
   if (messages.length === 0) {
     return jsonResponse({ error: "At least one message is required." }, 400);
+  }
+
+  if (messages.some((message) => message.content.length > MAX_MESSAGE_LENGTH)) {
+    return jsonResponse(
+      {
+        error: `Each message must be at most ${MAX_MESSAGE_LENGTH} characters long.`,
+      },
+      400,
+    );
   }
 
   const knowledgeBase = getKnowledgeBase(locale);
@@ -217,6 +305,10 @@ ${knowledgeBase}`;
     ],
   };
 
+  const abortController = new AbortController();
+  const upstreamTimeout = createUpstreamTimeout(abortController);
+  upstreamTimeout.reset();
+
   try {
     const upstream = await fetch(OPENROUTER_URL, {
       method: "POST",
@@ -227,10 +319,12 @@ ${knowledgeBase}`;
         "X-Title": "Fabian Portfolio Chatbot",
       },
       body: JSON.stringify(payload),
+      signal: abortController.signal,
     });
 
     if (!upstream.ok) {
       const errorText = await upstream.text();
+      upstreamTimeout.clear();
 
       console.error("OpenRouter request failed", {
         status: upstream.status,
@@ -248,6 +342,7 @@ ${knowledgeBase}`;
     }
 
     if (!upstream.body) {
+      upstreamTimeout.clear();
       return jsonResponse({ error: "Empty response stream from LLM." }, 502);
     }
 
@@ -319,6 +414,7 @@ ${knowledgeBase}`;
 
         try {
           while (true) {
+            upstreamTimeout.reset();
             const { done, value } = await reader.read();
 
             if (done) {
@@ -362,7 +458,7 @@ ${knowledgeBase}`;
             return;
           }
 
-          if (finalContent === OUT_OF_SCOPE_TOKEN) {
+          if (isOutOfScopeResponse(finalContent)) {
             enqueue({
               type: "done",
               message: outOfScopeMessage(locale),
@@ -380,11 +476,21 @@ ${knowledgeBase}`;
           controller.close();
         } catch (error) {
           console.error("Failed to stream OpenRouter response", error);
-          enqueue({ type: "error", message: "Failed to connect to LLM provider." });
+          enqueue({
+            type: "error",
+            message: isAbortError(error)
+              ? "The assistant took too long to respond."
+              : "Failed to connect to LLM provider.",
+          });
           controller.close();
         } finally {
+          upstreamTimeout.clear();
           reader.releaseLock();
         }
+      },
+      cancel() {
+        upstreamTimeout.clear();
+        abortController.abort();
       },
     });
 
@@ -396,13 +502,16 @@ ${knowledgeBase}`;
       },
     });
   } catch (error) {
+    upstreamTimeout.clear();
     console.error("Failed to connect to OpenRouter", error);
 
     return jsonResponse(
       {
-        error: "Failed to connect to LLM provider.",
+        error: isAbortError(error)
+          ? "The assistant took too long to respond."
+          : "Failed to connect to LLM provider.",
       },
-      502,
+      isAbortError(error) ? 504 : 502,
     );
   }
 };

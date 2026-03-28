@@ -130,6 +130,7 @@
     "inputPlaceholder": "Ask about skills, projects, or collaboration...",
     "send": "Send",
     "requestFailed": "Sorry, I could not process that request.",
-    "unavailable": "The assistant is temporarily unavailable. Please try again later."
+    "unavailable": "The assistant is temporarily unavailable. Please try again later.",
+    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
   }
 }
