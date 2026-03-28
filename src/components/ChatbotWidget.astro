@@ -76,15 +76,25 @@ const c = t.chatbot;
       ?.getAttributeNames()
       .find((name) => name.startsWith('data-astro-cid-'));
 
-    const addMessage = (role, content) => {
+    const createMessageElement = (role, content = '') => {
       const message = document.createElement('article');
       message.className = `chatbot-message ${role === 'assistant' ? 'chatbot-message--assistant' : 'chatbot-message--user'}`;
       if (scopedMessageAttribute) {
         message.setAttribute(scopedMessageAttribute, '');
       }
       message.textContent = content;
-      messagesContainer.appendChild(message);
+      return message;
+    };
+
+    const scrollMessagesToBottom = () => {
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    const addMessage = (role, content) => {
+      const message = createMessageElement(role, content);
+      messagesContainer.appendChild(message);
+      scrollMessagesToBottom();
+      return message;
     };
 
     const setLoading = (isLoading) => {
@@ -124,6 +134,7 @@ const c = t.chatbot;
       messages.push({ role: 'user', content: text });
       input.value = '';
       setLoading(true);
+      let assistantMessageElement = null;
 
       try {
         const response = await fetch('/api/chatbot', {
@@ -139,15 +150,92 @@ const c = t.chatbot;
           throw new Error('Request failed');
         }
 
-        const data = await response.json();
-        const assistantMessage = data?.message || uiMessages.requestFailed;
+        if (!response.body) {
+          throw new Error('Missing response stream');
+        }
 
-        addMessage('assistant', assistantMessage);
-        messages.push({ role: 'assistant', content: assistantMessage });
+        assistantMessageElement = addMessage('assistant', '');
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let assistantMessage = '';
+        let finalized = false;
+
+        const handleEvent = (payload) => {
+          if (payload?.type === 'chunk') {
+            assistantMessage += payload.delta || '';
+            assistantMessageElement.textContent = assistantMessage;
+            scrollMessagesToBottom();
+            return;
+          }
+
+          if (payload?.type === 'done') {
+            if (payload.message) {
+              assistantMessage = payload.message;
+              assistantMessageElement.textContent = assistantMessage;
+            } else if (!assistantMessage) {
+              assistantMessage = uiMessages.requestFailed;
+              assistantMessageElement.textContent = assistantMessage;
+            }
+
+            messages.push({ role: 'assistant', content: assistantMessage });
+            finalized = true;
+            return;
+          }
+
+          if (payload?.type === 'error') {
+            throw new Error(payload.message || 'Streaming failed');
+          }
+        };
+
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const events = buffer.split('\n\n');
+            buffer = events.pop() || '';
+
+            for (const eventChunk of events) {
+              const line = eventChunk
+                .split('\n')
+                .find((entry) => entry.startsWith('data: '));
+
+              if (!line) continue;
+
+              handleEvent(JSON.parse(line.slice(6)));
+            }
+          }
+
+          buffer += decoder.decode();
+
+          if (buffer.trim()) {
+            const line = buffer
+              .split('\n')
+              .find((entry) => entry.startsWith('data: '));
+
+            if (line) {
+              handleEvent(JSON.parse(line.slice(6)));
+            }
+          }
+        } finally {
+          reader.releaseLock();
+        }
+
+        if (!finalized) {
+          const fallbackMessage = assistantMessage || uiMessages.requestFailed;
+          assistantMessageElement.textContent = fallbackMessage;
+          messages.push({ role: 'assistant', content: fallbackMessage });
+        }
       } catch {
         const fallback = uiMessages.unavailable;
 
-        addMessage('assistant', fallback);
+        if (assistantMessageElement) {
+          assistantMessageElement.textContent = fallback;
+        } else {
+          addMessage('assistant', fallback);
+        }
         messages.push({ role: 'assistant', content: fallback });
       } finally {
         setLoading(false);

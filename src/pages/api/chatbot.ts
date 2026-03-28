@@ -11,8 +11,16 @@ interface ChatRequest {
   messages?: ChatMessage[];
 }
 
+interface StreamEvent {
+  type: "chunk" | "done" | "error";
+  delta?: string;
+  message?: string;
+  outOfScope?: boolean;
+}
+
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL = import.meta.env.OPENROUTER_MODEL ?? "openai/gpt-4.1-mini";
+const OUT_OF_SCOPE_TOKEN = "OUT_OF_SCOPE";
 
 function getKnowledgeBase(locale: Locale): string {
   const t = translations[locale];
@@ -39,18 +47,37 @@ function outOfScopeMessage(locale: Locale): string {
     : "Solo puedo responder preguntas relacionadas con el portafolio de Fabian Montoya.";
 }
 
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+function sseEvent(event: StreamEvent): Uint8Array {
+  return new TextEncoder().encode(`data: ${JSON.stringify(event)}\n\n`);
+}
+
+function extractDelta(payload: unknown): string {
+  const content = (payload as { choices?: Array<{ delta?: { content?: string } }> })?.choices?.[0]?.delta
+    ?.content;
+
+  return typeof content === "string" ? content : "";
+}
+
+function isOutOfScopePrefix(value: string): boolean {
+  return OUT_OF_SCOPE_TOKEN.startsWith(value);
+}
+
 export const POST: APIRoute = async ({ request, site, url }) => {
   const apiKey = import.meta.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
-    return new Response(
-      JSON.stringify({
-        error: "Missing OPENROUTER_API_KEY environment variable.",
-      }),
+    return jsonResponse(
       {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
+        error: "Missing OPENROUTER_API_KEY environment variable.",
       },
+      500,
     );
   }
 
@@ -58,10 +85,7 @@ export const POST: APIRoute = async ({ request, site, url }) => {
   try {
     body = await request.json();
   } catch {
-    return new Response(JSON.stringify({ error: "Invalid JSON payload." }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: "Invalid JSON payload." }, 400);
   }
 
   const locale = body.locale === "en" ? "en" : "es";
@@ -71,10 +95,7 @@ export const POST: APIRoute = async ({ request, site, url }) => {
   );
 
   if (messages.length === 0) {
-    return new Response(JSON.stringify({ error: "At least one message is required." }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: "At least one message is required." }, 400);
   }
 
   const knowledgeBase = getKnowledgeBase(locale);
@@ -95,6 +116,7 @@ ${knowledgeBase}`;
     model: MODEL,
     temperature: 0.2,
     max_tokens: 350,
+    stream: true,
     messages: [
       {
         role: "system",
@@ -105,7 +127,7 @@ ${knowledgeBase}`;
   };
 
   try {
-    const response = await fetch(OPENROUTER_URL, {
+    const upstream = await fetch(OPENROUTER_URL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -116,69 +138,180 @@ ${knowledgeBase}`;
       body: JSON.stringify(payload),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
+    if (!upstream.ok) {
+      const errorText = await upstream.text();
 
       console.error("OpenRouter request failed", {
-        status: response.status,
-        statusText: response.statusText,
+        status: upstream.status,
+        statusText: upstream.statusText,
         body: errorText,
       });
 
-      return new Response(
-        JSON.stringify({
+      return jsonResponse(
+        {
           error: "OpenRouter request failed.",
           details: "Upstream provider returned an error. Please try again later.",
-        }),
-        {
-          status: 502,
-          headers: { "Content-Type": "application/json" },
         },
+        502,
       );
     }
 
-    const result = await response.json();
-    const content = result?.choices?.[0]?.message?.content?.trim();
-
-    if (!content) {
-      return new Response(JSON.stringify({ error: "Empty response from LLM." }), {
-        status: 502,
-        headers: { "Content-Type": "application/json" },
-      });
+    if (!upstream.body) {
+      return jsonResponse({ error: "Empty response stream from LLM." }, 502);
     }
 
-    if (content === "OUT_OF_SCOPE") {
-      return new Response(
-        JSON.stringify({
-          message: outOfScopeMessage(locale),
-          outOfScope: true,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-    }
+    const stream = new ReadableStream<Uint8Array>({
+      async start(controller) {
+        const reader = upstream.body!.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        let accumulatedContent = "";
+        let pendingOutOfScopeBuffer = "";
+        let holdForOutOfScopeDecision = true;
 
-    return new Response(
-      JSON.stringify({
-        message: content,
-        outOfScope: false,
-      }),
-      {
-        headers: { "Content-Type": "application/json" },
+        const enqueue = (event: StreamEvent) => {
+          controller.enqueue(sseEvent(event));
+        };
+
+        const flushPendingIfNeeded = () => {
+          if (!pendingOutOfScopeBuffer) {
+            return;
+          }
+
+          enqueue({ type: "chunk", delta: pendingOutOfScopeBuffer });
+          pendingOutOfScopeBuffer = "";
+        };
+
+        const processDelta = (delta: string) => {
+          if (!delta) {
+            return;
+          }
+
+          accumulatedContent += delta;
+
+          if (!holdForOutOfScopeDecision) {
+            enqueue({ type: "chunk", delta });
+            return;
+          }
+
+          pendingOutOfScopeBuffer += delta;
+
+          if (isOutOfScopePrefix(pendingOutOfScopeBuffer)) {
+            return;
+          }
+
+          holdForOutOfScopeDecision = false;
+          flushPendingIfNeeded();
+        };
+
+        const processSseLine = (line: string) => {
+          if (!line.startsWith("data: ")) {
+            return;
+          }
+
+          const data = line.slice(6).trim();
+
+          if (!data || data === "[DONE]") {
+            return;
+          }
+
+          let parsed: unknown;
+          try {
+            parsed = JSON.parse(data);
+          } catch (error) {
+            console.error("Failed to parse streamed OpenRouter payload", error);
+            throw new Error("Failed to parse streamed LLM response.");
+          }
+
+          processDelta(extractDelta(parsed));
+        };
+
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) {
+              break;
+            }
+
+            buffer += decoder.decode(value, { stream: true });
+            const chunks = buffer.split("\n\n");
+            buffer = chunks.pop() ?? "";
+
+            for (const chunk of chunks) {
+              const lines = chunk
+                .split("\n")
+                .map((line) => line.trim())
+                .filter(Boolean);
+
+              for (const line of lines) {
+                processSseLine(line);
+              }
+            }
+          }
+
+          buffer += decoder.decode();
+
+          if (buffer.trim()) {
+            const lines = buffer
+              .split("\n")
+              .map((line) => line.trim())
+              .filter(Boolean);
+
+            for (const line of lines) {
+              processSseLine(line);
+            }
+          }
+
+          const finalContent = accumulatedContent.trim();
+
+          if (!finalContent) {
+            enqueue({ type: "error", message: "Empty response from LLM." });
+            controller.close();
+            return;
+          }
+
+          if (finalContent === OUT_OF_SCOPE_TOKEN) {
+            enqueue({
+              type: "done",
+              message: outOfScopeMessage(locale),
+              outOfScope: true,
+            });
+            controller.close();
+            return;
+          }
+
+          if (holdForOutOfScopeDecision) {
+            flushPendingIfNeeded();
+          }
+
+          enqueue({ type: "done", outOfScope: false });
+          controller.close();
+        } catch (error) {
+          console.error("Failed to stream OpenRouter response", error);
+          enqueue({ type: "error", message: "Failed to connect to LLM provider." });
+          controller.close();
+        } finally {
+          reader.releaseLock();
+        }
       },
-    );
+    });
+
+    return new Response(stream, {
+      headers: {
+        "Cache-Control": "no-cache, no-transform",
+        Connection: "keep-alive",
+        "Content-Type": "text/event-stream; charset=utf-8",
+      },
+    });
   } catch (error) {
     console.error("Failed to connect to OpenRouter", error);
 
-    return new Response(
-      JSON.stringify({
-        error: "Failed to connect to LLM provider.",
-      }),
+    return jsonResponse(
       {
-        status: 502,
-        headers: { "Content-Type": "application/json" },
+        error: "Failed to connect to LLM provider.",
       },
+      502,
     );
   }
 };
