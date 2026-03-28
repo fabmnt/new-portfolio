@@ -119,5 +119,18 @@
     "description": "I'm always open to new challenges and collaboration opportunities.",
     "sendEmail": "Send email",
     "copyright": "All rights reserved."
+  },
+  "chatbot": {
+    "title": "Portfolio assistant",
+    "buttonLabel": "Ask portfolio",
+    "panelLabel": "Portfolio chatbot panel",
+    "closeAria": "Close chatbot",
+    "welcome": "Hi! I can help you with questions about Fabian’s portfolio, experience, projects, and services.",
+    "inputLabel": "Write your question",
+    "inputPlaceholder": "Ask about skills, projects, or collaboration...",
+    "send": "Send",
+    "requestFailed": "Sorry, I could not process that request.",
+    "unavailable": "The assistant is temporarily unavailable. Please try again later.",
+    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
   }
 }

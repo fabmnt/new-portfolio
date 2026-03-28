@@ -1,0 +1,414 @@
+---
+import { getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const c = t.chatbot;
+const widgetId = `chatbot-${crypto.randomUUID()}`;
+const panelId = `${widgetId}-panel`;
+const inputId = `${widgetId}-input`;
+---
+
+<div
+  class="chatbot-widget"
+  data-locale={locale}
+  data-request-failed={c.requestFailed}
+  data-unavailable={c.unavailable}
+>
+  <button
+    type="button"
+    class="chatbot-toggle"
+    aria-expanded="false"
+    aria-controls={panelId}
+  >
+    <span aria-hidden="true">💬</span>
+    <span>{c.buttonLabel}</span>
+  </button>
+
+  <section class="chatbot-panel hidden" id={panelId} aria-label={c.panelLabel}>
+    <header class="chatbot-header">
+      <p class="chatbot-title">{c.title}</p>
+      <button type="button" class="chatbot-close" aria-label={c.closeAria}>✕</button>
+    </header>
+
+    <div class="chatbot-messages" aria-live="polite" aria-relevant="additions">
+      <article class="chatbot-message chatbot-message--assistant">{c.welcome}</article>
+    </div>
+
+    <form class="chatbot-form">
+      <label class="sr-only" for={inputId}>{c.inputLabel}</label>
+      <input
+        id={inputId}
+        name="message"
+        type="text"
+        class="chatbot-input"
+        placeholder={c.inputPlaceholder}
+        required
+      />
+      <button type="submit" class="chatbot-submit">{c.send}</button>
+    </form>
+  </section>
+</div>
+
+<script is:inline>
+  (() => {
+    const script = document.currentScript;
+    const root = script?.previousElementSibling;
+    if (!(root instanceof HTMLElement) || !root.classList.contains('chatbot-widget')) return;
+
+    const locale = root.getAttribute('data-locale') || 'es';
+    const uiMessages = {
+      requestFailed: root.getAttribute('data-request-failed') || 'Sorry, I could not process that request.',
+      unavailable: root.getAttribute('data-unavailable') || 'The assistant is temporarily unavailable. Please try again later.',
+    };
+    const toggle = root.querySelector('.chatbot-toggle');
+    const panel = root.querySelector('.chatbot-panel');
+    const close = root.querySelector('.chatbot-close');
+    const form = root.querySelector('.chatbot-form');
+    const input = root.querySelector('.chatbot-input');
+    const messagesContainer = root.querySelector('.chatbot-messages');
+
+    if (!toggle || !panel || !close || !form || !input || !messagesContainer) return;
+
+    const messages = [];
+    const scopedMessageAttribute = messagesContainer.firstElementChild
+      ?.getAttributeNames()
+      .find((name) => name.startsWith('data-astro-cid-'));
+
+    const createMessageElement = (role, content = '') => {
+      const message = document.createElement('article');
+      message.className = `chatbot-message ${role === 'assistant' ? 'chatbot-message--assistant' : 'chatbot-message--user'}`;
+      if (scopedMessageAttribute) {
+        message.setAttribute(scopedMessageAttribute, '');
+      }
+      message.textContent = content;
+      return message;
+    };
+
+    const scrollMessagesToBottom = () => {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    const addMessage = (role, content) => {
+      const message = createMessageElement(role, content);
+      messagesContainer.appendChild(message);
+      scrollMessagesToBottom();
+      return message;
+    };
+
+    const setStreamingState = (message, isStreaming) => {
+      if (!message) return;
+      message.classList.toggle('chatbot-message--streaming', isStreaming);
+    };
+
+    const setLoading = (isLoading) => {
+      input.disabled = isLoading;
+      form.querySelector('button[type="submit"]').disabled = isLoading;
+    };
+
+    const openPanel = () => {
+      panel.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      input.focus();
+    };
+
+    const closePanel = () => {
+      panel.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    };
+
+    toggle.addEventListener('click', () => {
+      if (panel.classList.contains('hidden')) {
+        openPanel();
+      } else {
+        closePanel();
+      }
+    });
+
+    close.addEventListener('click', closePanel);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage('user', text);
+      messages.push({ role: 'user', content: text });
+      input.value = '';
+      setLoading(true);
+      let assistantMessageElement = null;
+
+      try {
+        const recentMessages = messages.slice(-8);
+
+        const response = await fetch('/api/chatbot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            locale,
+            messages: recentMessages,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        if (!response.body) {
+          throw new Error('Missing response stream');
+        }
+
+        assistantMessageElement = addMessage('assistant', '');
+        setStreamingState(assistantMessageElement, true);
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let assistantMessage = '';
+        let finalized = false;
+
+        const handleEvent = (payload) => {
+          if (payload?.type === 'chunk') {
+            assistantMessage += payload.delta || '';
+            assistantMessageElement.textContent = assistantMessage;
+            scrollMessagesToBottom();
+            return;
+          }
+
+          if (payload?.type === 'done') {
+            if (payload.message) {
+              assistantMessage = payload.message;
+              assistantMessageElement.textContent = assistantMessage;
+            } else if (!assistantMessage) {
+              assistantMessage = uiMessages.requestFailed;
+              assistantMessageElement.textContent = assistantMessage;
+            }
+
+            messages.push({ role: 'assistant', content: assistantMessage });
+            finalized = true;
+            setStreamingState(assistantMessageElement, false);
+            return;
+          }
+
+          if (payload?.type === 'error') {
+            throw new Error(payload.message || 'Streaming failed');
+          }
+        };
+
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const events = buffer.split('\n\n');
+            buffer = events.pop() || '';
+
+            for (const eventChunk of events) {
+              const line = eventChunk
+                .split('\n')
+                .find((entry) => entry.startsWith('data: '));
+
+              if (!line) continue;
+
+              handleEvent(JSON.parse(line.slice(6)));
+            }
+          }
+
+          buffer += decoder.decode();
+
+          if (buffer.trim()) {
+            const line = buffer
+              .split('\n')
+              .find((entry) => entry.startsWith('data: '));
+
+            if (line) {
+              handleEvent(JSON.parse(line.slice(6)));
+            }
+          }
+        } finally {
+          reader.releaseLock();
+        }
+
+        if (!finalized) {
+          const fallbackMessage = assistantMessage || uiMessages.requestFailed;
+          assistantMessageElement.textContent = fallbackMessage;
+          messages.push({ role: 'assistant', content: fallbackMessage });
+          setStreamingState(assistantMessageElement, false);
+        }
+      } catch {
+        const fallback = uiMessages.unavailable;
+
+        if (assistantMessageElement) {
+          assistantMessageElement.textContent = fallback;
+          setStreamingState(assistantMessageElement, false);
+        } else {
+          addMessage('assistant', fallback);
+        }
+        messages.push({ role: 'assistant', content: fallback });
+      } finally {
+        setLoading(false);
+        input.focus();
+      }
+    });
+  })();
+</script>
+
+<style>
+  .chatbot-widget {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 70;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  .chatbot-toggle {
+    border: 1px solid rgb(255 255 255 / 0.25);
+    background: linear-gradient(140deg, #2563eb, #1d4ed8);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    border-radius: 999px;
+    padding: 0.65rem 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+
+  .chatbot-panel {
+    width: min(90vw, 22rem);
+    height: min(72vh, 29rem);
+    border-radius: 1rem;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    background: rgb(14 14 18 / 0.96);
+    backdrop-filter: blur(8px);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    box-shadow: 0 24px 52px -28px rgb(15 23 42 / 0.8);
+  }
+
+  .chatbot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.9rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .chatbot-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .chatbot-close {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .chatbot-messages {
+    overflow-y: auto;
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  :global(.chatbot-message) {
+    max-width: 88%;
+    border-radius: 0.85rem;
+    padding: 0.65rem 0.75rem;
+    line-height: 1.4;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+  }
+
+  :global(.chatbot-message--assistant) {
+    background: rgb(37 99 235 / 0.22);
+    align-self: flex-start;
+  }
+
+  :global(.chatbot-message--streaming)::after {
+    content: "";
+    display: inline-block;
+    width: 0.55rem;
+    height: 1em;
+    margin-left: 0.18rem;
+    vertical-align: -0.12em;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.85;
+    animation: chatbot-cursor-blink 0.9s steps(1, end) infinite;
+  }
+
+  :global(.chatbot-message--user) {
+    background: rgb(255 255 255 / 0.12);
+    align-self: flex-end;
+  }
+
+  .chatbot-form {
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    padding: 0.8rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .chatbot-input {
+    height: 3rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    background: rgb(0 0 0 / 0.35);
+    color: inherit;
+    padding: 0.55rem 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .chatbot-submit {
+    border: 0;
+    border-radius: 0.6rem;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.55rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .chatbot-submit:disabled,
+  .chatbot-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @keyframes chatbot-cursor-blink {
+    0%,
+    45% {
+      opacity: 0.85;
+    }
+
+    46%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
