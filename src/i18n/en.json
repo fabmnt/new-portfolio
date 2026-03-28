@@ -119,5 +119,16 @@
     "description": "I'm always open to new challenges and collaboration opportunities.",
     "sendEmail": "Send email",
     "copyright": "All rights reserved."
+  },
+  "chatbot": {
+    "title": "Ask my AI assistant",
+    "subtitle": "Portfolio-only answers",
+    "placeholder": "Ask about experience, services, projects or skills...",
+    "send": "Send",
+    "open": "Open chatbot",
+    "close": "Close chatbot",
+    "welcome": "Hi! I can answer questions about Fabian's portfolio, experience, services, and skills.",
+    "loading": "Thinking...",
+    "error": "I couldn't respond right now. Please try again in a moment."
   }
 }

@@ -119,5 +119,16 @@
     "description": "Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.",
     "sendEmail": "Enviar correo",
     "copyright": "Todos los derechos reservados."
+  },
+  "chatbot": {
+    "title": "Pregunta a mi asistente IA",
+    "subtitle": "Respuestas solo del portafolio",
+    "placeholder": "Pregunta sobre experiencia, servicios, proyectos o habilidades...",
+    "send": "Enviar",
+    "open": "Abrir chatbot",
+    "close": "Cerrar chatbot",
+    "welcome": "¡Hola! Puedo responder preguntas sobre el portafolio, experiencia, servicios y habilidades de Fabian.",
+    "loading": "Pensando...",
+    "error": "No pude responder en este momento. Inténtalo nuevamente en unos segundos."
   }
 }

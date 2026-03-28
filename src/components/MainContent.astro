@@ -8,6 +8,7 @@ import PresentationIntro from "./PresentationIntro.astro";
 import Skills from "./Skills.astro";
 import Studies from "./Studies.astro";
 import WorkTogether from "./WorkTogether.astro";
+import PortfolioChatbot from "./PortfolioChatbot.astro";
 
 interface Props {
   locale: "en" | "es";
@@ -28,3 +29,4 @@ const { locale } = Astro.props;
 </main>
 
 <HoverLightScript />
+<PortfolioChatbot locale={locale} />
