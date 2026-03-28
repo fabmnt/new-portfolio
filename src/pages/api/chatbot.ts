@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { translations, type Locale } from "@/i18n";
 
 interface ChatMessage {
-  role: "user";
+  role: "user" | "assistant";
   content: string;
 }
 
@@ -91,7 +91,8 @@ export const POST: APIRoute = async ({ request, site, url }) => {
   const locale = body.locale === "en" ? "en" : "es";
   const messages = (body.messages ?? []).filter(
     (message): message is ChatMessage =>
-      Boolean(message?.content?.trim()) && message?.role === "user",
+      Boolean(message?.content?.trim()) &&
+      (message?.role === "user" || message?.role === "assistant"),
   );
 
   if (messages.length === 0) {
