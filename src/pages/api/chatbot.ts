@@ -18,9 +18,81 @@ interface StreamEvent {
   outOfScope?: boolean;
 }
 
+interface RateLimitState {
+  count: number;
+  resetAt: number;
+}
+
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL = import.meta.env.OPENROUTER_MODEL ?? "openai/gpt-oss-120b:free";
 const OUT_OF_SCOPE_TOKEN = "OUT_OF_SCOPE";
+const RATE_LIMIT_MAX_REQUESTS = 12;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_STORAGE_KEY = "__chatbotRateLimitStore";
+
+function getRateLimitStore(): Map<string, RateLimitState> {
+  const globalStore = globalThis as typeof globalThis & {
+    __chatbotRateLimitStore?: Map<string, RateLimitState>;
+  };
+
+  if (!globalStore[RATE_LIMIT_STORAGE_KEY]) {
+    globalStore[RATE_LIMIT_STORAGE_KEY] = new Map<string, RateLimitState>();
+  }
+
+  return globalStore[RATE_LIMIT_STORAGE_KEY];
+}
+
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() || "unknown";
+  }
+
+  return (
+    request.headers.get("x-real-ip") ??
+    request.headers.get("cf-connecting-ip") ??
+    "unknown"
+  );
+}
+
+function consumeRateLimit(ip: string): { allowed: boolean; retryAfterSeconds: number } {
+  const store = getRateLimitStore();
+  const now = Date.now();
+
+  for (const [key, value] of store.entries()) {
+    if (value.resetAt <= now) {
+      store.delete(key);
+    }
+  }
+
+  const existing = store.get(ip);
+  if (!existing || existing.resetAt <= now) {
+    store.set(ip, {
+      count: 1,
+      resetAt: now + RATE_LIMIT_WINDOW_MS,
+    });
+
+    return {
+      allowed: true,
+      retryAfterSeconds: Math.ceil(RATE_LIMIT_WINDOW_MS / 1000),
+    };
+  }
+
+  if (existing.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return {
+      allowed: false,
+      retryAfterSeconds: Math.max(1, Math.ceil((existing.resetAt - now) / 1000)),
+    };
+  }
+
+  existing.count += 1;
+  store.set(ip, existing);
+
+  return {
+    allowed: true,
+    retryAfterSeconds: Math.max(1, Math.ceil((existing.resetAt - now) / 1000)),
+  };
+}
 
 function getKnowledgeBase(locale: Locale): string {
   const t = translations[locale];
@@ -78,6 +150,24 @@ export const POST: APIRoute = async ({ request, site, url }) => {
         error: "Missing OPENROUTER_API_KEY environment variable.",
       },
       500,
+    );
+  }
+
+  const clientIp = getClientIp(request);
+  const rateLimitResult = consumeRateLimit(clientIp);
+
+  if (!rateLimitResult.allowed) {
+    return new Response(
+      JSON.stringify({
+        error: "Rate limit exceeded. Please try again later.",
+      }),
+      {
+        status: 429,
+        headers: {
+          "Content-Type": "application/json",
+          "Retry-After": String(rateLimitResult.retryAfterSeconds),
+        },
+      },
     );
   }
 
