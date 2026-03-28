@@ -72,10 +72,16 @@ const c = t.chatbot;
     if (!toggle || !panel || !close || !form || !input || !messagesContainer) return;
 
     const messages = [];
+    const scopedMessageAttribute = messagesContainer.firstElementChild
+      ?.getAttributeNames()
+      .find((name) => name.startsWith('data-astro-cid-'));
 
     const addMessage = (role, content) => {
       const message = document.createElement('article');
       message.className = `chatbot-message ${role === 'assistant' ? 'chatbot-message--assistant' : 'chatbot-message--user'}`;
+      if (scopedMessageAttribute) {
+        message.setAttribute(scopedMessageAttribute, '');
+      }
       message.textContent = content;
       messagesContainer.appendChild(message);
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -223,7 +229,7 @@ const c = t.chatbot;
     gap: 0.65rem;
   }
 
-  .chatbot-message {
+  :global(.chatbot-message) {
     max-width: 88%;
     border-radius: 0.85rem;
     padding: 0.65rem 0.75rem;
@@ -232,12 +238,12 @@ const c = t.chatbot;
     white-space: pre-wrap;
   }
 
-  .chatbot-message--assistant {
+  :global(.chatbot-message--assistant) {
     background: rgb(37 99 235 / 0.22);
     align-self: flex-start;
   }
 
-  .chatbot-message--user {
+  :global(.chatbot-message--user) {
     background: rgb(255 255 255 / 0.12);
     align-self: flex-end;
   }
