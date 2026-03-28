@@ -19,7 +19,7 @@ interface StreamEvent {
 }
 
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = import.meta.env.OPENROUTER_MODEL ?? "openai/gpt-4.1-mini";
+const MODEL = import.meta.env.OPENROUTER_MODEL ?? "minimax/minimax-m2.5:free";
 const OUT_OF_SCOPE_TOKEN = "OUT_OF_SCOPE";
 
 function getKnowledgeBase(locale: Locale): string {

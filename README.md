@@ -11,7 +11,7 @@ Create a `.env` file with:
 ```bash
 OPENROUTER_API_KEY=your_openrouter_api_key
 # Optional
-OPENROUTER_MODEL=openai/gpt-4.1-mini
+OPENROUTER_MODEL=minimax/minimax-m2.5:free
 ```
 
 ### Behavior
