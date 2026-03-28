@@ -128,6 +128,8 @@
     "welcome": "Hi! I can help you with questions about Fabian’s portfolio, experience, projects, and services.",
     "inputLabel": "Write your question",
     "inputPlaceholder": "Ask about skills, projects, or collaboration...",
-    "send": "Send"
+    "send": "Send",
+    "requestFailed": "Sorry, I could not process that request.",
+    "unavailable": "The assistant is temporarily unavailable. Please try again later."
   }
 }

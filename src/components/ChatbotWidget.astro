@@ -8,6 +8,10 @@ interface Props {
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 const c = t.chatbot;
+const chatbotMessages = JSON.stringify({
+  requestFailed: c.requestFailed,
+  unavailable: c.unavailable,
+});
 ---
 
 <div class="chatbot-widget" data-locale={locale}>
@@ -49,6 +53,7 @@ const c = t.chatbot;
 
 <script is:inline>
   (() => {
+    const uiMessages = JSON.parse({JSON.stringify(chatbotMessages)});
     const root = document.querySelector('.chatbot-widget');
     if (!root) return;
 
@@ -125,18 +130,15 @@ const c = t.chatbot;
         }
 
         const data = await response.json();
-        const assistantMessage = data?.message || (locale === 'en'
-          ? 'Sorry, I could not process that request.'
-          : 'Lo siento, no pude procesar esa solicitud.');
+        const assistantMessage = data?.message || uiMessages.requestFailed;
 
         addMessage('assistant', assistantMessage);
         messages.push({ role: 'assistant', content: assistantMessage });
       } catch {
-        const fallback = locale === 'en'
-          ? 'The assistant is temporarily unavailable. Please try again later.'
-          : 'El asistente no está disponible temporalmente. Intenta más tarde.';
+        const fallback = uiMessages.unavailable;
 
         addMessage('assistant', fallback);
+        messages.push({ role: 'assistant', content: fallback });
       } finally {
         setLoading(false);
         input.focus();
