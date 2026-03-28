@@ -97,6 +97,11 @@ const c = t.chatbot;
       return message;
     };
 
+    const setStreamingState = (message, isStreaming) => {
+      if (!message) return;
+      message.classList.toggle('chatbot-message--streaming', isStreaming);
+    };
+
     const setLoading = (isLoading) => {
       input.disabled = isLoading;
       form.querySelector('button[type="submit"]').disabled = isLoading;
@@ -155,6 +160,7 @@ const c = t.chatbot;
         }
 
         assistantMessageElement = addMessage('assistant', '');
+        setStreamingState(assistantMessageElement, true);
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let buffer = '';
@@ -180,6 +186,7 @@ const c = t.chatbot;
 
             messages.push({ role: 'assistant', content: assistantMessage });
             finalized = true;
+            setStreamingState(assistantMessageElement, false);
             return;
           }
 
@@ -227,12 +234,14 @@ const c = t.chatbot;
           const fallbackMessage = assistantMessage || uiMessages.requestFailed;
           assistantMessageElement.textContent = fallbackMessage;
           messages.push({ role: 'assistant', content: fallbackMessage });
+          setStreamingState(assistantMessageElement, false);
         }
       } catch {
         const fallback = uiMessages.unavailable;
 
         if (assistantMessageElement) {
           assistantMessageElement.textContent = fallback;
+          setStreamingState(assistantMessageElement, false);
         } else {
           addMessage('assistant', fallback);
         }
@@ -331,6 +340,19 @@ const c = t.chatbot;
     align-self: flex-start;
   }
 
+  :global(.chatbot-message--streaming)::after {
+    content: "";
+    display: inline-block;
+    width: 0.55rem;
+    height: 1em;
+    margin-left: 0.18rem;
+    vertical-align: -0.12em;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.85;
+    animation: chatbot-cursor-blink 0.9s steps(1, end) infinite;
+  }
+
   :global(.chatbot-message--user) {
     background: rgb(255 255 255 / 0.12);
     align-self: flex-end;
@@ -372,5 +394,17 @@ const c = t.chatbot;
 
   .hidden {
     display: none;
+  }
+
+  @keyframes chatbot-cursor-blink {
+    0%,
+    45% {
+      opacity: 0.85;
+    }
+
+    46%,
+    100% {
+      opacity: 0;
+    }
   }
 </style>
