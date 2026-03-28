@@ -1,12 +1,13 @@
 ---
 import Experience from "./Experience.astro";
+import Footer from "./Footer.astro";
 import HoverLightScript from "./HoverLightScript.astro";
-import NewFooter from "./NewFooter.astro";
 import Overview from "./Overview.astro";
 import PresentationIntro from "./PresentationIntro.astro";
 /* import Projects from "./Projects.astro"; */
 import Skills from "./Skills.astro";
 import Studies from "./Studies.astro";
+import WorkTogether from "./WorkTogether.astro";
 
 interface Props {
   locale: "en" | "es";
@@ -22,7 +23,8 @@ const { locale } = Astro.props;
   <!-- <Projects locale={locale} /> -->
   <Skills locale={locale} />
   <Studies locale={locale} />
-  <NewFooter locale={locale} />
+  <WorkTogether locale={locale} />
+  <Footer locale={locale} />
 </main>
 
 <HoverLightScript />

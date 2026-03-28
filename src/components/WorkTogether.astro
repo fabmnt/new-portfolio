@@ -1,0 +1,181 @@
+---
+import LinkedInIcon from "@/assets/icons/LinkedInIcon.astro";
+import GithubIcon from "@/assets/icons/GithubIcon.astro";
+import TwitterIcon from "@/assets/icons/TwitterIcon.astro";
+import { getTranslations } from "@/i18n";
+
+interface Props {
+  locale: "en" | "es";
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
+<section id="work-together" class="relative overflow-hidden bg-brutalist-black pt-12">
+  <div class="absolute inset-0 bg-brutalist-black"></div>
+  <div class="absolute inset-0 bg-section-pattern opacity-60"></div>
+  <div class="absolute inset-x-0 top-0 h-40 bg-section-fade-top"></div>
+  <div class="absolute inset-x-0 bottom-0 h-40 bg-section-fade-bottom"></div>
+  <div class="absolute top-1/3 left-1/4 h-1/2 w-1/2 bg-section-glow"></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-8">
+    <div class="animate-on-scroll mb-12 text-center">
+      <h2
+        class="title-fade mb-4 text-center text-3xl font-extrabold text-brutalist-white sm:text-4xl md:text-4xl lg:text-5xl"
+        data-title={t.footer.title}
+      >
+        {t.footer.title}
+      </h2>
+      <p class="mx-auto max-w-md font-light text-brutalist-white/70">
+        {t.footer.description}
+      </p>
+    </div>
+
+    <div class="animate-on-scroll delay-100 mb-12 flex flex-col items-center gap-4 sm:gap-6">
+      <div class="flex w-full max-w-md flex-col items-center gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:justify-start">
+        <div class="flex w-full max-w-md items-stretch gap-3 sm:w-auto sm:max-w-none">
+          <a
+            href="mailto:fabianmontoya2802@gmail.com"
+            class="primary-metal-button group inline-flex w-full items-center justify-center gap-2 px-5 py-3 text-xs font-medium tracking-wider text-brutalist-white uppercase sm:w-auto sm:justify-start sm:gap-3 sm:px-6 sm:py-4 sm:text-sm md:px-8"
+          >
+            <svg
+              class="size-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width={2}
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            {t.footer.sendEmail}
+            <svg
+              class="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width={2}
+                d="M7 17L17 7M17 7H7M17 7V17"
+              ></path>
+            </svg>
+          </a>
+
+          <button
+            type="button"
+            class="footer-email-copy-btn secondary-metal-button inline-flex flex-shrink-0 items-center justify-center border border-brutalist-white/20 px-4 py-3 text-brutalist-white sm:px-5 sm:py-4"
+            aria-label={locale === "es"
+              ? "Copiar correo electronico"
+              : "Copy email address"}
+            title={locale === "es" ? "Copiar correo" : "Copy email"}
+          >
+            <svg
+              class="copy-icon size-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 9a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2V9zM5 15H4a1 1 0 01-1-1V4a1 1 0 011-1h10a1 1 0 011 1v1"
+              ></path>
+            </svg>
+            <svg
+              class="check-icon hidden size-4 text-brutalist-blue"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href="https://www.linkedin.com/in/fabián-montoya-963247345"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
+          aria-label={`LinkedIn (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+        >
+          <LinkedInIcon class="!size-5" aria-hidden="true" />
+        </a>
+        <a
+          href="https://x.com/fabmntp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
+          aria-label={`X (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+        >
+          <TwitterIcon class="!size-5" aria-hidden="true" />
+        </a>
+        <a
+          href="https://github.com/fabmnt"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="secondary-metal-button p-3 border border-brutalist-white/20 text-brutalist-white"
+          aria-label={`GitHub (${locale === "es" ? "abre en nueva pestaña" : "opens in new tab"})`}
+        >
+          <GithubIcon class="!size-5" aria-hidden="true" />
+        </a>
+        <a
+          href="/fabian-montoya-cv.pdf"
+          download
+          title={t.presentation.downloadCV}
+          class="secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
+          aria-label={locale === "es"
+            ? "Descargar CV (documento PDF)"
+            : "Download CV (PDF document)"}
+        >
+          <svg
+            class="size-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            aria-hidden="true"
+          >
+            <path
+              fill="currentColor"
+              d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll(".footer-email-copy-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("fabianmontoya2802@gmail.com");
+        btn.querySelector(".copy-icon")?.classList.add("hidden");
+        btn.querySelector(".check-icon")?.classList.remove("hidden");
+        setTimeout(() => {
+          btn.querySelector(".copy-icon")?.classList.remove("hidden");
+          btn.querySelector(".check-icon")?.classList.add("hidden");
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy email:", err);
+      }
+    });
+  });
+</script>
