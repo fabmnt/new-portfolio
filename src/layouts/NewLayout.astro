@@ -200,7 +200,7 @@ const jsonLd = {
       // IntersectionObserver for scroll animations with feature check
       (function() {
         const elements = document.querySelectorAll('.animate-on-scroll');
-        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        const sections = Array.from(document.querySelectorAll('main > [id]'));
         let activeSectionId = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
 
         // Check if IntersectionObserver is supported

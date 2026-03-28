@@ -97,6 +97,13 @@
       "Tailwind CSS",
       "Vite",
       "Git",
+      "Drizzle ORM",
+      "TypeORM",
+      "Prisma ORM",
+      "Vitest",
+      "react-testing-library",
+      "Playwright",
+      "Selenium",
       "REST APIs",
       "SQL",
       "MongoDB"

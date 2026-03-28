@@ -255,7 +255,6 @@ const agents = [
       --hover-x: 50%;
       --hover-y: 0%;
       transition:
-        transform 0.35s ease,
         border-color 0.35s ease,
         background-color 0.35s ease,
         box-shadow 0.35s ease;
@@ -303,7 +302,6 @@ const agents = [
 
     .agent-icon-shell {
       transition:
-        transform 0.35s ease,
         box-shadow 0.35s ease,
         background-color 0.35s ease,
         border-color 0.35s ease;
@@ -311,7 +309,6 @@ const agents = [
 
     .agent-card:hover,
     .agent-card[data-touch-active="true"] {
-      transform: translateY(-4px);
       border-color: var(--agent-color-glow);
       background-color: var(--agent-color-soft);
       box-shadow: 0 20px 40px -24px var(--agent-color-glow);
@@ -326,7 +323,6 @@ const agents = [
 
     .agent-card:hover .agent-icon-shell,
     .agent-card[data-touch-active="true"] .agent-icon-shell {
-      transform: scale(1.05);
       border-color: var(--agent-color-glow);
       background-color: var(--agent-color-soft) !important;
       box-shadow: 0 0 28px -10px var(--agent-color-glow);
@@ -381,9 +377,8 @@ const agents = [
     }
 
     .skill-tools-panel {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
       gap: 0.85rem;
       padding: 1.35rem 1.5rem 1.5rem;
       border-top: 1px solid rgb(255 255 255 / 0.06);
@@ -392,11 +387,14 @@ const agents = [
     .secondary-skill-badge {
       --hover-x: 50%;
       --hover-y: 0%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
       position: relative;
       overflow: hidden;
       isolation: isolate;
       transition:
-        transform 0.3s ease,
         border-color 0.3s ease,
         color 0.3s ease,
         background-color 0.3s ease,
@@ -406,6 +404,7 @@ const agents = [
     .secondary-skill-badge__label {
       position: relative;
       z-index: 1;
+      text-align: center;
     }
 
     .secondary-skill-badge::before {
@@ -419,10 +418,7 @@ const agents = [
         transparent 72%
       );
       opacity: 0;
-      transform: scale(0.96);
-      transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
+      transition: opacity 0.3s ease;
       z-index: 0;
       pointer-events: none;
     }
@@ -446,7 +442,6 @@ const agents = [
 
     .secondary-skill-badge:hover,
     .secondary-skill-badge[data-touch-active="true"] {
-      transform: translateY(-3px);
       border-color: rgb(29 161 242 / 0.45);
       color: rgb(168 232 255 / 1);
       background-color: rgb(255 255 255 / 0.08);
@@ -460,9 +455,5 @@ const agents = [
       opacity: 1;
     }
 
-    .secondary-skill-badge:hover::before,
-    .secondary-skill-badge[data-touch-active="true"]::before {
-      transform: scale(1);
-    }
   </style>
 </section>
