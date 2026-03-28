@@ -32,6 +32,8 @@ const RATE_LIMIT_STORAGE_KEY = "__chatbotRateLimitStore";
 const MAX_CLIENT_MESSAGES = 8;
 const MAX_MESSAGE_LENGTH = 1_000;
 const UPSTREAM_TIMEOUT_MS = 30_000;
+const MAX_UPSTREAM_ATTEMPTS = 3;
+const UPSTREAM_RETRY_DELAY_MS = 500;
 
 function getRateLimitStore(): Map<string, RateLimitState> {
   const globalStore = globalThis as typeof globalThis & {
@@ -182,6 +184,14 @@ function createUpstreamTimeout(abortController: AbortController) {
   };
 }
 
+function isRetryableUpstreamStatus(status: number): boolean {
+  return status === 408 || status === 409 || status === 429 || status >= 500;
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function isAllowedRequestOrigin(request: Request, site: URL | undefined, url: URL): boolean {
   const allowedOrigins = new Set([url.origin]);
 
@@ -308,50 +318,120 @@ ${knowledgeBase}`;
     ],
   };
 
-  const abortController = new AbortController();
-  const upstreamTimeout = createUpstreamTimeout(abortController);
-  upstreamTimeout.reset();
+  let upstream: Response | null = null;
+  let abortController: AbortController | null = null;
+  let upstreamTimeout: ReturnType<typeof createUpstreamTimeout> | null = null;
 
   try {
-    const upstream = await fetch(OPENROUTER_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": site?.toString() ?? url.origin,
-        "X-Title": "Fabian Portfolio Chatbot",
-      },
-      body: JSON.stringify(payload),
-      signal: abortController.signal,
-    });
+    for (let attempt = 1; attempt <= MAX_UPSTREAM_ATTEMPTS; attempt += 1) {
+      abortController = new AbortController();
+      upstreamTimeout = createUpstreamTimeout(abortController);
+      upstreamTimeout.reset();
 
-    if (!upstream.ok) {
-      const errorText = await upstream.text();
-      upstreamTimeout.clear();
+      try {
+        const response = await fetch(OPENROUTER_URL, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": site?.toString() ?? url.origin,
+            "X-Title": "Fabian Portfolio Chatbot",
+          },
+          body: JSON.stringify(payload),
+          signal: abortController.signal,
+        });
 
-      console.error("OpenRouter request failed", {
-        status: upstream.status,
-        statusText: upstream.statusText,
-        body: errorText,
-      });
+        if (!response.ok) {
+          const errorText = await response.text();
+          upstreamTimeout.clear();
 
+          console.error("OpenRouter request failed", {
+            attempt,
+            status: response.status,
+            statusText: response.statusText,
+            body: errorText,
+          });
+
+          if (
+            attempt < MAX_UPSTREAM_ATTEMPTS &&
+            isRetryableUpstreamStatus(response.status)
+          ) {
+            await delay(attempt * UPSTREAM_RETRY_DELAY_MS);
+            continue;
+          }
+
+          return jsonResponse(
+            {
+              error: "OpenRouter request failed.",
+              details: "Upstream provider returned an error. Please try again later.",
+            },
+            502,
+          );
+        }
+
+        if (!response.body) {
+          upstreamTimeout.clear();
+          console.error("OpenRouter response stream was empty", { attempt });
+
+          if (attempt < MAX_UPSTREAM_ATTEMPTS) {
+            await delay(attempt * UPSTREAM_RETRY_DELAY_MS);
+            continue;
+          }
+
+          return jsonResponse({ error: "Empty response stream from LLM." }, 502);
+        }
+
+        upstream = response;
+        break;
+      } catch (error) {
+        upstreamTimeout.clear();
+        console.error("Failed to connect to OpenRouter", { attempt, error });
+
+        if (isAbortError(error)) {
+          return jsonResponse(
+            {
+              error: "The assistant took too long to respond.",
+            },
+            504,
+          );
+        }
+
+        if (attempt < MAX_UPSTREAM_ATTEMPTS) {
+          await delay(attempt * UPSTREAM_RETRY_DELAY_MS);
+          continue;
+        }
+
+        return jsonResponse(
+          {
+            error: "Failed to connect to LLM provider.",
+          },
+          502,
+        );
+      }
+    }
+
+    if (!upstream || !abortController || !upstreamTimeout) {
       return jsonResponse(
         {
-          error: "OpenRouter request failed.",
-          details: "Upstream provider returned an error. Please try again later.",
+          error: "Failed to connect to LLM provider.",
         },
         502,
       );
     }
 
-    if (!upstream.body) {
-      upstreamTimeout.clear();
+    const activeUpstream = upstream;
+    const activeAbortController = abortController;
+    const activeUpstreamTimeout = upstreamTimeout;
+    const activeUpstreamBody = activeUpstream.body;
+
+    if (!activeUpstreamBody) {
+      activeUpstreamTimeout.clear();
       return jsonResponse({ error: "Empty response stream from LLM." }, 502);
     }
 
     const stream = new ReadableStream<Uint8Array>({
       async start(controller) {
-        const reader = upstream.body!.getReader();
+        const reader = activeUpstreamBody.getReader();
         const decoder = new TextDecoder();
         let buffer = "";
         let accumulatedContent = "";
@@ -417,7 +497,7 @@ ${knowledgeBase}`;
 
         try {
           while (true) {
-            upstreamTimeout.reset();
+            activeUpstreamTimeout.reset();
             const { done, value } = await reader.read();
 
             if (done) {
@@ -487,13 +567,13 @@ ${knowledgeBase}`;
           });
           controller.close();
         } finally {
-          upstreamTimeout.clear();
+          activeUpstreamTimeout.clear();
           reader.releaseLock();
         }
       },
       cancel() {
-        upstreamTimeout.clear();
-        abortController.abort();
+        activeUpstreamTimeout.clear();
+        activeAbortController.abort();
       },
     });
 
@@ -505,7 +585,7 @@ ${knowledgeBase}`;
       },
     });
   } catch (error) {
-    upstreamTimeout.clear();
+    upstreamTimeout?.clear();
     console.error("Failed to connect to OpenRouter", error);
 
     return jsonResponse(
