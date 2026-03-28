@@ -75,50 +75,77 @@ const studies: Study[] = locale === "en" ? [
   <div class="absolute inset-x-0 bottom-0 h-40 bg-section-fade-bottom"></div>
   <div class="absolute bottom-1/4 left-1/4 w-1/2 h-1/2 bg-section-glow"></div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8">
-    <div class="animate-on-scroll mb-16 text-center sm:text-left">
-      <h2
-        class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white title-fade"
-        data-title={`${t.studies.title} ${t.studies.highlight}`}
-      >
-        {t.studies.title} {t.studies.highlight}
-      </h2>
-      <div class="title-rule mt-3 w-full h-[2px] text-brutalist-white/85"></div>
-    </div>
-
-    <div class="space-y-4">
-      {studies.map((study, index) => (
-        <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
-          <div
-            class="subtle-hover-card flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10"
-            data-hover-light
+  <div class="relative z-10 left-1/2 w-[96vw] max-w-none -translate-x-1/2">
+    <div class="studies-shell rounded-[2rem] border border-zinc-900 bg-black/80 px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-8">
+        <div class="animate-on-scroll mb-16 text-center sm:text-left">
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-brutalist-white title-fade"
+            data-title={`${t.studies.title} ${t.studies.highlight}`}
           >
-            <div class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
-              <Image
-                src={study.logo}
-                alt={study.logoAlt}
-                width={80}
-                height={80}
-                class="w-full h-full object-contain p-2 brightness-90"
-              />
-            </div>
-
-            <div class="relative z-10 flex-1 pt-0 sm:pt-2 w-full">
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                <h3 class="text-xl font-semibold tracking-tight text-brutalist-white">
-                  {study.title}
-                </h3>
-                <span class="text-sm text-brutalist-white/50 font-medium">
-                  {study.year}
-                </span>
-              </div>
-              <p class="text-base font-normal text-brutalist-white/85">
-                {study.institution}
-              </p>
-            </div>
-          </div>
+            {t.studies.title} {t.studies.highlight}
+          </h2>
+          <div class="title-rule mt-3 w-full h-[2px] text-brutalist-white/85"></div>
         </div>
-      ))}
+
+        <div class="space-y-4">
+          {studies.map((study, index) => (
+            <div class={`animate-on-scroll ${index === 1 ? 'delay-100' : index === 2 ? 'delay-200' : ''}`}>
+              <div
+                class="subtle-hover-card flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-5 sm:p-6 bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10"
+                data-hover-light
+              >
+                <div class="relative z-10 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center border border-brutalist-white/20 flex-shrink-0 bg-brutalist-black/50">
+                  <Image
+                    src={study.logo}
+                    alt={study.logoAlt}
+                    width={80}
+                    height={80}
+                    class="w-full h-full object-contain p-2 brightness-90"
+                  />
+                </div>
+
+                <div class="relative z-10 flex-1 pt-0 sm:pt-2 w-full">
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                    <h3 class="text-xl font-semibold tracking-tight text-brutalist-white">
+                      {study.title}
+                    </h3>
+                    <span class="text-sm text-brutalist-white/50 font-medium">
+                      {study.year}
+                    </span>
+                  </div>
+                  <p class="text-base font-normal text-brutalist-white/85">
+                    {study.institution}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
+
+  <style>
+    .studies-shell {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      box-shadow:
+        0 16px 40px rgb(0 0 0 / 0.2),
+        0 32px 90px rgb(0 0 0 / 0.28);
+    }
+
+    .studies-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.12),
+        inset 0 -1px 0 rgb(255 255 255 / 0.04),
+        inset 0 0 18px rgb(255 255 255 / 0.025);
+    }
+  </style>
 </section>
