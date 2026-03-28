@@ -8,13 +8,14 @@ interface Props {
 const { locale } = Astro.props;
 const t = getTranslations(locale);
 const c = t.chatbot;
-const chatbotMessages = JSON.stringify({
-  requestFailed: c.requestFailed,
-  unavailable: c.unavailable,
-});
 ---
 
-<div class="chatbot-widget" data-locale={locale}>
+<div
+  class="chatbot-widget"
+  data-locale={locale}
+  data-request-failed={c.requestFailed}
+  data-unavailable={c.unavailable}
+>
   <button
     type="button"
     class="chatbot-toggle"
@@ -53,11 +54,14 @@ const chatbotMessages = JSON.stringify({
 
 <script is:inline>
   (() => {
-    const uiMessages = JSON.parse({JSON.stringify(chatbotMessages)});
     const root = document.querySelector('.chatbot-widget');
     if (!root) return;
 
     const locale = root.getAttribute('data-locale') || 'es';
+    const uiMessages = {
+      requestFailed: root.getAttribute('data-request-failed') || 'Sorry, I could not process that request.',
+      unavailable: root.getAttribute('data-unavailable') || 'The assistant is temporarily unavailable. Please try again later.',
+    };
     const toggle = document.getElementById('chatbot-toggle');
     const panel = document.getElementById('chatbot-panel');
     const close = document.getElementById('chatbot-close');
