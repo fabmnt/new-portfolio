@@ -16,7 +16,9 @@ const blogPath = locale === "en" ? "/en/blog" : "/blog";
 const homePath = locale === "en" ? "/en" : "/";
 const pageTitle = `${post.data.title} | Blog | Fabian Montoya`;
 const pageKeywords = [post.data.title, ...post.data.tags].join(", ");
-const modifiedTime = (post.data.updatedDate ?? post.data.publishDate).toISOString();
+const modifiedTime = (
+  post.data.updatedDate ?? post.data.publishDate
+).toISOString();
 ---
 
 <Layout
@@ -29,10 +31,15 @@ const modifiedTime = (post.data.updatedDate ?? post.data.publishDate).toISOStrin
   modifiedTime={modifiedTime}
 >
   <main id="main-content" class="relative min-h-screen overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.05),_transparent_28%)]"></div>
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.05),_transparent_28%)]"
+    >
+    </div>
 
-    <section class="relative mx-auto max-w-4xl px-6 py-16 sm:px-8 lg:px-10">
-      <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/55">
+    <section class="relative mx-auto max-w-6xl px-6 py-16 sm:px-8 lg:px-10">
+      <div
+        class="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-white/55"
+      >
         <a href={homePath} class="transition hover:text-white">
           {t.blog.viewPortfolio}
         </a>
@@ -42,48 +49,88 @@ const modifiedTime = (post.data.updatedDate ?? post.data.publishDate).toISOStrin
         </a>
       </div>
 
-      <header class="mt-8 border border-white/10 bg-white/[0.03] px-7 py-8 sm:px-10 sm:py-10">
-        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+      <header class="mt-8">
+        <h1
+          class="text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+        >
           {post.data.title}
         </h1>
-        <p class="mt-5 text-lg text-white/72">
+        <p class="mt-2 text-lg text-white/72">
           {post.data.description}
         </p>
 
         <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/56">
           <p>
-            <span class="font-semibold text-white/80">{t.blog.publishedOn}:</span>
+            <span class="font-semibold text-white/80"
+              >{t.blog.publishedOn}:</span
+            >
             {" "}
             {formatBlogDate(post.data.publishDate, locale)}
           </p>
-          {post.data.updatedDate && (
-            <p>
-              <span class="font-semibold text-white/80">{t.blog.updatedOn}:</span>
-              {" "}
-              {formatBlogDate(post.data.updatedDate, locale)}
-            </p>
-          )}
+          {
+            post.data.updatedDate && (
+              <p>
+                <span class="font-semibold text-white/80">
+                  {t.blog.updatedOn}:
+                </span>{" "}
+                {formatBlogDate(post.data.updatedDate, locale)}
+              </p>
+            )
+          }
         </div>
 
-        {post.data.tags.length > 0 && (
-          <div class="mt-6 flex flex-wrap gap-2">
-            {post.data.tags.map((tag) => (
-              <span class="border border-white/12 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/62">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {
+          post.data.tags.length > 0 && (
+            <div class="mt-2 flex flex-wrap gap-2">
+              {post.data.tags.map((tag) => (
+                <span class="border border-white/12 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/62">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
       </header>
 
-      <article class="blog-markdown mt-10 border border-white/10 bg-black/30 px-7 py-10 sm:px-10 sm:py-12">
-        <Content />
-      </article>
+      <div
+        class="relative z-10 left-1/2 mt-10 w-[98vw] max-w-none -translate-x-1/2"
+      >
+        <div
+          class="blog-article-shell rounded-[2rem] border border-zinc-900 bg-black/80 px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12"
+        >
+          <article
+            class="blog-markdown mx-auto max-w-6xl px-4 sm:px-6 md:px-8 lg:px-8"
+          >
+            <Content />
+          </article>
+        </div>
+      </div>
     </section>
   </main>
 </Layout>
 
 <style>
+  .blog-article-shell {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow:
+      0 16px 40px rgb(0 0 0 / 0.2),
+      0 32px 90px rgb(0 0 0 / 0.28);
+  }
+
+  .blog-article-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      inset 0 -1px 0 rgb(255 255 255 / 0.04),
+      inset 0 0 18px rgb(255 255 255 / 0.025);
+  }
+
   :global(.blog-markdown) {
     color: rgb(255 255 255 / 0.8);
     font-size: 1rem;
@@ -158,4 +205,4 @@ const modifiedTime = (post.data.updatedDate ?? post.data.publishDate).toISOStrin
     border: 0;
     padding: 0;
   }
- </style>
+</style>
