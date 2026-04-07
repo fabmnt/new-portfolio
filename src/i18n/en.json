@@ -120,6 +120,18 @@
     "sendEmail": "Send email",
     "copyright": "All rights reserved."
   },
+  "blog": {
+    "title": "BLOG",
+    "description": "Articles, lessons learned, and technical notes about web development, automation, AI, and building digital products.",
+    "latestPosts": "Latest posts",
+    "readArticle": "Read article",
+    "emptyTitle": "No posts yet",
+    "emptyDescription": "As soon as you add Markdown files to the blog collection, they will show up here automatically.",
+    "publishedOn": "Published",
+    "updatedOn": "Updated",
+    "backToBlog": "Back to blog",
+    "viewPortfolio": "View portfolio"
+  },
   "chatbot": {
     "title": "Portfolio assistant",
     "buttonLabel": "Ask portfolio",

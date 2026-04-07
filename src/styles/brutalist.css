@@ -114,23 +114,6 @@ html {
   color: #FAFAFA;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #3366FF;
-  border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #FFFFFF;
-}
-
 /* Scroll-triggered animations */
 @media (prefers-reduced-motion: no-preference) {
   .animate-on-scroll {

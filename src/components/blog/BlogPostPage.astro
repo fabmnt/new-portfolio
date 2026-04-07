@@ -1,0 +1,161 @@
+---
+import { render } from "astro:content";
+import Layout from "@/layouts/NewLayout.astro";
+import { getTranslations, type Locale } from "@/i18n";
+import { formatBlogDate, type BlogEntry } from "@/lib/blog";
+
+interface Props {
+  locale: Locale;
+  post: BlogEntry;
+}
+
+const { locale, post } = Astro.props;
+const { Content } = await render(post);
+const t = getTranslations(locale);
+const blogPath = locale === "en" ? "/en/blog" : "/blog";
+const homePath = locale === "en" ? "/en" : "/";
+const pageTitle = `${post.data.title} | Blog | Fabian Montoya`;
+const pageKeywords = [post.data.title, ...post.data.tags].join(", ");
+const modifiedTime = (post.data.updatedDate ?? post.data.publishDate).toISOString();
+---
+
+<Layout
+  locale={locale}
+  title={pageTitle}
+  description={post.data.description}
+  keywords={pageKeywords}
+  ogType="article"
+  publishedTime={post.data.publishDate.toISOString()}
+  modifiedTime={modifiedTime}
+>
+  <main id="main-content" class="relative min-h-screen overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.18),_transparent_34%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.05),_transparent_28%)]"></div>
+
+    <section class="relative mx-auto max-w-4xl px-6 py-16 sm:px-8 lg:px-10">
+      <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.24em] text-white/55">
+        <a href={homePath} class="transition hover:text-white">
+          {t.blog.viewPortfolio}
+        </a>
+        <span aria-hidden="true">/</span>
+        <a href={blogPath} class="transition hover:text-white">
+          {t.blog.backToBlog}
+        </a>
+      </div>
+
+      <header class="mt-8 border border-white/10 bg-white/[0.03] px-7 py-8 sm:px-10 sm:py-10">
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          {post.data.title}
+        </h1>
+        <p class="mt-5 text-lg text-white/72">
+          {post.data.description}
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/56">
+          <p>
+            <span class="font-semibold text-white/80">{t.blog.publishedOn}:</span>
+            {" "}
+            {formatBlogDate(post.data.publishDate, locale)}
+          </p>
+          {post.data.updatedDate && (
+            <p>
+              <span class="font-semibold text-white/80">{t.blog.updatedOn}:</span>
+              {" "}
+              {formatBlogDate(post.data.updatedDate, locale)}
+            </p>
+          )}
+        </div>
+
+        {post.data.tags.length > 0 && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="border border-white/12 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white/62">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <article class="blog-markdown mt-10 border border-white/10 bg-black/30 px-7 py-10 sm:px-10 sm:py-12">
+        <Content />
+      </article>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :global(.blog-markdown) {
+    color: rgb(255 255 255 / 0.8);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  :global(.blog-markdown > * + *) {
+    margin-top: 1.25rem;
+  }
+
+  :global(.blog-markdown h2),
+  :global(.blog-markdown h3) {
+    color: rgb(255 255 255);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 2.75rem;
+  }
+
+  :global(.blog-markdown h2) {
+    font-size: clamp(1.75rem, 1.4rem + 1vw, 2.3rem);
+  }
+
+  :global(.blog-markdown h3) {
+    font-size: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+  }
+
+  :global(.blog-markdown p),
+  :global(.blog-markdown li) {
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  :global(.blog-markdown a) {
+    color: rgb(96 165 250);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  :global(.blog-markdown ul),
+  :global(.blog-markdown ol) {
+    padding-left: 1.5rem;
+  }
+
+  :global(.blog-markdown li + li) {
+    margin-top: 0.45rem;
+  }
+
+  :global(.blog-markdown blockquote) {
+    border-left: 3px solid rgb(59 130 246 / 0.9);
+    margin-left: 0;
+    padding-left: 1rem;
+    color: rgb(255 255 255 / 0.68);
+  }
+
+  :global(.blog-markdown code) {
+    background: rgb(255 255 255 / 0.08);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 0.35rem;
+    font-size: 0.9em;
+    padding: 0.15rem 0.4rem;
+  }
+
+  :global(.blog-markdown pre) {
+    background: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  :global(.blog-markdown pre code) {
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+ </style>
