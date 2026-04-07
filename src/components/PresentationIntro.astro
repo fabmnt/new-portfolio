@@ -12,6 +12,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getTranslations(locale);
+const cvFilePath =
+  locale === "es"
+    ? "/fabian-montoya-cv-es.pdf"
+    : "/fabian-montoya-cv-en.pdf";
 const localeChipClass =
   "px-3 py-2 text-xs font-medium tracking-wider uppercase transition-colors duration-300";
 const inactiveLocaleChipClass = `${localeChipClass} text-brutalist-white/70 hover:bg-brutalist-white/10 hover:text-brutalist-white`;
@@ -72,7 +76,7 @@ const socialLinks = [
           class="animate-on-scroll delay-300 flex flex-col items-center gap-4 sm:items-start"
         >
           <a
-            href="/fabian-montoya-cv.pdf"
+            href={cvFilePath}
             download
             aria-label={locale === "es"
               ? "Descargar CV (documento PDF)"

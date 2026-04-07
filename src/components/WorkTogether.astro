@@ -10,6 +10,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getTranslations(locale);
+const cvFilePath =
+  locale === "es"
+    ? "/fabian-montoya-cv-es.pdf"
+    : "/fabian-montoya-cv-en.pdf";
 ---
 
 <section id="work-together" class="relative overflow-hidden bg-brutalist-black pt-12">
@@ -137,7 +141,7 @@ const t = getTranslations(locale);
           <GithubIcon class="!size-5" aria-hidden="true" />
         </a>
         <a
-          href="/fabian-montoya-cv.pdf"
+          href={cvFilePath}
           download
           title={t.presentation.downloadCV}
           class="secondary-metal-button flex h-11 w-11 items-center justify-center border border-brutalist-white/20 text-brutalist-white"
