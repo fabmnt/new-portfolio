@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Ver portafolio" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e8]: /
+        - link "Volver al blog" [ref=e9] [cursor=pointer]:
+          - /url: /blog
+      - generic [ref=e10]:
+        - heading "Bienvenido a mi blog" [level=1] [ref=e11]
+        - paragraph [ref=e12]: Un espacio para compartir notas sobre desarrollo web, automatización, IA y las decisiones técnicas detrás de mis proyectos.
+        - paragraph [ref=e14]: "Publicado: 6 de abril de 2026"
+        - generic [ref=e15]:
+          - generic [ref=e16]: Astro
+          - generic [ref=e17]: Portafolio
+          - generic [ref=e18]: Automatización
+    - article [ref=e22]:
+      - paragraph [ref=e23]:
+        - text: Este blog ahora está conectado a
+        - strong [ref=e24]: Astro content collections
+        - text: ", así que cada artículo vive como un archivo Markdown dentro de"
+        - code [ref=e25]: src/content/blog/es/
+        - text: .
+      - heading "Cómo agregar una nueva publicación" [level=2] [ref=e26]
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - text: Crea un nuevo archivo
+          - code [ref=e29]: .md
+          - text: dentro de esta carpeta.
+        - listitem [ref=e30]:
+          - text: Agrega el frontmatter con
+          - code [ref=e31]: title
+          - text: ","
+          - code [ref=e32]: description
+          - text: "y"
+          - code [ref=e33]: publishDate
+          - text: .
+        - listitem [ref=e34]: Escribe tu contenido usando Markdown normal.
+      - heading "Qué puedo compartir aquí" [level=2] [ref=e35]
+      - list [ref=e36]:
+        - listitem [ref=e37]: aprendizajes de proyectos reales
+        - listitem [ref=e38]: notas sobre automatización y RPA
+        - listitem [ref=e39]: integraciones con IA
+        - listitem [ref=e40]: mejoras de rendimiento, SEO y experiencia de usuario
+      - paragraph [ref=e41]: Tener el blog dentro del proyecto facilita versionar el contenido junto con el diseño del sitio y mantener un flujo de publicación simple.
+  - generic [ref=e44]:
+    - button "Menu" [ref=e45]:
+      - img [ref=e47]
+      - generic: Menu
+    - button "Inspect" [ref=e51]:
+      - img [ref=e53]
+      - generic: Inspect
+    - button "Audit" [ref=e55]:
+      - img [ref=e57]
+      - generic: Audit
+    - button "Settings" [ref=e60]:
+      - img [ref=e62]
+      - generic: Settings
