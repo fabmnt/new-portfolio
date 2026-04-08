@@ -2,7 +2,12 @@
 import { render } from "astro:content";
 import Layout from "@/layouts/NewLayout.astro";
 import { getTranslations, type Locale } from "@/i18n";
-import { formatBlogDate, type BlogEntry } from "@/lib/blog";
+import {
+  formatBlogDate,
+  getAllBlogPosts,
+  getBlogAlternatePaths,
+  type BlogEntry,
+} from "@/lib/blog";
 
 interface Props {
   locale: Locale;
@@ -12,6 +17,7 @@ interface Props {
 const { locale, post } = Astro.props;
 const { Content } = await render(post);
 const t = getTranslations(locale);
+const alternatePaths = getBlogAlternatePaths(post, await getAllBlogPosts());
 const blogPath = locale === "en" ? "/en/blog" : "/blog";
 const homePath = locale === "en" ? "/en" : "/";
 const pageTitle = `${post.data.title} | Blog | Fabian Montoya`;
@@ -27,6 +33,7 @@ const modifiedTime = (
   description={post.data.description}
   keywords={pageKeywords}
   ogType="article"
+  alternatePaths={alternatePaths}
   publishedTime={post.data.publishDate.toISOString()}
   modifiedTime={modifiedTime}
 >

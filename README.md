@@ -35,6 +35,7 @@ description: "Short summary for cards and SEO."
 publishDate: 2026-04-07
 updatedDate: 2026-04-08 # optional
 draft: false # optional
+translationKey: "welcome-post" # optional, use the same key for translated versions
 tags:
   - Astro
   - Blog

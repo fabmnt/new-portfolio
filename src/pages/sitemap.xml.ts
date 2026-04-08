@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import {
   getAllBlogPosts,
-  getBlogLocale,
+  getBlogAlternatePaths,
   getBlogPath,
   type BlogEntry,
 } from "@/lib/blog";
@@ -51,13 +51,10 @@ export const GET: APIRoute = async ({ site, url }) => {
     ...STATIC_ROUTES,
     ...blogPosts.map((post: BlogEntry) => {
       const path = getBlogPath(post);
-      const locale = getBlogLocale(post);
 
       return {
         path,
-        alternates: {
-          [locale]: path,
-        },
+        alternates: getBlogAlternatePaths(post, blogPosts),
         lastModified: post.data.updatedDate ?? post.data.publishDate,
       };
     }),
@@ -78,8 +75,7 @@ ${routes
 
       return `  <url>
     <loc>${`${baseUrl}${path}`}</loc>
-${alternateLinks ? `${alternateLinks}\n` : ""}    <xhtml:link rel="alternate" hreflang="x-default" href="${`${baseUrl}${xDefaultPath}`}" />
-${lastModified ? `    <lastmod>${lastModified.toISOString()}</lastmod>\n` : ""}  </url>`;
+${alternateLinks ? `${alternateLinks}\n` : ""}    <xhtml:link rel="alternate" hreflang="x-default" href="${`${baseUrl}${xDefaultPath}`}" />\n${lastModified ? `    <lastmod>${lastModified.toISOString()}</lastmod>\n` : ""}  </url>`;
     },
   )
   .join("\n")}

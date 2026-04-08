@@ -2,6 +2,7 @@
 title: "Welcome to my blog"
 description: "A place to share notes about web development, automation, AI, and the technical decisions behind my projects."
 publishDate: 2026-04-07
+translationKey: "welcome-post"
 tags:
   - Astro
   - Portfolio
