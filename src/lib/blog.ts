@@ -10,11 +10,13 @@ const BLOG_DATE_FORMATTERS: Record<Locale, Intl.DateTimeFormat> = {
   en: new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
+    timeZone: "UTC",
     year: "numeric",
   }),
   es: new Intl.DateTimeFormat("es-NI", {
     day: "numeric",
     month: "long",
+    timeZone: "UTC",
     year: "numeric",
   }),
 };

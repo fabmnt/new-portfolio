@@ -28,3 +28,8 @@ pnpm-debug.log*
 nul
 
 .venv
+.playwright-cli/
+blog-mobile*.png
+blog-mobile.yaml
+post-mobile*.png
+post-mobile.yaml

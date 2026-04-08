@@ -42,4 +42,7 @@ tags:
 ---
 ```
 
+Date-only frontmatter values are treated as UTC calendar dates when the blog renders.
+If you need a specific time, use a full ISO timestamp with an explicit timezone offset.
+
 Routes are generated automatically at `/blog` and `/en/blog`.
