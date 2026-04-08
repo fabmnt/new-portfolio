@@ -120,6 +120,18 @@
     "sendEmail": "Enviar correo",
     "copyright": "Todos los derechos reservados."
   },
+  "blog": {
+    "title": "BLOG",
+    "description": "Artículos, aprendizajes y notas técnicas sobre desarrollo web, automatización, IA y construcción de productos digitales.",
+    "latestPosts": "Últimos artículos",
+    "readArticle": "Leer artículo",
+    "emptyTitle": "Todavía no hay publicaciones",
+    "emptyDescription": "Cuando agregues archivos Markdown a la colección del blog, aparecerán aquí automáticamente.",
+    "publishedOn": "Publicado",
+    "updatedOn": "Actualizado",
+    "backToBlog": "Volver al blog",
+    "viewPortfolio": "Ver portafolio"
+  },
   "chatbot": {
     "title": "Asistente del portafolio",
     "buttonLabel": "Preguntar",

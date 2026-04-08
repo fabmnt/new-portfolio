@@ -1,7 +1,19 @@
 import type { APIRoute } from "astro";
+import {
+  getAllBlogPosts,
+  getBlogAlternatePaths,
+  getBlogPath,
+  type BlogEntry,
+} from "@/lib/blog";
 import { getBaseUrl } from "@/lib/seo";
 
-const LOCALIZED_ROUTES = [
+type SitemapRoute = {
+  path: string;
+  alternates?: Partial<Record<"es" | "en", string>>;
+  lastModified?: Date;
+};
+
+const STATIC_ROUTES: SitemapRoute[] = [
   {
     path: "/",
     alternates: {
@@ -16,20 +28,55 @@ const LOCALIZED_ROUTES = [
       en: "/en",
     },
   },
-] as const;
+  {
+    path: "/blog",
+    alternates: {
+      es: "/blog",
+      en: "/en/blog",
+    },
+  },
+  {
+    path: "/en/blog",
+    alternates: {
+      es: "/blog",
+      en: "/en/blog",
+    },
+  },
+];
 
-export const GET: APIRoute = ({ site, url }) => {
+export const GET: APIRoute = async ({ site, url }) => {
   const baseUrl = getBaseUrl(site, url);
+  const blogPosts = await getAllBlogPosts();
+  const routes: SitemapRoute[] = [
+    ...STATIC_ROUTES,
+    ...blogPosts.map((post: BlogEntry) => {
+      const path = getBlogPath(post);
+
+      return {
+        path,
+        alternates: getBlogAlternatePaths(post, blogPosts),
+        lastModified: post.data.updatedDate ?? post.data.publishDate,
+      };
+    }),
+  ];
+
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${LOCALIZED_ROUTES
+${routes
   .map(
-    ({ path, alternates }) => `  <url>
+    ({ path, alternates = {}, lastModified }) => {
+      const alternateLinks = Object.entries(alternates)
+        .map(
+          ([locale, alternatePath]) =>
+            `    <xhtml:link rel="alternate" hreflang="${locale}" href="${`${baseUrl}${alternatePath}`}" />`,
+        )
+        .join("\n");
+      const xDefaultPath = alternates.es ?? path;
+
+      return `  <url>
     <loc>${`${baseUrl}${path}`}</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="${`${baseUrl}${alternates.es}`}" />
-    <xhtml:link rel="alternate" hreflang="en" href="${`${baseUrl}${alternates.en}`}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${`${baseUrl}${alternates.es}`}" />
-  </url>`,
+${alternateLinks ? `${alternateLinks}\n` : ""}    <xhtml:link rel="alternate" hreflang="x-default" href="${`${baseUrl}${xDefaultPath}`}" />\n${lastModified ? `    <lastmod>${lastModified.toISOString()}</lastmod>\n` : ""}  </url>`;
+    },
   )
   .join("\n")}
 </urlset>

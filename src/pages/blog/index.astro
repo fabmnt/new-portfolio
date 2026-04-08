@@ -1,0 +1,8 @@
+---
+import BlogIndexPage from "@/components/blog/BlogIndexPage.astro";
+import { getBlogCollection } from "@/lib/blog";
+
+const posts = await getBlogCollection("es");
+---
+
+<BlogIndexPage locale="es" posts={posts} />

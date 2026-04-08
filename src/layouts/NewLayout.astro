@@ -1,5 +1,6 @@
 ---
 import Analytics from "@vercel/analytics/astro";
+import HoverLightScript from "@/components/HoverLightScript.astro";
 import "@/styles/brutalist.css";
 import "@/styles/globals.css";
 import { getTranslations } from "@/i18n";
@@ -19,9 +20,25 @@ import geistSans800 from "@fontsource/geist-sans/files/geist-sans-latin-800-norm
 
 interface Props {
   locale?: "en" | "es";
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogType?: "website" | "article";
+  alternatePaths?: Partial<Record<"en" | "es", string>>;
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
-const { locale = "es" } = Astro.props;
+const {
+  locale = "es",
+  title,
+  description,
+  keywords,
+  ogType = "website",
+  alternatePaths,
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
 const t = getTranslations(locale);
 
 const site = Astro.site ?? new URL("https://www.fabmnt.dev");
@@ -29,21 +46,51 @@ const canonicalPath =
   Astro.url.pathname !== "/" && Astro.url.pathname.endsWith("/")
     ? Astro.url.pathname.slice(0, -1)
     : Astro.url.pathname;
+
+function getLocalizedPath(targetLocale: "en" | "es", path: string) {
+  const normalizedPath = path === "/en/" ? "/en" : path;
+
+  if (targetLocale === "es") {
+    if (normalizedPath === "/en") return "/";
+    return normalizedPath.startsWith("/en/")
+      ? normalizedPath.slice(3)
+      : normalizedPath;
+  }
+
+  if (normalizedPath === "/" || normalizedPath === "/en") return "/en";
+  return normalizedPath.startsWith("/en/")
+    ? normalizedPath
+    : `/en${normalizedPath}`;
+}
+
 const canonicalUrl = new URL(canonicalPath || "/", site).toString();
-const spanishUrl = new URL("/", site).toString();
-const englishUrl = new URL("/en", site).toString();
+const defaultAlternatePaths = {
+  es: getLocalizedPath("es", canonicalPath || "/"),
+  en: getLocalizedPath("en", canonicalPath || "/"),
+};
+const resolvedAlternatePaths = alternatePaths ?? defaultAlternatePaths;
+const spanishUrl = resolvedAlternatePaths.es
+  ? new URL(resolvedAlternatePaths.es, site).toString()
+  : undefined;
+const englishUrl = resolvedAlternatePaths.en
+  ? new URL(resolvedAlternatePaths.en, site).toString()
+  : undefined;
+const xDefaultUrl = spanishUrl ?? canonicalUrl;
 const profileImageUrl = new URL(profileImage.src, site).toString();
 
 const SITE_NAME = t.layout.siteName;
-const SITE_TITLE = locale === "en"
+const defaultTitle = locale === "en"
   ? "Fabian Montoya | Full Stack Developer & RPA Engineer"
   : "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA";
-const SITE_DESCRIPTION = locale === "en"
+const defaultDescription = locale === "en"
   ? "Fabian Montoya, a full stack developer building business pages, advanced AI integrations and smart automation solutions."
   : "Fabian Montoya, un desarrollador full stack que crea paginas para negocios, integraciones avanzadas de IA y soluciones inteligentes de automatizacion.";
-const SITE_KEYWORDS = locale === "en"
+const defaultKeywords = locale === "en"
   ? "Fabian Montoya, Full Stack Developer, RPA Engineer, Web Developer, React, Angular, TypeScript, Node.js, AI, Chatbot, Nicaragua, portfolio, programmer"
   : "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, AI, Chatbot, Nicaragua, portafolio, programador";
+const SITE_TITLE = title ?? defaultTitle;
+const SITE_DESCRIPTION = description ?? defaultDescription;
+const SITE_KEYWORDS = keywords ?? defaultKeywords;
 const AUTHOR_NAME = "Fabian Montoya";
 const AUTHOR_URL = "https://www.linkedin.com/in/fabián-montoya-963247345";
 const TWITTER_HANDLE = "@fabmntp";
@@ -150,7 +197,7 @@ const jsonLd = {
     <link rel="preload" href={geistSans500} as="font" type="font/woff2" crossorigin />
     
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={SITE_TITLE} />
     <meta property="og:description" content={SITE_DESCRIPTION} />
@@ -171,6 +218,8 @@ const jsonLd = {
     <meta name="twitter:description" content={SITE_DESCRIPTION} />
     <meta name="twitter:image" content={profileImageUrl} />
     <meta name="twitter:image:alt" content="Fabian Montoya - Full Stack Developer" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     
     <!-- Additional SEO Meta -->
     <meta name="revisit-after" content="7 days" />
@@ -184,9 +233,9 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     
     <!-- Hreflang for i18n -->
-    <link rel="alternate" hreflang="es" href={spanishUrl} />
-    <link rel="alternate" hreflang="en" href={englishUrl} />
-    <link rel="alternate" hreflang="x-default" href={spanishUrl} />
+    {spanishUrl && <link rel="alternate" hreflang="es" href={spanishUrl} />}
+    {englishUrl && <link rel="alternate" hreflang="en" href={englishUrl} />}
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
   </head>
   <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brutalist-blue focus:text-brutalist-white focus:px-4 focus:py-2 focus:font-medium focus:tracking-wider focus:uppercase focus:text-sm">
@@ -194,6 +243,7 @@ const jsonLd = {
     </a>
     <slot />
     <Analytics />
+    <HoverLightScript />
 
     <!-- Vanilla JS scroll animations -->
     <script>
