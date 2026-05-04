@@ -40,11 +40,11 @@
         "companyUrl": "https://rocacompanysolution.wordpress.com/",
         "period": "April 2025 - March 2026",
         "role": "Frontend Web Developer",
-        "description": "I developed the frontend for the company's first internal system, enabling an easy migration from spreadsheet-based workflows while maintaining compatibility with XLSX and PDF exports.",
+        "description": "Roca Company Solutions provides management services for the DMV, vehicle insurance, and product sales in the U.S. I worked as the Frontend Developer in charge of designing and developing the Maya management system.",
         "achievements": [
-          "Built the frontend for the company's first internal system, replacing spreadsheet-heavy workflows with a clearer and more accessible interface. Stack: React, Tailwind CSS, shadcn-ui, react-aria.",
-          "Implemented customizable tables and guided forms to simplify data entry and daily operations. Stack: TanStack Table, TanStack Form, zustand, Zod.",
-          "Delivered PDF and XLSX exports for reports and invoices, preserving compatibility with existing business processes. Stack: jsPDF, XLSX."
+          "Completely designed and developed the frontend for the company's DMV case, insurance, and product management system. Stack: React, Vite, React Router, TanStack Query, TanStack Table.",
+          "Migrated large volumes of spreadsheet-based information into Maya and optimized its modules to render large datasets with excellent performance.",
+          "Implemented data exports to XLSX, PDF, and image files, helping migrate registration, handling, and tracking workflows from spreadsheets into the new system."
         ]
       },
       {
@@ -52,11 +52,12 @@
         "companyUrl": "https://www.dentalrobot.ai",
         "period": "October 2022 - Present",
         "role": "Full Stack Developer & RPA",
-        "description": "I contributed to frontend projects that improved and streamlined workflows across different areas of the company, maintained the main management and organization system, and developed RPA robots and external modules for the Rocketbot platform.",
+        "description": "Dentalrobot automates high-volume dental appointment verifications on U.S. insurer websites. I work as a full stack developer supporting frontend and backend web systems, refactoring legacy code, and developing new projects and features.",
         "achievements": [
-          "Built frontend tools that improved document and patient-verification workflows, including an online editor and spreadsheet-style management interfaces. Stack: TypeScript, Angular, RxJS.",
-          "Developed RPA robots and a parallel execution system that reduced processing time while keeping resource usage low. Stack: Python, Rocketbot.",
-          "Researched NLP-based PDF data extraction to automate patient information capture from verification documents. Stack: Python, spaCy, Pydantic, pdfplumber."
+          "Maintain and develop new features for CC (Control Central) in Angular, prioritizing user experience, accessibility, code robustness, scalability, and stability for every company user.",
+          "Designed and implemented Formless, an online editor for table- and marker-based forms that reduced DOCX corruption and usage, saved storage, and streamlined editing directly from CC.",
+          "Developed the Parallel engine in Python to run multiple RPA robots at the same time, drastically increasing completed verifications in the same timeframe while keeping resource usage minimal.",
+          "Developed Rocketbot modules and web scraper robots using advanced data extraction techniques in JavaScript and Python."
         ]
       }
     ]
@@ -88,13 +89,22 @@
       "Node.js",
       "TanStack Query",
       "TanStack Table",
+      "TanStack Virtual",
       "TanStack Router",
+      "TanStack Form",
       "React Router",
+      "React Hook Form",
       "RxJS",
+      "Redux Toolkit",
+      "Zustand",
+      "Recharts",
       "GitHub",
       "GitHub Actions",
       "shadcn-ui",
+      "React Aria",
       "Tailwind CSS",
+      "Bootstrap",
+      "Tabler",
       "Vite",
       "Git",
       "Drizzle ORM",
@@ -104,9 +114,29 @@
       "react-testing-library",
       "Playwright",
       "Selenium",
+      "Beautiful Soup",
       "REST APIs",
+      "C#",
+      "PHP",
+      "HTML",
+      "CSS",
       "SQL",
-      "MongoDB"
+      "MySQL",
+      "SQL Server",
+      "Supabase",
+      "Convex",
+      "AWS RDS",
+      "MongoDB",
+      "MongoDB Atlas",
+      "Neon Serverless",
+      "Turso DB",
+      "WordPress",
+      "Strapi",
+      "Shopify",
+      "SOLID",
+      "Clean Architecture",
+      "Pair Programming",
+      "Code Review"
     ]
   },
   "studies": {
