@@ -16,15 +16,16 @@ interface StatProps {
 
 const stats: StatProps[] = [
   { value: "4+", label: t.hero.yearsExperience },
-  { value: "50+", label: t.hero.projectsCompleted },
+  { value: "150", label: t.hero.internalUsers },
+  { value: "10x", label: t.hero.throughputBoost },
 ];
 ---
 
 <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
   {
-    stats.map((stat) => (
+    stats.map((stat, index) => (
       <div
-        class="subtle-hover-card border border-brutalist-white/10 bg-brutalist-white/5 p-4 sm:p-5"
+        class={`subtle-hover-card border border-brutalist-white/10 bg-brutalist-white/5 p-4 sm:p-5 ${index === stats.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
         data-hover-light
       >
         <div class="relative z-10">

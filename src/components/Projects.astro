@@ -36,11 +36,11 @@ const t = getTranslations(locale);
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
       {
         PROJECTS.map((project, index) => (
           <div
-            class={`animate-on-scroll ${index === 1 ? "delay-100" : index === 2 ? "delay-200" : ""}`}
+            class={`animate-on-scroll ${index === 1 ? "delay-100" : index === 2 ? "delay-200" : index === 3 ? "delay-300" : ""}`}
           >
             <div
               class="subtle-hover-card relative bg-brutalist-white/5 backdrop-blur-sm border border-brutalist-white/10 overflow-hidden h-full"
@@ -48,6 +48,9 @@ const t = getTranslations(locale);
             >
               <div class="relative z-10 p-5 sm:p-6 space-y-6">
                 <div class="space-y-3">
+                  <span class="inline-flex items-center border border-brutalist-white/15 bg-brutalist-white/5 px-3 py-1 text-[0.65rem] font-medium tracking-[0.2em] uppercase text-brutalist-white/70">
+                    {project.privacy === "private" ? t.projects.privateNote : t.projects.publicNote}
+                  </span>
                   <h3 class="text-2xl font-semibold tracking-tight text-brutalist-white">
                     {project.title}
                   </h3>
@@ -59,7 +62,15 @@ const t = getTranslations(locale);
                   ] || project.description}
                 </p>
 
-                <div class="flex items-center gap-6 pt-4 border-t border-brutalist-white/10">
+                <div class="flex flex-wrap gap-2">
+                  {project.techs.map((tech) => (
+                    <span class="border border-brutalist-white/10 bg-brutalist-white/5 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-brutalist-white/70">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="flex items-center gap-6 pt-4 border-t border-brutalist-white/10 min-h-10">
                   {project.sourceUrl && (
                     <a
                       href={project.sourceUrl}

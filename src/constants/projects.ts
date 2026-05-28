@@ -2,35 +2,47 @@ import type { Project } from "@/types/projects";
 
 export const PROJECTS: Project[] = [
   {
-    id: "ferreteria-berrios",
-    title: "Ferretería Berrios",
+    id: "rocketbot-interpreter",
+    title: "Rocketbot Interpreter",
     description:
-      "Dashboard para la gestión de inventario y facturación de una ferretería. Incluye gráficos y reportes de ventas.",
-    techs: ["React", "Tanstack Query", "Wouter"],
-    privacy: "public",
-    sourceUrl: "https://github.com/fabmnt/ferreteria-react",
-    websiteUrl: "https://ferreteria-react-five.vercel.app/",
-    images: ["ferreteria-dashboard.png", "ferreteria-login.png"],
-  },
-  {
-    id: "credit-ayuda",
-    title: "Credit Ayuda",
-    description: "Sistema de registro y seguimiento de créditos financieros.",
-    techs: ["React", "Tanstack Query", "react-router"],
+      "Sanitized company case study for a reproducible robot runtime exposed through an API.",
+    techs: ["Python", "FastAPI", "Docker Compose", "Selenium", "Playwright"],
     privacy: "private",
-    sourceUrl: "https://github.com/francisco-JGC/credit-ayuda-front",
+    sourceUrl: "",
     websiteUrl: "",
-    images: ["credit-prestamo.png"],
+    images: [],
   },
   {
     id: "formless",
     title: "Formless",
     description:
-      "Formulario editable y personalizable de tablas y bookmarks, exportables a docx.",
-    techs: ["Angular", "RxJs"],
+      "Internal editor for patient audit forms based on tables and bookmarks.",
+    techs: ["Angular", "RxJS", "TypeScript"],
     privacy: "private",
     sourceUrl: "",
     websiteUrl: "https://controlcentralcarrier.com/#/form-builder",
-    images: ["formless.png"],
+    images: [],
+  },
+  {
+    id: "maya-dashboard",
+    title: "Maya Dashboard",
+    description:
+      "Greenfield operations dashboard for service teams handling DMV, insurance, and product workflows.",
+    techs: ["React", "Vite", "TanStack Query", "TanStack Table"],
+    privacy: "private",
+    sourceUrl: "",
+    websiteUrl: "",
+    images: [],
+  },
+  {
+    id: "ferreteria-berrios",
+    title: "Ferretería Berrios",
+    description:
+      "Dashboard for inventory, billing, and sales reporting workflows.",
+    techs: ["React", "TanStack Query", "Wouter"],
+    privacy: "public",
+    sourceUrl: "https://github.com/fabmnt/ferreteria-react",
+    websiteUrl: "https://ferreteria-react-five.vercel.app/",
+    images: [],
   },
 ];

@@ -1,38 +1,39 @@
 {
   "layout": {
     "siteName": "Fabian Montoya | Portfolio",
-    "siteTitle": "Fabian Montoya | Full Stack Developer & RPA",
-    "siteDescription": "Fabian Montoya's Portfolio - Full Stack Developer and RPA Engineer in Nicaragua. Specialized in web technologies and automation.",
+    "siteTitle": "Fabian Montoya | Full Stack Engineer",
+    "siteDescription": "Fabian Montoya is a full stack engineer from Nicaragua building internal tools, automation platforms, and AI-integrated workflows for distributed teams.",
     "language": "English"
   },
   "nav": {
     "scroll": "Scroll"
   },
   "presentation": {
-    "role": "Full Stack Developer",
-    "tagline": "From elegant business websites to information systems with AI integrations.",
+    "role": "Full Stack Engineer",
+    "tagline": "I build internal systems, automation platforms, and AI-integrated tools for teams in the U.S., Latin America, Europe, and Nicaragua.",
     "downloadCV": "DOWNLOAD CV"
   },
   "hero": {
-    "aboutMe": "My services",
-    "headline": "Let's make your digital project happen",
-    "description1": "Let's build the website that will boost your business and accompany you in your digital growth. Your new users expect to meet you and you're one step away from achieving it.",
-    "viewExperience": "My experience",
-    "viewSkills": "My skills",
+    "aboutMe": "About me",
+    "headline": "I turn fragile workflows into reliable software.",
+    "description1": "Full-time engineer from Nicaragua focused on React, Next.js, Angular, Node.js, .NET, and Python. I build data-heavy dashboards, automation tooling, and internal workflows for distributed teams, and I am open to remote roles worldwide or onsite roles in Nicaragua.",
+    "viewExperience": "Experience",
+    "viewProjects": "Selected work",
     "yearsExperience": "Years of experience",
-    "projectsCompleted": "Deployed projects",
+    "internalUsers": "Internal users supported",
+    "throughputBoost": "Verification throughput",
     "promises": [
-      "Business landing pages, personal portfolios, blogs, news sites and more.",
-      "Product sales or service provision systems, inventory, billing and customer management.",
-      "AI chatbot integration on your website to improve your users' experience."
+      "Built and maintained systems used by 150 internal users across cross-team operations.",
+      "Increased patient verification throughput by 10x with parallel automation tooling.",
+      "Shipped a greenfield operations dashboard in 3 months and kept improving it in production."
     ]
   },
   "experience": {
-    "title": "PROFESSIONAL CAREER",
-    "description": "Explore my professional experience and see how I have applied my skills in professional environments by optimizing processes, streamlining information management, and improving user experiences.",
+    "title": "PROFESSIONAL EXPERIENCE",
+    "description": "Full stack product, workflow, and automation work delivered for operational teams.",
     "otherExperience": {
       "title": "Other experiences",
-      "description": "Freelance work building and maintaining websites and online stores with WordPress, Shopify, and other CMS platforms, focused on clean content management, responsive layouts, and practical business goals."
+      "description": "Freelance experience building and maintaining business websites and online stores with WordPress, Shopify, and other CMS platforms, with a focus on clean content management, responsive layouts, and practical business goals."
     },
     "items": [
       {
@@ -40,49 +41,52 @@
         "companyUrl": "https://rocacompanysolution.wordpress.com/",
         "period": "April 2025 - March 2026",
         "role": "Frontend Web Developer",
-        "description": "Roca Company Solutions provides management services for the DMV, vehicle insurance, and product sales in the U.S. I worked as the Frontend Developer in charge of designing and developing the Maya management system.",
+        "description": "Roca Company Solutions provides U.S.-focused management services for DMV cases, vehicle insurance, and product operations.",
         "achievements": [
-          "Completely designed and developed the frontend for the company's DMV case, insurance, and product management system. Stack: React, Vite, React Router, TanStack Query, TanStack Table.",
-          "Migrated large volumes of spreadsheet-based information into Maya and optimized its modules to render large datasets with excellent performance.",
-          "Implemented data exports to XLSX, PDF, and image files, helping migrate registration, handling, and tracking workflows from spreadsheets into the new system."
+          "Built the frontend from scratch for Maya, the company's first operations dashboard for DMV cases, insurance, products, invoices, and service management, delivering the initial system in 3 months with React, Vite, TanStack Query, and TanStack Table.",
+          "Designed spreadsheet-familiar interfaces and helped migrate high-volume operational data from Google Sheets into Maya, lowering friction for users moving into the new system.",
+          "Implemented exports to XLSX, PDF, and images and optimized data-heavy modules for fast rendering across cases, clients, products, insurance, users, and logs."
         ]
       },
       {
         "company": "Dentalrobot.ai",
         "companyUrl": "https://www.dentalrobot.ai",
         "period": "October 2022 - Present",
-        "role": "Full Stack Developer & RPA",
-        "description": "Dentalrobot automates high-volume dental appointment verifications on U.S. insurer websites. I work as a full stack developer supporting frontend and backend web systems, refactoring legacy code, and developing new projects and features.",
+        "role": "Full Stack & RPA Developer",
+        "description": "Dentalrobot automates high-volume dental appointment verifications on U.S. insurer websites.",
         "achievements": [
-          "Maintain and develop new features for CC (Control Central) in Angular, prioritizing user experience, accessibility, code robustness, scalability, and stability for every company user.",
-          "Designed and implemented Formless, an online editor for table- and marker-based forms that reduced DOCX corruption and usage, saved storage, and streamlined editing directly from CC.",
-          "Developed the Parallel engine in Python to run multiple RPA robots at the same time, drastically increasing completed verifications in the same timeframe while keeping resource usage minimal.",
-          "Developed Rocketbot modules and web scraper robots using advanced data extraction techniques in JavaScript and Python."
+          "Maintain and extend CC (Control Central), the company's cross-team workflow management system used by 150 internal users, improving Angular-based UX, accessibility, stability, and scalability.",
+          "Built Formless, a browser-based editor for table- and bookmark-driven patient audit forms, replacing fragile DOCX editing workflows and helping teams review robot-scraped patient results inside CC.",
+          "Developed the Parallel Engine in Python to execute multiple verification robots concurrently, increasing patient verification throughput by 10x in the same time window while keeping resource usage controlled.",
+          "Built the Rocketbot Interpreter, a Docker Compose-based runtime with FastAPI, Python 3.12 and 3.6 services, centralized logs, reproducible debugging, and parallel execution support, eliminating the complex Windows setup previously required to test and review robots with real company data."
         ]
       }
     ]
   },
   "projects": {
-    "title": "PROJECTS",
-    "highlight": "FEATURED",
-    "description": "My projects, tools and information systems that I have developed for clients and for myself, with modern and scalable technologies. Some are being used by thousands of users, others are tools that have helped me improve my productivity and learn new technologies.",
+    "title": "SELECTED WORK",
+    "highlight": "CASE STUDIES",
+    "description": "A mix of private product work and public projects that show how I approach internal tools, automation, and data-heavy interfaces.",
     "code": "Code",
     "visit": "Visit",
+    "privateNote": "Private company case study",
+    "publicNote": "Public project",
     "items": {
-      "ferreteria-berrios": "Dashboard for managing inventory and billing of a hardware store. Includes charts and sales reports.",
-      "credit-ayuda": "System for registering and tracking financial credits.",
-      "formless": "Editable and customizable form with tables and bookmarks, exportable to docx."
+      "rocketbot-interpreter": "Sanitized case study of a Docker Compose runtime that exposed legacy Rocketbot execution through an API, improved debugging reproducibility, centralized logs, and enabled parallel robot runs.",
+      "maya-dashboard": "Greenfield frontend for a service operations dashboard covering DMV cases, insurance, products, invoices, and spreadsheet-oriented workflows.",
+      "formless": "Internal browser-based editor for patient audit forms built around tables and bookmarks, reducing DOCX fragility and moving editing into the main workflow system.",
+      "ferreteria-berrios": "Public inventory and billing dashboard for a hardware store with reporting workflows and operational views."
     }
   },
   "skills": {
     "title": "TECHNICAL SKILLS",
     "subtitle": "Tech stack",
-    "description": "Technologies I master and with which I build modern and scalable solutions.",
-    "showMore": "Show more skills",
+    "description": "Core technologies I use to build full stack products, automation tooling, and AI-assisted workflows.",
+    "showMore": "Show broader stack",
     "agents": {
-      "title": "My agents",
-      "description": "Specialized AI agents I use to accelerate research, implementation, and developer workflows.",
-      "label": "AI Agent",
+      "title": "AI workflow tools",
+      "description": "I use these tools to speed up research, implementation, and debugging, but the value I bring is shipping reliable systems in production.",
+      "label": "AI workflow tool",
       "badge": "Active stack"
     },
     "tools": [
@@ -145,9 +149,9 @@
     "subtitle": "Academic background"
   },
   "footer": {
-    "title": "Let's work together?",
-    "description": "I'm always open to new challenges and collaboration opportunities.",
-    "sendEmail": "Send email",
+    "title": "Open to full-time roles",
+    "description": "Remote worldwide or onsite in Nicaragua. Best fit: full stack engineering with automation, internal tools, and AI-assisted workflows.",
+    "sendEmail": "Contact me",
     "copyright": "All rights reserved."
   },
   "blog": {
@@ -167,12 +171,12 @@
     "buttonLabel": "Ask portfolio",
     "panelLabel": "Portfolio chatbot panel",
     "closeAria": "Close chatbot",
-    "welcome": "Hi! I can help you with questions about Fabian’s portfolio, experience, projects, and services.",
+    "welcome": "Hi! I can help you with questions about Fabian’s experience, selected work, stack, and availability.",
     "inputLabel": "Write your question",
-    "inputPlaceholder": "Ask about skills, projects, or collaboration...",
+    "inputPlaceholder": "Ask about experience, projects, stack, or availability...",
     "send": "Send",
     "requestFailed": "Sorry, I could not process that request.",
     "unavailable": "The assistant is temporarily unavailable. Please try again later.",
-    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
+    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, skills, and work preferences."
   }
 }

@@ -1,38 +1,39 @@
 {
   "layout": {
     "siteName": "Fabian Montoya | Portafolio",
-    "siteTitle": "Fabian Montoya | Desarrollador Full Stack y RPA",
-    "siteDescription": "Portafolio de Fabian Montoya - Desarrollador Full Stack y RPA de Nicaragua. Especializado en tecnologías web y automatización.",
+    "siteTitle": "Fabian Montoya | Ingeniero Full Stack",
+    "siteDescription": "Fabian Montoya es un ingeniero full stack de Nicaragua que construye herramientas internas, plataformas de automatización y flujos con integraciones de IA para equipos distribuidos.",
     "language": "Spanish"
   },
   "nav": {
     "scroll": "Scroll"
   },
   "presentation": {
-    "role": "Desarrollador Full Stack",
-    "tagline": "Desde elegantes sitios web para negocios hasta sistemas de información con integraciones de IA.",
+    "role": "Ingeniero Full Stack",
+    "tagline": "Construyo sistemas internos, plataformas de automatización y herramientas con integraciones de IA para equipos de EE. UU., Latinoamérica, Europa y Nicaragua.",
     "downloadCV": "DESCARGAR CV"
   },
   "hero": {
-    "aboutMe": "Mis servicios",
-    "headline": "Realicemos tu proyecto digital",
-    "description1": "Llevemos a cabo el sitio web que impulsará tu negocio y te acompañará en tu crecimiento digital. Tus nuevos usuarios esperan conocerte y estás a un paso de conseguirlo.",
-    "viewExperience": "Mi experiencia",
-    "viewSkills": "Mis habilidades",
+    "aboutMe": "Sobre mí",
+    "headline": "Convierto flujos frágiles en software confiable.",
+    "description1": "Ingeniero full-time de Nicaragua enfocado en React, Next.js, Angular, Node.js, .NET y Python. Construyo dashboards con grandes volúmenes de datos, herramientas de automatización y flujos internos para equipos distribuidos, y estoy abierto a roles remotos en cualquier país o presenciales en Nicaragua.",
+    "viewExperience": "Experiencia",
+    "viewProjects": "Trabajo seleccionado",
     "yearsExperience": "Años de experiencia",
-    "projectsCompleted": "Proyectos desplegados",
+    "internalUsers": "Usuarios internos soportados",
+    "throughputBoost": "Rendimiento de verificación",
     "promises": [
-      "Páginas de presentación de negocios, portafolios personales, blogs, noticieros y más.",
-      "Sistemas de venta de productos o prestación de servicios, inventarios, facturación y gestión de clientes.",
-      "Integración de chatbots con IA a tu sitio web para mejorar la experiencia de tus usuarios."
+      "He construido y mantenido sistemas usados por 150 usuarios internos en operaciones compartidas.",
+      "Aumenté 10x el volumen de verificaciones de pacientes con herramientas de automatización paralela.",
+      "Entregué un dashboard operativo desde cero en 3 meses y continué mejorándolo en producción."
     ]
   },
   "experience": {
-    "title": "TRAYECTORIA PROFESIONAL",
-    "description": "Recorre mi experiencia laboral y ve cómo he aplicado mis habilidades en ambientes profesionales optimizando procesos, facilitando la gestión de información y mejorando la experiencia de los usuarios.",
+    "title": "EXPERIENCIA PROFESIONAL",
+    "description": "Trabajo full stack, de producto, flujos operativos y automatización entregado para equipos de operaciones.",
     "otherExperience": {
       "title": "Otras experiencias",
-      "description": "Trabajo freelance creando y manteniendo sitios web y tiendas en línea con WordPress, Shopify y otros CMS, enfocado en una gestión de contenido clara, diseños responsivos y objetivos de negocio concretos."
+      "description": "Experiencia freelance creando y manteniendo sitios web y tiendas en línea con WordPress, Shopify y otros CMS, con enfoque en gestión de contenido clara, diseños responsivos y objetivos de negocio concretos."
     },
     "items": [
       {
@@ -40,11 +41,11 @@
         "companyUrl": "https://rocacompanysolution.wordpress.com/",
         "period": "Abril 2025 - Marzo 2026",
         "role": "Desarrollador Web Frontend",
-        "description": "Roca Company Solutions presta servicios de gestión en la DMV, seguros de vehículos y venta de productos en EE. UU. Me desempeñé como Desarrollador Frontend, a cargo del diseño y desarrollo del sistema de gestión Maya.",
+        "description": "Roca Company Solutions presta servicios orientados al mercado de EE. UU. para casos DMV, seguros de vehículos y operaciones de productos.",
         "achievements": [
-          "Diseñé y desarrollé completamente el frontend del sistema de gestión de casos DMV, seguros y productos de la empresa. Stack: React, Vite, React Router, TanStack Query, TanStack Table.",
-          "Migré grandes volúmenes de información previamente almacenada en hojas de cálculo al sistema Maya y optimicé sus módulos para renderizar grandes cantidades de datos con excelente rendimiento.",
-          "Implementé exportaciones de datos a XLSX, PDF e imágenes, facilitando la migración de procesos de registro, manejo y seguimiento desde hojas de cálculo al nuevo sistema."
+          "Construí desde cero el frontend de Maya, el primer dashboard operativo de la empresa para casos DMV, seguros, productos, facturas y gestión de servicios, entregando la versión inicial en 3 meses con React, Vite, TanStack Query y TanStack Table.",
+          "Diseñé interfaces familiares para usuarios acostumbrados a hojas de cálculo y apoyé la migración de grandes volúmenes de datos desde Google Sheets hacia Maya, reduciendo fricción en la adopción del sistema.",
+          "Implementé exportaciones a XLSX, PDF e imágenes y optimicé módulos con grandes volúmenes de datos para lograr renderizado rápido en casos, clientes, productos, seguros, usuarios y logs."
         ]
       },
       {
@@ -52,37 +53,40 @@
         "companyUrl": "https://www.dentalrobot.ai",
         "period": "Octubre 2022 - Presente",
         "role": "Desarrollador Full Stack y RPA",
-        "description": "Dentalrobot automatiza verificaciones de citas dentales en gran volumen sobre sitios web de aseguradoras de EE. UU. Trabajo como desarrollador full stack dando soporte a sistemas web frontend y backend, refactorizando código legacy y desarrollando nuevos proyectos y características.",
+        "description": "Dentalrobot automatiza verificaciones de citas dentales en alto volumen sobre sitios web de aseguradoras de EE. UU.",
         "achievements": [
-          "Mantengo y desarrollo nuevas características para CC (Control Central) en Angular, priorizando experiencia de usuario, accesibilidad, robustez, escalabilidad y estabilidad para todos los usuarios de la empresa.",
-          "Diseñé e implementé Formless, un editor en línea para formularios basados en tablas y marcadores que redujo la corrupción y el uso de archivos DOCX, ahorró almacenamiento y agilizó la edición desde CC.",
-          "Desarrollé el motor Parallel en Python para ejecutar múltiples robots RPA en paralelo, aumentando drásticamente las verificaciones realizadas en el mismo lapso de tiempo con uso mínimo de recursos.",
-          "Desarrollé módulos para Rocketbot y robots web scrapers usando técnicas avanzadas de extracción de datos en JavaScript y Python."
+          "Mantengo y extiendo CC (Control Central), el sistema de gestión de flujos cross-team de la empresa usado por 150 usuarios internos, mejorando UX en Angular, accesibilidad, estabilidad y escalabilidad.",
+          "Construí Formless, un editor en navegador para formularios de auditoría de pacientes basados en tablas y bookmarks, reemplazando flujos frágiles con DOCX y llevando la edición directamente al sistema principal.",
+          "Desarrollé el motor Parallel en Python para ejecutar robots de verificación de forma concurrente, aumentando 10x el volumen de verificaciones de pacientes en la misma ventana de tiempo con uso controlado de recursos.",
+          "Construí Rocketbot Interpreter, un runtime basado en Docker Compose con FastAPI, servicios en Python 3.12 y 3.6, logs centralizados, depuración reproducible y soporte para ejecuciones paralelas, eliminando la configuración compleja en Windows que antes se necesitaba para probar y revisar robots con datos reales de la empresa."
         ]
       }
     ]
   },
   "projects": {
-    "title": "PROYECTOS",
-    "highlight": "DESTACADOS",
-    "description": "Mis proyectos, herramientas y sistemas informáticos que he desarrollado para clientes y para mí, con tecnologías modernas y escalables. Algunos están siendo usados por miles de usuarios, otros son herramientas que me han ayudado a mejorar mi productividad y a aprender nuevas tecnologías.",
+    "title": "TRABAJO",
+    "highlight": "SELECCIONADO",
+    "description": "Una mezcla de trabajo privado de producto y proyectos públicos que muestra cómo abordo herramientas internas, automatización e interfaces con grandes volúmenes de datos.",
     "code": "Código",
     "visit": "Visitar",
+    "privateNote": "Caso de estudio privado",
+    "publicNote": "Proyecto público",
     "items": {
-      "ferreteria-berrios": "Dashboard para la gestión de inventario y facturación de una ferretería. Incluye gráficos y reportes de ventas.",
-      "credit-ayuda": "Sistema de registro y seguimiento de créditos financieros.",
-      "formless": "Formulario editable y personalizable de tablas y bookmarks, exportables a docx."
+      "rocketbot-interpreter": "Caso de estudio sanitizado de un runtime en Docker Compose que expuso la ejecución legacy de Rocketbot por API, mejoró la reproducibilidad en depuración, centralizó logs y habilitó ejecuciones paralelas.",
+      "maya-dashboard": "Frontend greenfield para un dashboard de operaciones que cubre casos DMV, seguros, productos, facturas y flujos orientados a hojas de cálculo.",
+      "formless": "Editor interno en navegador para formularios de auditoría de pacientes basados en tablas y bookmarks, reduciendo la fragilidad de DOCX y moviendo la edición al sistema principal.",
+      "ferreteria-berrios": "Dashboard público para inventario y facturación de una ferretería con flujos de reportes y vistas operativas."
     }
   },
   "skills": {
     "title": "HABILIDADES TÉCNICAS",
     "subtitle": "Stack tecnológico",
-    "description": "Tecnologías que domino y con las que construyo soluciones modernas y escalables.",
-    "showMore": "Mostrar más habilidades",
+    "description": "Tecnologías principales con las que construyo productos full stack, herramientas de automatización y flujos asistidos por IA.",
+    "showMore": "Mostrar stack ampliado",
     "agents": {
-      "title": "Mis agentes",
-      "description": "Agentes de IA especializados que utilizo para acelerar investigación, implementación y flujos de trabajo de desarrollo.",
-      "label": "Agente IA",
+      "title": "Herramientas de flujo con IA",
+      "description": "Uso estas herramientas para acelerar investigación, implementación y depuración, pero el valor que aporto está en entregar sistemas confiables en producción.",
+      "label": "Herramienta IA",
       "badge": "Stack activo"
     },
     "tools": [
@@ -145,9 +149,9 @@
     "subtitle": "Formación académica"
   },
   "footer": {
-    "title": "Trabajemos juntos",
-    "description": "Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración.",
-    "sendEmail": "Enviar correo",
+    "title": "Disponible para roles full-time",
+    "description": "Remoto para cualquier país o presencial en Nicaragua. Mi mejor encaje está en ingeniería full stack con automatización, herramientas internas y flujos asistidos por IA.",
+    "sendEmail": "Contactarme",
     "copyright": "Todos los derechos reservados."
   },
   "blog": {
@@ -167,12 +171,12 @@
     "buttonLabel": "Preguntar",
     "panelLabel": "Panel del chatbot del portafolio",
     "closeAria": "Cerrar chatbot",
-    "welcome": "¡Hola! Puedo ayudarte con preguntas sobre el portafolio, experiencia, proyectos y servicios de Fabian.",
+    "welcome": "¡Hola! Puedo ayudarte con preguntas sobre la experiencia, el trabajo seleccionado, el stack y la disponibilidad de Fabian.",
     "inputLabel": "Escribe tu pregunta",
-    "inputPlaceholder": "Pregunta sobre habilidades, proyectos o colaboración...",
+    "inputPlaceholder": "Pregunta sobre experiencia, proyectos, stack o disponibilidad...",
     "send": "Enviar",
     "requestFailed": "Lo siento, no pude procesar esa solicitud.",
     "unavailable": "El asistente no está disponible temporalmente. Intenta más tarde.",
-    "outOfScope": "Puedo ayudarte solo con información sobre este portafolio, experiencia, proyectos y servicios de Fabian."
+    "outOfScope": "Puedo ayudarte solo con información sobre este portafolio, la experiencia, los proyectos, las habilidades y las preferencias laborales de Fabian."
   }
 }
