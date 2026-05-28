@@ -10,18 +10,16 @@
   },
   "presentation": {
     "role": "Full Stack Engineer",
-    "tagline": "I build internal systems, automation platforms, and AI-integrated tools for teams in the U.S., Latin America, Europe, and Nicaragua.",
+    "tagline": "I build robust information systems, automation platforms, and AI-powered tools that make complex operations easier to run.",
     "downloadCV": "DOWNLOAD CV"
   },
   "hero": {
     "aboutMe": "About me",
-    "headline": "I turn fragile workflows into reliable software.",
-    "description1": "Full-time engineer from Nicaragua focused on React, Next.js, Angular, Node.js, .NET, and Python. I build data-heavy dashboards, automation tooling, and internal workflows for distributed teams, and I am open to remote roles worldwide or onsite roles in Nicaragua.",
+    "headline": "I build software that makes complex operations easier to run.",
+    "description1": "Full stack engineer focused on React, Next.js, Angular, Node.js, .NET, and Python. I build internal tools, automation systems, and data-heavy products with an emphasis on reliability, clarity, and shipping work that holds up in production.",
     "viewExperience": "Experience",
-    "viewProjects": "Selected work",
     "yearsExperience": "Years of experience",
-    "internalUsers": "Internal users supported",
-    "throughputBoost": "Verification throughput",
+    "deliverySpeed": "First dashboard shipped",
     "promises": [
       "Built and maintained systems used by 150 internal users across cross-team operations.",
       "Increased patient verification throughput by 10x with parallel automation tooling.",
@@ -37,18 +35,6 @@
     },
     "items": [
       {
-        "company": "Roca Company Solutions",
-        "companyUrl": "https://rocacompanysolution.wordpress.com/",
-        "period": "April 2025 - March 2026",
-        "role": "Frontend Web Developer",
-        "description": "Roca Company Solutions provides U.S.-focused management services for DMV cases, vehicle insurance, and product operations.",
-        "achievements": [
-          "Built the frontend from scratch for Maya, the company's first operations dashboard for DMV cases, insurance, products, invoices, and service management, delivering the initial system in 3 months with React, Vite, TanStack Query, and TanStack Table.",
-          "Designed spreadsheet-familiar interfaces and helped migrate high-volume operational data from Google Sheets into Maya, lowering friction for users moving into the new system.",
-          "Implemented exports to XLSX, PDF, and images and optimized data-heavy modules for fast rendering across cases, clients, products, insurance, users, and logs."
-        ]
-      },
-      {
         "company": "Dentalrobot.ai",
         "companyUrl": "https://www.dentalrobot.ai",
         "period": "October 2022 - Present",
@@ -60,23 +46,20 @@
           "Developed the Parallel Engine in Python to execute multiple verification robots concurrently, increasing patient verification throughput by 10x in the same time window while keeping resource usage controlled.",
           "Built the Rocketbot Interpreter, a Docker Compose-based runtime with FastAPI, Python 3.12 and 3.6 services, centralized logs, reproducible debugging, and parallel execution support, eliminating the complex Windows setup previously required to test and review robots with real company data."
         ]
+      },
+      {
+        "company": "Roca Company Solutions",
+        "companyUrl": "https://rocacompanysolution.wordpress.com/",
+        "period": "April 2025 - March 2026",
+        "role": "Frontend Web Developer",
+        "description": "Roca Company Solutions provides U.S.-focused management services for DMV cases, vehicle insurance, and product operations.",
+        "achievements": [
+          "Built the frontend from scratch for Maya, the company's first operations dashboard for DMV cases, insurance, products, invoices, and service management, delivering the initial system in 3 months with React, Vite, TanStack Query, and TanStack Table.",
+          "Designed spreadsheet-familiar interfaces and helped migrate high-volume operational data from Google Sheets into Maya, lowering friction for users moving into the new system.",
+          "Implemented exports to XLSX, PDF, and images and optimized data-heavy modules for fast rendering across cases, clients, products, insurance, users, and logs."
+        ]
       }
     ]
-  },
-  "projects": {
-    "title": "SELECTED WORK",
-    "highlight": "CASE STUDIES",
-    "description": "A mix of private product work and public projects that show how I approach internal tools, automation, and data-heavy interfaces.",
-    "code": "Code",
-    "visit": "Visit",
-    "privateNote": "Private company case study",
-    "publicNote": "Public project",
-    "items": {
-      "rocketbot-interpreter": "Sanitized case study of a Docker Compose runtime that exposed legacy Rocketbot execution through an API, improved debugging reproducibility, centralized logs, and enabled parallel robot runs.",
-      "maya-dashboard": "Greenfield frontend for a service operations dashboard covering DMV cases, insurance, products, invoices, and spreadsheet-oriented workflows.",
-      "formless": "Internal browser-based editor for patient audit forms built around tables and bookmarks, reducing DOCX fragility and moving editing into the main workflow system.",
-      "ferreteria-berrios": "Public inventory and billing dashboard for a hardware store with reporting workflows and operational views."
-    }
   },
   "skills": {
     "title": "TECHNICAL SKILLS",
@@ -93,23 +76,15 @@
       "Node.js",
       "TanStack Query",
       "TanStack Table",
-      "TanStack Virtual",
       "TanStack Router",
-      "TanStack Form",
       "React Router",
       "React Hook Form",
       "RxJS",
-      "Redux Toolkit",
       "Zustand",
-      "Recharts",
-      "GitHub",
       "GitHub Actions",
       "shadcn-ui",
       "React Aria",
       "Tailwind CSS",
-      "Bootstrap",
-      "Tabler",
-      "Vite",
       "Git",
       "Drizzle ORM",
       "TypeORM",
@@ -118,22 +93,9 @@
       "react-testing-library",
       "Playwright",
       "Selenium",
-      "Beautiful Soup",
       "REST APIs",
       "C#",
-      "PHP",
-      "HTML",
-      "CSS",
       "SQL",
-      "MySQL",
-      "SQL Server",
-      "Supabase",
-      "Convex",
-      "AWS RDS",
-      "MongoDB",
-      "MongoDB Atlas",
-      "Neon Serverless",
-      "Turso DB",
       "WordPress",
       "Strapi",
       "Shopify",
@@ -171,12 +133,12 @@
     "buttonLabel": "Ask portfolio",
     "panelLabel": "Portfolio chatbot panel",
     "closeAria": "Close chatbot",
-    "welcome": "Hi! I can help you with questions about Fabian’s experience, selected work, stack, and availability.",
+    "welcome": "Hi! I can help you with questions about Fabian’s experience, stack, and availability.",
     "inputLabel": "Write your question",
-    "inputPlaceholder": "Ask about experience, projects, stack, or availability...",
+    "inputPlaceholder": "Ask about experience, stack, or availability...",
     "send": "Send",
     "requestFailed": "Sorry, I could not process that request.",
     "unavailable": "The assistant is temporarily unavailable. Please try again later.",
-    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, skills, and work preferences."
+    "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, skills, and work preferences."
   }
 }
