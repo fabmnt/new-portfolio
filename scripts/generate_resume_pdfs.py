@@ -301,8 +301,9 @@ def build_resume(data):
                 Paragraph(job["company"], styles["Company"]),
                 Paragraph(job["period"], styles["Period"]),
             ]],
-            colWidths=[4.5 * inch, 1.35 * inch],
+            colWidths=[doc.width * 0.72, doc.width * 0.28],
         )
+        header.hAlign = "LEFT"
         header.setStyle(
             TableStyle(
                 [
