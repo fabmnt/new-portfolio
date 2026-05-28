@@ -15,11 +15,12 @@
   },
   "hero": {
     "aboutMe": "About me",
-    "headline": "I build software that makes complex operations easier to run.",
+    "headline": "Make complex systems simple to use",
     "description1": "Full stack engineer focused on React, Next.js, Angular, Node.js, .NET, and Python. I build internal tools, automation systems, and data-heavy products with an emphasis on reliability, clarity, and shipping work that holds up in production.",
     "viewExperience": "Experience",
     "yearsExperience": "Years of experience",
-    "deliverySpeed": "First dashboard shipped",
+    "fullStackTitle": "Full stack.",
+    "fullStackSubtitle": "Frontend and backend skills",
     "promises": [
       "Built and maintained systems used by 150 internal users across cross-team operations.",
       "Increased patient verification throughput by 10x with parallel automation tooling.",

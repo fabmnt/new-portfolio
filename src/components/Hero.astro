@@ -11,12 +11,12 @@ const t = getTranslations(locale);
 
 interface StatProps {
   value: string;
-  label: string;
+  label?: string;
 }
 
 const stats: StatProps[] = [
   { value: "4+", label: t.hero.yearsExperience },
-  { value: "3 mo", label: t.hero.deliverySpeed },
+  { value: t.hero.fullStackTitle, label: t.hero.fullStackSubtitle },
 ];
 ---
 
@@ -31,7 +31,7 @@ const stats: StatProps[] = [
           <div class="mb-2 text-2xl font-semibold text-brutalist-white sm:text-4xl">
             {stat.value}
           </div>
-          <div class="text-xs uppercase sm:text-sm">{stat.label}</div>
+          {stat.label && <div class="text-xs uppercase sm:text-sm">{stat.label}</div>}
         </div>
       </div>
     ))

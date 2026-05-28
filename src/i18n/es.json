@@ -19,7 +19,8 @@
     "description1": "Ingeniero full stack enfocado en React, Next.js, Angular, Node.js, .NET y Python. Construyo herramientas internas, sistemas de automatización y productos con grandes volúmenes de datos, con énfasis en confiabilidad, claridad y entregas que se sostienen en producción.",
     "viewExperience": "Experiencia",
     "yearsExperience": "Años de experiencia",
-    "deliverySpeed": "Primer dashboard entregado",
+    "fullStackTitle": "Full stack.",
+    "fullStackSubtitle": "Habilidades frontend y backend",
     "promises": [
       "He construido y mantenido sistemas usados por 150 usuarios internos en operaciones compartidas.",
       "Aumenté 10x el volumen de verificaciones de pacientes con herramientas de automatización paralela.",
