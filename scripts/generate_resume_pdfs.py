@@ -73,6 +73,7 @@ RESUMES = {
             "Frontend: React, Next.js, Angular, TypeScript, Astro, TanStack Query, TanStack Table, Redux Toolkit, Zustand.",
             "Backend and APIs: Node.js, FastAPI, .NET, REST APIs, SQL Server, MySQL, Supabase, MongoDB Atlas, AWS RDS.",
             "Automation and testing: Python, Selenium, Playwright, Beautiful Soup, scraping, workflow tooling, and data analysis.",
+            "AI integrations and product workflow: frontend AI integrations, backend AI integrations, internal tooling, and operations-focused interfaces.",
             "UI and developer workflow: Tailwind CSS, shadcn/ui, React Aria, Bootstrap, GitHub Actions, Vitest, Testing Library.",
             "Languages: Spanish (Native). English: Fluent reading and listening, intermediate writing, basic speaking.",
         ],
@@ -136,6 +137,7 @@ RESUMES = {
             "Frontend: React, Next.js, Angular, TypeScript, Astro, TanStack Query, TanStack Table, Redux Toolkit, Zustand.",
             "Backend y APIs: Node.js, FastAPI, .NET, REST APIs, SQL Server, MySQL, Supabase, MongoDB Atlas, AWS RDS.",
             "Automatización y testing: Python, Selenium, Playwright, Beautiful Soup, scraping, herramientas de flujo y análisis de datos.",
+            "Integraciones de IA y flujo de producto: integraciones de IA en frontend y backend, herramientas internas e interfaces orientadas a operaciones.",
             "UI y flujo de desarrollo: Tailwind CSS, shadcn/ui, React Aria, Bootstrap, GitHub Actions, Vitest, Testing Library.",
             "Idiomas: Espanol nativo. Ingles: lectura y escucha fluidas, escritura intermedia, conversacion basica.",
         ],
@@ -155,10 +157,10 @@ def build_styles():
             name="ResumeName",
             parent=styles["Heading1"],
             fontName="Helvetica-Bold",
-            fontSize=18,
-            leading=20,
+            fontSize=19.5,
+            leading=21.5,
             alignment=TA_CENTER,
-            spaceAfter=4,
+            spaceAfter=5,
         )
     )
     styles.add(
@@ -166,11 +168,11 @@ def build_styles():
             name="ResumeTitle",
             parent=styles["Normal"],
             fontName="Helvetica-Bold",
-            fontSize=10.2,
-            leading=12,
+            fontSize=11,
+            leading=13,
             alignment=TA_CENTER,
             textColor=colors.HexColor("#333333"),
-            spaceAfter=4,
+            spaceAfter=5,
         )
     )
     styles.add(
@@ -178,11 +180,11 @@ def build_styles():
             name="Contact",
             parent=styles["Normal"],
             fontName="Helvetica",
-            fontSize=9.5,
-            leading=11,
+            fontSize=10,
+            leading=11.8,
             alignment=TA_CENTER,
             textColor=colors.black,
-            spaceAfter=2,
+            spaceAfter=3,
         )
     )
     styles.add(
@@ -190,10 +192,10 @@ def build_styles():
             name="Summary",
             parent=styles["Normal"],
             fontName="Helvetica",
-            fontSize=9.3,
-            leading=12,
+            fontSize=10.1,
+            leading=13.2,
             alignment=TA_LEFT,
-            spaceAfter=7,
+            spaceAfter=9,
         )
     )
     styles.add(
@@ -201,10 +203,10 @@ def build_styles():
             name="SectionTitle",
             parent=styles["Heading2"],
             fontName="Helvetica-Bold",
-            fontSize=12.6,
-            leading=14,
-            spaceBefore=2,
-            spaceAfter=4,
+            fontSize=14,
+            leading=15.5,
+            spaceBefore=5,
+            spaceAfter=5,
         )
     )
     styles.add(
@@ -212,8 +214,8 @@ def build_styles():
             name="Company",
             parent=styles["Normal"],
             fontName="Helvetica-Bold",
-            fontSize=11.2,
-            leading=12.5,
+            fontSize=12.4,
+            leading=13.6,
             alignment=TA_LEFT,
         )
     )
@@ -222,8 +224,8 @@ def build_styles():
             name="Period",
             parent=styles["Normal"],
             fontName="Helvetica-Bold",
-            fontSize=10.4,
-            leading=12,
+            fontSize=11.1,
+            leading=12.5,
             alignment=TA_RIGHT,
         )
     )
@@ -232,10 +234,10 @@ def build_styles():
             name="Role",
             parent=styles["Normal"],
             fontName="Helvetica-Oblique",
-            fontSize=9.2,
-            leading=11,
+            fontSize=10.2,
+            leading=11.8,
             textColor=colors.HexColor("#444444"),
-            spaceAfter=1,
+            spaceAfter=2,
         )
     )
     styles.add(
@@ -243,9 +245,9 @@ def build_styles():
             name="Description",
             parent=styles["Normal"],
             fontName="Helvetica",
-            fontSize=8.9,
-            leading=10.8,
-            spaceAfter=2,
+            fontSize=9.7,
+            leading=11.8,
+            spaceAfter=3,
         )
     )
     styles.add(
@@ -253,10 +255,11 @@ def build_styles():
             name="ResumeBullet",
             parent=styles["Normal"],
             fontName="Helvetica",
-            fontSize=8.85,
-            leading=10.7,
+            fontSize=9.45,
+            leading=11.45,
             leftIndent=14,
             firstLineIndent=0,
+            spaceAfter=1,
         )
     )
     return styles
@@ -264,7 +267,7 @@ def build_styles():
 
 def make_bullet_list(items, bullet_style):
     paragraphs = [Paragraph(f"&#8226; {item}", bullet_style) for item in items]
-    paragraphs.append(Spacer(1, 2))
+    paragraphs.append(Spacer(1, 4))
     return paragraphs
 
 
@@ -274,10 +277,10 @@ def build_resume(data):
     doc = SimpleDocTemplate(
         str(output_path),
         pagesize=letter,
-        leftMargin=0.6 * inch,
-        rightMargin=0.6 * inch,
-        topMargin=0.48 * inch,
-        bottomMargin=0.45 * inch,
+        leftMargin=0.56 * inch,
+        rightMargin=0.56 * inch,
+        topMargin=0.42 * inch,
+        bottomMargin=0.36 * inch,
         title=data["name"],
         author="Fabian Montoya",
     )
@@ -286,8 +289,8 @@ def build_resume(data):
         Paragraph(data["name"], styles["ResumeName"]),
         Paragraph(data["title"], styles["ResumeTitle"]),
         Paragraph(data["contact"], styles["Contact"]),
-        Spacer(1, 2),
-        HRFlowable(width="100%", thickness=1.1, color=colors.black, spaceBefore=0, spaceAfter=7),
+        Spacer(1, 3),
+        HRFlowable(width="100%", thickness=1.15, color=colors.black, spaceBefore=0, spaceAfter=8),
         Paragraph(data["summary"], styles["Summary"]),
         Paragraph(data["section_titles"]["experience"], styles["SectionTitle"]),
     ]
@@ -319,6 +322,7 @@ def build_resume(data):
             ]
         )
         story.extend(make_bullet_list(job["bullets"], styles["ResumeBullet"]))
+        story.append(Spacer(1, 3))
 
     story.append(Paragraph(data["section_titles"]["freelance"], styles["SectionTitle"]))
     story.extend(make_bullet_list(data["freelance"], styles["ResumeBullet"]))
