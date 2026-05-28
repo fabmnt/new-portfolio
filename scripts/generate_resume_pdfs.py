@@ -86,7 +86,7 @@ RESUMES = {
     "es": {
         "filename": "fabian-montoya-cv-es.pdf",
         "name": "Fabian Oswaldo Montoya Palma",
-        "title": "Ingeniero Full Stack | Ingeniero de Automatizacion",
+        "title": "Ingeniero Full Stack | Ingeniero de Automatización",
         "contact": (
             "Nicaragua - "
             '<link href="mailto:fabianmontoya2802@gmail.com" color="blue">fabianmontoya2802@gmail.com</link>'
@@ -94,25 +94,25 @@ RESUMES = {
             '<link href="https://fabmnt.dev" color="blue">https://fabmnt.dev</link>'
         ),
         "summary": (
-            "Ingeniero Full Stack con mas de 3 anos construyendo sistemas internos, herramientas de automatizacion "
+            "Ingeniero Full Stack con más de 3 años construyendo sistemas internos, herramientas de automatización "
             "y flujos con integraciones de IA para equipos operativos. Fuerte en React, Next.js, Angular, Node.js, "
-            ".NET, Python e interfaces con grandes volumenes de datos, con experiencia soportando 150 usuarios "
-            "internos y aumentando 10x el rendimiento de verificacion."
+            ".NET, Python e interfaces con grandes volúmenes de datos, con experiencia soportando 150 usuarios "
+            "internos y aumentando 10x el rendimiento de verificación."
         ),
         "section_titles": {
             "experience": "Experiencia Profesional",
             "freelance": "Freelance",
-            "skills": "Habilidades Tecnicas",
-            "education": "Educacion",
+            "skills": "Habilidades Técnicas",
+            "education": "Educación",
         },
         "experience": [
             {
                 "company": "Dentalrobot.ai",
                 "period": "Oct 2022 - Presente",
                 "role": "Desarrollador Full Stack y RPA",
-                "description": "Empresa de automatizacion enfocada en verificaciones masivas de citas dentales para aseguradoras de EE. UU.",
+                "description": "Empresa de automatización enfocada en verificaciones masivas de citas dentales para aseguradoras de EE. UU.",
                 "bullets": [
-                    "Mantengo y extiendo CC (Control Central), el sistema de gestion de flujos cross-team de la empresa usado por 150 usuarios internos, mejorando UX en Angular, accesibilidad, estabilidad y escalabilidad.",
+                    "Mantengo y extiendo CC (Control Central), el sistema de gestión de flujos cross-team de la empresa usado por 150 usuarios internos, mejorando UX en Angular, accesibilidad, estabilidad y escalabilidad.",
                     "Construí Formless, un editor en navegador para formularios de auditoría de pacientes basados en tablas y bookmarks, reemplazando flujos frágiles con DOCX y llevando la revisión directamente al sistema principal.",
                     "Desarrollé el motor Parallel en Python para ejecutar robots de verificación de forma concurrente, aumentando 10x el volumen de verificaciones de pacientes en la misma ventana de tiempo con uso controlado de recursos.",
                     "Construí Rocketbot Interpreter con FastAPI y Docker Compose usando servicios en Python 3.12 y 3.6, logs centralizados, depuración reproducible y soporte para ejecuciones paralelas, eliminando la configuración compleja en Windows que antes se necesitaba para probar y revisar robots con datos reales de la empresa.",
@@ -122,7 +122,7 @@ RESUMES = {
                 "company": "Roca Company Solutions",
                 "period": "Abr 2025 - Mar 2026",
                 "role": "Desarrollador Web Frontend",
-                "description": "Empresa que presta servicios operativos para casos DMV, seguros de vehiculos y productos en EE. UU.",
+                "description": "Empresa que presta servicios operativos para casos DMV, seguros de vehículos y productos en EE. UU.",
                 "bullets": [
                     "Construí desde cero el frontend de Maya, el primer dashboard operativo de la empresa para casos DMV, seguros, productos, facturas y gestión de servicios, entregando la versión inicial en 3 meses con React, Vite, TanStack Query y TanStack Table.",
                     "Diseñé interfaces familiares para usuarios acostumbrados a hojas de cálculo y apoyé la migración de grandes volúmenes de datos desde Google Sheets hacia Maya, reduciendo fricción en la adopción del sistema.",
@@ -139,12 +139,12 @@ RESUMES = {
             "Automatización y testing: Python, Selenium, Playwright, Beautiful Soup, scraping, herramientas de flujo y análisis de datos.",
             "Integraciones de IA y flujo de producto: integraciones de IA en frontend y backend, herramientas internas e interfaces orientadas a operaciones.",
             "UI y flujo de desarrollo: Tailwind CSS, shadcn/ui, React Aria, Bootstrap, GitHub Actions, Vitest, Testing Library.",
-            "Idiomas: Espanol nativo. Ingles: lectura y escucha fluidas, escritura intermedia, conversacion basica.",
+            "Idiomas: Español nativo. Inglés: lectura y escucha fluidas, escritura intermedia, conversación básica.",
         ],
         "education": [
-            "Ingenieria en Sistemas de Informacion, Universidad Nacional Autonoma de Nicaragua - Leon, graduado en 2024.",
-            "Curso Internacional de Hacking Etico y Ciberseguridad, Universidad Nacional de Ingenieria, 2024.",
-            "Tecnico en Contabilidad General, Instituto Nacional Tecnologico, 2024.",
+            "Ingeniería en Sistemas de Información, Universidad Nacional Autónoma de Nicaragua - León, graduado en 2024.",
+            "Curso Internacional de Hacking Ético y Ciberseguridad, Universidad Nacional de Ingeniería, 2024.",
+            "Técnico en Contabilidad General, Instituto Nacional Tecnológico, 2024.",
         ],
     },
 }
