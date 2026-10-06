@@ -7,7 +7,7 @@
       "dependencies": {
         "@astrojs/tailwind": "^6.0.2",
         "@astrojs/vercel": "10.0.3",
-        "@fontsource/geist-sans": "^5.1.0",
+        "@fontsource-variable/archivo": "^5.3.0",
         "@vercel/analytics": "^2.0.1",
         "astro": "6.1.1",
         "clsx": "^2.1.1",
@@ -126,7 +126,7 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.2.4", "", { "dependencies": { "levn": "0.4.1" } }, "sha512-zSkKow6H5Kdm0ZUQUB2kV5JIXqoG0+uH5YADhaEHswm664N9Db8dXSi0nMJpacpMf+MyyglF1vnZohpEg5yUtg=="],
 
-    "@fontsource/geist-sans": ["@fontsource/geist-sans@5.1.0", "", {}, "sha512-4AI/UxIcZiYgK6/cTo4R9oM4VHHLcFdHVv7m2+M42VyY16hhKJADrGe4HPjTxvolmce2IZX/jc6sFJ+GkLB64w=="],
+    "@fontsource-variable/archivo": ["@fontsource-variable/archivo@5.3.0", "", {}, "sha512-HogK8FJelrD1o7TlZlkIVtHgc20bO5PZRWE7mUeUTdMN055alznQV6/00J00IBeu8FQAH4s3zW9UJNvKExXf+g=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

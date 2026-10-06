@@ -174,5 +174,123 @@
     "requestFailed": "Sorry, I could not process that request.",
     "unavailable": "The assistant is temporarily unavailable. Please try again later.",
     "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
+  },
+  "home": {
+    "nav": {
+      "label": "Main navigation",
+      "services": "Services",
+      "blog": "Blog",
+      "contact": "Contact",
+      "language": "Change language"
+    },
+    "opening": {
+      "tagline": "I build, fix and take care of websites for businesses, so you can focus on running yours.",
+      "primaryCta": "Tell me about your site",
+      "secondaryCta": "See what I can do",
+      "scrollHint": "Scroll down to know more"
+    },
+    "services": {
+      "title": "What I can do for you",
+      "intro": "You don't need to know how websites work. Tell me what you need in your own words, and I'll take care of the rest.",
+      "items": [
+        {
+          "title": "Keep your site running",
+          "description": "Regular updates, backups, security checks and quick fixes when something breaks, so your site stays fast, safe and online."
+        },
+        {
+          "title": "Make changes and improvements",
+          "description": "New pages, new products, updated text and photos, or a fresh look for an older site."
+        },
+        {
+          "title": "Build something new",
+          "description": "Business websites, online stores, and custom tools to handle sales, bookings, inventory or customers."
+        },
+        {
+          "title": "Add smart helpers",
+          "description": "An AI assistant that answers your visitors' questions, or automations that do repetitive work for you."
+        }
+      ],
+      "platforms": "I work with the platforms you may already use, like WordPress and Shopify, and with custom-built sites."
+    },
+    "process": {
+      "title": "How we work together",
+      "steps": [
+        {
+          "title": "Tell me what you need",
+          "description": "Send me your site's address and what you want to change. No technical words needed."
+        },
+        {
+          "title": "Get a clear plan",
+          "description": "I review your site and tell you what I'll do, how long it takes and what it costs, before any work starts."
+        },
+        {
+          "title": "I do the work",
+          "description": "I make the changes carefully and keep you updated. You check everything before it goes live."
+        },
+        {
+          "title": "I keep looking after it",
+          "description": "If you want, I stay as your web person: regular care, quick help and changes whenever you need them."
+        }
+      ]
+    },
+    "experience": {
+      "title": "Work experience and studies",
+      "intro": "More than 4 years and 50+ projects building and caring for websites and business tools.",
+      "jobs": [
+        {
+          "period": "2022",
+          "periodEnd": "to today",
+          "name": "Dentalrobot.ai",
+          "url": "https://www.dentalrobot.ai",
+          "role": "Full stack developer",
+          "note": "I build and maintain the web tools a US dental company uses every day to run its operations."
+        },
+        {
+          "period": "2025",
+          "periodEnd": "to 2026",
+          "name": "Roca Company Solutions",
+          "url": "https://rocacompanysolution.wordpress.com/",
+          "role": "Frontend developer",
+          "note": "I designed and built the system they use to manage thousands of customer cases, replacing their spreadsheets."
+        },
+        {
+          "period": "Freelance",
+          "periodEnd": "ongoing",
+          "name": "Small businesses",
+          "role": "Web developer",
+          "note": "Business websites and online stores on WordPress, Shopify and other platforms."
+        }
+      ],
+      "studiesTitle": "Studies",
+      "studies": [
+        {
+          "period": "2019 to 2024",
+          "title": "Information Systems Engineering",
+          "institution": "UNAN-León"
+        },
+        {
+          "period": "2024",
+          "title": "Ethical hacking and cybersecurity",
+          "institution": "UNI graduate school"
+        },
+        {
+          "period": "2024",
+          "title": "General accounting technician",
+          "institution": "INATEC"
+        }
+      ],
+      "downloadCv": "Download my CV (PDF)",
+      "visit": "Visit website, opens in a new tab"
+    },
+    "contact": {
+      "title": "Let's talk about your site",
+      "description": "Write to me in Spanish or English and tell me what you need. I'll reply with a clear next step.",
+      "sendEmail": "Send me an email",
+      "copyEmail": "Copy email",
+      "copied": "Email copied",
+      "socialLabel": "Find me online",
+      "portraitAlt": "Illustrated portrait of Fabian Montoya",
+      "end": "The end"
+    }
   }
 }

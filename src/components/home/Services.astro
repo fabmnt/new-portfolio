@@ -1,0 +1,81 @@
+---
+import { getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { services, process } = getTranslations(locale).home;
+---
+
+<section
+  id="services"
+  class="relative overflow-hidden bg-cinema-teal py-24 text-cinema-screen sm:py-32"
+>
+  <!-- Warm key light against the teal grade -->
+  <div
+    class="pointer-events-none absolute -left-1/4 top-0 h-[70%] w-[90%] bg-[radial-gradient(closest-side,rgb(242_181_68/0.22),transparent)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 sm:px-8">
+    <div class="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+      <div class="lg:sticky lg:top-16 lg:self-start">
+        <h2
+          class="title-card text-[clamp(3.25rem,9vw,6.5rem)] uppercase text-cinema-tungsten"
+        >
+          {services.title}
+        </h2>
+        <p class="mt-6 max-w-[42ch] text-lg leading-relaxed text-cinema-screen/80">
+          {services.intro}
+        </p>
+        <p class="mt-6 max-w-[42ch] leading-relaxed text-cinema-screen/80">
+          {services.platforms}
+        </p>
+      </div>
+
+      <ul>
+        {
+          services.items.map((item) => (
+            <li class="spotlight py-10 first:pt-0 sm:py-14">
+              <h3 class="title-card text-[clamp(2.4rem,5.5vw,3.75rem)]">
+                {item.title}
+              </h3>
+              <p class="mt-4 max-w-[52ch] text-lg leading-relaxed text-cinema-screen/80">
+                {item.description}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <h3 class="title-card mt-24 text-[clamp(2.25rem,5vw,3.5rem)] lg:mt-32">
+      {process.title}
+    </h3>
+    <ol
+      class="film-strip mt-8 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {
+        process.steps.map((step, index) => (
+          <li class="bg-cinema-night p-6">
+            <span
+              class="title-card block text-5xl text-cinema-tungsten"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <h4 class="mt-4 text-lg font-semibold leading-snug">
+              {step.title}
+            </h4>
+            <p class="mt-2 leading-relaxed text-cinema-steel">
+              {step.description}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

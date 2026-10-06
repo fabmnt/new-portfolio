@@ -174,5 +174,123 @@
     "requestFailed": "Lo siento, no pude procesar esa solicitud.",
     "unavailable": "El asistente no está disponible temporalmente. Intenta más tarde.",
     "outOfScope": "Puedo ayudarte solo con información sobre este portafolio, experiencia, proyectos y servicios de Fabian."
+  },
+  "home": {
+    "nav": {
+      "label": "Navegación principal",
+      "services": "Servicios",
+      "blog": "Blog",
+      "contact": "Contacto",
+      "language": "Cambiar idioma"
+    },
+    "opening": {
+      "tagline": "Creo, reparo y cuido sitios web de negocios, para que tú te enfoques en hacer crecer el tuyo.",
+      "primaryCta": "Cuéntame sobre tu sitio",
+      "secondaryCta": "Mira lo que puedo hacer",
+      "scrollHint": "Desliza hacia abajo para conocer más"
+    },
+    "services": {
+      "title": "Lo que puedo hacer por ti",
+      "intro": "No necesitas saber cómo funciona una página web. Cuéntame lo que necesitas con tus propias palabras y yo me encargo del resto.",
+      "items": [
+        {
+          "title": "Mantener tu sitio funcionando",
+          "description": "Actualizaciones, copias de seguridad, revisiones de seguridad y arreglos rápidos cuando algo falla, para que tu sitio siga rápido, seguro y en línea."
+        },
+        {
+          "title": "Hacer cambios y mejoras",
+          "description": "Nuevas páginas, nuevos productos, textos y fotos actualizados, o una imagen renovada para un sitio antiguo."
+        },
+        {
+          "title": "Crear algo nuevo",
+          "description": "Sitios web para negocios, tiendas en línea y herramientas a la medida para manejar ventas, reservas, inventario o clientes."
+        },
+        {
+          "title": "Agregar ayudantes inteligentes",
+          "description": "Un asistente con IA que responde las preguntas de tus visitantes, o automatizaciones que hacen el trabajo repetitivo por ti."
+        }
+      ],
+      "platforms": "Trabajo con las plataformas que quizás ya usas, como WordPress y Shopify, y también con sitios hechos a la medida."
+    },
+    "process": {
+      "title": "Cómo trabajamos juntos",
+      "steps": [
+        {
+          "title": "Cuéntame lo que necesitas",
+          "description": "Envíame la dirección de tu sitio y lo que quieres cambiar. No necesitas usar palabras técnicas."
+        },
+        {
+          "title": "Recibe un plan claro",
+          "description": "Reviso tu sitio y te digo qué haré, cuánto tiempo toma y cuánto cuesta, antes de empezar cualquier trabajo."
+        },
+        {
+          "title": "Yo hago el trabajo",
+          "description": "Hago los cambios con cuidado y te mantengo informado. Tú revisas todo antes de publicarlo."
+        },
+        {
+          "title": "Sigo cuidando tu sitio",
+          "description": "Si quieres, me quedo como tu persona de confianza para la web: cuidado constante, ayuda rápida y cambios cuando los necesites."
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experiencia laboral y estudios",
+      "intro": "Más de 4 años y más de 50 proyectos creando y cuidando sitios web y herramientas para negocios.",
+      "jobs": [
+        {
+          "period": "2022",
+          "periodEnd": "a hoy",
+          "name": "Dentalrobot.ai",
+          "url": "https://www.dentalrobot.ai",
+          "role": "Desarrollador full stack",
+          "note": "Creo y mantengo las herramientas web que una empresa dental de EE. UU. usa cada día para operar."
+        },
+        {
+          "period": "2025",
+          "periodEnd": "a 2026",
+          "name": "Roca Company Solutions",
+          "url": "https://rocacompanysolution.wordpress.com/",
+          "role": "Desarrollador frontend",
+          "note": "Diseñé y construí el sistema que usan para gestionar miles de casos de clientes, reemplazando sus hojas de cálculo."
+        },
+        {
+          "period": "Freelance",
+          "periodEnd": "continuo",
+          "name": "Pequeños negocios",
+          "role": "Desarrollador web",
+          "note": "Sitios web y tiendas en línea con WordPress, Shopify y otras plataformas."
+        }
+      ],
+      "studiesTitle": "Estudios",
+      "studies": [
+        {
+          "period": "2019 a 2024",
+          "title": "Ingeniería en Sistemas de Información",
+          "institution": "UNAN-León"
+        },
+        {
+          "period": "2024",
+          "title": "Hacking ético y ciberseguridad",
+          "institution": "Posgrado UNI"
+        },
+        {
+          "period": "2024",
+          "title": "Técnico en contabilidad general",
+          "institution": "INATEC"
+        }
+      ],
+      "downloadCv": "Descargar mi CV (PDF)",
+      "visit": "Visitar sitio web, abre en una pestaña nueva"
+    },
+    "contact": {
+      "title": "Hablemos de tu sitio",
+      "description": "Escríbeme en español o en inglés y cuéntame lo que necesitas. Te responderé con un siguiente paso claro.",
+      "sendEmail": "Envíame un correo",
+      "copyEmail": "Copiar correo",
+      "copied": "Correo copiado",
+      "socialLabel": "Encuéntrame en línea",
+      "portraitAlt": "Retrato ilustrado de Fabian Montoya",
+      "end": "Fin"
+    }
   }
 }

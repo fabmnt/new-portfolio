@@ -1,0 +1,157 @@
+/*
+ * Cinema theme: shared type treatment, film grain and the page opening
+ * sequence. Colors live in tailwind.config.mjs under `cinema`.
+ */
+
+:root {
+  --cinema-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --cinema-bar: clamp(3.5rem, 11svh, 6rem);
+}
+
+/* Condensed heavy type used for every title card. */
+.title-card {
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+/* Static film grain over the whole page. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Dark focus ring for scenes with a light background. */
+[data-scene="light"] :focus-visible {
+  outline-color: #11151b;
+}
+
+/*
+ * Opening sequence: the letterbox bars start closed and open to reveal the
+ * stage, then the title comes into focus like a camera focus pull.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .opening-bar {
+    animation: bar-open 0.7s var(--cinema-ease) 0.1s both;
+  }
+
+  .opening-bar > * {
+    animation: fade-in 0.4s ease 0.7s both;
+  }
+
+  .opening-title {
+    animation: focus-pull 0.8s var(--cinema-ease) 0.35s both;
+  }
+
+  .opening-after {
+    animation: fade-in 0.5s ease 0.85s both;
+  }
+}
+
+@keyframes bar-open {
+  from {
+    height: 50.5%;
+  }
+  to {
+    height: var(--cinema-bar);
+  }
+}
+
+@keyframes focus-pull {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    letter-spacing: 0.08em;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: -0.01em;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scroll hint arrow nudges a few times after the opening ends. */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-hint-arrow {
+    animation: nudge-down 1.2s ease-in-out 1.4s 3;
+  }
+}
+
+@keyframes nudge-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/*
+ * Spotlight: an item is fully lit while it crosses the middle of the screen
+ * and dimmed elsewhere. Without scroll timelines, every item stays lit.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .spotlight {
+      animation: spotlight linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes spotlight {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  35%,
+  65% {
+    opacity: 1;
+  }
+}
+
+/* Film strip: black band with sprocket holes along both edges. */
+.film-strip {
+  --film-hole-color: #0d3b45;
+  position: relative;
+  background-color: #000;
+  padding: 2rem 0.375rem;
+}
+
+.film-strip::before,
+.film-strip::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0.5rem;
+  height: 0.625rem;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--film-hole-color) 0 0.875rem,
+    transparent 0.875rem 1.75rem
+  );
+}
+
+.film-strip::before {
+  top: 0.6875rem;
+}
+
+.film-strip::after {
+  bottom: 0.6875rem;
+}

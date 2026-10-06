@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import portrait from "@/assets/images/icon-face.png";
+import { getTranslations, type Locale } from "@/i18n";
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/constants/contact";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale).home.contact;
+---
+
+<section
+  id="contact"
+  data-scene="light"
+  class="bg-cinema-tungsten py-24 text-cinema-night sm:py-32"
+>
+  <div
+    class="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-8 md:grid-cols-[2fr_3fr] md:gap-16"
+  >
+    <Image
+      src={portrait}
+      alt={t.portraitAlt}
+      width={480}
+      height={480}
+      class="mx-auto w-56 sm:w-72 md:w-full md:max-w-sm"
+    />
+
+    <div class="text-center md:text-left">
+      <h2 class="title-card text-[clamp(3.25rem,9vw,6.5rem)]">{t.title}</h2>
+      <p class="mx-auto mt-6 max-w-[44ch] text-lg leading-relaxed md:mx-0">
+        {t.description}
+      </p>
+
+      <div
+        class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start"
+      >
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          class="w-full max-w-xs bg-cinema-night px-7 py-4 text-center font-semibold text-cinema-screen transition-colors hover:bg-cinema-black sm:w-auto"
+        >
+          {t.sendEmail}
+        </a>
+        <button
+          type="button"
+          data-copy-email={CONTACT_EMAIL}
+          data-copied-label={t.copied}
+          aria-live="polite"
+          class="w-full max-w-xs border-2 border-cinema-night px-7 py-[0.875rem] font-semibold transition-colors hover:bg-cinema-night/10 sm:w-auto"
+        >
+          {t.copyEmail}
+        </button>
+      </div>
+      <p class="mt-4 text-sm text-cinema-night/75">{CONTACT_EMAIL}</p>
+
+      <nav aria-label={t.socialLabel} class="mt-10">
+        <ul class="flex justify-center gap-6 md:justify-start">
+          {
+            SOCIAL_LINKS.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-medium underline underline-offset-4 hover:no-underline"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-copy-email]")
+    .forEach((button) => {
+      const originalLabel = button.textContent;
+
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.copyEmail ?? "");
+          button.textContent = button.dataset.copiedLabel ?? originalLabel;
+          setTimeout(() => (button.textContent = originalLabel), 2000);
+        } catch (error) {
+          console.error("Failed to copy email:", error);
+        }
+      });
+    });
+</script>

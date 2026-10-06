@@ -3,20 +3,11 @@ import Analytics from "@vercel/analytics/astro";
 import HoverLightScript from "@/components/HoverLightScript.astro";
 import "@/styles/brutalist.css";
 import "@/styles/globals.css";
+import "@/styles/cinema.css";
+import "@fontsource-variable/archivo/wdth.css";
+import archivoLatin from "@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url";
 import { getTranslations } from "@/i18n";
 import profileImage from "@/assets/images/icon-face.png";
-import "@fontsource/geist-sans/200.css";
-import "@fontsource/geist-sans/300.css";
-import "@fontsource/geist-sans/400.css";
-import "@fontsource/geist-sans/500.css";
-import "@fontsource/geist-sans/600.css";
-import "@fontsource/geist-sans/700.css";
-import "@fontsource/geist-sans/800.css";
-import geistSans300 from "@fontsource/geist-sans/files/geist-sans-latin-300-normal.woff2?url";
-import geistSans400 from "@fontsource/geist-sans/files/geist-sans-latin-400-normal.woff2?url";
-import geistSans500 from "@fontsource/geist-sans/files/geist-sans-latin-500-normal.woff2?url";
-import geistSans700 from "@fontsource/geist-sans/files/geist-sans-latin-700-normal.woff2?url";
-import geistSans800 from "@fontsource/geist-sans/files/geist-sans-latin-800-normal.woff2?url";
 
 interface Props {
   locale?: "en" | "es";
@@ -80,11 +71,11 @@ const profileImageUrl = new URL(profileImage.src, site).toString();
 
 const SITE_NAME = t.layout.siteName;
 const defaultTitle = locale === "en"
-  ? "Fabian Montoya | Full Stack Developer & RPA Engineer"
-  : "Fabian Montoya | Desarrollador Full Stack e Ingeniero RPA";
+  ? "Fabian Montoya | Websites built and cared for"
+  : "Fabian Montoya | Sitios web creados y cuidados";
 const defaultDescription = locale === "en"
-  ? "Fabian Montoya, a full stack developer building business pages, advanced AI integrations and smart automation solutions."
-  : "Fabian Montoya, un desarrollador full stack que crea paginas para negocios, integraciones avanzadas de IA y soluciones inteligentes de automatizacion.";
+  ? "Fabian Montoya builds, fixes and takes care of websites for businesses: updates, security, changes, online stores and AI assistants."
+  : "Fabian Montoya crea, repara y cuida sitios web de negocios: actualizaciones, seguridad, cambios, tiendas en línea y asistentes con IA.";
 const defaultKeywords = locale === "en"
   ? "Fabian Montoya, Full Stack Developer, RPA Engineer, Web Developer, React, Angular, TypeScript, Node.js, AI, Chatbot, Nicaragua, portfolio, programmer"
   : "Fabian Montoya, Full Stack Developer, RPA Engineer, Desarrollador Web, React, Angular, TypeScript, Node.js, AI, Chatbot, Nicaragua, portafolio, programador";
@@ -177,7 +168,7 @@ const jsonLd = {
     <meta name="author" content={AUTHOR_NAME} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
-    <meta name="theme-color" content="#3b82f6" />
+    <meta name="theme-color" content="#000000" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content={SITE_NAME} />
@@ -189,12 +180,8 @@ const jsonLd = {
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href={profileImage.src} />
 
-    <!-- Critical font preloads to reduce hero text reflow -->
-    <link rel="preload" href={geistSans400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={geistSans700} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={geistSans800} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={geistSans300} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={geistSans500} as="font" type="font/woff2" crossorigin />
+    <!-- Critical font preload to reduce hero text reflow -->
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={ogType} />
@@ -237,8 +224,8 @@ const jsonLd = {
     {englishUrl && <link rel="alternate" hreflang="en" href={englishUrl} />}
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
   </head>
-  <body class="font-display bg-brutalist-black text-brutalist-white min-h-screen overflow-x-hidden">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-brutalist-blue focus:text-brutalist-white focus:px-4 focus:py-2 focus:font-medium focus:tracking-wider focus:uppercase focus:text-sm">
+  <body class="font-display bg-cinema-black text-cinema-screen min-h-screen overflow-x-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-cinema-tungsten focus:text-cinema-night focus:px-4 focus:py-2 focus:font-medium focus:tracking-wider focus:uppercase focus:text-sm">
       Skip to main content
     </a>
     <slot />
@@ -303,6 +290,6 @@ const jsonLd = {
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family: "Geist Sans", sans-serif;
+    font-family: "Archivo Variable", sans-serif;
   }
 </style>
