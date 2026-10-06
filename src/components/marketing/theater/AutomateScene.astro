@@ -3,12 +3,6 @@
 // automate.ts makes it pick papers from the pile and type them in.
 import { ARM, solveArm } from "./robot-arm";
 
-interface Props {
-  labels: Record<string, string>;
-}
-
-const { labels } = Astro.props;
-
 const PILE = [0, 1, 2, 3].map((layer) => ({ x: 62 + layer * 3, y: 230 - layer * 5 }));
 const ROWS = [84, 134, 184, 234];
 const CELLS = [
@@ -59,19 +53,6 @@ const { elbow, hand } = solveArm(ARM.rest);
       stroke-linecap="round"></line>
     <circle cx={CLOCK.x} cy={CLOCK.y} r="3" class="fill-cinema-night"></circle>
   </g>
-
-  <text x={CLOCK.x + 34} y={CLOCK.y + 5} class="scene-label fill-cinema-night stroke-cinema-screen">{labels.clock}</text>
-  <text x="30" y="330" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.pile}</text>
-  <text x="200" y="232" text-anchor="middle" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.coffee}</text>
-  <text x="520" y="28" text-anchor="middle" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.sheet}</text>
-  <text
-    data-part="scan-label"
-    x="280"
-    y="178"
-    text-anchor="end"
-    class="scene-label fill-cinema-night stroke-cinema-screen"
-    opacity="0">{labels.scan}</text
-  >
 
   <!-- Coffee: you relax -->
   {

@@ -1,12 +1,4 @@
 ---
-import { PALETTE } from "./palette";
-
-interface Props {
-  labels: Record<string, string>;
-}
-
-const { labels } = Astro.props;
-
 // Still frame: a finished chat at night. assistant.ts plays the conversation
 // while the sky turns from night to day and back.
 const STARS = [
@@ -78,22 +70,6 @@ const ORBIT = { x: 150, y: 330 };
     <rect data-part="house-window" x="132" y="270" width="14" height="14" class="fill-cinema-tungsten"
     ></rect>
     <rect x="152" y="280" width="12" height="22" class="fill-cinema-night"></rect>
-    <text
-      data-part="night-label"
-      x="150"
-      y="62"
-      text-anchor="middle"
-      class="scene-label fill-white stroke-cinema-night">{labels.night}</text
-    >
-    <text
-      data-part="day-label"
-      x="150"
-      y="62"
-      text-anchor="middle"
-      stroke={PALETTE.daySky}
-      class="scene-label fill-cinema-night"
-      opacity="0">{labels.day}</text
-    >
   </g>
 
   <!-- Chat -->
@@ -106,9 +82,6 @@ const ORBIT = { x: 150, y: 330 };
     class="fill-white stroke-cinema-night"
     stroke-width="4"></rect>
   <line x1="290" y1="80" x2="600" y2="80" class="stroke-cinema-night" stroke-width="3"></line>
-  <text x="588" y="70" text-anchor="end" class="scene-label fill-cinema-night stroke-white">
-    {labels.trained}
-  </text>
   <g data-part="robot">
     <line x1="327" y1="40" x2="327" y2="32" class="stroke-cinema-night" stroke-width="3"></line>
     <circle data-part="antenna" cx="327" cy="30" r="4" class="fill-cinema-tungsten"></circle>

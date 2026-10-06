@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { AD_SPEED, claimCard, hookCard, HOOK_EXIT } from "./ad";
 import { SCENES } from "./scenes";
 
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
@@ -17,8 +18,9 @@ const ARROW_STEPS: Record<string, number> = {
 /**
  * Runs the services theater inside `root`: tabs switch the scene on the
  * screen with a short fade and, until the visitor picks a tab, scenes play
- * one after another like a presentation. Animations only run while the
- * theater is on screen.
+ * one after another like a presentation. Each scene plays as a short ad: a
+ * hook card, the scene itself and a claim card from the scene's `payoff`
+ * label on. Animations only run while the theater is on screen.
  *
  * With reduced motion, tabs still work but scenes stay as still frames.
  */
@@ -67,10 +69,12 @@ export function initTheater(root: HTMLElement) {
 
   const startScene = () => {
     stopScene();
-    const svg =
-      panels[current]?.querySelector<SVGSVGElement>("[data-scene-svg]");
+    const panel = panels[current];
+    const svg = panel?.querySelector<SVGSVGElement>("[data-scene-svg]");
+    const hook = panel?.querySelector<HTMLElement>("[data-ad-hook]");
+    const claim = panel?.querySelector<HTMLElement>("[data-ad-claim]");
     const build = SCENES[svg?.dataset.sceneSvg ?? ""];
-    if (!svg || !build) return;
+    if (!svg || !hook || !claim || !build) return;
 
     const progress = progressOf(current);
     let loop!: gsap.core.Timeline;
@@ -82,10 +86,20 @@ export function initTheater(root: HTMLElement) {
             gsap.set(progress, { scaleY: loop.progress() });
         },
         onRepeat: () => {
-          if (autoplay) changeTo((current + 1) % tabs.length);
+          if (!autoplay) return;
+          // Keep the claim card on screen while the theater fades out.
+          loop.pause().time(loop.duration() - 0.01, true);
+          changeTo((current + 1) % tabs.length);
         },
       });
-      loop.add(build(svg));
+      const sceneTimeline = build(svg);
+      const payoff =
+        sceneTimeline.labels.payoff ?? sceneTimeline.duration();
+      loop
+        .timeScale(AD_SPEED)
+        .add(hookCard(hook), 0)
+        .add(sceneTimeline, HOOK_EXIT)
+        .add(claimCard(claim), HOOK_EXIT + payoff);
     }, svg);
     if (!isVisible) loop.pause();
     scene = { context, loop };

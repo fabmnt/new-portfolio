@@ -1,16 +1,8 @@
 ---
 // Still frame: a healthy site with every check done. maintain.ts animates it.
-interface Props {
-  labels: Record<string, string>;
-}
-
-const { labels } = Astro.props;
 const SPARK_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
-const CHECK_ROWS = [
-  { y: 70, label: labels.backups },
-  { y: 150, label: labels.updates },
-  { y: 230, label: labels.security },
-];
+// Backup, update and security checks.
+const CHECK_ROWS = [70, 150, 230];
 ---
 
 <svg
@@ -73,15 +65,10 @@ const CHECK_ROWS = [
     stroke-linecap="round"
     stroke-linejoin="round"></path>
 
-  <text x="60" y="314" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.monitor}</text>
-
   <!-- Checklist: backup, update, security -->
   {
-    CHECK_ROWS.map(({ y, label }, index) => (
+    CHECK_ROWS.map((y, index) => (
       <g data-part="row">
-        <text x="512" y={y + 10} class="scene-label fill-cinema-night stroke-cinema-screen">
-          {label}
-        </text>
         <rect
           data-part="icon"
           x="448"
@@ -161,22 +148,6 @@ const CHECK_ROWS = [
     <circle cx="4" cy="4" r="3" class="fill-cinema-tungsten"></circle>
   </g>
 
-  <text
-    data-part="bug-label"
-    x="250"
-    y="142"
-    text-anchor="middle"
-    class="scene-label fill-cinema-night stroke-cinema-screen"
-    opacity="0">{labels.bug}</text
-  >
-  <text
-    data-part="fix-label"
-    x="250"
-    y="244"
-    text-anchor="middle"
-    class="scene-label fill-cinema-night stroke-cinema-screen"
-    opacity="0">{labels.fix}</text
-  >
   <circle
     data-part="ring"
     cx="250"

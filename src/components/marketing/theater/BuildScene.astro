@@ -1,13 +1,5 @@
 ---
 // Still frame: the finished online store. build.ts draws it from a blueprint.
-interface Props {
-  labels: Record<string, string>;
-}
-
-const { labels } = Astro.props;
-const STEPS = [labels.plan, labels.build, labels.sell, labels.launch];
-// The still frame shows the store selling, so its step label is the visible one.
-const POSTER_STEP = 2;
 const GRID_X = [40, 80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520, 560, 600];
 const GRID_Y = [40, 80, 120, 160, 200, 240, 280, 320];
 const CARD_X = [126, 260, 394];
@@ -21,22 +13,6 @@ const CONFETTI_COUNT = 16;
   focusable="false"
   data-scene-svg="build"
 >
-  <!-- Step being shown, above the browser -->
-  {
-    STEPS.map((step, index) => (
-      <text
-        data-part="step"
-        x="320"
-        y="24"
-        text-anchor="middle"
-        class="scene-label fill-cinema-night stroke-cinema-screen"
-        opacity={index === POSTER_STEP ? 1 : 0}
-      >
-        {step}
-      </text>
-    ))
-  }
-
   <!-- Blueprint, sketched on the screen -->
   <g data-part="grid" class="stroke-cinema-steel/30" stroke-width="1" opacity="0">
     {GRID_X.map((x) => <line data-part="grid-line" x1={x} y1="0" x2={x} y2="360" />)}

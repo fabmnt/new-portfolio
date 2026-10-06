@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Locale } from "@/i18n";
+import AdCards from "./theater/AdCards.astro";
 import AssistantScene from "./theater/AssistantScene.astro";
 import AutomateScene from "./theater/AutomateScene.astro";
 import BuildScene from "./theater/BuildScene.astro";
@@ -41,8 +42,8 @@ const { services } = getTranslations(locale).marketing;
     </h2>
 
     <!--
-      Theater: each service is a tab that plays its scene on the screen.
-      Without JavaScript every panel is shown, one after another.
+      Theater: each service is a tab that plays its scene on the screen as a
+      short ad. Without JavaScript every panel is shown, one after another.
     -->
     <div
       class="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-12"
@@ -72,7 +73,7 @@ const { services } = getTranslations(locale).marketing;
 
       <!-- Sized so the stage always fits in one screen height -->
       <div
-        class="w-full justify-self-end bg-cinema-black p-3 shadow-[0_0_24px_rgb(242_181_68/0.1)] sm:p-4 lg:max-w-[calc((100svh_-_13rem)*16/9)]"
+        class="w-full justify-self-end shadow-[0_0_24px_rgb(242_181_68/0.1)] lg:max-w-[calc((100svh_-_13rem)*16/9)]"
       >
         <div class="grid" data-theater-screen>
             {
@@ -86,8 +87,12 @@ const { services } = getTranslations(locale).marketing;
                     hidden={index !== 0}
                     class="projector-panel [grid-area:1/1]"
                   >
-                    <div class="bg-cinema-screen" data-scene="light">
-                      <Scene labels={item.labels} />
+                    <div
+                      class="relative bg-cinema-screen [container-type:inline-size]"
+                      data-scene="light"
+                    >
+                      <Scene />
+                      <AdCards ad={item.ad} />
                     </div>
                     <!-- The scene is decorative; screen readers get the summary. -->
                     <p class="sr-only">{item.description}</p>

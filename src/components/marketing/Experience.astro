@@ -32,14 +32,17 @@ const t = getTranslations(locale).marketing.experience;
 
     <!--
       Each job is a clapperboard; its stick opens on hover or focus. On phones
-      the boards become a swipe row to keep the section short.
+      the boards become a swipe row to keep the section short. Boards are
+      `relative` so the absolutely positioned sr-only text inside them stays in
+      the row; otherwise it escapes the row's clipping and widens the page on
+      phones.
     -->
     <ul
       class="-mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 pt-6 md:mx-0 md:mt-10 md:pt-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0"
     >
       {
         t.jobs.map((job) => (
-          <li class="clapperboard flex w-[85%] shrink-0 snap-start flex-col md:w-auto">
+          <li class="clapperboard relative flex w-[85%] shrink-0 snap-start flex-col md:w-auto">
             <div class="clapperboard-stick h-7" aria-hidden="true" />
             <div class="flex-1 bg-cinema-night p-6 text-cinema-screen">
               <h3 class="title-card text-[clamp(2rem,3.5vw,2.5rem)] text-cinema-tungsten">

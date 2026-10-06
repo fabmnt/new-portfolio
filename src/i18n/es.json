@@ -196,56 +196,45 @@
           "scene": "maintain",
           "title": "Mantener tu sitio funcionando",
           "description": "Actualizaciones, copias de seguridad y arreglos rápidos. Tu sitio sigue rápido, seguro y en línea.",
-          "labels": {
-            "bug": "Error o hackeo",
-            "fix": "Arreglo rápido",
-            "monitor": "Monitoreo constante",
-            "backups": "Copias diarias",
-            "updates": "Actualizaciones",
-            "security": "Seguridad"
+          "ad": {
+            "hook": "¿Tu sitio se cayó otra vez?",
+            "claim": "Lo arreglo *rápido* y lo mantengo seguro."
           }
         },
         {
           "scene": "improve",
           "title": "Hacer cambios y mejoras",
           "description": "Nuevas páginas, contenido actualizado o una imagen renovada para tu sitio.",
-          "labels": {
-            "before": "Antes: anticuado",
-            "after": "Después: moderno y listo para celulares",
-            "newPage": "Nueva página"
+          "ad": {
+            "hook": "¿Tu sitio se ve anticuado?",
+            "claim": "Una *imagen nueva* que funciona en cualquier celular."
           }
         },
         {
           "scene": "build",
           "title": "Crear algo nuevo",
           "description": "Sitios web, tiendas en línea y herramientas a la medida para tu negocio.",
-          "labels": {
-            "plan": "1. Planear el diseño",
-            "build": "2. Construir la tienda",
-            "sell": "3. Clientes compran en línea",
-            "launch": "4. Publicar"
+          "ad": {
+            "hook": "¿Listo para vender en línea?",
+            "claim": "De la idea al *lanzamiento*, yo me encargo."
           }
         },
         {
           "scene": "assistant",
           "title": "Agregar ayudantes inteligentes",
           "description": "Un asistente con IA que responde a tus visitantes, de día y de noche.",
-          "labels": {
-            "night": "Responde mientras duermes",
-            "day": "Atiende en horas pico",
-            "trained": "Conoce tu negocio"
+          "ad": {
+            "hook": "¿Clientes preguntando a las 3 a.m.?",
+            "claim": "Un asistente con IA que *nunca duerme*."
           }
         },
         {
           "scene": "automate",
           "title": "Automatizar tu trabajo aburrido",
           "description": "Bots que hacen tus tareas repetitivas por ti, rápido y sin errores.",
-          "labels": {
-            "pile": "Facturas, formularios, correos",
-            "scan": "Lee los datos",
-            "sheet": "Tu hoja de cálculo o sistema",
-            "clock": "Horas ahorradas",
-            "coffee": "Tiempo para ti"
+          "ad": {
+            "hook": "¿Sigues copiando datos a mano?",
+            "claim": "Deja que un bot lo haga. *Recupera tus horas.*"
           }
         }
       ]
@@ -287,6 +276,7 @@
       "title": "Hablemos de tu sitio",
       "description": "Escríbeme en español o en inglés y cuéntame lo que necesitas. Te responderé con un siguiente paso claro.",
       "sendEmail": "Envíame un correo",
+      "downloadCv": "Descargar mi CV",
       "copyEmail": "Copiar correo",
       "copied": "Correo copiado",
       "socialLabel": "Encuéntrame en línea",

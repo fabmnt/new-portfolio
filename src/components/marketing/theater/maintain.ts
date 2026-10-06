@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
 import { PALETTE } from "./palette";
-import { scenePart, type SceneBuilder } from "./types";
+import { CLAIM_WIPE, scenePart, type SceneBuilder } from "./types";
 
 const SPARK_DISTANCE = 44;
+const PAYOFF = 6.6;
 
 // A bug breaks the site, a shield squashes it, the page snaps back and every
 // maintenance check (backup, update, security) is completed.
@@ -22,8 +23,7 @@ export const maintainScene: SceneBuilder = (svg) => {
     .set(q("[data-part=bar]"), { scaleX: 0, transformOrigin: "0% 50%" })
     .set(q("[data-part=check]"), { scale: 0, transformOrigin: "50% 50%" })
     .set(q("[data-part=tick]"), { drawSVG: "0%" })
-    .set(q("[data-part=ring], [data-part=spark]"), { opacity: 0 })
-    .set(q("[data-part=bug-label], [data-part=fix-label]"), { autoAlpha: 0 });
+    .set(q("[data-part=ring], [data-part=spark]"), { opacity: 0 });
 
   // Heartbeat keeps running for the whole scene.
   const pulse = gsap
@@ -87,22 +87,6 @@ export const maintainScene: SceneBuilder = (svg) => {
       { x: 5, duration: 0.05, repeat: 9, yoyo: true },
       2,
     );
-
-  // Call out what is happening.
-  tl.fromTo(
-    q("[data-part=bug-label]"),
-    { autoAlpha: 0, y: 6 },
-    { autoAlpha: 1, y: 0, duration: 0.3 },
-    1.9,
-  )
-    .to(q("[data-part=bug-label]"), { autoAlpha: 0, duration: 0.2 }, 2.9)
-    .fromTo(
-      q("[data-part=fix-label]"),
-      { autoAlpha: 0, y: 6 },
-      { autoAlpha: 1, y: 0, duration: 0.3, immediateRender: false },
-      2.9,
-    )
-    .to(q("[data-part=fix-label]"), { autoAlpha: 0, duration: 0.3 }, 4);
 
   // The shield squashes the bug.
   tl.to(
@@ -184,15 +168,18 @@ export const maintainScene: SceneBuilder = (svg) => {
       .to(r("[data-part=tick]"), { drawSVG: "100%", duration: 0.3 }, at + 0.6);
   });
 
-  // Clear the checklist so the loop starts again.
+  tl.addLabel("payoff", PAYOFF);
+
+  // Clear the checklist so the loop starts again, once the claim card covers it.
+  const reset = PAYOFF + CLAIM_WIPE;
   tl.to(
     q("[data-part=check]"),
     { scale: 0, duration: 0.3, ease: "power2.in", stagger: 0.08 },
-    7.3,
+    reset,
   ).to(
     q("[data-part=bar]"),
     { scaleX: 0, duration: 0.3, ease: "power2.in", stagger: 0.08 },
-    7.3,
+    reset,
   );
 
   return tl;

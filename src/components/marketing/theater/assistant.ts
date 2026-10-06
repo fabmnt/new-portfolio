@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
 import { PALETTE } from "./palette";
-import type { SceneBuilder } from "./types";
+import { CLAIM_WIPE, type SceneBuilder } from "./types";
 
 const THREAD_SCROLL = -90;
+const PAYOFF = 8.4;
 
 // A robot assistant answers visitors at night and during the day, while the
 // sky turns from night to day and back.
@@ -15,17 +16,13 @@ export const assistantScene: SceneBuilder = (svg) => {
   const eyes = q("[data-part=eyes]");
   const antenna = q("[data-part=antenna]");
   const orbit = q("[data-part=orbit]")[0];
-  const nightLabel = q("[data-part=night-label]");
-  const dayLabel = q("[data-part=day-label]");
   const orbitOrigin = `${orbit.dataset.orbitX} ${orbit.dataset.orbitY}`;
 
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
   tl.set(thread, { y: 0 })
     .set([...questions, ...typings, ...answers], { autoAlpha: 0 })
-    .set(orbit, { rotation: 0, svgOrigin: orbitOrigin })
-    .set(nightLabel, { autoAlpha: 1 })
-    .set(dayLabel, { autoAlpha: 0 });
+    .set(orbit, { rotation: 0, svgOrigin: orbitOrigin });
 
   // The robot blinks now and then.
   [1.6, 4.4, 7.8].forEach((at) => {
@@ -94,11 +91,6 @@ export const assistantScene: SceneBuilder = (svg) => {
   talk(0, 0.3);
 
   // Night turns into day.
-  tl.to(nightLabel, { autoAlpha: 0, duration: 0.3 }, 3.4).to(
-    dayLabel,
-    { autoAlpha: 1, duration: 0.4 },
-    4.5,
-  );
   tl.to(
     orbit,
     {
@@ -128,12 +120,10 @@ export const assistantScene: SceneBuilder = (svg) => {
 
   talk(1, 5);
 
-  // Day turns into night, and the chat clears.
-  tl.to(dayLabel, { autoAlpha: 0, duration: 0.3 }, 8.6).to(
-    nightLabel,
-    { autoAlpha: 1, duration: 0.4 },
-    9.6,
-  );
+  tl.addLabel("payoff", PAYOFF);
+
+  // Day turns into night and the chat clears, once the claim card covers it.
+  const reset = PAYOFF + CLAIM_WIPE;
   tl.to(
     orbit,
     {
@@ -142,7 +132,7 @@ export const assistantScene: SceneBuilder = (svg) => {
       duration: 1.4,
       ease: "power2.inOut",
     },
-    8.6,
+    reset,
   )
     .to(
       q("[data-part=sky]"),
@@ -151,16 +141,24 @@ export const assistantScene: SceneBuilder = (svg) => {
         duration: 1.4,
         ease: "power2.inOut",
       },
-      8.6,
+      reset,
     )
-    .to(q("[data-part=stars]"), { autoAlpha: 1, duration: 0.6 }, 9.3)
+    .to(
+      q("[data-part=stars]"),
+      { autoAlpha: 1, duration: 0.6 },
+      reset + 0.7,
+    )
     .to(
       q("[data-part=house-window]"),
       { fill: PALETTE.tungsten, duration: 0.6 },
-      9.3,
+      reset + 0.7,
     )
-    .to([...questions, ...answers], { autoAlpha: 0, duration: 0.4 }, 9.4)
-    .set(thread, { y: 0 }, 9.8)
+    .to(
+      [...questions, ...answers],
+      { autoAlpha: 0, duration: 0.4 },
+      reset + 0.8,
+    )
+    .set(thread, { y: 0 }, reset + 1.2)
     .to({}, { duration: 0.2 });
 
   return tl;

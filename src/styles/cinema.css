@@ -46,7 +46,7 @@ body::after {
   }
 
   .opening-title {
-    animation: focus-pull 0.8s var(--cinema-ease) 0.35s both;
+    animation: focus-pull 0.7s var(--cinema-ease) 0.35s both;
   }
 
   .opening-after {
@@ -66,8 +66,8 @@ body::after {
 @keyframes focus-pull {
   from {
     opacity: 0;
-    filter: blur(14px);
-    letter-spacing: 0.08em;
+    filter: blur(4px);
+    letter-spacing: 0.02em;
   }
   to {
     opacity: 1;
@@ -139,24 +139,5 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .clapperboard-stick {
     transition: none;
-  }
-}
-
-/*
- * Labels inside the services scenes. The stroke draws a halo in the
- * background color behind the text so it stays readable over shapes.
- */
-.scene-label {
-  font-size: 13px;
-  font-weight: 700;
-  paint-order: stroke;
-  stroke-width: 5px;
-  stroke-linejoin: round;
-}
-
-/* On phones the screen is small, so labels grow to stay readable. */
-@media (max-width: 639px) {
-  .scene-label {
-    font-size: 16px;
   }
 }

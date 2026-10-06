@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
-import { scenePart, type SceneBuilder } from "./types";
+import { CLAIM_WIPE, scenePart, type SceneBuilder } from "./types";
 
 const CART = { x: 490, y: 90 };
 const ARC_TOP = 30;
+const PAYOFF = 8;
 
 // A blueprint draws itself, turns into a real online store, products fly to
 // the cart and the site launches with a rocket and confetti.
@@ -19,7 +20,6 @@ export const buildScene: SceneBuilder = (svg) => {
   );
   const rocket = q("[data-part=rocket]");
   const confetti = q("[data-part=confetti]");
-  const steps = q("[data-part=step]");
 
   const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -27,18 +27,7 @@ export const buildScene: SceneBuilder = (svg) => {
     .set(q("[data-part=grid-line], [data-part=wire-line]"), { drawSVG: "0%" })
     .set([frame, ...solids], { autoAlpha: 0 })
     .set(badgeCount, { textContent: "0" })
-    .set(confetti, { opacity: 0 })
-    .set(steps, { autoAlpha: 0 })
-    .set(steps[0], { autoAlpha: 1 });
-
-  // Each phase shows its step label.
-  [2.7, 4.3, 6.3].forEach((at, index) => {
-    tl.to(steps[index], { autoAlpha: 0, duration: 0.2 }, at).to(
-      steps[index + 1],
-      { autoAlpha: 1, duration: 0.3 },
-      at + 0.2,
-    );
-  });
+    .set(confetti, { opacity: 0 });
 
   // Blueprint lines.
   tl.to(
@@ -157,9 +146,14 @@ export const buildScene: SceneBuilder = (svg) => {
       7.3,
     );
 
-  // Back to a blank screen.
-  tl.to(steps[3], { autoAlpha: 0, duration: 0.3 }, 8.4);
-  tl.to([frame, ...solids], { autoAlpha: 0, duration: 0.5 }, 8.4).to(
+  tl.addLabel("payoff", PAYOFF);
+
+  // Back to a blank screen, once the claim card covers it.
+  tl.to(
+    [frame, ...solids],
+    { autoAlpha: 0, duration: 0.5 },
+    PAYOFF + CLAIM_WIPE,
+  ).to(
     {},
     { duration: 0.1 },
   );

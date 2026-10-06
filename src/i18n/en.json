@@ -196,56 +196,45 @@
           "scene": "maintain",
           "title": "Keep your site running",
           "description": "Updates, backups and quick fixes. Your site stays fast, safe and online.",
-          "labels": {
-            "bug": "Bug or hack",
-            "fix": "Quick fix",
-            "monitor": "Always monitored",
-            "backups": "Daily backups",
-            "updates": "Updates",
-            "security": "Security scan"
+          "ad": {
+            "hook": "Site down again?",
+            "claim": "I fix it *fast* and keep it safe."
           }
         },
         {
           "scene": "improve",
           "title": "Make changes and improvements",
           "description": "New pages, fresh content or a new look for an older site.",
-          "labels": {
-            "before": "Before: outdated",
-            "after": "After: modern and phone-friendly",
-            "newPage": "New page"
+          "ad": {
+            "hook": "Does your site look old?",
+            "claim": "A *fresh look* that works on every phone."
           }
         },
         {
           "scene": "build",
           "title": "Build something new",
           "description": "Websites, online stores and custom tools for your business.",
-          "labels": {
-            "plan": "1. Plan the layout",
-            "build": "2. Build the store",
-            "sell": "3. Customers buy online",
-            "launch": "4. Launch"
+          "ad": {
+            "hook": "Ready to sell online?",
+            "claim": "From idea to *launch*, done for you."
           }
         },
         {
           "scene": "assistant",
           "title": "Add smart helpers",
           "description": "An AI assistant that answers your visitors, day and night.",
-          "labels": {
-            "night": "Answers while you sleep",
-            "day": "Handles busy hours",
-            "trained": "Knows your business"
+          "ad": {
+            "hook": "Customers asking at 3 a.m.?",
+            "claim": "An AI assistant that *never sleeps*."
           }
         },
         {
           "scene": "automate",
           "title": "Automate your boring job",
           "description": "Bots that do your repetitive tasks for you, fast and without mistakes.",
-          "labels": {
-            "pile": "Invoices, forms, emails",
-            "scan": "Reads the data",
-            "sheet": "Your spreadsheet or system",
-            "clock": "Hours saved",
-            "coffee": "Your time back"
+          "ad": {
+            "hook": "Still copying data by hand?",
+            "claim": "Let a bot do it. *Get your hours back.*"
           }
         }
       ]
@@ -287,6 +276,7 @@
       "title": "Let's talk about your site",
       "description": "Write to me in Spanish or English and tell me what you need. I'll reply with a clear next step.",
       "sendEmail": "Send me an email",
+      "downloadCv": "Download my CV",
       "copyEmail": "Copy email",
       "copied": "Email copied",
       "socialLabel": "Find me online",
