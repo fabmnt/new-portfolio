@@ -1,0 +1,32 @@
+---
+import { getTranslations, type Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale).marketing.contact;
+const currentYear = new Date().getFullYear();
+---
+
+<!-- Closing shot: mirrors the opening stage, with the letterbox bar below. -->
+<footer class="relative overflow-hidden bg-cinema-night text-center">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_45%,rgb(242_181_68/0.16),transparent_70%)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <p
+    class="title-card relative py-24 text-[clamp(3.25rem,9vw,6.5rem)] uppercase text-cinema-screen sm:py-32"
+  >
+    {t.end}
+  </p>
+
+  <div
+    class="relative flex h-[var(--cinema-bar)] items-center justify-center bg-cinema-black text-sm text-cinema-steel"
+  >
+    © {currentYear} Fabian Montoya
+  </div>
+</footer>

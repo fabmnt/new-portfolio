@@ -1,0 +1,118 @@
+---
+import { getTranslations, type Locale } from "@/i18n";
+import { BLOG_PATHS, CONTACT_EMAIL, MARKETING_PATHS } from "@/constants/contact";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale).marketing;
+const otherLocale: Locale = locale === "es" ? "en" : "es";
+---
+
+<section
+  id="home"
+  class="relative flex h-[100svh] flex-col overflow-hidden bg-cinema-night"
+>
+  <!-- Projector light behind the title -->
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_48%,rgb(242_181_68/0.16),transparent_70%)]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <header
+    class="opening-bar absolute inset-x-0 top-0 z-10 flex h-[var(--cinema-bar)] items-end bg-cinema-black"
+  >
+    <nav
+      aria-label={t.nav.label}
+      class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 pb-3 text-sm sm:px-8 sm:pb-4"
+    >
+      <a
+        href={MARKETING_PATHS[otherLocale]}
+        hreflang={otherLocale}
+        aria-label={t.nav.language}
+        class="text-cinema-steel transition-colors hover:text-cinema-screen"
+      >
+        {otherLocale === "en" ? "English" : "Español"}
+      </a>
+      <div class="flex items-center gap-5 sm:gap-8">
+        <a
+          href="#services"
+          class="hidden text-cinema-steel transition-colors hover:text-cinema-screen sm:inline"
+        >
+          {t.nav.services}
+        </a>
+        <a
+          href={BLOG_PATHS[locale]}
+          class="text-cinema-steel transition-colors hover:text-cinema-screen"
+        >
+          {t.nav.blog}
+        </a>
+        <a
+          href="#contact"
+          class="text-cinema-tungsten transition-colors hover:text-cinema-screen"
+        >
+          {t.nav.contact}
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div
+    class="relative flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-[calc(var(--cinema-bar)+1rem)] text-center"
+  >
+    <h1
+      class="opening-title title-card text-[clamp(2.75rem,min(19vw,17svh),13rem)] uppercase text-cinema-screen"
+    >
+      Fabian<br />Montoya
+    </h1>
+
+    <div class="opening-after flex flex-col items-center">
+      <p
+        class="mt-[clamp(0.75rem,3svh,2rem)] max-w-[34ch] text-lg leading-relaxed text-cinema-screen/80 sm:text-xl"
+      >
+        {t.opening.tagline}
+      </p>
+
+      <div
+        class="mt-[clamp(1rem,4svh,2rem)] flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
+      >
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          class="w-full max-w-xs bg-cinema-tungsten px-7 py-4 font-semibold text-cinema-night transition-colors hover:bg-cinema-screen sm:w-auto"
+        >
+          {t.opening.primaryCta}
+        </a>
+        <a
+          href="#services"
+          class="w-full max-w-xs border border-cinema-screen/25 px-7 py-4 font-medium text-cinema-screen transition-colors hover:border-cinema-screen/60 sm:w-auto"
+        >
+          {t.opening.secondaryCta}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer
+    class="opening-bar absolute inset-x-0 bottom-0 z-10 flex h-[var(--cinema-bar)] items-center justify-center bg-cinema-black"
+  >
+    <a
+      href="#contact"
+      class="flex items-center gap-2 py-2 text-sm text-cinema-steel transition-colors hover:text-cinema-screen"
+    >
+      {t.opening.scrollHint}
+      <svg
+        class="scroll-hint-arrow size-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-6-6 6 6 6-6"></path>
+      </svg>
+    </a>
+  </footer>
+</section>

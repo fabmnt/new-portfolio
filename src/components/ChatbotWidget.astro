@@ -3,9 +3,11 @@ import { getTranslations, type Locale } from "@/i18n";
 
 interface Props {
   locale: Locale;
+  // "cinema" matches the marketing page colors.
+  theme?: "portfolio" | "cinema";
 }
 
-const { locale } = Astro.props;
+const { locale, theme = "portfolio" } = Astro.props;
 const t = getTranslations(locale);
 const c = t.chatbot;
 const widgetId = `chatbot-${crypto.randomUUID()}`;
@@ -15,6 +17,7 @@ const inputId = `${widgetId}-input`;
 
 <div
   class="chatbot-widget"
+  data-theme={theme}
   data-locale={locale}
   data-request-failed={c.requestFailed}
   data-unavailable={c.unavailable}
@@ -410,5 +413,30 @@ const inputId = `${widgetId}-input`;
     100% {
       opacity: 0;
     }
+  }
+
+  /* Cinema theme for the marketing page. */
+  .chatbot-widget[data-theme="cinema"] .chatbot-toggle {
+    border: 1px solid #f2b544;
+    background: #11151b;
+    color: #e6e4df;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: normal;
+    text-transform: none;
+    border-radius: 0;
+  }
+
+  .chatbot-widget[data-theme="cinema"] .chatbot-panel {
+    background: rgb(17 21 27 / 0.97);
+  }
+
+  .chatbot-widget[data-theme="cinema"] :global(.chatbot-message--assistant) {
+    background: rgb(242 181 68 / 0.18);
+  }
+
+  .chatbot-widget[data-theme="cinema"] .chatbot-submit {
+    background: #f2b544;
+    color: #11151b;
   }
 </style>

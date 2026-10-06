@@ -50,6 +50,14 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+        cinema: {
+          black: "#000000",
+          night: "#11151B",
+          screen: "#E6E4DF",
+          tungsten: "#F2B544",
+          teal: "#0D3B45",
+          steel: "#8B93A1",
+        },
         brutalist: {
           blue: "#3366FF",
           accent: "#FFFFFF",
@@ -59,6 +67,7 @@ export default {
       },
       fontFamily: {
         display: ["Geist Sans", "sans-serif"],
+        cinema: ["Archivo Variable", "sans-serif"],
       },
       animation: {
         shine: "shine 6s linear infinite",

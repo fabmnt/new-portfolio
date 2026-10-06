@@ -1,0 +1,79 @@
+---
+import { getTranslations, type Locale } from "@/i18n";
+import { CV_PATHS } from "@/constants/contact";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale).marketing.experience;
+---
+
+<section
+  id="experience"
+  data-scene="light"
+  class="bg-cinema-tungsten py-16 text-cinema-night sm:py-20"
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-8">
+    <h2 class="title-card text-[clamp(3rem,7vw,5rem)]">{t.title}</h2>
+    <div
+      class="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="max-w-[48ch] text-lg leading-relaxed">{t.intro}</p>
+      <a
+        href={CV_PATHS[locale]}
+        download
+        class="w-full max-w-xs shrink-0 bg-cinema-night px-7 py-4 text-center font-semibold text-cinema-screen transition-colors hover:bg-cinema-black sm:w-auto"
+      >
+        {t.downloadCv}
+      </a>
+    </div>
+
+    <!--
+      Each job is a clapperboard; its stick opens on hover or focus. On phones
+      the boards become a swipe row to keep the section short.
+    -->
+    <ul
+      class="-mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 pt-6 md:mx-0 md:mt-10 md:pt-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0"
+    >
+      {
+        t.jobs.map((job) => (
+          <li class="clapperboard flex w-[85%] shrink-0 snap-start flex-col md:w-auto">
+            <div class="clapperboard-stick h-7" aria-hidden="true" />
+            <div class="flex-1 bg-cinema-night p-6 text-cinema-screen">
+              <h3 class="title-card text-[clamp(2rem,3.5vw,2.5rem)] text-cinema-tungsten">
+                {job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-cinema-tungsten/30 decoration-2 underline-offset-[0.15em] transition-colors hover:decoration-cinema-tungsten"
+                  >
+                    {job.name}
+                    <span class="sr-only">({t.visit})</span>
+                  </a>
+                ) : (
+                  job.name
+                )}
+              </h3>
+              <dl class="mt-5 grid grid-cols-2 gap-4 border-y border-cinema-screen/15 py-4">
+                <div>
+                  <dt class="text-sm text-cinema-steel">{t.roleLabel}</dt>
+                  <dd class="mt-1 font-semibold leading-snug">{job.role}</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-cinema-steel">{t.datesLabel}</dt>
+                  <dd class="mt-1 font-semibold leading-snug">
+                    {job.period} {job.periodEnd}
+                  </dd>
+                </div>
+              </dl>
+              <p class="mt-4 leading-relaxed text-cinema-screen/80">{job.note}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

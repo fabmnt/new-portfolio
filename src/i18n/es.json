@@ -174,5 +174,124 @@
     "requestFailed": "Lo siento, no pude procesar esa solicitud.",
     "unavailable": "El asistente no está disponible temporalmente. Intenta más tarde.",
     "outOfScope": "Puedo ayudarte solo con información sobre este portafolio, experiencia, proyectos y servicios de Fabian."
+  },
+  "marketing": {
+    "nav": {
+      "label": "Navegación principal",
+      "services": "Servicios",
+      "blog": "Blog",
+      "contact": "Contacto",
+      "language": "Cambiar idioma"
+    },
+    "opening": {
+      "tagline": "Creo, reparo y cuido sitios web de negocios, para que tú te enfoques en hacer crecer el tuyo.",
+      "primaryCta": "Cuéntame sobre tu sitio",
+      "secondaryCta": "Mira lo que puedo hacer",
+      "scrollHint": "Desliza hacia abajo para conocer más"
+    },
+    "services": {
+      "title": "Lo que puedo hacer por ti",
+      "items": [
+        {
+          "scene": "maintain",
+          "title": "Mantener tu sitio funcionando",
+          "description": "Actualizaciones, copias de seguridad y arreglos rápidos. Tu sitio sigue rápido, seguro y en línea.",
+          "labels": {
+            "bug": "Error o hackeo",
+            "fix": "Arreglo rápido",
+            "monitor": "Monitoreo constante",
+            "backups": "Copias diarias",
+            "updates": "Actualizaciones",
+            "security": "Seguridad"
+          }
+        },
+        {
+          "scene": "improve",
+          "title": "Hacer cambios y mejoras",
+          "description": "Nuevas páginas, contenido actualizado o una imagen renovada para tu sitio.",
+          "labels": {
+            "before": "Antes: anticuado",
+            "after": "Después: moderno y listo para celulares",
+            "newPage": "Nueva página"
+          }
+        },
+        {
+          "scene": "build",
+          "title": "Crear algo nuevo",
+          "description": "Sitios web, tiendas en línea y herramientas a la medida para tu negocio.",
+          "labels": {
+            "plan": "1. Planear el diseño",
+            "build": "2. Construir la tienda",
+            "sell": "3. Clientes compran en línea",
+            "launch": "4. Publicar"
+          }
+        },
+        {
+          "scene": "assistant",
+          "title": "Agregar ayudantes inteligentes",
+          "description": "Un asistente con IA que responde a tus visitantes, de día y de noche.",
+          "labels": {
+            "night": "Responde mientras duermes",
+            "day": "Atiende en horas pico",
+            "trained": "Conoce tu negocio"
+          }
+        },
+        {
+          "scene": "automate",
+          "title": "Automatizar tu trabajo aburrido",
+          "description": "Bots que hacen tus tareas repetitivas por ti, rápido y sin errores.",
+          "labels": {
+            "pile": "Facturas, formularios, correos",
+            "scan": "Lee los datos",
+            "sheet": "Tu hoja de cálculo o sistema",
+            "clock": "Horas ahorradas",
+            "coffee": "Tiempo para ti"
+          }
+        }
+      ]
+    },
+    "experience": {
+      "title": "Experiencia laboral",
+      "intro": "Más de 4 años y más de 50 proyectos creando y cuidando sitios web y herramientas para negocios.",
+      "jobs": [
+        {
+          "period": "2022",
+          "periodEnd": "a hoy",
+          "name": "Dentalrobot.ai",
+          "url": "https://www.dentalrobot.ai",
+          "role": "Desarrollador full stack",
+          "note": "Creo y mantengo las herramientas web que una empresa dental de EE. UU. usa cada día para operar."
+        },
+        {
+          "period": "2025",
+          "periodEnd": "a 2026",
+          "name": "Roca Company Solutions",
+          "url": "https://rocacompanysolution.wordpress.com/",
+          "role": "Desarrollador frontend",
+          "note": "Diseñé y construí el sistema que usan para gestionar miles de casos de clientes, reemplazando sus hojas de cálculo."
+        },
+        {
+          "period": "Freelance",
+          "periodEnd": "continuo",
+          "name": "Pequeños negocios",
+          "role": "Desarrollador web",
+          "note": "Sitios web y tiendas en línea con WordPress, Shopify y otras plataformas."
+        }
+      ],
+      "roleLabel": "Puesto",
+      "datesLabel": "Fechas",
+      "downloadCv": "Descargar mi CV (PDF)",
+      "visit": "Visitar sitio web, abre en una pestaña nueva"
+    },
+    "contact": {
+      "title": "Hablemos de tu sitio",
+      "description": "Escríbeme en español o en inglés y cuéntame lo que necesitas. Te responderé con un siguiente paso claro.",
+      "sendEmail": "Envíame un correo",
+      "copyEmail": "Copiar correo",
+      "copied": "Correo copiado",
+      "socialLabel": "Encuéntrame en línea",
+      "portraitAlt": "Retrato ilustrado de Fabian Montoya",
+      "end": "Fin"
+    }
   }
 }

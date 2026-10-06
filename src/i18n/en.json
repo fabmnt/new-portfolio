@@ -174,5 +174,124 @@
     "requestFailed": "Sorry, I could not process that request.",
     "unavailable": "The assistant is temporarily unavailable. Please try again later.",
     "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
+  },
+  "marketing": {
+    "nav": {
+      "label": "Main navigation",
+      "services": "Services",
+      "blog": "Blog",
+      "contact": "Contact",
+      "language": "Change language"
+    },
+    "opening": {
+      "tagline": "I build, fix and take care of websites for businesses, so you can focus on running yours.",
+      "primaryCta": "Tell me about your site",
+      "secondaryCta": "See what I can do",
+      "scrollHint": "Scroll down to know more"
+    },
+    "services": {
+      "title": "What I can do for you",
+      "items": [
+        {
+          "scene": "maintain",
+          "title": "Keep your site running",
+          "description": "Updates, backups and quick fixes. Your site stays fast, safe and online.",
+          "labels": {
+            "bug": "Bug or hack",
+            "fix": "Quick fix",
+            "monitor": "Always monitored",
+            "backups": "Daily backups",
+            "updates": "Updates",
+            "security": "Security scan"
+          }
+        },
+        {
+          "scene": "improve",
+          "title": "Make changes and improvements",
+          "description": "New pages, fresh content or a new look for an older site.",
+          "labels": {
+            "before": "Before: outdated",
+            "after": "After: modern and phone-friendly",
+            "newPage": "New page"
+          }
+        },
+        {
+          "scene": "build",
+          "title": "Build something new",
+          "description": "Websites, online stores and custom tools for your business.",
+          "labels": {
+            "plan": "1. Plan the layout",
+            "build": "2. Build the store",
+            "sell": "3. Customers buy online",
+            "launch": "4. Launch"
+          }
+        },
+        {
+          "scene": "assistant",
+          "title": "Add smart helpers",
+          "description": "An AI assistant that answers your visitors, day and night.",
+          "labels": {
+            "night": "Answers while you sleep",
+            "day": "Handles busy hours",
+            "trained": "Knows your business"
+          }
+        },
+        {
+          "scene": "automate",
+          "title": "Automate your boring job",
+          "description": "Bots that do your repetitive tasks for you, fast and without mistakes.",
+          "labels": {
+            "pile": "Invoices, forms, emails",
+            "scan": "Reads the data",
+            "sheet": "Your spreadsheet or system",
+            "clock": "Hours saved",
+            "coffee": "Your time back"
+          }
+        }
+      ]
+    },
+    "experience": {
+      "title": "Work experience",
+      "intro": "More than 4 years and 50+ projects building and caring for websites and business tools.",
+      "jobs": [
+        {
+          "period": "2022",
+          "periodEnd": "to today",
+          "name": "Dentalrobot.ai",
+          "url": "https://www.dentalrobot.ai",
+          "role": "Full stack developer",
+          "note": "I build and maintain the web tools a US dental company uses every day to run its operations."
+        },
+        {
+          "period": "2025",
+          "periodEnd": "to 2026",
+          "name": "Roca Company Solutions",
+          "url": "https://rocacompanysolution.wordpress.com/",
+          "role": "Frontend developer",
+          "note": "I designed and built the system they use to manage thousands of customer cases, replacing their spreadsheets."
+        },
+        {
+          "period": "Freelance",
+          "periodEnd": "ongoing",
+          "name": "Small businesses",
+          "role": "Web developer",
+          "note": "Business websites and online stores on WordPress, Shopify and other platforms."
+        }
+      ],
+      "roleLabel": "Role",
+      "datesLabel": "Dates",
+      "downloadCv": "Download my CV (PDF)",
+      "visit": "Visit website, opens in a new tab"
+    },
+    "contact": {
+      "title": "Let's talk about your site",
+      "description": "Write to me in Spanish or English and tell me what you need. I'll reply with a clear next step.",
+      "sendEmail": "Send me an email",
+      "copyEmail": "Copy email",
+      "copied": "Email copied",
+      "socialLabel": "Find me online",
+      "portraitAlt": "Illustrated portrait of Fabian Montoya",
+      "end": "The end"
+    }
   }
 }

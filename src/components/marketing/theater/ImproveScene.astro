@@ -1,0 +1,176 @@
+---
+// Still frame: the redesigned site. improve.ts wipes it in over the old one.
+interface Props {
+  labels: Record<string, string>;
+}
+
+const { labels } = Astro.props;
+const OLD_TEXT_LINES = [226, 238, 250, 262, 274, 286, 298, 310];
+const SPARKLES = [
+  { x: 330, y: 118 },
+  { x: 528, y: 132 },
+  { x: 214, y: 214 },
+  { x: 470, y: 254 },
+];
+---
+
+<svg
+  viewBox="0 0 640 360"
+  class="block aspect-video w-full"
+  aria-hidden="true"
+  focusable="false"
+  data-scene-svg="improve"
+>
+  <defs>
+    <clipPath id="improve-wipe">
+      <rect data-part="wipe" x="84" y="70" width="472" height="256"></rect>
+    </clipPath>
+  </defs>
+
+  <text data-part="before-label" x="84" y="20" class="scene-label fill-cinema-night stroke-cinema-screen" opacity="0">
+    {labels.before}
+  </text>
+  <text data-part="after-label" x="556" y="20" text-anchor="end" class="scene-label fill-cinema-night stroke-cinema-screen">
+    {labels.after}
+  </text>
+
+  <!-- Browser with tabs -->
+  <rect
+    x="80"
+    y="30"
+    width="480"
+    height="300"
+    rx="10"
+    class="fill-white stroke-cinema-night"
+    stroke-width="4"></rect>
+  <circle cx="100" cy="50" r="4" class="fill-cinema-night"></circle>
+  <circle cx="114" cy="50" r="4" class="fill-cinema-night"></circle>
+  <circle cx="128" cy="50" r="4" class="fill-cinema-night"></circle>
+  <rect x="148" y="38" width="112" height="28" rx="6" class="fill-cinema-screen"></rect>
+  <rect x="162" y="49" width="60" height="6" rx="3" class="fill-cinema-night"></rect>
+  <g data-part="new-tab" opacity="0">
+    <rect x="270" y="38" width="112" height="28" rx="6" class="fill-cinema-screen"></rect>
+    <text x="326" y="56" text-anchor="middle" font-size="11" font-weight="700" class="fill-cinema-night">
+      {labels.newPage}
+    </text>
+  </g>
+  <path
+    data-part="plus"
+    d="M276 52 h14 M283 45 v14"
+    class="stroke-cinema-night"
+    stroke-width="3"
+    stroke-linecap="round"></path>
+  <line x1="80" y1="66" x2="560" y2="66" class="stroke-cinema-night" stroke-width="4"></line>
+
+  <!-- Old site: cramped, grey and crooked -->
+  <g>
+    <rect x="84" y="68" width="472" height="258" class="fill-cinema-screen"></rect>
+    <rect x="100" y="82" width="440" height="30" class="fill-cinema-steel"></rect>
+    <rect x="112" y="92" width="120" height="10" class="fill-white/70"></rect>
+    {
+      [0, 1, 2, 3, 4, 5].map((index) => (
+        <rect x="104" y={128 + index * 30} width="80" height="16" class="fill-cinema-steel/60" />
+      ))
+    }
+    <g transform="rotate(-3 270 168)">
+      <rect
+        x="204"
+        y="126"
+        width="140"
+        height="86"
+        class="fill-none stroke-cinema-steel"
+        stroke-width="3"></rect>
+      <path d="M204 126 L344 212 M344 126 L204 212" class="stroke-cinema-steel" stroke-width="2"
+      ></path>
+    </g>
+    {
+      OLD_TEXT_LINES.map((y, index) => (
+        <rect
+          x="204"
+          y={y}
+          width={index % 3 === 0 ? 200 : 236}
+          height="5"
+          class="fill-cinema-night/40"
+        />
+      ))
+    }
+    <rect
+      x="360"
+      y="128"
+      width="176"
+      height="80"
+      transform="rotate(2 448 168)"
+      class="fill-cinema-steel/50"></rect>
+  </g>
+
+  <!-- New site, revealed by the wipe -->
+  <g clip-path="url(#improve-wipe)">
+    <rect x="84" y="68" width="472" height="258" class="fill-white"></rect>
+    <circle cx="112" cy="94" r="9" class="fill-cinema-tungsten"></circle>
+    <rect x="128" y="90" width="60" height="8" rx="4" class="fill-cinema-night"></rect>
+    <rect x="340" y="91" width="34" height="6" rx="3" class="fill-cinema-steel"></rect>
+    <rect x="386" y="91" width="34" height="6" rx="3" class="fill-cinema-steel"></rect>
+    <rect x="474" y="84" width="64" height="20" rx="10" class="fill-cinema-night"></rect>
+
+    <rect x="108" y="128" width="200" height="18" rx="4" class="fill-cinema-night"></rect>
+    <rect x="108" y="154" width="150" height="18" rx="4" class="fill-cinema-night"></rect>
+    <rect x="108" y="184" width="120" height="8" rx="4" class="fill-cinema-steel"></rect>
+    <rect
+      data-part="cta"
+      x="108"
+      y="206"
+      width="92"
+      height="28"
+      rx="14"
+      class="fill-cinema-tungsten"></rect>
+
+    <rect x="340" y="120" width="196" height="122" rx="14" class="fill-cinema-teal"></rect>
+    <circle cx="496" cy="150" r="14" class="fill-cinema-tungsten"></circle>
+    <path d="M340 230 L392 176 L436 214 L470 188 L536 236 V242 H340 Z" class="fill-cinema-screen"
+    ></path>
+
+    {
+      [108, 248, 388].map((x) => (
+        <g data-part="card">
+          <rect x={x} y="258" width="128" height="54" rx="10" class="fill-cinema-screen" />
+          <circle cx={x + 22} cy="285" r="10" class="fill-cinema-tungsten" />
+          <rect x={x + 40} y="278" width="70" height="6" rx="3" class="fill-cinema-night" />
+          <rect x={x + 40} y="290" width="48" height="6" rx="3" class="fill-cinema-steel" />
+        </g>
+      ))
+    }
+  </g>
+
+  {
+    SPARKLES.map(({ x, y }) => (
+      <path
+        data-part="sparkle"
+        d={`M${x} ${y - 12} Q${x} ${y} ${x + 12} ${y} Q${x} ${y} ${x} ${y + 12} Q${x} ${y} ${x - 12} ${y} Q${x} ${y} ${x} ${y - 12} Z`}
+        class="fill-cinema-tungsten stroke-cinema-night"
+        stroke-width="1.5"
+        opacity="0"
+      />
+    ))
+  }
+
+  <!-- Before/after handle and the cursor that drags it -->
+  <g data-part="handle" opacity="0">
+    <line x1="0" y1="70" x2="0" y2="326" class="stroke-cinema-tungsten" stroke-width="4"></line>
+    <circle cx="0" cy="198" r="16" class="fill-cinema-tungsten stroke-cinema-night" stroke-width="3"
+    ></circle>
+    <path
+      d="M-5 191 L-10 198 L-5 205 M5 191 L10 198 L5 205"
+      fill="none"
+      class="stroke-cinema-night"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </g>
+  <path
+    data-part="cursor"
+    d="M0 0 V26 L7 19 L12 30 L17 28 L12 17 H21 Z"
+    class="fill-cinema-night stroke-white"
+    stroke-width="2"
+    stroke-linejoin="round"
+    opacity="0"></path>
+</svg>

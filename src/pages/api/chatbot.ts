@@ -105,6 +105,7 @@ function getKnowledgeBase(locale: Locale): string {
 
   return JSON.stringify({
     language: locale,
+    marketing: t.marketing,
     presentation: t.presentation,
     hero: t.hero,
     experience: t.experience,

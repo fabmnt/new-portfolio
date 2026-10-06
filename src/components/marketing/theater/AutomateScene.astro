@@ -1,0 +1,219 @@
+---
+// Still frame: the robot arm at rest next to a filled spreadsheet.
+// automate.ts makes it pick papers from the pile and type them in.
+import { ARM, solveArm } from "./robot-arm";
+
+interface Props {
+  labels: Record<string, string>;
+}
+
+const { labels } = Astro.props;
+
+const PILE = [0, 1, 2, 3].map((layer) => ({ x: 62 + layer * 3, y: 230 - layer * 5 }));
+const ROWS = [84, 134, 184, 234];
+const CELLS = [
+  { x: 446, width: 48, color: "fill-cinema-steel" },
+  { x: 502, width: 40, color: "fill-cinema-steel" },
+  { x: 550, width: 22, color: "fill-cinema-tungsten" },
+];
+const STEAM_X = [192, 200, 208];
+const CLOCK = { x: 100, y: 80 };
+
+const { elbow, hand } = solveArm(ARM.rest);
+---
+
+<svg
+  viewBox="0 0 640 360"
+  class="block aspect-video w-full"
+  aria-hidden="true"
+  focusable="false"
+  data-scene-svg="automate"
+>
+  <rect x="20" y="300" width="600" height="8" rx="4" class="fill-cinema-night"></rect>
+
+  <!-- Clock: time runs fast while the robot works -->
+  <g data-part="clock" data-origin={`${CLOCK.x} ${CLOCK.y}`}>
+    <circle
+      cx={CLOCK.x}
+      cy={CLOCK.y}
+      r="26"
+      class="fill-white stroke-cinema-night"
+      stroke-width="3"></circle>
+    <line
+      data-part="hour-hand"
+      x1={CLOCK.x}
+      y1={CLOCK.y}
+      x2={CLOCK.x}
+      y2={CLOCK.y - 13}
+      class="stroke-cinema-night"
+      stroke-width="4"
+      stroke-linecap="round"></line>
+    <line
+      data-part="minute-hand"
+      x1={CLOCK.x}
+      y1={CLOCK.y}
+      x2={CLOCK.x + 18}
+      y2={CLOCK.y}
+      class="stroke-cinema-tungsten"
+      stroke-width="3"
+      stroke-linecap="round"></line>
+    <circle cx={CLOCK.x} cy={CLOCK.y} r="3" class="fill-cinema-night"></circle>
+  </g>
+
+  <text x={CLOCK.x + 34} y={CLOCK.y + 5} class="scene-label fill-cinema-night stroke-cinema-screen">{labels.clock}</text>
+  <text x="30" y="330" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.pile}</text>
+  <text x="200" y="232" text-anchor="middle" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.coffee}</text>
+  <text x="520" y="28" text-anchor="middle" class="scene-label fill-cinema-night stroke-cinema-screen">{labels.sheet}</text>
+  <text
+    data-part="scan-label"
+    x="280"
+    y="178"
+    text-anchor="end"
+    class="scene-label fill-cinema-night stroke-cinema-screen"
+    opacity="0">{labels.scan}</text
+  >
+
+  <!-- Coffee: you relax -->
+  {
+    STEAM_X.map((x) => (
+      <path
+        data-part="steam"
+        d={`M${x} 264 C${x - 6} 256 ${x + 6} 250 ${x} 242`}
+        fill="none"
+        class="stroke-cinema-steel"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    ))
+  }
+  <path
+    d="M216 278 C228 278 228 294 213 293"
+    fill="none"
+    class="stroke-cinema-night"
+    stroke-width="3"></path>
+  <path
+    d="M184 270 H216 L212 298 H188 Z"
+    class="fill-cinema-tungsten stroke-cinema-night"
+    stroke-width="3"
+    stroke-linejoin="round"></path>
+
+  <!-- Pile of papers -->
+  {
+    PILE.map(({ x, y }) => (
+      <g data-part="pile-doc" data-x={x} data-y={y}>
+        <rect x={x} y={y} width="56" height="70" rx="3" class="fill-white stroke-cinema-night" stroke-width="2.5" />
+        <rect x={x + 10} y={y + 14} width="36" height="4" rx="2" class="fill-cinema-steel" />
+        <rect x={x + 10} y={y + 24} width="28" height="4" rx="2" class="fill-cinema-steel" />
+        <rect x={x + 10} y={y + 34} width="32" height="4" rx="2" class="fill-cinema-steel" />
+        <rect x={x + 10} y={y + 48} width="20" height="10" rx="2" class="fill-cinema-tungsten" />
+      </g>
+    ))
+  }
+
+  <!-- Spreadsheet -->
+  <rect
+    x="430"
+    y="40"
+    width="180"
+    height="250"
+    rx="8"
+    class="fill-white stroke-cinema-night"
+    stroke-width="3"></rect>
+  <path d="M430 72 V48 A8 8 0 0 1 438 40 H602 A8 8 0 0 1 610 48 V72 Z" class="fill-cinema-night"
+  ></path>
+  <rect x="446" y="53" width="40" height="6" rx="3" class="fill-white"></rect>
+  <rect x="502" y="53" width="30" height="6" rx="3" class="fill-white"></rect>
+  <rect x="550" y="53" width="22" height="6" rx="3" class="fill-white"></rect>
+  {
+    ROWS.map((y) => (
+      <g data-part="sheet-row">
+        <line x1="430" y1={y + 44} x2="610" y2={y + 44} class="stroke-cinema-steel/40" stroke-width="2" />
+        {CELLS.map((cell) => (
+          <rect
+            data-part="cell"
+            data-width={cell.width}
+            x={cell.x}
+            y={y + 14}
+            width={cell.width}
+            height="14"
+            rx="3"
+            class={cell.color}
+          />
+        ))}
+        <g data-part="row-check">
+          <circle cx="592" cy={y + 21} r="9" class="fill-cinema-tungsten" />
+          <path
+            d={`M587 ${y + 21} l3.5 3.5 l6 -7`}
+            fill="none"
+            class="stroke-cinema-night"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+      </g>
+    ))
+  }
+
+  <!-- Scanner light -->
+  <rect
+    data-part="scan"
+    x="284"
+    y="150"
+    width="72"
+    height="4"
+    rx="2"
+    class="fill-cinema-tungsten"
+    opacity="0"></rect>
+
+  <!-- Paper carried by the robot. Its top center hangs from the hand. -->
+  <g data-part="carry" opacity="0">
+    <rect x="-28" y="10" width="56" height="70" rx="3" class="fill-white stroke-cinema-night" stroke-width="2.5"
+    ></rect>
+    <rect x="-18" y="24" width="36" height="4" rx="2" class="fill-cinema-steel"></rect>
+    <rect x="-18" y="34" width="28" height="4" rx="2" class="fill-cinema-steel"></rect>
+    <rect x="-18" y="44" width="32" height="4" rx="2" class="fill-cinema-steel"></rect>
+    <rect x="-18" y="58" width="20" height="10" rx="2" class="fill-cinema-tungsten"></rect>
+  </g>
+
+  <!-- Robot arm -->
+  <rect x="288" y="284" width="64" height="16" rx="4" class="fill-cinema-night"></rect>
+  <line
+    data-part="upper"
+    x1={ARM.shoulder.x}
+    y1={ARM.shoulder.y}
+    x2={elbow.x}
+    y2={elbow.y}
+    class="stroke-cinema-night"
+    stroke-width="14"
+    stroke-linecap="round"></line>
+  <line
+    data-part="fore"
+    x1={elbow.x}
+    y1={elbow.y}
+    x2={hand.x}
+    y2={hand.y}
+    class="stroke-cinema-night"
+    stroke-width="11"
+    stroke-linecap="round"></line>
+  <circle
+    cx={ARM.shoulder.x}
+    cy={ARM.shoulder.y}
+    r="12"
+    class="fill-cinema-tungsten stroke-cinema-night"
+    stroke-width="3"></circle>
+  <circle
+    data-part="elbow"
+    cx={elbow.x}
+    cy={elbow.y}
+    r="9"
+    class="fill-cinema-tungsten stroke-cinema-night"
+    stroke-width="3"></circle>
+  <g data-part="gripper" transform={`translate(${hand.x} ${hand.y})`}>
+    <rect data-part="finger-left" x="-16" y="2" width="5" height="16" rx="2" class="fill-cinema-night"
+    ></rect>
+    <rect data-part="finger-right" x="11" y="2" width="5" height="16" rx="2" class="fill-cinema-night"
+    ></rect>
+    <rect x="-17" y="-6" width="34" height="10" rx="3" class="fill-cinema-night"></rect>
+  </g>
+</svg>
