@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import portrait from "@/assets/images/icon-face.png";
 import { getTranslations, type Locale } from "@/i18n";
-import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/constants/contact";
+import { CONTACT_EMAIL, CV_PATHS, SOCIAL_LINKS } from "@/constants/contact";
 
 interface Props {
   locale: Locale;
@@ -43,17 +43,56 @@ const t = getTranslations(locale).marketing.contact;
         >
           {t.sendEmail}
         </a>
+        <a
+          href={CV_PATHS[locale]}
+          download
+          class="w-full max-w-xs border-2 border-cinema-night px-7 py-[0.875rem] text-center font-semibold transition-colors hover:bg-cinema-night/10 sm:w-auto"
+        >
+          {t.downloadCv}
+        </a>
+      </div>
+      <p
+        class="relative mt-4 flex items-center justify-center gap-1 text-sm text-cinema-night/75 md:justify-start"
+      >
+        {CONTACT_EMAIL}
         <button
           type="button"
           data-copy-email={CONTACT_EMAIL}
+          aria-label={t.copyEmail}
+          title={t.copyEmail}
           data-copied-label={t.copied}
-          aria-live="polite"
-          class="w-full max-w-xs border-2 border-cinema-night px-7 py-[0.875rem] font-semibold transition-colors hover:bg-cinema-night/10 sm:w-auto"
+          class="grid size-8 place-items-center text-cinema-night transition-colors hover:bg-cinema-night/10"
         >
-          {t.copyEmail}
+          <svg
+            data-copy-icon
+            class="size-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+            <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"></path>
+          </svg>
+          <svg
+            data-copied-icon
+            class="hidden size-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M5 12.5 10 17.5 19 7"></path>
+          </svg>
         </button>
-      </div>
-      <p class="mt-4 text-sm text-cinema-night/75">{CONTACT_EMAIL}</p>
+        <span class="sr-only" aria-live="polite" data-copy-status></span>
+      </p>
 
       <nav aria-label={t.socialLabel} class="mt-10">
         <ul class="flex justify-center gap-6 md:justify-start">
@@ -81,13 +120,23 @@ const t = getTranslations(locale).marketing.contact;
   document
     .querySelectorAll<HTMLButtonElement>("[data-copy-email]")
     .forEach((button) => {
-      const originalLabel = button.textContent;
+      const copyIcon = button.querySelector("[data-copy-icon]");
+      const copiedIcon = button.querySelector("[data-copied-icon]");
+      const status = button.parentElement?.querySelector("[data-copy-status]");
+      let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+      const showCopied = (copied: boolean) => {
+        copyIcon?.classList.toggle("hidden", copied);
+        copiedIcon?.classList.toggle("hidden", !copied);
+        if (status) status.textContent = copied ? button.dataset.copiedLabel ?? "" : "";
+      };
 
       button.addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(button.dataset.copyEmail ?? "");
-          button.textContent = button.dataset.copiedLabel ?? originalLabel;
-          setTimeout(() => (button.textContent = originalLabel), 2000);
+          showCopied(true);
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(() => showCopied(false), 2000);
         } catch (error) {
           console.error("Failed to copy email:", error);
         }

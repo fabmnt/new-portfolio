@@ -1,0 +1,75 @@
+---
+// Cards that turn a scene into a short ad: the hook card asks about the
+// visitor's problem before the scene plays, and the claim card closes with
+// the benefit. ad.ts animates them; without it (no JavaScript or reduced
+// motion) they stay hidden and the scene shows its still frame.
+interface Props {
+  ad: {
+    hook: string;
+    // Text between asterisks is the highlighted part.
+    claim: string;
+    detail: string;
+  };
+}
+
+const { ad } = Astro.props;
+const hookWords = ad.hook.split(" ");
+const claimParts = ad.claim.split("*");
+---
+
+<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+  <div
+    data-ad-hook
+    class="invisible absolute inset-0 flex flex-col items-center justify-center bg-cinema-night px-[7cqw] text-center"
+  >
+    <div
+      class="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_50%,rgb(242_181_68/0.14),transparent_70%)]"
+    >
+    </div>
+    <span data-ad-rule class="relative mb-[3.5cqw] block h-[0.8cqw] w-[12cqw] bg-cinema-tungsten"
+    ></span>
+    <p class="title-card relative text-[10.5cqw] uppercase text-cinema-screen">
+      {
+        hookWords.map((word, index) => (
+          <>
+            <span data-ad-word class="inline-block leading-[inherit]">
+              {word}
+            </span>
+            {index < hookWords.length - 1 && " "}
+          </>
+        ))
+      }
+    </p>
+  </div>
+
+  <div
+    data-ad-claim
+    class="invisible absolute inset-0 flex flex-col justify-center bg-cinema-tungsten px-[7cqw] text-cinema-night"
+  >
+    <p data-ad-line class="title-card text-[max(13px,3.4cqw)] uppercase tracking-wide">
+      Fabian Montoya
+    </p>
+    <p data-ad-line class="title-card mt-[2.5cqw] text-[8cqw] uppercase">
+      {
+        claimParts.map((part, index) =>
+          index % 2 === 1 ? (
+            <mark
+              data-ad-mark
+              class="bg-transparent bg-[linear-gradient(#11151B,#11151B)] bg-no-repeat px-[0.08em] text-cinema-tungsten [-webkit-box-decoration-break:clone] [box-decoration-break:clone]"
+            >
+              {part}
+            </mark>
+          ) : (
+            part
+          ),
+        )
+      }
+    </p>
+    <p
+      data-ad-line
+      class="mt-[3cqw] max-w-[44ch] text-[max(12px,2.9cqw)] font-semibold leading-snug"
+    >
+      {ad.detail}
+    </p>
+  </div>
+</div>

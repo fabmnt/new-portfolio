@@ -1,10 +1,5 @@
 ---
 // Still frame: the redesigned site. improve.ts wipes it in over the old one.
-interface Props {
-  labels: Record<string, string>;
-}
-
-const { labels } = Astro.props;
 const OLD_TEXT_LINES = [226, 238, 250, 262, 274, 286, 298, 310];
 const SPARKLES = [
   { x: 330, y: 118 },
@@ -27,13 +22,6 @@ const SPARKLES = [
     </clipPath>
   </defs>
 
-  <text data-part="before-label" x="84" y="20" class="scene-label fill-cinema-night stroke-cinema-screen" opacity="0">
-    {labels.before}
-  </text>
-  <text data-part="after-label" x="556" y="20" text-anchor="end" class="scene-label fill-cinema-night stroke-cinema-screen">
-    {labels.after}
-  </text>
-
   <!-- Browser with tabs -->
   <rect
     x="80"
@@ -50,9 +38,7 @@ const SPARKLES = [
   <rect x="162" y="49" width="60" height="6" rx="3" class="fill-cinema-night"></rect>
   <g data-part="new-tab" opacity="0">
     <rect x="270" y="38" width="112" height="28" rx="6" class="fill-cinema-screen"></rect>
-    <text x="326" y="56" text-anchor="middle" font-size="11" font-weight="700" class="fill-cinema-night">
-      {labels.newPage}
-    </text>
+    <rect x="284" y="49" width="60" height="6" rx="3" class="fill-cinema-tungsten"></rect>
   </g>
   <path
     data-part="plus"

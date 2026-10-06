@@ -26,7 +26,6 @@ export const automateScene: SceneBuilder = (svg) => {
     "scan",
   ].map((part) => q(`[data-part=${part}]`)[0]);
   const pile = q("[data-part=pile-doc]");
-  const scanLabel = q("[data-part=scan-label]");
   const rows = q("[data-part=sheet-row]");
   const fingerLeft = q("[data-part=finger-left]");
   const fingerRight = q("[data-part=finger-right]");
@@ -58,7 +57,6 @@ export const automateScene: SceneBuilder = (svg) => {
     .set(carryDoc, { autoAlpha: 0, scale: 1, transformOrigin: "50% 0%" })
     .set(pile, { autoAlpha: 1, y: 0 })
     .set(scan, { autoAlpha: 0 })
-    .set(scanLabel, { autoAlpha: 0 })
     .set(q("[data-part=cell]"), { attr: { width: 0 } })
     .set(q("[data-part=row-check]"), { scale: 0, transformOrigin: "50% 50%" });
 
@@ -95,9 +93,7 @@ export const automateScene: SceneBuilder = (svg) => {
       },
       at + 1.3,
     )
-      .set(scan, { autoAlpha: 0 }, at + 1.65)
-      .to(scanLabel, { autoAlpha: 1, duration: 0.2 }, at + 1.1)
-      .to(scanLabel, { autoAlpha: 0, duration: 0.2 }, at + 1.9);
+      .set(scan, { autoAlpha: 0 }, at + 1.65);
 
     // Type it into the next spreadsheet row.
     moveTo(drop, 0.45, at + 1.65);
@@ -131,6 +127,7 @@ export const automateScene: SceneBuilder = (svg) => {
 
   // Rest, refill the pile and clear the sheet for the next loop.
   const end = 0.3 + PAPERS_PER_LOOP * 2.5;
+  tl.addLabel("payoff", end + 0.3);
   moveTo(ARM.rest, 0.6, end);
   tl.fromTo(
     pile.slice(-PAPERS_PER_LOOP),

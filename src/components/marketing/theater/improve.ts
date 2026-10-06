@@ -23,9 +23,7 @@ export const improveScene: SceneBuilder = (svg) => {
     .set(handle, { autoAlpha: 1, x: WIPE_LEFT })
     .set(cursor, { autoAlpha: 1, ...CURSOR_HOME })
     .set(newTab, { autoAlpha: 0, scaleX: 0, transformOrigin: "0% 50%" })
-    .set(plus, { x: 0 })
-    .set(q("[data-part=before-label]"), { autoAlpha: 1 })
-    .set(q("[data-part=after-label]"), { autoAlpha: 0 });
+    .set(plus, { x: 0 });
 
   // Grab the handle.
   tl.to(cursor, { x: WIPE_LEFT, y: KNOB_Y, duration: 0.9 }, 0.2).to(
@@ -45,9 +43,7 @@ export const improveScene: SceneBuilder = (svg) => {
   tl.to(wipe, { attr: { width: WIPE_WIDTH }, ...drag }, 1.4)
     .to(handle, { x: WIPE_LEFT + WIPE_WIDTH, ...drag }, 1.4)
     .to(cursor, { x: WIPE_LEFT + WIPE_WIDTH, ...drag }, 1.4)
-    .to(handle, { autoAlpha: 0, duration: 0.3 }, 3.7)
-    .to(q("[data-part=after-label]"), { autoAlpha: 1, duration: 0.3 }, 2.5)
-    .to(q("[data-part=before-label]"), { autoAlpha: 0, duration: 0.3 }, 3.4);
+    .to(handle, { autoAlpha: 0, duration: 0.3 }, 3.7);
 
   // The new design shines.
   tl.fromTo(
@@ -95,12 +91,9 @@ export const improveScene: SceneBuilder = (svg) => {
       6.2,
     );
 
+  tl.addLabel("payoff", 6.9);
+
   // Back to the old site for the next loop.
-  tl.to(q("[data-part=after-label]"), { autoAlpha: 0, duration: 0.3 }, 7.4).to(
-    q("[data-part=before-label]"),
-    { autoAlpha: 1, duration: 0.3 },
-    7.7,
-  );
   tl.to(cursor, { ...CURSOR_HOME, duration: 0.7 }, 7.1)
     .to(newTab, { autoAlpha: 0, scaleX: 0, duration: 0.35 }, 7.2)
     .to(plus, { x: 0, duration: 0.35 }, 7.2)
