@@ -3,9 +3,11 @@ import { getTranslations, type Locale } from "@/i18n";
 
 interface Props {
   locale: Locale;
+  // "cinema" matches the marketing page colors.
+  theme?: "portfolio" | "cinema";
 }
 
-const { locale } = Astro.props;
+const { locale, theme = "portfolio" } = Astro.props;
 const t = getTranslations(locale);
 const c = t.chatbot;
 const widgetId = `chatbot-${crypto.randomUUID()}`;
@@ -15,6 +17,7 @@ const inputId = `${widgetId}-input`;
 
 <div
   class="chatbot-widget"
+  data-theme={theme}
   data-locale={locale}
   data-request-failed={c.requestFailed}
   data-unavailable={c.unavailable}
@@ -272,12 +275,14 @@ const inputId = `${widgetId}-input`;
   }
 
   .chatbot-toggle {
-    border: 1px solid #f2b544;
-    background: #11151b;
-    color: #e6e4df;
-    font-weight: 600;
-    font-size: 0.85rem;
-    border-radius: 0;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    background: linear-gradient(140deg, #2563eb, #1d4ed8);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    border-radius: 999px;
     padding: 0.65rem 0.95rem;
     display: inline-flex;
     align-items: center;
@@ -290,7 +295,7 @@ const inputId = `${widgetId}-input`;
     height: min(72vh, 29rem);
     border-radius: 1rem;
     border: 1px solid rgb(255 255 255 / 0.18);
-    background: rgb(17 21 27 / 0.97);
+    background: rgb(14 14 18 / 0.96);
     backdrop-filter: blur(8px);
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -339,7 +344,7 @@ const inputId = `${widgetId}-input`;
   }
 
   :global(.chatbot-message--assistant) {
-    background: rgb(242 181 68 / 0.18);
+    background: rgb(37 99 235 / 0.22);
     align-self: flex-start;
   }
 
@@ -381,8 +386,8 @@ const inputId = `${widgetId}-input`;
   .chatbot-submit {
     border: 0;
     border-radius: 0.6rem;
-    background: #f2b544;
-    color: #11151b;
+    background: #2563eb;
+    color: #fff;
     font-weight: 600;
     padding: 0.55rem 0.7rem;
     cursor: pointer;
@@ -408,5 +413,30 @@ const inputId = `${widgetId}-input`;
     100% {
       opacity: 0;
     }
+  }
+
+  /* Cinema theme for the marketing page. */
+  .chatbot-widget[data-theme="cinema"] .chatbot-toggle {
+    border: 1px solid #f2b544;
+    background: #11151b;
+    color: #e6e4df;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: normal;
+    text-transform: none;
+    border-radius: 0;
+  }
+
+  .chatbot-widget[data-theme="cinema"] .chatbot-panel {
+    background: rgb(17 21 27 / 0.97);
+  }
+
+  .chatbot-widget[data-theme="cinema"] :global(.chatbot-message--assistant) {
+    background: rgb(242 181 68 / 0.18);
+  }
+
+  .chatbot-widget[data-theme="cinema"] .chatbot-submit {
+    background: #f2b544;
+    color: #11151b;
   }
 </style>

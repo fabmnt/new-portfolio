@@ -1,13 +1,13 @@
 ---
 import { getTranslations, type Locale } from "@/i18n";
-import { BLOG_PATHS, CONTACT_EMAIL, HOME_PATHS } from "@/constants/contact";
+import { BLOG_PATHS, CONTACT_EMAIL, MARKETING_PATHS } from "@/constants/contact";
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const t = getTranslations(locale).home;
+const t = getTranslations(locale).marketing;
 const otherLocale: Locale = locale === "es" ? "en" : "es";
 ---
 
@@ -30,7 +30,7 @@ const otherLocale: Locale = locale === "es" ? "en" : "es";
       class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 pb-3 text-sm sm:px-8 sm:pb-4"
     >
       <a
-        href={HOME_PATHS[otherLocale]}
+        href={MARKETING_PATHS[otherLocale]}
         hreflang={otherLocale}
         aria-label={t.nav.language}
         class="text-cinema-steel transition-colors hover:text-cinema-screen"

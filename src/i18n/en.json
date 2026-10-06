@@ -175,7 +175,7 @@
     "unavailable": "The assistant is temporarily unavailable. Please try again later.",
     "outOfScope": "I’m sorry, I can only answer questions about Fabian’s portfolio, experience, projects, and services."
   },
-  "home": {
+  "marketing": {
     "nav": {
       "label": "Main navigation",
       "services": "Services",
@@ -191,50 +191,67 @@
     },
     "services": {
       "title": "What I can do for you",
-      "intro": "You don't need to know how websites work. Tell me what you need in your own words, and I'll take care of the rest.",
       "items": [
         {
+          "scene": "maintain",
           "title": "Keep your site running",
-          "description": "Regular updates, backups, security checks and quick fixes when something breaks, so your site stays fast, safe and online."
+          "description": "Updates, backups and quick fixes. Your site stays fast, safe and online.",
+          "labels": {
+            "bug": "Bug or hack",
+            "fix": "Quick fix",
+            "monitor": "Always monitored",
+            "backups": "Daily backups",
+            "updates": "Updates",
+            "security": "Security scan"
+          }
         },
         {
+          "scene": "improve",
           "title": "Make changes and improvements",
-          "description": "New pages, new products, updated text and photos, or a fresh look for an older site."
+          "description": "New pages, fresh content or a new look for an older site.",
+          "labels": {
+            "before": "Before: outdated",
+            "after": "After: modern and phone-friendly",
+            "newPage": "New page"
+          }
         },
         {
+          "scene": "build",
           "title": "Build something new",
-          "description": "Business websites, online stores, and custom tools to handle sales, bookings, inventory or customers."
+          "description": "Websites, online stores and custom tools for your business.",
+          "labels": {
+            "plan": "1. Plan the layout",
+            "build": "2. Build the store",
+            "sell": "3. Customers buy online",
+            "launch": "4. Launch"
+          }
         },
         {
+          "scene": "assistant",
           "title": "Add smart helpers",
-          "description": "An AI assistant that answers your visitors' questions, or automations that do repetitive work for you."
-        }
-      ],
-      "platforms": "I work with the platforms you may already use, like WordPress and Shopify, and with custom-built sites."
-    },
-    "process": {
-      "title": "How we work together",
-      "steps": [
-        {
-          "title": "Tell me what you need",
-          "description": "Send me your site's address and what you want to change. No technical words needed."
+          "description": "An AI assistant that answers your visitors, day and night.",
+          "labels": {
+            "night": "Answers while you sleep",
+            "day": "Handles busy hours",
+            "trained": "Knows your business"
+          }
         },
         {
-          "title": "Get a clear plan",
-          "description": "I review your site and tell you what I'll do, how long it takes and what it costs, before any work starts."
-        },
-        {
-          "title": "I do the work",
-          "description": "I make the changes carefully and keep you updated. You check everything before it goes live."
-        },
-        {
-          "title": "I keep looking after it",
-          "description": "If you want, I stay as your web person: regular care, quick help and changes whenever you need them."
+          "scene": "automate",
+          "title": "Automate your boring job",
+          "description": "Bots that do your repetitive tasks for you, fast and without mistakes.",
+          "labels": {
+            "pile": "Invoices, forms, emails",
+            "scan": "Reads the data",
+            "sheet": "Your spreadsheet or system",
+            "clock": "Hours saved",
+            "coffee": "Your time back"
+          }
         }
       ]
     },
     "experience": {
-      "title": "Work experience and studies",
+      "title": "Work experience",
       "intro": "More than 4 years and 50+ projects building and caring for websites and business tools.",
       "jobs": [
         {
@@ -261,24 +278,8 @@
           "note": "Business websites and online stores on WordPress, Shopify and other platforms."
         }
       ],
-      "studiesTitle": "Studies",
-      "studies": [
-        {
-          "period": "2019 to 2024",
-          "title": "Information Systems Engineering",
-          "institution": "UNAN-León"
-        },
-        {
-          "period": "2024",
-          "title": "Ethical hacking and cybersecurity",
-          "institution": "UNI graduate school"
-        },
-        {
-          "period": "2024",
-          "title": "General accounting technician",
-          "institution": "INATEC"
-        }
-      ],
+      "roleLabel": "Role",
+      "datesLabel": "Dates",
       "downloadCv": "Download my CV (PDF)",
       "visit": "Visit website, opens in a new tab"
     },

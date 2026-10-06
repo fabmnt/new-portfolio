@@ -1,0 +1,166 @@
+---
+import { PALETTE } from "./palette";
+
+interface Props {
+  labels: Record<string, string>;
+}
+
+const { labels } = Astro.props;
+
+// Still frame: a finished chat at night. assistant.ts plays the conversation
+// while the sky turns from night to day and back.
+const STARS = [
+  { x: 70, y: 60 },
+  { x: 120, y: 90 },
+  { x: 200, y: 56 },
+  { x: 230, y: 110 },
+  { x: 90, y: 150 },
+  { x: 176, y: 160 },
+  { x: 64, y: 200 },
+  { x: 236, y: 190 },
+];
+const SUN_RAYS = [0, 45, 90, 135, 180, 225, 270, 315];
+// The sun and moon sit on opposite sides of a wheel that turns around this point.
+const ORBIT = { x: 150, y: 330 };
+---
+
+<svg
+  viewBox="0 0 640 360"
+  class="block aspect-video w-full"
+  aria-hidden="true"
+  focusable="false"
+  data-scene-svg="assistant"
+>
+  <defs>
+    <clipPath id="assistant-sky">
+      <rect x="40" y="28" width="220" height="304" rx="14"></rect>
+    </clipPath>
+    <clipPath id="assistant-chat">
+      <rect x="290" y="82" width="310" height="248"></rect>
+    </clipPath>
+  </defs>
+
+  <!-- Window to the outside: night and day -->
+  <g clip-path="url(#assistant-sky)">
+    <rect data-part="sky" x="40" y="28" width="220" height="304" class="fill-cinema-night"
+    ></rect>
+    <g data-part="stars" class="fill-white">
+      {STARS.map(({ x, y }) => <circle data-part="star" cx={x} cy={y} r="2" />)}
+    </g>
+    <g data-part="orbit" data-orbit-x={ORBIT.x} data-orbit-y={ORBIT.y}>
+      <g>
+        <circle cx={ORBIT.x} cy={ORBIT.y - 210} r="24" class="fill-cinema-screen"></circle>
+        <circle cx={ORBIT.x - 8} cy={ORBIT.y - 214} r="5" class="fill-cinema-steel/50"></circle>
+        <circle cx={ORBIT.x + 9} cy={ORBIT.y - 202} r="3.5" class="fill-cinema-steel/50"
+        ></circle>
+      </g>
+      <g transform={`translate(${ORBIT.x} ${ORBIT.y + 210})`}>
+        {
+          SUN_RAYS.map((angle) => (
+            <line
+              x1="0"
+              y1="-36"
+              x2="0"
+              y2="-46"
+              transform={`rotate(${angle})`}
+              class="stroke-cinema-tungsten"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+          ))
+        }
+        <circle r="26" class="fill-cinema-tungsten"></circle>
+      </g>
+    </g>
+    <path d="M40 270 Q110 230 170 262 T260 250 V332 H40 Z" class="fill-cinema-teal"></path>
+    <path d="M120 262 L148 238 L176 262 Z" class="fill-cinema-night"></path>
+    <rect x="124" y="262" width="48" height="40" class="fill-cinema-screen"></rect>
+    <rect data-part="house-window" x="132" y="270" width="14" height="14" class="fill-cinema-tungsten"
+    ></rect>
+    <rect x="152" y="280" width="12" height="22" class="fill-cinema-night"></rect>
+    <text
+      data-part="night-label"
+      x="150"
+      y="62"
+      text-anchor="middle"
+      class="scene-label fill-white stroke-cinema-night">{labels.night}</text
+    >
+    <text
+      data-part="day-label"
+      x="150"
+      y="62"
+      text-anchor="middle"
+      stroke={PALETTE.daySky}
+      class="scene-label fill-cinema-night"
+      opacity="0">{labels.day}</text
+    >
+  </g>
+
+  <!-- Chat -->
+  <rect
+    x="290"
+    y="28"
+    width="310"
+    height="304"
+    rx="14"
+    class="fill-white stroke-cinema-night"
+    stroke-width="4"></rect>
+  <line x1="290" y1="80" x2="600" y2="80" class="stroke-cinema-night" stroke-width="3"></line>
+  <text x="588" y="70" text-anchor="end" class="scene-label fill-cinema-night stroke-white">
+    {labels.trained}
+  </text>
+  <g data-part="robot">
+    <line x1="327" y1="40" x2="327" y2="32" class="stroke-cinema-night" stroke-width="3"></line>
+    <circle data-part="antenna" cx="327" cy="30" r="4" class="fill-cinema-tungsten"></circle>
+    <rect x="312" y="40" width="30" height="26" rx="8" class="fill-cinema-night"></rect>
+    <g data-part="eyes">
+      <circle cx="321" cy="53" r="3.5" class="fill-cinema-tungsten"></circle>
+      <circle cx="333" cy="53" r="3.5" class="fill-cinema-tungsten"></circle>
+    </g>
+  </g>
+  <rect x="354" y="44" width="90" height="8" rx="4" class="fill-cinema-night"></rect>
+  <circle cx="358" cy="62" r="4" class="fill-cinema-tungsten"></circle>
+  <rect x="366" y="59" width="44" height="6" rx="3" class="fill-cinema-steel"></rect>
+
+  <g clip-path="url(#assistant-chat)">
+    <g data-part="thread" transform="translate(0 -90)">
+      <g data-part="question">
+        <rect x="430" y="98" width="150" height="38" rx="16" class="fill-cinema-steel"></rect>
+        <rect x="444" y="110" width="110" height="5" rx="2.5" class="fill-white"></rect>
+        <rect x="444" y="120" width="70" height="5" rx="2.5" class="fill-white"></rect>
+      </g>
+      <g data-part="typing" opacity="0">
+        <rect x="306" y="150" width="64" height="30" rx="15" class="fill-cinema-night"></rect>
+        <circle data-part="dot" cx="324" cy="165" r="4" class="fill-white"></circle>
+        <circle data-part="dot" cx="338" cy="165" r="4" class="fill-white"></circle>
+        <circle data-part="dot" cx="352" cy="165" r="4" class="fill-white"></circle>
+      </g>
+      <g data-part="answer">
+        <rect x="306" y="150" width="210" height="58" rx="16" class="fill-cinema-night"></rect>
+        <rect data-part="line" x="320" y="164" width="160" height="6" rx="3" class="fill-cinema-tungsten"
+        ></rect>
+        <rect data-part="line" x="320" y="178" width="130" height="6" rx="3" class="fill-white"
+        ></rect>
+        <rect data-part="line" x="320" y="192" width="90" height="6" rx="3" class="fill-white"
+        ></rect>
+      </g>
+      <g data-part="question">
+        <rect x="460" y="224" width="120" height="30" rx="15" class="fill-cinema-steel"></rect>
+        <rect x="474" y="236" width="80" height="5" rx="2.5" class="fill-white"></rect>
+      </g>
+      <g data-part="typing" opacity="0">
+        <rect x="306" y="270" width="64" height="30" rx="15" class="fill-cinema-night"></rect>
+        <circle data-part="dot" cx="324" cy="285" r="4" class="fill-white"></circle>
+        <circle data-part="dot" cx="338" cy="285" r="4" class="fill-white"></circle>
+        <circle data-part="dot" cx="352" cy="285" r="4" class="fill-white"></circle>
+      </g>
+      <g data-part="answer">
+        <rect x="306" y="270" width="190" height="44" rx="16" class="fill-cinema-night"></rect>
+        <rect data-part="line" x="320" y="284" width="150" height="6" rx="3" class="fill-cinema-tungsten"
+        ></rect>
+        <rect data-part="line" x="320" y="298" width="100" height="6" rx="3" class="fill-white"
+        ></rect>
+      </g>
+    </g>
+  </g>
+</svg>

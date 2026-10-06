@@ -1,24 +1,29 @@
 ---
-import Opening from "./home/Opening.astro";
-import Contact from "./home/Contact.astro";
-import Services from "./home/Services.astro";
-import Experience from "./home/Experience.astro";
-import EndCard from "./home/EndCard.astro";
+import Experience from "./Experience.astro";
+import Footer from "./Footer.astro";
+import Overview from "./Overview.astro";
+import PresentationIntro from "./PresentationIntro.astro";
+/* import Projects from "./Projects.astro"; */
+import Skills from "./Skills.astro";
+import Studies from "./Studies.astro";
+import WorkTogether from "./WorkTogether.astro";
 import ChatbotWidget from "./ChatbotWidget.astro";
-import type { Locale } from "@/i18n";
 
 interface Props {
-  locale: Locale;
+  locale: "en" | "es";
 }
 
 const { locale } = Astro.props;
 ---
 
 <main id="main-content" class="relative">
-  <Opening locale={locale} />
-  <Contact locale={locale} />
-  <Services locale={locale} />
+  <PresentationIntro locale={locale} />
+  <Overview locale={locale} />
   <Experience locale={locale} />
-  <EndCard locale={locale} />
+  <!-- <Projects locale={locale} /> -->
+  <Skills locale={locale} />
+  <Studies locale={locale} />
+  <WorkTogether locale={locale} />
+  <Footer locale={locale} />
   <ChatbotWidget locale={locale} />
 </main>

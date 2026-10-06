@@ -103,55 +103,60 @@ body::after {
 }
 
 /*
- * Spotlight: an item is fully lit while it crosses the middle of the screen
- * and dimmed elsewhere. Without scroll timelines, every item stays lit.
+ * Projector: panels share one grid cell, so the screen keeps the height of
+ * the tallest one. Without JavaScript every panel is shown, one after another.
  */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .spotlight {
-      animation: spotlight linear both;
-      animation-timeline: view();
-      animation-range: cover;
-    }
-  }
+.projector-panel[hidden] {
+  display: block;
+  visibility: hidden;
 }
 
-@keyframes spotlight {
-  0%,
-  100% {
-    opacity: 0.25;
-  }
-  35%,
-  65% {
-    opacity: 1;
-  }
+.no-js .projector-panel {
+  grid-area: auto;
+  visibility: visible;
 }
 
-/* Film strip: black band with sprocket holes along both edges. */
-.film-strip {
-  --film-hole-color: #0d3b45;
-  position: relative;
-  background-color: #000;
-  padding: 2rem 0.375rem;
+.no-js .projector-panel + .projector-panel {
+  margin-top: 2.5rem;
 }
 
-.film-strip::before,
-.film-strip::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0.5rem;
-  height: 0.625rem;
+/* Clapperboard: striped stick that opens while the job is hovered or focused. */
+.clapperboard-stick {
+  transform-origin: left bottom;
+  transition: transform 0.25s var(--cinema-ease);
   background: repeating-linear-gradient(
-    90deg,
-    var(--film-hole-color) 0 0.875rem,
-    transparent 0.875rem 1.75rem
+    -45deg,
+    #11151b 0 1.25rem,
+    #e6e4df 1.25rem 2.5rem
   );
 }
 
-.film-strip::before {
-  top: 0.6875rem;
+.clapperboard:hover .clapperboard-stick,
+.clapperboard:focus-within .clapperboard-stick {
+  transform: rotate(-8deg);
 }
 
-.film-strip::after {
-  bottom: 0.6875rem;
+@media (prefers-reduced-motion: reduce) {
+  .clapperboard-stick {
+    transition: none;
+  }
+}
+
+/*
+ * Labels inside the services scenes. The stroke draws a halo in the
+ * background color behind the text so it stays readable over shapes.
+ */
+.scene-label {
+  font-size: 13px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+/* On phones the screen is small, so labels grow to stay readable. */
+@media (max-width: 639px) {
+  .scene-label {
+    font-size: 16px;
+  }
 }

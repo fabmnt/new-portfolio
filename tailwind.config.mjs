@@ -66,7 +66,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Archivo Variable", "sans-serif"],
+        display: ["Geist Sans", "sans-serif"],
+        cinema: ["Archivo Variable", "sans-serif"],
       },
       animation: {
         shine: "shine 6s linear infinite",

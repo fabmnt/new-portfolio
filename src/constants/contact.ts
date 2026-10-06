@@ -16,9 +16,9 @@ export const CV_PATHS: Record<Locale, string> = {
   en: "/fabian-montoya-cv-en.pdf",
 };
 
-export const HOME_PATHS: Record<Locale, string> = {
-  es: "/?locale=es",
-  en: "/en?locale=en",
+export const MARKETING_PATHS: Record<Locale, string> = {
+  es: "/marketing",
+  en: "/en/marketing",
 };
 
 export const BLOG_PATHS: Record<Locale, string> = {
