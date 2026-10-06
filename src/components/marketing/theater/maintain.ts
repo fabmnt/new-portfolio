@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
 import { PALETTE } from "./palette";
-import { scenePart, type SceneBuilder } from "./types";
+import { CLAIM_WIPE, scenePart, type SceneBuilder } from "./types";
 
 const SPARK_DISTANCE = 44;
+const PAYOFF = 6.6;
 
 // A bug breaks the site, a shield squashes it, the page snaps back and every
 // maintenance check (backup, update, security) is completed.
@@ -167,17 +168,18 @@ export const maintainScene: SceneBuilder = (svg) => {
       .to(r("[data-part=tick]"), { drawSVG: "100%", duration: 0.3 }, at + 0.6);
   });
 
-  tl.addLabel("payoff", 6.6);
+  tl.addLabel("payoff", PAYOFF);
 
-  // Clear the checklist so the loop starts again.
+  // Clear the checklist so the loop starts again, once the claim card covers it.
+  const reset = PAYOFF + CLAIM_WIPE;
   tl.to(
     q("[data-part=check]"),
     { scale: 0, duration: 0.3, ease: "power2.in", stagger: 0.08 },
-    7.3,
+    reset,
   ).to(
     q("[data-part=bar]"),
     { scaleX: 0, duration: 0.3, ease: "power2.in", stagger: 0.08 },
-    7.3,
+    reset,
   );
 
   return tl;

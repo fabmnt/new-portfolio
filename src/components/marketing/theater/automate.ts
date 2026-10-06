@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { ARM, solveArm, type Point } from "./robot-arm";
-import type { SceneBuilder } from "./types";
+import { CLAIM_WIPE, type SceneBuilder } from "./types";
 
 const PAPERS_PER_LOOP = 3;
 const SCANNER: Point = { x: 320, y: 130 };
@@ -125,25 +125,27 @@ export const automateScene: SceneBuilder = (svg) => {
       .to(fingerRight, { x: 0, duration: 0.1 }, at + 2.35);
   }
 
-  // Rest, refill the pile and clear the sheet for the next loop.
-  const end = 0.3 + PAPERS_PER_LOOP * 2.5;
-  tl.addLabel("payoff", end + 0.3);
-  moveTo(ARM.rest, 0.6, end);
+  // Once the claim card covers the scene: rest, refill the pile and clear the
+  // sheet for the next loop.
+  const payoff = 0.3 + PAPERS_PER_LOOP * 2.5 + 0.2;
+  tl.addLabel("payoff", payoff);
+  const reset = payoff + CLAIM_WIPE;
+  moveTo(ARM.rest, 0.6, reset);
   tl.fromTo(
     pile.slice(-PAPERS_PER_LOOP),
     { autoAlpha: 0, y: -60 },
     { autoAlpha: 1, y: 0, duration: 0.5, ease: "bounce.out", stagger: 0.12 },
-    end + 0.3,
+    reset + 0.3,
   )
     .to(
       q("[data-part=row-check]"),
       { scale: 0, duration: 0.25, ease: "power2.in" },
-      end + 0.4,
+      reset + 0.4,
     )
     .to(
       q("[data-part=cell]"),
       { attr: { width: 0 }, duration: 0.3, ease: "power2.in" },
-      end + 0.5,
+      reset + 0.5,
     );
 
   // Background loops sized to the whole scene.

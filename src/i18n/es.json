@@ -198,8 +198,7 @@
           "description": "Actualizaciones, copias de seguridad y arreglos rápidos. Tu sitio sigue rápido, seguro y en línea.",
           "ad": {
             "hook": "¿Tu sitio se cayó otra vez?",
-            "claim": "Lo arreglo *rápido* y lo mantengo seguro.",
-            "detail": "Copias de seguridad, actualizaciones y seguridad, cubiertas."
+            "claim": "Lo arreglo *rápido* y lo mantengo seguro."
           }
         },
         {
@@ -208,8 +207,7 @@
           "description": "Nuevas páginas, contenido actualizado o una imagen renovada para tu sitio.",
           "ad": {
             "hook": "¿Tu sitio se ve anticuado?",
-            "claim": "Una *imagen nueva* que funciona en cualquier celular.",
-            "detail": "Y nuevas páginas y contenido cuando los necesites."
+            "claim": "Una *imagen nueva* que funciona en cualquier celular."
           }
         },
         {
@@ -218,8 +216,7 @@
           "description": "Sitios web, tiendas en línea y herramientas a la medida para tu negocio.",
           "ad": {
             "hook": "¿Listo para vender en línea?",
-            "claim": "De la idea al *lanzamiento*, yo me encargo.",
-            "detail": "Sitios web, tiendas en línea y herramientas a la medida."
+            "claim": "De la idea al *lanzamiento*, yo me encargo."
           }
         },
         {
@@ -228,8 +225,7 @@
           "description": "Un asistente con IA que responde a tus visitantes, de día y de noche.",
           "ad": {
             "hook": "¿Clientes preguntando a las 3 a.m.?",
-            "claim": "Un asistente con IA que *nunca duerme*.",
-            "detail": "Conoce tu negocio y responde de día y de noche."
+            "claim": "Un asistente con IA que *nunca duerme*."
           }
         },
         {
@@ -238,8 +234,7 @@
           "description": "Bots que hacen tus tareas repetitivas por ti, rápido y sin errores.",
           "ad": {
             "hook": "¿Sigues copiando datos a mano?",
-            "claim": "Deja que un bot lo haga. *Recupera tus horas.*",
-            "detail": "Facturas, formularios y correos, sin errores."
+            "claim": "Deja que un bot lo haga. *Recupera tus horas.*"
           }
         }
       ]

@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
 import { PALETTE } from "./palette";
-import type { SceneBuilder } from "./types";
+import { CLAIM_WIPE, type SceneBuilder } from "./types";
 
 const THREAD_SCROLL = -90;
+const PAYOFF = 8.4;
 
 // A robot assistant answers visitors at night and during the day, while the
 // sky turns from night to day and back.
@@ -119,9 +120,10 @@ export const assistantScene: SceneBuilder = (svg) => {
 
   talk(1, 5);
 
-  tl.addLabel("payoff", 8.4);
+  tl.addLabel("payoff", PAYOFF);
 
-  // Day turns into night, and the chat clears.
+  // Day turns into night and the chat clears, once the claim card covers it.
+  const reset = PAYOFF + CLAIM_WIPE;
   tl.to(
     orbit,
     {
@@ -130,7 +132,7 @@ export const assistantScene: SceneBuilder = (svg) => {
       duration: 1.4,
       ease: "power2.inOut",
     },
-    8.6,
+    reset,
   )
     .to(
       q("[data-part=sky]"),
@@ -139,16 +141,24 @@ export const assistantScene: SceneBuilder = (svg) => {
         duration: 1.4,
         ease: "power2.inOut",
       },
-      8.6,
+      reset,
     )
-    .to(q("[data-part=stars]"), { autoAlpha: 1, duration: 0.6 }, 9.3)
+    .to(
+      q("[data-part=stars]"),
+      { autoAlpha: 1, duration: 0.6 },
+      reset + 0.7,
+    )
     .to(
       q("[data-part=house-window]"),
       { fill: PALETTE.tungsten, duration: 0.6 },
-      9.3,
+      reset + 0.7,
     )
-    .to([...questions, ...answers], { autoAlpha: 0, duration: 0.4 }, 9.4)
-    .set(thread, { y: 0 }, 9.8)
+    .to(
+      [...questions, ...answers],
+      { autoAlpha: 0, duration: 0.4 },
+      reset + 0.8,
+    )
+    .set(thread, { y: 0 }, reset + 1.2)
     .to({}, { duration: 0.2 });
 
   return tl;

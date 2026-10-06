@@ -1,11 +1,12 @@
 import { gsap } from "gsap";
-import type { SceneBuilder } from "./types";
+import { CLAIM_WIPE, type SceneBuilder } from "./types";
 
 const WIPE_LEFT = 84;
 const WIPE_WIDTH = 472;
 const KNOB_Y = 198;
 const PLUS_SHIFT = 122;
 const CURSOR_HOME = { x: 600, y: 350 };
+const PAYOFF = 6.9;
 
 // A cursor drags a before/after slider that turns an old site into a modern
 // one, then opens a new page tab.
@@ -91,13 +92,22 @@ export const improveScene: SceneBuilder = (svg) => {
       6.2,
     );
 
-  tl.addLabel("payoff", 6.9);
+  tl.addLabel("payoff", PAYOFF);
 
-  // Back to the old site for the next loop.
-  tl.to(cursor, { ...CURSOR_HOME, duration: 0.7 }, 7.1)
-    .to(newTab, { autoAlpha: 0, scaleX: 0, duration: 0.35 }, 7.2)
-    .to(plus, { x: 0, duration: 0.35 }, 7.2)
-    .to(wipe, { attr: { width: 0 }, duration: 0.6, ease: "power2.in" }, 7.4);
+  // Back to the old site for the next loop, once the claim card covers it.
+  const reset = PAYOFF + CLAIM_WIPE;
+  tl.to(cursor, { ...CURSOR_HOME, duration: 0.7 }, reset)
+    .to(
+      newTab,
+      { autoAlpha: 0, scaleX: 0, duration: 0.35 },
+      reset + 0.1,
+    )
+    .to(plus, { x: 0, duration: 0.35 }, reset + 0.1)
+    .to(
+      wipe,
+      { attr: { width: 0 }, duration: 0.6, ease: "power2.in" },
+      reset + 0.3,
+    );
 
   return tl;
 };

@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { claimCard, hookCard, HOOK_EXIT } from "./ad";
+import { AD_SPEED, claimCard, hookCard, HOOK_EXIT } from "./ad";
 import { SCENES } from "./scenes";
 
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
@@ -96,6 +96,7 @@ export function initTheater(root: HTMLElement) {
       const payoff =
         sceneTimeline.labels.payoff ?? sceneTimeline.duration();
       loop
+        .timeScale(AD_SPEED)
         .add(hookCard(hook), 0)
         .add(sceneTimeline, HOOK_EXIT)
         .add(claimCard(claim), HOOK_EXIT + payoff);

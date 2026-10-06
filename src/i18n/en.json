@@ -198,8 +198,7 @@
           "description": "Updates, backups and quick fixes. Your site stays fast, safe and online.",
           "ad": {
             "hook": "Site down again?",
-            "claim": "I fix it *fast* and keep it safe.",
-            "detail": "Backups, updates and security checks, covered."
+            "claim": "I fix it *fast* and keep it safe."
           }
         },
         {
@@ -208,8 +207,7 @@
           "description": "New pages, fresh content or a new look for an older site.",
           "ad": {
             "hook": "Does your site look old?",
-            "claim": "A *fresh look* that works on every phone.",
-            "detail": "Plus new pages and content whenever you need them."
+            "claim": "A *fresh look* that works on every phone."
           }
         },
         {
@@ -218,8 +216,7 @@
           "description": "Websites, online stores and custom tools for your business.",
           "ad": {
             "hook": "Ready to sell online?",
-            "claim": "From idea to *launch*, done for you.",
-            "detail": "Websites, online stores and custom tools."
+            "claim": "From idea to *launch*, done for you."
           }
         },
         {
@@ -228,8 +225,7 @@
           "description": "An AI assistant that answers your visitors, day and night.",
           "ad": {
             "hook": "Customers asking at 3 a.m.?",
-            "claim": "An AI assistant that *never sleeps*.",
-            "detail": "It knows your business and answers day and night."
+            "claim": "An AI assistant that *never sleeps*."
           }
         },
         {
@@ -238,8 +234,7 @@
           "description": "Bots that do your repetitive tasks for you, fast and without mistakes.",
           "ad": {
             "hook": "Still copying data by hand?",
-            "claim": "Let a bot do it. *Get your hours back.*",
-            "detail": "Invoices, forms and emails, handled without mistakes."
+            "claim": "Let a bot do it. *Get your hours back.*"
           }
         }
       ]

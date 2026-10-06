@@ -1,8 +1,9 @@
 import { gsap } from "gsap";
-import { scenePart, type SceneBuilder } from "./types";
+import { CLAIM_WIPE, scenePart, type SceneBuilder } from "./types";
 
 const CART = { x: 490, y: 90 };
 const ARC_TOP = 30;
+const PAYOFF = 8;
 
 // A blueprint draws itself, turns into a real online store, products fly to
 // the cart and the site launches with a rocket and confetti.
@@ -145,10 +146,14 @@ export const buildScene: SceneBuilder = (svg) => {
       7.3,
     );
 
-  tl.addLabel("payoff", 8);
+  tl.addLabel("payoff", PAYOFF);
 
-  // Back to a blank screen.
-  tl.to([frame, ...solids], { autoAlpha: 0, duration: 0.5 }, 8.4).to(
+  // Back to a blank screen, once the claim card covers it.
+  tl.to(
+    [frame, ...solids],
+    { autoAlpha: 0, duration: 0.5 },
+    PAYOFF + CLAIM_WIPE,
+  ).to(
     {},
     { duration: 0.1 },
   );
